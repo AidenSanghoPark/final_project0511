@@ -7,16 +7,17 @@
   		update f_user set
   			u_nick=#{u_nick},
   			u_tel=#{u_tel},
-  			u_email=#{u_email}
-  			where u_idx=16
+  			u_email=#{u_email},
+  			u_wallet=#{u_wallet}
+  			where u_idx=21
   		</update>
   	<delete id="pwdUpdate" parameterType="Map">
   		UPDATE F_USER SET
   			U_PWD=#{pwdconfirm}
-  			WHERE u_idx=16
+  			WHERE U_IDX=21
   	</delete>
   	<select id="pwdFind" resultType="dsn.mypage.model.MyPageDTO">
-  	 select u_pwd from f_user where u_idx=16
+  	 select u_pwd from f_user where u_idx=21
   	</select>
   	<select id="totalCnt" resultType="Integer">
   	select count(*) from f_client
@@ -26,5 +27,18 @@
 			(select rownum as rnum,a.* from
 			(select * from f_client order by c_idx desc)a)b
 			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+  	</select>
+  	<select id="virtualWallet" parameterType="Map" resultType="dsn.virtualwallet.model.WalletDTO">
+  		select * from
+			(select rownum as rnum,a.* from
+			(select * from f_account order by a_idx desc)a)b
+			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+  	</select>
+  	<select id="getLastBalance" resultType="Integer">
+  		select a_balance from
+			(select a_balance,u_idx from
+			(select a_idx,u_idx,a_balance from f_account order by a_idx desc)
+			where rownum=1)
+		where u_idx=21
   	</select>
   </mapper>

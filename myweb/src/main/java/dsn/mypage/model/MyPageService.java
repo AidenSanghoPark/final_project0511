@@ -8,4 +8,6 @@ public interface MyPageService {
 	public int pwdUpdate(String pwdconfirm);
 	public int getTotalCnt();
 	public List myPageList(int cp,int listSize);
+	public List virtualWallet(int cp,int listSize);
+	public int getLastBalance();
 }

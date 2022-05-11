@@ -9,5 +9,6 @@ public interface MyPageDAO {
 	public int userUpdate(MyPageDTO dto);
 	public int pwdUpdate(String pwdconfirm);
 	public int getTotalCnt();
-	
+	public List virtualWallet(Map map);
+	public int getLastBalance();
 }
