@@ -86,7 +86,7 @@ ul {
        			<h5 id="re_pw"></h5>
        			
 			<p>
-       			<input type="password" name="u_pwd" id="userPwChk" autocomplete="off" required>
+       			<input type="password" id="userPwChk" autocomplete="off" required>
        			<label><span>Password Check</span></label>
        		</p> 	      		
        			<h5 id="re_ck"></h5>

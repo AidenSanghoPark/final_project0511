@@ -47,5 +47,20 @@ public class MyPageServiceImple implements MyPageService {
 		List lists=myPageDao.myPageList(map);
 		return lists;
 	}
+	@Override
+	public List virtualWallet(int cp, int listSize) {
+		int start=((cp-1)*listSize)+1;
+		int end=cp*listSize;
+		Map map=new HashedMap();
+		map.put("start", start);
+		map.put("end", end);
+		List lists=myPageDao.virtualWallet(map);
+		return lists;
+	}
+	@Override
+	public int getLastBalance() {
+		int blc=myPageDao.getLastBalance();
+		return blc;
+	}
 
 }

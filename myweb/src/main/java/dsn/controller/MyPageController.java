@@ -18,7 +18,6 @@ public class MyPageController {
 	@Autowired
 	private MyPageService myPageService;
 	
-	
 	@RequestMapping("myPage.do")
 	public ModelAndView myPage(@RequestParam(value = "cp",defaultValue = "1") int cp){
 		
@@ -44,7 +43,7 @@ public class MyPageController {
 	@RequestMapping("myPageUpdate.do")
 	public ModelAndView userUpdate(MyPageDTO dto) {
 		int result=myPageService.userUpdate(dto);
-		String msg=result>0?"Á¤º¸¼öÁ¤ ¿Ï·á":"Á¤º¸¼öÁ¤ ¿Ï·á";
+		String msg=result>0?"ì •ë³´ìˆ˜ì • ì™„ë£Œ":"ì •ë³´ìˆ˜ì • ì™„ë£Œ";
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg", msg);
 		mav.addObject("gopage", "myPage.do");
@@ -63,10 +62,10 @@ public class MyPageController {
 		String msg="";
 		if(checkpwd.equals(pwdconfirm)) {
 			int result=myPageService.pwdUpdate(pwdconfirm);
-			msg=result>0?"ºñ¹Ğ¹øÈ£ º¯°æ ¿Ï·á":"ºñ¹Ğ¹øÈ£ º¯°æ ½ÇÆĞ";
+			msg=result>0?"ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ ì™„ë£Œ":"ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ ì‹¤íŒ¨";
 			mav.addObject("gopage", "myPage.do");
 		}else {
-			msg="ºñ¹Ğ¹øÈ£ ºÒÀÏÄ¡";
+			msg="ë¹„ë°€ë²ˆí˜¸ ë¶ˆì¼ì¹˜";
 			mav.addObject("gopage", "passwordConfig.do");
 		}
 		mav.addObject("msg", msg);
@@ -77,6 +76,22 @@ public class MyPageController {
 	public ModelAndView profileConfig() {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("mypage/profile");
+		return mav;
+	}
+	@RequestMapping("wallet.do")
+	public ModelAndView virtualWallet(@RequestParam(value = "cp",defaultValue = "1") int cp) {
+		int totalCnt=myPageService.getTotalCnt();
+		int blc=myPageService.getLastBalance();
+		int listSize=5;
+		int pageSize=5;
+		String pageStr=dsn.page.PageModule.pageMake("wallet.do", totalCnt, listSize, pageSize, cp);
+		List lists=myPageService.virtualWallet(cp, listSize);
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("lists",lists);
+		mav.addObject("pageStr", pageStr);
+		mav.addObject("blc", blc);
+		mav.setViewName("mypage/wallet");
 		return mav;
 	}
 }

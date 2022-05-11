@@ -34,5 +34,15 @@ public class MyPageDAOImple implements MyPageDAO {
 		List lists=sqlMap.selectList("myPageList", map);
 		return lists;
 	}
+	@Override
+	public List virtualWallet(Map map) {
+		List lists=sqlMap.selectList("virtualWallet", map);
+		return lists;
+	}
+	@Override
+	public int getLastBalance() {
+		int blc=sqlMap.selectOne("getLastBalance");
+		return blc;
+	}
 	
 }
