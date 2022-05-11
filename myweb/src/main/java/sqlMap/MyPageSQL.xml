@@ -11,11 +11,11 @@
   			u_wallet=#{u_wallet}
   			where u_idx=21
   		</update>
-  	<delete id="pwdUpdate" parameterType="Map">
+  	<update id="pwdUpdate" parameterType="Map">
   		UPDATE F_USER SET
   			U_PWD=#{pwdconfirm}
   			WHERE U_IDX=21
-  	</delete>
+  	</update>
   	<select id="pwdFind" resultType="dsn.mypage.model.MyPageDTO">
   	 select u_pwd from f_user where u_idx=21
   	</select>
