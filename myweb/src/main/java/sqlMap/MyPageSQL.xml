@@ -24,9 +24,10 @@
   	</select>
   	<select id="myPageList" parameterType="Map" resultType="dsn.contest.model.ConDTO">
   		select * from
+  		(select * from
 			(select rownum as rnum,a.* from
 			(select * from f_client order by c_idx desc)a)b
-			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end})where u_idx=#{u_idx}
   	</select>
   	<select id="virtualWallet" parameterType="Map" resultType="dsn.virtualwallet.model.WalletDTO">
   		select * from
@@ -40,5 +41,8 @@
 			(select a_idx,u_idx,a_balance from f_account order by a_idx desc)
 			where rownum=1)
 		where u_idx=21
+  	</select>
+  	<select id="userInfoFind" parameterType="Map" resultType="dsn.member.model.MemberDTO">
+  		select * from f_user where u_idx=#{u_idx}
   	</select>
   </mapper>

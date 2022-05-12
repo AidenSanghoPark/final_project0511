@@ -3,6 +3,8 @@ package dsn.mypage.model;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 public class MyPageDAOImple implements MyPageDAO {
@@ -43,6 +45,11 @@ public class MyPageDAOImple implements MyPageDAO {
 	public int getLastBalance() {
 		int blc=sqlMap.selectOne("getLastBalance");
 		return blc;
+	}
+	@Override
+	public List userInfoFind(Map map) {
+		List userinfo=sqlMap.selectList("userInfoFind",map);
+		return userinfo;
 	}
 	
 }
