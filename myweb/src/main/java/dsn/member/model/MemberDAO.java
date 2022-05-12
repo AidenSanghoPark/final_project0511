@@ -21,4 +21,5 @@ public interface MemberDAO {
 	
 	public MemberDTO checkUserWithSessionKey(String session_id);
 	
+	
 }

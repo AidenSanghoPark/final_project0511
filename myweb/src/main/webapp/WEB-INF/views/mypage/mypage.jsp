@@ -48,20 +48,25 @@ ul{
 <%@include file="/WEB-INF/views/header.jsp" %>
 <body>
 	<section class="profile">
+	<c:forEach var="userinfo" items="${userinfo }">
+	
         <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false" src="mypageimg/cateimg.jpg"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em"></text></svg>
-        <h5><a href="profileConfig.do">Test 님</a></h5>
-        <p>bhms8520@gmail.com</p>
+        <h5><a href="profileConfig.do">${userinfo.u_name } 님</a></h5>
+        <p>${userinfo.u_email }</p>
         <p><a class="btn btn-secondary" href="#">포트폴리오 관리</a></p><br>
         <h3>참여한 콘테스트</h3><br>
         <h3>1:1 의뢰 관리</h3><br>
         <h3>가상계좌</h3><br>
         <h3><a href="accountConfig.do">계정설정</a></h3><br>
+     </c:forEach>
     </section>
     <section class="coninfo">
     	<h3 style="color:grey">참여한 콘테스트</h3><br>
-    	<c:if test="${empty lists }">
+    	<c:choose>
+    		<c:when test="${empty lists }">
     		<h3 style="color:grey;padding-left:300px;padding-top:200px;">아직 콘테스트에 참여하지 않으셨습니다.</h3>
-    	</c:if>
+    		</c:when>
+    	<c:otherwise>
     	<c:forEach var="dto" items="${lists }">
     	<fieldset>
     		<img src="mypageimg/cateimg.jpg">
@@ -69,6 +74,9 @@ ul{
     	</fieldset><br>
     	</c:forEach>
     	<div id="page">${pageStr }</div>
+    	</c:otherwise>
+    	</c:choose>
+    
     </section>
 <div style="padding-top:1200px;">
 <%@include file="/WEB-INF/views/footer.jsp" %>
