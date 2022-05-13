@@ -25,5 +25,9 @@ public class ConDAOImple implements ConDAO{
 			return cnt;
 		}
 
-		
+		@Override
+		public int addNaming(ConDTO dto) {
+			int count = sqlMap.insert("addNaming", dto);
+			return count;
+		}
 }
