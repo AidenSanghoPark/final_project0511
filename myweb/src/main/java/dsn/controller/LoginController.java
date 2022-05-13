@@ -68,7 +68,7 @@ public class LoginController {
             }
 
         }else { 
-            returnURL = "member/login";
+            returnURL = "member/index";
         }
          
         return returnURL; 

@@ -22,15 +22,13 @@ public class ConDTO {
 	   private Date c_opendate;
 	   private Date c_enddate;
 	   private int u_idx;
-	   private int u_datediff;
+	   private int c_datediff;
 	public ConDTO() {
 		super();
 	}
-	
-	
 	public ConDTO(int c_idx, String c_subject, String c_deas, String c_company, String c_cate, int c_logo1, int c_logo2,
 			int c_logo3, String c_color, String c_file, String c_name, String c_details, String c_idea, int c_readnum,
-			int c_pay, Date c_opendate, Date c_enddate, int u_idx, int u_datediff) {
+			int c_pay, Date c_opendate, Date c_enddate, int u_idx, int c_datediff) {
 		super();
 		this.c_idx = c_idx;
 		this.c_subject = c_subject;
@@ -50,10 +48,8 @@ public class ConDTO {
 		this.c_opendate = c_opendate;
 		this.c_enddate = c_enddate;
 		this.u_idx = u_idx;
-		this.u_datediff = u_datediff;
+		this.c_datediff = c_datediff;
 	}
-
-
 	public int getC_idx() {
 		return c_idx;
 	}
@@ -162,12 +158,13 @@ public class ConDTO {
 	public void setU_idx(int u_idx) {
 		this.u_idx = u_idx;
 	}
-	public int getU_datediff() {
-		return u_datediff;
+	public int getC_datediff() {
+		return c_datediff;
 	}
-	public void setU_datediff(int u_datediff) {
-		this.u_datediff = u_datediff;
+	public void setC_datediff(int c_datediff) {
+		this.c_datediff = c_datediff;
 	}
-	   
-	   
+	
+	
+	
 }

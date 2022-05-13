@@ -8,12 +8,6 @@
 	height:50px;
 	padding-left: 15px;
 }
-#loginJoin{
-	float: left;
-	text-decoration-line: none;
-   color: white;
- 	text-align: right;
-}
 </style>
 <header>
 <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
@@ -33,6 +27,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">디자이너</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contestJoin.do">콘테스트 참여</a>
           </li>
         </ul>
        </div>
