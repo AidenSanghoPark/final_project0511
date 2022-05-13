@@ -3,7 +3,9 @@ package dsn.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,18 +57,18 @@ public class ContestController {
 	//���̹� form
 	@RequestMapping(value = "/namingHold_add.do", method = RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView namingHoldForm(MultipartHttpServletRequest request, ConDTO dto) {	
+	public String namingHoldForm(MultipartHttpServletRequest request, ConDTO dto) {	
 		
-		ModelAndView mav=new ModelAndView();
-		System.out.println(dto.getC_cate());
-		System.out.println(dto.getUpload().getOriginalFilename());	
+//		ModelAndView mav=new ModelAndView();
+//		System.out.println(dto.getC_cate());
+//		System.out.println(dto.getUpload().getOriginalFilename());	
 		int result = conService.addNaming(dto);
-		mav.addObject("result", result);
-		mav.addObject("upload", dto.getUpload());
+//		mav.addObject("result", result);
+		//mav.addObject("upload", dto.getUpload());
 		String path = request.getSession().getServletContext().getRealPath("img/");
 		copyInto(dto.getUpload(), path); 
-		mav.setViewName("contest/namingHold");
-		return mav;
+//		mav.setViewName("yongJson");
+		return result+"";
 	}
 	//���Ϻ���
 	public void copyInto(MultipartFile upload, String path) {

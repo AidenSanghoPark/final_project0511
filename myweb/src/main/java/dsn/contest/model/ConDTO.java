@@ -2,6 +2,8 @@ package dsn.contest.model;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ConDTO {
 
 	private int c_idx;
@@ -9,9 +11,7 @@ public class ConDTO {
 	   private String c_deas;
 	   private String c_company;
 	   private String c_cate;
-	   private int c_logo1;
-	   private int c_logo2;
-	   private int c_logo3;
+	   private String c_logo;
 	   private String c_color;
 	   private String c_file;
 	   private String c_name;
@@ -23,21 +23,20 @@ public class ConDTO {
 	   private Date c_enddate;
 	   private int u_idx;
 	   private int c_datediff;
+	   private MultipartFile upload;
+	   
 	public ConDTO() {
 		super();
 	}
-	public ConDTO(int c_idx, String c_subject, String c_deas, String c_company, String c_cate, int c_logo1, int c_logo2,
-			int c_logo3, String c_color, String c_file, String c_name, String c_details, String c_idea, int c_readnum,
-			int c_pay, Date c_opendate, Date c_enddate, int u_idx, int c_datediff) {
+	public ConDTO(int c_idx, String c_subject, String c_deas, String c_company, String c_cate, String c_logo, String c_color, String c_file, String c_name, String c_details, String c_idea, int c_readnum,
+			int c_pay, Date c_opendate, Date c_enddate, int u_idx, int c_datediff, MultipartFile upload) {
 		super();
 		this.c_idx = c_idx;
 		this.c_subject = c_subject;
 		this.c_deas = c_deas;
 		this.c_company = c_company;
 		this.c_cate = c_cate;
-		this.c_logo1 = c_logo1;
-		this.c_logo2 = c_logo2;
-		this.c_logo3 = c_logo3;
+		this.c_logo = c_logo;
 		this.c_color = c_color;
 		this.c_file = c_file;
 		this.c_name = c_name;
@@ -49,6 +48,7 @@ public class ConDTO {
 		this.c_enddate = c_enddate;
 		this.u_idx = u_idx;
 		this.c_datediff = c_datediff;
+		this.upload = upload;
 	}
 	public int getC_idx() {
 		return c_idx;
@@ -80,23 +80,11 @@ public class ConDTO {
 	public void setC_cate(String c_cate) {
 		this.c_cate = c_cate;
 	}
-	public int getC_logo1() {
-		return c_logo1;
+	public String getC_logo() {
+		return c_logo;
 	}
-	public void setC_logo1(int c_logo1) {
-		this.c_logo1 = c_logo1;
-	}
-	public int getC_logo2() {
-		return c_logo2;
-	}
-	public void setC_logo2(int c_logo2) {
-		this.c_logo2 = c_logo2;
-	}
-	public int getC_logo3() {
-		return c_logo3;
-	}
-	public void setC_logo3(int c_logo3) {
-		this.c_logo3 = c_logo3;
+	public void setC_logo(String c_logo) {
+		this.c_logo = c_logo;
 	}
 	public String getC_color() {
 		return c_color;
@@ -163,6 +151,12 @@ public class ConDTO {
 	}
 	public void setC_datediff(int c_datediff) {
 		this.c_datediff = c_datediff;
+	}
+	public MultipartFile getUpload() {
+		return upload;
+	}
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
 	}
 	
 	
