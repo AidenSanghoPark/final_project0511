@@ -43,7 +43,7 @@
 					<div><a href="loginPage.do">로그인</a> | <a href="joinChoice.do">회원가입</a></div>
 				</c:when>
 				<c:otherwise>
-					<div>${nick}님 로그인중 | <a href="logout.do">로그아웃</a></div>
+					<div>님 로그인중 | <a href="logout.do">로그아웃</a></div>
 				</c:otherwise>
 			</c:choose>
         </div>

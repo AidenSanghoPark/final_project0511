@@ -19,7 +19,7 @@
 			#{u_type},
 			sysdate,
 			sysdate,
-			'gyuutt'			
+			'0'			
 		)		
 	</insert>
 	 <select id="idCheck" parameterType="String" resultType="Integer">

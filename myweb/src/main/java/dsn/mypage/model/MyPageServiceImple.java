@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import dsn.member.model.MemberDTO;
 
 @Service
 public class MyPageServiceImple implements MyPageService {
@@ -25,7 +26,7 @@ public class MyPageServiceImple implements MyPageService {
 	}
 
 	@Override
-	public int userUpdate(MyPageDTO dto) {
+	public int userUpdate(MemberDTO dto) {
 		int count=myPageDao.userUpdate(dto);	
 		return count;
 	}
@@ -54,18 +55,20 @@ public class MyPageServiceImple implements MyPageService {
 		return lists;
 	}
 	@Override
-	public List virtualWallet(int cp, int listSize) {
+	public List virtualWallet(int cp, int listSize, int u_idx) {
 		int start=((cp-1)*listSize)+1;
 		int end=cp*listSize;
 		Map map=new HashedMap();
 		map.put("start", start);
 		map.put("end", end);
+		map.put("u_idx", u_idx);
 		List lists=myPageDao.virtualWallet(map);
 		return lists;
 	}
 	@Override
-	public int getLastBalance() {
-		int blc=myPageDao.getLastBalance();
+	public int getLastBalance(int u_idx) {
+		
+		int blc=myPageDao.getLastBalance(u_idx);
 		return blc;
 	}
 	@Override
@@ -74,6 +77,11 @@ public class MyPageServiceImple implements MyPageService {
 		map.put("u_idx", u_idx);
 		List userinfo=myPageDao.userInfoFind(map);
 		return userinfo;
+	}
+	@Override
+	public String pwdFind(int u_idx) {
+		String getlastpwd=myPageDao.pwdFind(u_idx);
+		return getlastpwd;
 	}
 
 }

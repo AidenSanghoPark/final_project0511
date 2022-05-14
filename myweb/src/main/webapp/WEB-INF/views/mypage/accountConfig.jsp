@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,32 +48,35 @@ ul{
 	</ul>
 </section>
 <section class="insert">
+<c:forEach var="userinfo" items="${userinfo }">
+<input type="hidden" value="${userinfo.u_idx }" name="u_idx">
 	<table>
 		<tr>
 			<th>아이디</th>
-			<td><input type="text" name="userid" placeholder="u_id" style="background-color:grey; border-radius:5px;" readonly></td>
+			<td><input type="text" value="${userinfo.u_id }" style="background-color:grey; border-radius:5px;" readonly></td>
 		</tr>
 		<tr>
 			<th>닉네임</th>
-			<td><input type="text" name="u_nick"></td>
+			<td><input type="text" name="u_nick" value="${userinfo.u_nick }"></td>
 		</tr>
 		<tr>
 			<th>생년월일</th>
-			<td><input type="text" name="u_birth" placeholder="u_birth" style="background-color:grey; border-radius:5px;" readonly></td>
+			<td><input type="text" value="${userinfo.u_birth }" style="background-color:grey; border-radius:5px;" readonly></td>
 		</tr>
 		<tr>
 			<th>전화번호</th>
 			<td>
-				<input type="text" name="u_tel">
+				<input type="text" name="u_tel" value="${userinfo.u_tel }">
 				<label style="color:grey">- 빼고 입력</label>
 			</td>
 		</tr>
 		<tr>
 			<th>이메일</th>
-			<td><input type="text" name="u_email">
+			<td><input type="text" name="u_email" value="${userinfo.u_email}">
 			</td>
 		</tr>
 	</table>
+</c:forEach>
 	<div style="text-align:center"><br>
 		<input type="submit" value="수정하기" style="display:inline-block; background-color:grey; color:white; border-radius:5px; outline:none; border: 0px;width:100px;height:40px">
 	</div>

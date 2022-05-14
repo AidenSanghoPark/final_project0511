@@ -48,9 +48,28 @@ a {
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <div style="padding-left: 80px;padding-top: 100px;">
 <h3>가상계좌</h3><br>
+<c:choose>
+	<c:when test="${empty lists }">
+	<fieldset>
+		<table>
+			<tr>
+				<th>계좌 등록</th>
+				
+			</tr>
+		</table>
+		</fieldset>
+	</c:when>
+</c:choose>
 <table class="request" style="border-top-left-radius: 15px;">
 	<tr>
-		<th>${blc }&nbsp;원</th>
+		<c:choose>
+			<c:when test="${empty blc}">
+		<th>잔액이 없습니다.</th>
+			</c:when>
+			<c:otherwise>
+			<th>${blc }&nbsp;원</th>
+			</c:otherwise>
+		</c:choose>
 		<td><a href="payout.do">출금신청</a></td>
 	</tr>
 </table>

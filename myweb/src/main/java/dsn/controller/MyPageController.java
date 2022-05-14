@@ -25,9 +25,10 @@ public class MyPageController {
 	@RequestMapping("myPage.do")
 	public ModelAndView myPage(@RequestParam(value = "cp",defaultValue = "1") int cp,HttpSession session){
 		
-		int vo=(int)session.getAttribute("u_idx");	
+		Object obj=session.getAttribute("login");
+		int vo=(int)session.getAttribute("u_idx");
 		ModelAndView mav=new ModelAndView();
-		if(vo==0) {
+		if(obj==null) {
 			String msg="로그인 후 이용해주세요";
 			mav.addObject("msg", msg);
 			mav.addObject("gopage","index.do");
@@ -50,16 +51,21 @@ public class MyPageController {
 		}
 	}
 	@RequestMapping("accountConfig.do")
-	public ModelAndView accountConfig() {
+	public ModelAndView accountConfig(HttpSession session) {
+		int vo=(int)session.getAttribute("u_idx");
+		List userinfo=myPageService.userInfoFind(vo);
 		ModelAndView mav=new ModelAndView();
+		mav.addObject("userinfo", userinfo);
 		mav.setViewName("mypage/accountConfig");
 		return mav;
 	}
 	@RequestMapping("myPageUpdate.do")
-	public ModelAndView userUpdate(MyPageDTO dto) {
+	public ModelAndView userUpdate(MemberDTO dto) {
+		
 		int result=myPageService.userUpdate(dto);
-		String msg=result>0?"정보수정 완료":"정보수정 완료";
+		String msg=result>0?"정보수정 완료":"정보수정 실패";
 		ModelAndView mav=new ModelAndView();
+		
 		mav.addObject("msg", msg);
 		mav.addObject("gopage", "myPage.do");
 		mav.setViewName("mypage/mypagemsg");
@@ -72,15 +78,23 @@ public class MyPageController {
 		return mav;
 	}
 	@RequestMapping("pwdUpdate.do")
-	public ModelAndView passwordUpdate(String checkpwd,String pwdconfirm) {
+	public ModelAndView passwordUpdate(String checkpwd,String pwdconfirm,String lastpwd,HttpSession session) {
+		int u_idx=(int)session.getAttribute("u_idx");
+		String getlastpwd=myPageService.pwdFind(u_idx);
 		ModelAndView mav=new ModelAndView();
 		String msg="";
 		if(checkpwd.equals(pwdconfirm)) {
 			int result=myPageService.pwdUpdate(pwdconfirm);
 			msg=result>0?"비밀번호 변경 완료":"비밀번호 변경 실패";
 			mav.addObject("gopage", "myPage.do");
-		}else {
+		}else if(!checkpwd.equals(pwdconfirm)){
+			msg="확인 비밀번호 불일치";
+			mav.addObject("gopage", "passwordConfig.do");
+		}else if(!lastpwd.equals(getlastpwd)) {
 			msg="비밀번호 불일치";
+			mav.addObject("gopage", "passwordConfig.do");
+		}else {
+			msg="관리자 문의";
 			mav.addObject("gopage", "passwordConfig.do");
 		}
 		mav.addObject("msg", msg);
@@ -94,13 +108,15 @@ public class MyPageController {
 		return mav;
 	}
 	@RequestMapping("wallet.do")
-	public ModelAndView virtualWallet(@RequestParam(value = "cp",defaultValue = "1") int cp) {
+	public ModelAndView virtualWallet(@RequestParam(value = "cp",defaultValue = "1") int cp,HttpSession session) {
+		int vo=(int)session.getAttribute("u_idx");
+		
 		int totalCnt=myPageService.getTotalCnt();
-		int blc=myPageService.getLastBalance();
+		int blc=myPageService.getLastBalance(vo);
 		int listSize=5;
 		int pageSize=5;
 		String pageStr=dsn.page.PageModule.pageMake("wallet.do", totalCnt, listSize, pageSize, cp);
-		List lists=myPageService.virtualWallet(cp, listSize);
+		List lists=myPageService.virtualWallet(cp, listSize, vo);
 		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("lists",lists);
