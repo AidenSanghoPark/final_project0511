@@ -29,7 +29,19 @@ public class ConDAOImple implements ConDAO{
 			List lists=sqlMap.selectList("conList", map);
 			return lists;
 		}
+		
+		@Override
+		public List cateEnd(Map map) {
+			List lists=sqlMap.selectList("cateEnd", map);
+			return lists;
+		}
 
+
+		@Override
+		public List conEnd(Map map) {
+			List lists=sqlMap.selectList("conEnd", map);
+			return lists;
+		}
 
 		@Override
 		public int dateUp() {
@@ -37,7 +49,11 @@ public class ConDAOImple implements ConDAO{
 			return dateUp;
 		}
 
-
+		@Override
+		public int ContestCnt() {
+			int cnt=sqlMap.selectOne("ContestCnt");
+			return cnt;
+		}
 
 		
 }

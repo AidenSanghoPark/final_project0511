@@ -8,8 +8,9 @@
 <meta name="description" content="">
 <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.88.1">
-<title>디자인 콘테스트 보기 | DSN</title>
+<title>종료된 콘테스트 보기 | DSN</title>
 </head>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
 <style>
@@ -339,81 +340,27 @@ a{
 	text-decoration: none;
 }
 </style>
+
+<script type="text/javascript"
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script>
-// 생략	
-
-	$(document).on('click', '#btnSearch', function(e){
-
-		e.preventDefault();
-		var url = "${pageContext.request.contextPath}/contest/getBoardList";
-		url = url + "?searchType=" + $('#searchType').val();
-		url = url + "&keyword=" + $('#keyword').val();
-		location.href = url;
-		console.log(url);
-	});	
-</script>
-<c:url var="getBoardListURL" value="/board/getBoardList"></c:url>
-
-<script>
-
-   // 생략	
-
-	$(document).on('click', '#btnSearch', function(e){
-
-		e.preventDefault();
-
-		var url = "${cateList}";    // <c:url>로 선언한 url을 사용
-
-		url = url + "&c_cate=" + $('#c_cate').val();
-
-		location.href = url;
-
-		console.log(url);
-
-	});	
-
-</script>
 <%@ include file="/WEB-INF/views/header.jsp" %>
 
-<hr>
+<head>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+		<script src="//code.jquery.com/jquery.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>    
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+
+
+</head>
+
+</html>
+
 <body>
-	<!-- search{s} -->
-
-		<div class="form-group row justify-content-center">
-
-			<div class="w100" style="padding-right:10px">
-
-				<select class="form-control form-control-sm" name="searchType" id="searchType">
-
-					<option value="title">제목</option>
-
-					<option value="Content">본문</option>
-
-					<option value="reg_id">작성자</option>
-
-				</select>
-
-			</div>
-
-			<div class="w300" style="padding-right:10px">
-
-				<input type="text" class="form-control form-control-sm" name="keyword" id="keyword">
-
-			</div>
-
-			<div>
-
-				<button class="btn btn-sm btn-primary" name="btnSearch" id="btnSearch">검색</button>
-
-			</div>
-
-		</div>
-
-		<!-- search{e} -->
-
-
+<hr>
   <div class="flex-shrink-0 p-3 bg-white" style="width: 20%; float: left;">
     <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
       <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
@@ -421,42 +368,12 @@ a{
     </a>
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <button onclick="conList.do" class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
-          진행중 콘테스트
-        </button>
-        <div class="collapse show" id="home-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" onclick="location.href='endSort';">마감임박순</a></li>
-            <li><a href="#" onclick="location.href='chamSort';">참여자순</a></li>
-            <li><a href="#" onclick="location.href='moneySort';">총상금순</a></li>
-            <li><a href="#" onclick="location.href='readSort';">조회순</a></li>
-          </ul>
-        </div>
-      </li>
-      <li class="mb-1" onclick="conAudit.do">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-          심사중 콘테스트
-        </button>
-        <div class="collapse" id="dashboard-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" onclick="location.href='endSort';">마감임박순</a></li>
-            <li><a href="#" onclick="location.href='chamSort';">참여자순</a></li>
-            <li><a href="#" onclick="location.href='moneySort';">총상금순</a></li>
-            <li><a href="#" onclick="location.href='readSort';">조회순</a></li>
-          </ul>
-        </div>
+        <button class="btn btn-toggle align-items-center rounded collapsed">
+        </button> <a href="conList.do">진행중 콘테스트</a>
       </li>
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="true">
-          종료된 콘테스트
-        </button>
-        <div class="collapse" id="orders-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" onclick="location.href='chamSort';">참여자순</a></li>
-            <li><a href="#" onclick="location.href='moneySort';">총상금순</a></li>
-            <li><a href="#" onclick="location.href='readSort';">조회순</a></li>
-          </ul>
-        </div>
+        <button class="btn btn-toggle align-items-center rounded collapsed">
+        </button> <a href="conEnd.do" style="font-weight: bold;">종료된 콘테스트</a>
       </li>
     </ul>
     
@@ -467,37 +384,49 @@ a{
 	    	<h5 style="margin: 0 auto; font-size:17px; color:gray;">
 	    		<br>
 	    		<label style="font-weight: bold;">디자인카테고리&nbsp;>&nbsp;</label>
-		    	<label id="c_cate">전체</label>전체&nbsp;&nbsp;
-		    	<label id="c_cate" value="네이밍">네이밍&nbsp;&nbsp;
-		    	<label id="c_cate" value="로고">로고&nbsp;&nbsp;
-		    	<label id="c_cate" value="제품">제품&nbsp;&nbsp;
-		    	<label id="c_cate" value="캐릭터">캐릭터&nbsp;&nbsp;
-		    	<label id="c_cate" value="인쇄">인쇄
+		    	<a href="/myweb/conEnd.do" >전체&nbsp;&nbsp;</a>
+		    	<a href="/myweb/conEnd.do?c_cate=네이밍">네이밍&nbsp;&nbsp;</a>
+		    	<a href="/myweb/conEnd.do?c_cate=로고">로고&nbsp;&nbsp;</a>
+		    	<a href="/myweb/conEnd.do?c_cate=캐릭터">캐릭터&nbsp;&nbsp;</a>
+		    	<a href="/myweb/conEnd.do?c_cate=인쇄">인쇄</a>
+		    	
 		    	</h5>
 		    	<br>
 	    </div> 
 	        <div style="width: 1000px; float: center:;">
+	        
+	        
+<!-- 검색창 -->	
+<form name="conList" action="conEnd.do" method="get">       
+	<select name="searchType">
+		<option value="title">제목</option>
+		<option value="content">내용</option>
+		<option value="titlecontent">제목+내용</option>
+	</select>
+
+	<input type="text" name='keyword'>
+	<button type="submit">검색</button>
+</form> 	
 	
 	<tbody>
 		<c:if test="${empty lists }">
 			<tr>
 				<td colspan="5"	align="center">
-					등록된 게시글 없음
+					등록된 게시글 없음<br>
 				</td>
 			</tr>
 		</c:if>
 		<c:forEach var="dto" items="${lists }">
-		<input type="hidden" name="c_idx" value="${dto.c_idx }">
 			<div class="member-entry" style="width:900px;"> 
 			    <a href="#" class="member-img"> 
 			        <img src="https://ifh.cc/g/vAq0AJ.png" class="circle-img" style="padding-top: 10px;"> 
 			    </a> 
 			    <div class="member-details" style="width:750px;"> 
 			        <div class="col-sm-4" style="float:left;"> 
-			        <c:url var="contentUrl" value="conList.do">
+			        <c:url var="contentUrl" value="conEndContent.do">
 					<c:param name="idx">${dto.c_idx }</c:param>
 				</c:url>
-			                <h4> <a href="#" style="text-decoration: none; color: #2E2E2E; font-weight: bold; font-size: 17px;">${dto.c_subject }</a> </h4> 
+			                <h4> <a href="${contentUrl }" style="text-decoration: none; color: #2E2E2E; font-weight: bold; font-size: 17px;">${dto.c_subject }</a> </h4> 
 			                <div style="padding: 10px; padding-left: 10px; width: 500px; height:70px; background-color:#EFEFFB; margin-left: 20px; color: #424242;">
 			                	${dto.c_deas }<br><br>
 			                </div>
@@ -505,7 +434,7 @@ a{
 			        <div class="row info-list" style="float:right; text-align: left; width:200px; font-size: 10px; padding-top: 20px;"> 
 			            <h3 style="font-size: 20px; font-weight: bold; color: #424242;">상금&nbsp;&nbsp;&nbsp;&nbsp;${dto.c_pay } 만원</h3> 
 			            <h4 style="padding-right: 45px; text-align: right; font-size: 15px; color: gray;"><label style="font-weight: bold;">참여인원</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${dto.u_idx }명</h4> 
-			            <h4 style="padding-right: 45px; text-align: right; font-size: 15px; color: gray;"><label style="font-weight: bold;">남은기간</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D${dto.c_datediff }</h4> 
+
 			        </div>    
 			    </div> 
 			</div>
@@ -515,5 +444,6 @@ a{
 	</div>
 	</div> 
 	</div>
+
 </body>
 </html>

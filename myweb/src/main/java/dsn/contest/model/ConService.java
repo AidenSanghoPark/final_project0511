@@ -5,7 +5,10 @@ import java.util.Map;
 
 
 public interface ConService {
-	public List conList(int cp, int listSize);
+	public List conList(int cp, int listSize, String searchType, String keyword);
 	public List cateList(int cp, int listSize, String c_cate);
+	public List conEnd(int cp, int listSize, String searchType, String keyword);
+	public List cateEnd(int cp, int listSize, String c_cate);
 	public int dateUp();
+	public int ContestCnt();
 }

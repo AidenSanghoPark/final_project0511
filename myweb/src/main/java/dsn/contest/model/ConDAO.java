@@ -11,6 +11,9 @@ public interface ConDAO {
 
 	public List conList(Map map);
 	public List cateList(Map map);
+	public List conEnd(Map map);
+	public List cateEnd(Map map);
 	public int dateUp();
+	public int ContestCnt();
 	
 }

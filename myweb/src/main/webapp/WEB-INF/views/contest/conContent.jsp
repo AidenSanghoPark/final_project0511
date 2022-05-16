@@ -8,8 +8,9 @@
 <meta name="description" content="">
 <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.88.1">
-<title>디자인 콘테스트 보기 | DSN</title>
+<title>디자인 콘테스트 참여 | DSN</title>
 </head>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
 <style>
@@ -340,107 +341,31 @@ a{
 }
 </style>
 
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script>	
-    $(function(){
-    	$("button").click(function(){
-    			var kind = $(this).val();  //버튼이 클릭 되었을 때 그 버튼의 value를 var kind로 가져와서	
-    			$.ajax({
-    				  url : '/conListSort.do', // 이 주소로 
-    	              type : "post", // 포스트 방식으로 보내는데
-    	              data : {"kind" : kind}, // kind를 kind로 명명하여 보내겠다
-    	              success : function(data){ 
-    	                 console.log(data);
-    	                
-    	                 $('body').html(data); //성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
-    	              },
-    	              error : function(data){
-    	            	 alert('error');
-    	               
-    	              }//error
-    			})//ajax
-    		});//click
-    });//ready
-	</script>
-
+<script type="text/javascript"
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
 <%@ include file="/WEB-INF/views/header.jsp" %>
 
+<head>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+		<script src="//code.jquery.com/jquery.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>    
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+
+
+</head>
+
+
 <hr>
-<body>
-  <div class="flex-shrink-0 p-3 bg-white" style="width: 20%; float: left;">
-    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-      <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-      <label style="font-weight: bold; font-size: 30px;">콘테스트</label>
-    </a>
-    <ul class="list-unstyled ps-0">
-      <li class="mb-1">
-        <button onclick="conList.do" class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-          진행중 콘테스트
-        </button>
-        <div class="collapse show" id="home-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" onclick="location.href='endSort';">마감임박순</a></li>
-            <li><a href="#" onclick="location.href='chamSort';">참여자순</a></li>
-            <li><a href="#" onclick="location.href='moneySort';">총상금순</a></li>
-            <li><a href="#" onclick="location.href='readSort';">조회순</a></li>
-          </ul>
-        </div>
-      </li>
-      <li class="mb-1" onclick="conAudit.do">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-          심사중 콘테스트
-        </button>
-        <div class="collapse" id="dashboard-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" onclick="location.href='endSort';">마감임박순</a></li>
-            <li><a href="#" onclick="location.href='chamSort';">참여자순</a></li>
-            <li><a href="#" onclick="location.href='moneySort';">총상금순</a></li>
-            <li><a href="#" onclick="location.href='readSort';">조회순</a></li>
-          </ul>
-        </div>
-      </li>
-      <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-          종료된 콘테스트
-        </button>
-        <div class="collapse" id="orders-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" onclick="location.href='chamSort';">참여자순</a></li>
-            <li><a href="#" onclick="location.href='moneySort';">총상금순</a></li>
-            <li><a href="#" onclick="location.href='readSort';">조회순</a></li>
-          </ul>
-        </div>
-      </li>
-    </ul>
-    
-  </div>
-<div class="container" style="width: 80%;">
-	<div class="row bootstrap snippets bootdeys"> 
-	    <div class="col-md-9 col-sm-7" style="width: 1000px; font-weight: bolder; font"> 
-	    	<h5 style="margin: 0 auto; font-size:17px; color:gray;">
-	    		<br>
-	    		<label style="font-weight: bold;">디자인카테고리&nbsp;>&nbsp;</label>
-		    	<a href="/myweb/conList.do" >전체&nbsp;&nbsp;</a>
-		    	<a href="/myweb/cateList.do?c_cate=네이밍"><label id="c_cate" value="네이밍">네이밍</label>&nbsp;&nbsp;</a>
-		    	<a href="/myweb/cateList.do?c_cate=로고">로고&nbsp;&nbsp;</a>
-		    	<a href="/myweb/cateList.do?c_cate=제품">제품&nbsp;&nbsp;</a>
-		    	<a href="/myweb/cateList.do?c_cate=캐릭터">캐릭터&nbsp;&nbsp;</a>
-		    	<a href="/myweb/cateList.do?c_cate=인쇄">인쇄</a>
-		    	
-		    	<input type="button" value="네이밍">
-		    	</h5>
-		    	<br>
-	    </div> 
-	        <div style="width: 1000px; float: center:;">
+<body>	
 	
 	<tbody>
 		<c:if test="${empty lists }">
 			<tr>
 				<td colspan="5"	align="center">
-					등록된 게시글 없음
+					등록된 게시글 없음<br>
 				</td>
 			</tr>
 		</c:if>
@@ -451,10 +376,11 @@ a{
 			    </a> 
 			    <div class="member-details" style="width:750px;"> 
 			        <div class="col-sm-4" style="float:left;"> 
-			        <c:url var="contentUrl" value="conList.do">
+			        <c:url var="contentUrl" value="conListContent.do">
 					<c:param name="idx">${dto.c_idx }</c:param>
 				</c:url>
-			                <h4> <a href="#" style="text-decoration: none; color: #2E2E2E; font-weight: bold; font-size: 17px;">${dto.c_subject }</a> </h4> 
+							<!-- 콘테스트 제목 -->
+			                <h4> <a href="${contentUrl }" style="text-decoration: none; color: #2E2E2E; font-weight: bold; font-size: 17px;">${dto.c_subject }</a> </h4> 
 			                <div style="padding: 10px; padding-left: 10px; width: 500px; height:70px; background-color:#EFEFFB; margin-left: 20px; color: #424242;">
 			                	${dto.c_deas }<br><br>
 			                </div>
@@ -468,9 +394,9 @@ a{
 			</div>
 		</c:forEach>
 	</tbody>
-	<div class="pagination" style="float: center; padding-bottom: 50px;">${pageStr } </div>
 	</div>
 	</div> 
 	</div>
+
 </body>
 </html>

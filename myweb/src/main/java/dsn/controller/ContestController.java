@@ -21,6 +21,8 @@ import dsn.contest.model.ConDAOImple;
 import dsn.contest.model.ConDTO;
 import dsn.contest.*;
 import dsn.contest.model.ConService;
+import dsn.page.PageModule;
+import kr.co.vo.SearchCriteria;
 
 	@Controller
 	public class ContestController {
@@ -31,24 +33,35 @@ import dsn.contest.model.ConService;
 	@RequestMapping(value = "/conList.do")
 	   public ModelAndView conList(
 			   @RequestParam(value="cp",defaultValue = "1") int cp,
-			   @RequestParam(required = false, defaultValue = "전체") String c_cate) throws Exception {
-	      
-		   int totalCnt=10;
+			   @RequestParam(required = false, defaultValue = "전체") String c_cate,
+			   @RequestParam(required = false, defaultValue = "") String searchType,
+			   @RequestParam(required = false, defaultValue = "") String keyword) throws Exception {
+	      System.out.println(keyword);
+			PageModule PageModule = new PageModule();
+			PageModule.setSearchType(searchType);
+			PageModule.setKeyword(keyword);
+
+		    int totalCnt=conService.ContestCnt();
 			int listSize=3;
 			int pageSize=3;
 			
 			List lists = null;
 			String p_command = "";
 			if(c_cate.equals("전체")) {
-				lists=conService.conList(cp,listSize);
+				lists=conService.conList(cp,listSize,searchType,keyword);
 			}else {
 				lists = conService.cateList(cp, listSize, c_cate);
 			}
 			
-			String pageStr=dsn.page.PageModule.pageMake(p_command, totalCnt, listSize, pageSize, cp);
+			String pageStr="";
+			if(searchType=="") {
+				pageStr=dsn.page.PageModule.pageMake(p_command, totalCnt, listSize, pageSize, cp);
+			}else {
+				pageStr=dsn.page.PageModule.searchPageMake(p_command,
+					totalCnt, listSize, pageSize, cp, searchType, keyword);
+			}
 			
 			int dateUp=conService.dateUp();
-			
 			
 	      //페이징 처리 끝
 	      
@@ -61,68 +74,60 @@ import dsn.contest.model.ConService;
 	      
 	      return mav; 
 	   } 
-	
-/*	@RequestMapping("/conAudit.do")
-	public ModelAndView conAudit(
-			@RequestParam(value="cp",defaultValue = "1") int cp) {
-		
-//		int totalCnt=conService.getTotalCnt();
-		int totalCnt=10;
-		int listSize=3;
-		int pageSize=3;
-		String pageStr=dsn.page.PageModule.pageMake("conAudit.do", totalCnt, listSize, pageSize, cp);
-		
-		List lists=conService.conList(cp,listSize);
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("pageStr",pageStr);
-		mav.addObject("lists",lists);
-		mav.setViewName("contest/conAudit");
-		return mav;
-	}
-	
-	@RequestMapping("/conEnd.do")
-	public ModelAndView conEnd(
-			@RequestParam(value="cp",defaultValue = "1") int cp) {
-		
-//		int totalCnt=conService.getTotalCnt();
-		int totalCnt=10;
-		int listSize=3;
-		int pageSize=3;
-		String pageStr=dsn.page.PageModule.pageMake("conEnd.do", totalCnt, listSize, pageSize, cp);
-		
-		List lists=conService.conList(cp,listSize,c_cate);
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("pageStr",pageStr);
-		mav.addObject("lists",lists);
-		mav.setViewName("contest/conEnd");
-		return mav;
-	} */
-	
 
 	
-/*	    @RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/conEnd.do")
+	   public ModelAndView conEnd(
+			   @RequestParam(value="cp",defaultValue = "1") int cp,
+			   @RequestParam(required = false, defaultValue = "전체") String c_cate,
+			   @RequestParam(required = false, defaultValue = "") String searchType,
+			   @RequestParam(required = false, defaultValue = "") String keyword) throws Exception {
+	      System.out.println(keyword);
+			PageModule PageModule = new PageModule();
+			PageModule.setSearchType(searchType);
+			PageModule.setKeyword(keyword);
 
-		public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
-
-
-
-		    model.addAttribute("list", service.listSearchCriteria(cri)); //전체목록에 검색페이징 기능+
-
-		    int totalCnt=10;
+		    int totalCnt=conService.ContestCnt();
 			int listSize=3;
 			int pageSize=3;
-			String pageStr=dsn.page.PageModule.pageMake("cateList.do", totalCnt, listSize, pageSize, cp);
 			
-		    pageStr.setCri(cri);
-		    pageStr.setTotalCount(service.listSearchCount(cri));//전체목록에 검색페이징 카운트+
+			List lists = null;
+			String p_command = "";
+			if(c_cate.equals("전체")) {
+				lists=conService.conEnd(cp,listSize,searchType,keyword);
+			}else {
+				lists = conService.cateEnd(cp, listSize, c_cate);
+			}
+			
+			String pageStr="";
+			if(searchType=="") {
+				pageStr=dsn.page.PageModule.pageMake(p_command, totalCnt, listSize, pageSize, cp);
+			}else {
+				pageStr=dsn.page.PageModule.searchPageMake(p_command,
+					totalCnt, listSize, pageSize, cp, searchType, keyword);
+			}
+			
+			int dateUp=conService.dateUp();
+			
+	      //페이징 처리 끝
+	      
+	      ModelAndView mav=new ModelAndView();
+	      mav.addObject("dateUp",dateUp);
+	      mav.addObject("c_cate",c_cate);
+		  mav.addObject("pageStr",pageStr);
+		  mav.addObject("lists",lists);
+		  mav.setViewName("contest/conEnd");
+	      
+	      return mav; 
+	   } 
+	
+	@RequestMapping(value = "/conContent.do")
+	public ModelAndView conContent(
+			@RequestParam(value="c_idx", defaultValue = "0") int c_idx){
+			
+		}
+		return null;
+	}
 
-
-		    ModelAndView mav=new ModelAndView();
-		    mav.addObject("pageStr",pageStr);
-			  mav.addObject("lists",lists);
-
-		  } */
 	
 }

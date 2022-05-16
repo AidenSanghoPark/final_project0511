@@ -10,6 +10,7 @@
 <meta name="generator" content="Hugo 0.88.1">
 <title>디자인 콘테스트 보기 | DSN</title>
 </head>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
 <style>
@@ -341,37 +342,11 @@ a{
 </style>
 
 <script type="text/javascript"
-
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-
-	<script type="text/javascript">
-		$(document).ready(
-			function() {
-				$('#searchBtn').on(
-					"click",
-					function(event) {
-						str = "list"
-						+ '${pageMaker.makeQuery(1)}'
-						+ "&searchType="
-						+ $("select option:selected").val()
-						+ "&keyword=" + encodeURIComponent($('#keywordInput').val());
-						console.log(str);
-						self.location = str;
-					});
-				$('#newBtn').on("click", function(evt) {
-					self.location = "regist";
-				});
-			});
-	</script>
-</body>
-</html>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
 <%@ include file="/WEB-INF/views/header.jsp" %>
-<!DOCTYPE html>
-<html>
+
 <head>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
@@ -381,98 +356,6 @@ a{
 
 
 </head>
-<body>
-
-<div class="container text-center">
-
-<table data-toggle="table" 
-       data-classes="table table-hover table-condensed"
-       data-striped="true"
-       data-sort-name="Quality"
-       data-sort-order="desc"
-       data-pagination="true"
-       >
-    <thead>
-    <tr>
-        <th class="col-xs-1" data-field="Product_Name" data-sortable="true">Product Name</th>
-        <th class="col-xs-1" data-field="Quality" data-sortable="true">Quality</th>
-        <th class="col-xs-6" data-field="Quantity" >Quantity</th>
-    </tr>
-    </thead>
-    <tbody>
-   <tr id="tr-id-2" class="tr-class-2">
-        <td>Wheat</td>
-        <td>Good</td>
-        <td>200 Bags</td>
-    </tr>
-    <tr id="tr-id-2" class="tr-class-2">
-        <td>Rice</td>
-        <td>Good</td>
-        <td>100 Bags</td>
-    </tr>
-    <tr id="tr-id-2" class="tr-class-2">
-        <td>Rice</td>
-        <td>Good</td>
-        <td>100 Bags</td>
-    </tr>
-    <tr id="tr-id-2" class="tr-class-2">
-        <td>Sugar</td>
-        <td>Prime</td>
-        <td>200 Bags</td>
-    </tr>            
-    <tr id="tr-id-2" class="tr-class-2">
-        <td>Maze</td>
-        <td>Fine</td>
-        <td>10 Packs</td>
-    </tr>            
-    <tr id="tr-id-2" class="tr-class-2">
-        <td>Sugar</td>
-        <td>Prime</td>
-        <td>200 Bags</td>
-    </tr> 
-    <tr id="tr-id-2" class="tr-class-2">
-        <td>Sugar</td>
-        <td>Prime</td>
-        <td>200 Bags</td>
-    </tr> 
-    <tr id="tr-id-2" class="tr-class-2">
-        <td>Sugar</td>
-        <td>Prime</td>
-        <td>200 Bags</td>
-    </tr> 
-    <tr id="tr-id-2" class="tr-class-2">
-        <td>Sugar</td>
-        <td>Prime</td>
-        <td>200 Bags</td>
-    </tr> 
-    <tr id="tr-id-2" class="tr-class-2">
-        <td>Sugar</td>
-        <td>Prime</td>
-        <td>200 Bags</td>
-    </tr> 
-    <tr id="tr-id-2" class="tr-class-2">
-        <td>Sugar</td>
-        <td>Prime</td>
-        <td>200 Bags</td>
-    </tr>  
-    </tbody>    
-</table>
-</div>
-
-<script>
-function queryParams() {
-    return {
-        type: 'owner',
-        sort: 'updated',
-        direction: 'desc',
-        per_page: 100,
-        page: 1
-    };
-}
-</script>
-
-</body>
-</html>
 
 
 <hr>
@@ -484,42 +367,12 @@ function queryParams() {
     </a>
     <ul class="list-unstyled ps-0">
       <li class="mb-1">
-        <button onclick="conList.do" class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-          진행중 콘테스트
-        </button>
-        <div class="collapse show" id="home-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" onclick="location.href='endSort';">마감임박순</a></li>
-            <li><a href="#" onclick="location.href='chamSort';">참여자순</a></li>
-            <li><a href="#" onclick="location.href='moneySort';">총상금순</a></li>
-            <li><a href="#" onclick="location.href='readSort';">조회순</a></li>
-          </ul>
-        </div>
-      </li>
-      <li class="mb-1" onclick="conAudit.do">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-          심사중 콘테스트
-        </button>
-        <div class="collapse" id="dashboard-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" onclick="location.href='endSort';">마감임박순</a></li>
-            <li><a href="#" onclick="location.href='chamSort';">참여자순</a></li>
-            <li><a href="#" onclick="location.href='moneySort';">총상금순</a></li>
-            <li><a href="#" onclick="location.href='readSort';">조회순</a></li>
-          </ul>
-        </div>
+        <button class="btn btn-toggle align-items-center rounded collapsed">
+        </button> <a href="conList.do" style="font-weight: bold;">진행중 콘테스트</a>
       </li>
       <li class="mb-1">
-        <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-          종료된 콘테스트
-        </button>
-        <div class="collapse" id="orders-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="#" onclick="location.href='chamSort';">참여자순</a></li>
-            <li><a href="#" onclick="location.href='moneySort';">총상금순</a></li>
-            <li><a href="#" onclick="location.href='readSort';">조회순</a></li>
-          </ul>
-        </div>
+        <button class="btn btn-toggle align-items-center rounded collapsed">
+        </button> <a href="conEnd.do">종료된 콘테스트</a>
       </li>
     </ul>
     
@@ -533,34 +386,32 @@ function queryParams() {
 		    	<a href="/myweb/conList.do" >전체&nbsp;&nbsp;</a>
 		    	<a href="/myweb/conList.do?c_cate=네이밍">네이밍&nbsp;&nbsp;</a>
 		    	<a href="/myweb/conList.do?c_cate=로고">로고&nbsp;&nbsp;</a>
-		    	<a href="/myweb/conList.do?c_cate=제품">제품&nbsp;&nbsp;</a>
 		    	<a href="/myweb/conList.do?c_cate=캐릭터">캐릭터&nbsp;&nbsp;</a>
 		    	<a href="/myweb/conList.do?c_cate=인쇄">인쇄</a>
 		    	
-		    	<input type="button" value="네이밍">
 		    	</h5>
 		    	<br>
 	    </div> 
 	        <div style="width: 1000px; float: center:;">
 	        
 	        
-<!-- 검색창 -->	        
+<!-- 검색창 -->	
+<form name="conList" action="conList.do" method="get">       
 	<select name="searchType">
-		<option value="t"
-			<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>제목</option>
+		<option value="title">제목</option>
+		<option value="content">내용</option>
+		<option value="titlecontent">제목+내용</option>
 	</select>
 
-	<input type="text" name='keyword' id="keywordInput"
-		value='${cri.keyword }'>
-	<button type="button" id='searchBtn'>검색</button>
-	
-	
+	<input type="text" name='keyword'>
+	<button type="submit">검색</button>
+</form> 	
 	
 	<tbody>
 		<c:if test="${empty lists }">
 			<tr>
 				<td colspan="5"	align="center">
-					등록된 게시글 없음
+					등록된 게시글 없음<br>
 				</td>
 			</tr>
 		</c:if>
@@ -571,10 +422,11 @@ function queryParams() {
 			    </a> 
 			    <div class="member-details" style="width:750px;"> 
 			        <div class="col-sm-4" style="float:left;"> 
-			        <c:url var="contentUrl" value="conList.do">
+			        <c:url var="contentUrl" value="conListContent.do">
 					<c:param name="idx">${dto.c_idx }</c:param>
 				</c:url>
-			                <h4> <a href="#" style="text-decoration: none; color: #2E2E2E; font-weight: bold; font-size: 17px;">${dto.c_subject }</a> </h4> 
+							<!-- 콘테스트 제목 -->
+			                <h4> <a href="${contentUrl }" style="text-decoration: none; color: #2E2E2E; font-weight: bold; font-size: 17px;">${dto.c_subject }</a> </h4> 
 			                <div style="padding: 10px; padding-left: 10px; width: 500px; height:70px; background-color:#EFEFFB; margin-left: 20px; color: #424242;">
 			                	${dto.c_deas }<br><br>
 			                </div>
@@ -592,19 +444,6 @@ function queryParams() {
 	</div>
 	</div> 
 	</div>
-	<table>
-	<th>
-	<form action="/board/Sort" method="get">
-		<input type="hidden" name="sort" value="1">
-		<input class="btn btn-link-dark" type="submit" value="조회수">
-	</form>
-	</th>
-	<th>
-	<form action="/board/Sort" method="get">
-		<input type="hidden" name="sort" value="2">
-		<input class="btn btn-link-dark" type="submit" value="추천수">
-	</form>
-</th>
-</table>
+
 </body>
 </html>
