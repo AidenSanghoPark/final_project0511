@@ -3,46 +3,47 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="dsn.mypage">
-  	<update id="userUpdate" parameterType="Map">
-  		update f_user set
-  			u_nick=#{u_nick},
-  			u_tel=#{u_tel},
-  			u_email=#{u_email},
-  			u_wallet=#{u_wallet}
-  			where u_idx=21
+  	<update id="userUpdate" parameterType="dsn.member.model.MemberDTO">
+  		UPDATE F_USER SET
+  			U_NICK=#{U_NICK},
+  			U_TEL=#{U_TEL},
+  			U_EMAIL=#{U_EMAIL}
+  			WHERE U_IDX=#{U_IDX}
   		</update>
   	<update id="pwdUpdate" parameterType="Map">
   		UPDATE F_USER SET
-  			U_PWD=#{pwdconfirm}
-  			WHERE U_IDX=21
+  			U_PWD=#{PWDCONFIRM}
+  			WHERE U_IDX=#{U_IDX}
   	</update>
-  	<select id="pwdFind" resultType="dsn.mypage.model.MyPageDTO">
-  	 select u_pwd from f_user where u_idx=21
+  	<select id="pwdFind" parameterType="Integer" resultType="dsn.member.model.MemberDTO">
+  	 SELECT U_PWD FROM F_USER WHERE U_IDX=#{U_IDX}
   	</select>
   	<select id="totalCnt" resultType="Integer">
-  	select count(*) from f_client
+  	SELECT COUNT(*) FROM F_CLIENT
   	</select>
   	<select id="myPageList" parameterType="Map" resultType="dsn.contest.model.ConDTO">
-  		select * from
-  		(select * from
-			(select rownum as rnum,a.* from
-			(select * from f_client order by c_idx desc)a)b
-			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end})where u_idx=#{u_idx}
+  	<![CDATA[
+  		SELECT * FROM
+  		(SELECT * FROM
+			(SELECT ROWNUM AS RNUM,A.* FROM
+			(SELECT * FROM F_CLIENT ORDER BY C_IDX DESC)A)B
+			WHERE RNUM >= #{START} AND RNUM <= #{END})WHERE U_IDX=#{U_IDX}
+			]]>
   	</select>
   	<select id="virtualWallet" parameterType="Map" resultType="dsn.virtualwallet.model.WalletDTO">
-  		select * from
-			(select rownum as rnum,a.* from
-			(select * from f_account order by a_idx desc)a)b
-			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+  	<![CDATA[
+		SELECT * FROM
+  		(SELECT * FROM
+			(SELECT ROWNUM AS RNUM,A.* FROM
+			(SELECT * FROM F_ACCOUNT ORDER BY A_IDX DESC)A)B
+			WHERE RNUM >= #{start} AND RNUM <= #{END})WHERE U_IDX=#{U_IDX}
+			]]>
   	</select>
-  	<select id="getLastBalance" resultType="Integer">
-  		select a_balance from
-			(select a_balance,u_idx from
-			(select a_idx,u_idx,a_balance from f_account order by a_idx desc)
-			where rownum=1)
-		where u_idx=21
-  	</select>
-  	<select id="userInfoFind" parameterType="Map" resultType="dsn.member.model.MemberDTO">
-  		select * from f_user where u_idx=#{u_idx}
+  	<select id="getLastBalance" parameterType="Integer" resultType="Integer">
+  		SELECT A_BALANCE FROM
+			(SELECT A_BALANCE,U_IDX FROM
+			(SELECT A_IDX,U_IDX,A_BALANCE FROM F_ACCOUNT ORDER BY A_IDX DESC)
+			WHERE ROWNUM=1)
+		WHERE U_IDX=#{U_IDX}
   	</select>
   </mapper>

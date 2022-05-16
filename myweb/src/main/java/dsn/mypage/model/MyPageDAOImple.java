@@ -3,9 +3,9 @@ package dsn.mypage.model;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.mybatis.spring.SqlSessionTemplate;
+
+import dsn.member.model.MemberDTO;
 
 public class MyPageDAOImple implements MyPageDAO {
 
@@ -17,7 +17,7 @@ public class MyPageDAOImple implements MyPageDAO {
 	}
 	
 	@Override
-	public int userUpdate(MyPageDTO dto) {
+	public int userUpdate(MemberDTO dto) {
 		int count=sqlMap.update("userUpdate", dto);
 		return count;
 	}
@@ -42,14 +42,19 @@ public class MyPageDAOImple implements MyPageDAO {
 		return lists;
 	}
 	@Override
-	public int getLastBalance() {
-		int blc=sqlMap.selectOne("getLastBalance");
+	public int getLastBalance(int u_idx) {
+		int blc=sqlMap.selectOne("getLastBalance", u_idx);
 		return blc;
 	}
 	@Override
 	public List userInfoFind(Map map) {
 		List userinfo=sqlMap.selectList("userInfoFind",map);
 		return userinfo;
+	}
+	@Override
+	public String pwdFind(int u_idx) {
+		String getlastpwd=sqlMap.selectOne("getLastPWD", u_idx);
+		return getlastpwd;
 	}
 	
 }

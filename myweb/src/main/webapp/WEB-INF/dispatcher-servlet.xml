@@ -31,11 +31,6 @@
 	 
 	 
 	<!-- dao -->
-	<bean id="myPageDao" class="dsn.mypage.model.MyPageDAOImple">
-		<constructor-arg>
-			<ref bean="sqlSessionTemplate"/>
-		</constructor-arg>		
-	</bean>
 	
 	
 	<bean id="viewResolver"
