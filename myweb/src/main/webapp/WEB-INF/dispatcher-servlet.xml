@@ -62,15 +62,31 @@
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<property name="order" value="0"></property>
 	</bean>
-	<bean id="authenticationInterceptor" class="dsn.member.interceptor.AuthenticationInterceptor">
-	 	<constructor-arg ref="memberService"></constructor-arg>
-	 </bean>
-	 <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <ref bean="authenticationInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>	
+	
+	
+	
+	
+	<bean id="loginInterceptor" class="dsn.member.interceptor.LoginInterceptor"/>
+	<bean id="authInterceptor" class="dsn.member.interceptor.AuthInterceptor"/>
+	<bean id="rememberInterceptor" class="dsn.member.interceptor.RememberInterceptor"/>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<ref bean="rememberInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/loginPost.do"/>
+			<ref bean="loginInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<mvc:interceptors>	
+		<mvc:interceptor>
+			<mvc:mapping path="/contestJoin.do"/>
+			<ref bean="authInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 	
 	<!-- Tiles -->
     <bean id="tilesConfigurer" 

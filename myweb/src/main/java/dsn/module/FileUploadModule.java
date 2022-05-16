@@ -6,11 +6,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public class FileUploadModule {
 	
-	
-	
 	public void copyInto(String path,MultipartFile upload) {
-		System.out.println("올린파일명:"+upload.getOriginalFilename());
-		System.out.println(path);
 		try {
 			byte bytes[]=upload.getBytes();
 			File f=new File(path+upload.getOriginalFilename());
