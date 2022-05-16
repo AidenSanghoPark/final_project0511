@@ -55,23 +55,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
             Object URL = httpSession.getAttribute("URL");
             response.sendRedirect(destination != null ? (String) destination : "index.do");
         }
-		
-//        HttpSession httpSession = request.getSession();
-//        ModelMap modelMap = modelAndView.getModelMap();
-//        Object memberVO =  modelMap.get("user");
-//        System.out.println("loginter memberVO"+memberVO);
-//        
-//        if (memberVO != null) {
-//        	
-//            System.out.println("new login success");
-//            httpSession.setAttribute(LOGIN, memberVO);
-//            
-//            Object destination = httpSession.getAttribute("destination");
-//            System.out.println("loginter destination"+destination);
-//            Object URL = httpSession.getAttribute("URL");
-//            System.out.println("loginter URL"+URL);
-//            response.sendRedirect(destination != null ? (String) destination : "index.do");
-//        }
 	}
 	
 	

@@ -3,6 +3,6 @@
  <title>LOGIN FAIL ALARM</title>   
     <script>
 window.alert('아이디 혹은 비밀번호가 일치하지 않습니다.');
-opener.parent.location='/login.jsp';
+location.href('logins');
 window.self.close();
 </script>
