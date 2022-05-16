@@ -18,7 +18,7 @@
 <header>
 <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
     
-      <div style="float:left"><a href="index.do"><img src="img/main.jpg" class="mainimg"></a></div>
+      <div style="float:left"><a><img src="img/main.jpg" class="mainimg"></a></div>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -29,7 +29,7 @@
             <a class="nav-link active" aria-current="page" href="#">콘테스트</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">콘테스트 개최</a>
+            <a class="nav-link" href="contestChoice.do">콘테스트 개최</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">디자이너</a>

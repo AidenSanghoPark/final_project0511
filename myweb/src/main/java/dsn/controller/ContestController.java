@@ -31,37 +31,32 @@ public class ContestController {
 		mav.setViewName("contest/contestChoice");
 		return mav;
 	}
-	//네이밍 뷰
-	@RequestMapping(value = "/namingHold.do", method = RequestMethod.GET)
-	public ModelAndView namingHoldView(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
+	//로고 뷰
+	@RequestMapping(value = "/logoHold.do", method = RequestMethod.GET)
+	public ModelAndView logoHoldView(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("c_cate", c_cate);
-		mav.setViewName("contest/namingHold");
+		mav.setViewName("contest/logoHold");
 		return mav;
 	}
-	//체크 박스
+	//체크박스
 	@RequestMapping(value = "/arrcheck.do", method = RequestMethod.POST)
 	@ResponseBody
 	public void arrCheck(@RequestParam(value = "valueArr[]")
-						List<String> valueArr) {
-	   		System.out.println(valueArr);
+	                  List<String> valueArr) {
+	            System.out.println(valueArr);
 	}
-	//네이밍 form
-	@RequestMapping(value = "/namingHold_add.do", method = RequestMethod.POST)
+	//로고 form
+	@RequestMapping(value = "/logoHold_add.do", method = RequestMethod.POST)
 	@ResponseBody
-	public ModelAndView namingHoldForm(MultipartHttpServletRequest request, ConDTO dto) {	
-		
-		ModelAndView mav=new ModelAndView();
-		System.out.println(dto.getC_cate());
-		System.out.println(dto.getUpload().getOriginalFilename());	
-		int result = conService.addNaming(dto);
-		mav.addObject("result", result);
-		mav.addObject("upload", dto.getUpload());
-		String path = request.getSession().getServletContext().getRealPath("img/");
-		copyInto(dto.getUpload(), path); 
-		mav.setViewName("contest/namingHold");
-		return mav;
+	public String logoHoldForm(MultipartHttpServletRequest request, ConDTO dto) {   
+	      
+	System.out.println(dto.getC_pay());	
+	   int result = conService.addLogo(dto);
+	   String path = request.getSession().getServletContext().getRealPath("img/");
+	   copyInto(dto.getUpload(), path); 
+	   return result + "";
 	}
 	//파일복사
 	public void copyInto(MultipartFile upload, String path) {
@@ -77,15 +72,26 @@ public class ContestController {
 			e.printStackTrace();
 		}		
 	}
-	//로고 개최
-	@RequestMapping(value = "/logoHold.do", method = RequestMethod.GET)
+	//네이밍 개최
+	@RequestMapping(value = "/namingHold.do", method = RequestMethod.GET)
 	public ModelAndView rogoHold(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("c_cate", c_cate);
 		System.out.println(c_cate);
-		mav.setViewName("contest/logoHold");
+		mav.setViewName("contest/namingHold");
 		return mav;
 	}
+	//네이밍 form
+	@RequestMapping(value = "/namingHold_add.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String namingHoldForm(MultipartHttpServletRequest request, ConDTO dto) { 
+			      
+		int result = conService.addNaming(dto);
+		String path = request.getSession().getServletContext().getRealPath("img/");
+		copyInto(dto.getUpload(), path); 
+		return result + "";
+	}
+	
 	//캐릭터 개최
 	@RequestMapping(value = "/characterHold.do", method = RequestMethod.GET)
 	public ModelAndView characterHold(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
@@ -95,14 +101,15 @@ public class ContestController {
 		mav.setViewName("contest/characterHold");
 		return mav;
 	}
-	//제품 개최
-	@RequestMapping(value = "/productHold.do", method = RequestMethod.GET)
-	public ModelAndView productHold(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("c_cate", c_cate);
-		System.out.println(c_cate);
-		mav.setViewName("contest/productHold");
-		return mav;
+	//캐릭터 form
+	@RequestMapping(value = "/characterHold_add.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String characterHoldorm(MultipartHttpServletRequest request, ConDTO dto) {   
+			      
+		int result = conService.addCharacter(dto);
+		String path = request.getSession().getServletContext().getRealPath("img/");
+		copyInto(dto.getUpload(), path); 
+		return result + "";
 	}
 	//인쇄 개최
 	@RequestMapping(value = "/printHold.do", method = RequestMethod.GET)
@@ -113,4 +120,16 @@ public class ContestController {
 		mav.setViewName("contest/printHold");
 		return mav;
 	}
+	//인새 form
+	@RequestMapping(value = "/printHold_add.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String printrHoldForm(MultipartHttpServletRequest request, ConDTO dto) {   
+			      
+		int result = conService.addPrint(dto);
+		String path = request.getSession().getServletContext().getRealPath("img/");
+		copyInto(dto.getUpload(), path); 
+		return result + "";
+	}
+	//결제 내역
+
 }

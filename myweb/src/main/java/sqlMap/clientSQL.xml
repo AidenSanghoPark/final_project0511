@@ -3,45 +3,100 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dsn.con">
-	<insert id="addNaming" parameterType="dsn.contest.model.ConDTO">
-		INSERT INTO F_CLIENT
-			  (C_IDX
-			  , C_SUBJECT
-			  , C_DEAS
-			  , C_COMPANY
-			  , C_CATE
-			  , C_COLOR
-			  , C_FILE
-			  , C_NAME
-			  , C_DETAILS
-			  , C_IDEA
-			  , C_READNUM
-			  , C_PAY
-			  , C_OPENDATE
-			  , C_ENDDATE
-			  , U_IDX
-			  , C_BLOCK
-			  , C_DATEDIFF
-			  , C_LOGO)
-		VALUES(
-			F_CLIENT_C_IDX.NEXTVAL,
-			#{c_subject},
-			#{c_deas},
-			#{c_company},
-			#{c_cate},
-			#{c_color},
-			#{c_file},
-			#{c_name},
-			#{c_details},
-			'idea',
-			0,
-			2000,
-			sysdate,
-			sysdate,
-			'0',
-			'n',
-			0,
-			#{c_logo}
-		)	
-	</insert>
+	<insert id="addLogo" parameterType="dsn.contest.model.ConDTO">
+      INSERT INTO 
+      		F_CLIENT          
+      VALUES(
+         F_CLIENT_C_IDX.NEXTVAL,
+         #{c_subject},
+         #{c_deas},
+         #{c_company},
+         #{c_cate},
+         #{c_logo},
+         #{c_color},
+         #{c_file},
+         #{c_name},
+         #{c_details},
+         'idea',
+         0,
+         #{c_pay},
+         sysdate,
+         sysdate,
+         0,
+         'n',
+         0
+      )
+   </insert>
+   <insert id="addNaming" parameterType="dsn.contest.model.ConDTO">
+      INSERT INTO 
+      		F_CLIENT          
+      VALUES(
+         F_CLIENT_C_IDX.NEXTVAL,
+         #{c_subject},
+         #{c_deas},
+         #{c_company},
+         #{c_cate},
+         '없음',
+         '없음',
+         #{c_file},
+         '없음',
+         #{c_details},
+         #{c_idea},
+         0,
+         #{c_pay},
+         sysdate,
+         sysdate,
+         '0',
+         'n',
+         0
+      )   
+   </insert>
+   <insert id="addCharacter" parameterType="dsn.contest.model.ConDTO">
+     INSERT INTO 
+      		F_CLIENT          
+      VALUES(
+         F_CLIENT_C_IDX.NEXTVAL,
+         #{c_subject},
+         #{c_deas},
+         #{c_company},
+         #{c_cate},
+         '없음',
+         '없음',
+         #{c_file},
+         '없음',
+         #{c_details},
+         #{c_idea},
+         0,
+         #{c_pay},
+         sysdate,
+         sysdate,
+         '0',
+         'n',
+         0
+      )   
+   </insert>
+   <insert id="addPrint" parameterType="dsn.contest.model.ConDTO">
+      INSERT INTO 
+      		F_CLIENT          
+      VALUES(
+         F_CLIENT_C_IDX.NEXTVAL,
+         #{c_subject},
+         #{c_deas},
+         #{c_company},
+         #{c_cate},
+         '없음',
+         '없음',
+         #{c_file},
+         '없음',
+         #{c_details},
+         #{c_idea},
+         0,
+         #{c_pay},
+         sysdate,
+         sysdate,
+         '0',
+         'n',
+         0
+      )   
+   </insert>  
 </mapper>
