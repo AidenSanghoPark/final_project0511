@@ -48,11 +48,15 @@ public class MemberServiceImple implements MemberService {
 		return result;
 	}
 	@Override
-	public void autoLogin(String session_id, Date limit_date, String u_id) {
+	public void autoLogin(String session_id, String u_id ,Date limit_date) {
+		
+		System.out.println(session_id);
+		System.out.println(u_id);
+		System.out.println(limit_date);
 		Map map=new HashMap();
 		map.put("session_id",session_id);
-		map.put("limit_date", limit_date);
 		map.put("u_id", u_id);
+		map.put("limit_date", limit_date);
 		memberDao.autoLogin(map);
 
 	}
@@ -63,8 +67,8 @@ public class MemberServiceImple implements MemberService {
 		return dto;
 	}
 	@Override
-	public MemberDTO login(MemberDTO dto) {
-		return memberDao.login(dto);
+	public MemberDTO login(LoginDTO ldto) {
+		return memberDao.login(ldto);
 	}
 	
 	

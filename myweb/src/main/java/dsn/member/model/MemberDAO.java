@@ -17,7 +17,7 @@ public interface MemberDAO {
 	
 	public MemberDTO getUser(String u_id);
 	
-	public MemberDTO login(MemberDTO dto);
+	public MemberDTO login(LoginDTO ldto);
 	
 	public MemberDTO checkUserWithSessionKey(String session_id);
 	

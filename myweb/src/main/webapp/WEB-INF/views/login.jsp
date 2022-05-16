@@ -81,7 +81,7 @@ div{
 	</div>
 	<div id="r_join">
 		<section class="wrap">
-			<form name="login" action="loginPage.do" method="post" id="memberJoin">
+			<form name="login" action="loginPost.do" method="post" id="memberJoin">
 				<p>
                 	<input type="text" name="u_id" id="userId" required>
                 	<label for="user_id"><span>ID</span></label>
@@ -92,7 +92,7 @@ div{
                 </p>    
                 	<h5 id="re_check"></h5>
 				<input type="hidden" name="_autologin" value="on">
-				<input type="checkbox" name="autologin" id="autologin">로그인유지
+				<input type="checkbox" name="useCookie" id="autologin">로그인유지
 				<input type="submit" value="LOGIN" onclick="logincheck()" >
 			</form>
 		</section>

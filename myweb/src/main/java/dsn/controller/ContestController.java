@@ -34,4 +34,6 @@ public class ContestController {
 		mav.setViewName("myweb/index");
 		return mav;
 	}
+	
+	
 }
