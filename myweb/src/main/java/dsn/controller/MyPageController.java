@@ -27,7 +27,8 @@ public class MyPageController {
 		
 		String msg="";
 		Object obj=session.getAttribute("login");
-		int vo=(int)session.getAttribute("u_idx");
+		MemberDTO mdto = (MemberDTO) obj;
+		int vo=mdto.getU_idx();
 		ModelAndView mav=new ModelAndView();
 		if(obj==null) {
 			msg="로그인 후 이용해주세요";
@@ -51,7 +52,9 @@ public class MyPageController {
 	}
 	@RequestMapping("accountConfig.do")
 	public ModelAndView accountConfig(HttpSession session) {
-		int vo=(int)session.getAttribute("u_idx");
+		Object obj=session.getAttribute("login");
+		MemberDTO mdto = (MemberDTO) obj;
+		int vo=mdto.getU_idx();
 		List userinfo=myPageService.userInfoFind(vo);
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("userinfo", userinfo);
@@ -78,8 +81,10 @@ public class MyPageController {
 	}
 	@RequestMapping("pwdUpdate.do")
 	public ModelAndView passwordUpdate(String checkpwd,String pwdconfirm,String lastpwd,HttpSession session) {
-		int vo=(int)session.getAttribute("u_idx");
-		String u_pwd=(String)session.getAttribute("u_pwd");
+		Object obj=session.getAttribute("login");
+		MemberDTO mdto = (MemberDTO) obj;
+		int vo=mdto.getU_idx();
+		String u_pwd=mdto.getU_pwd();
 		ModelAndView mav=new ModelAndView();
 		String msg="";
 		if(checkpwd.equals(pwdconfirm)) {
@@ -109,7 +114,9 @@ public class MyPageController {
 	}
 	@RequestMapping("wallet.do")
 	public ModelAndView virtualWallet(@RequestParam(value = "cp",defaultValue = "1") int cp,HttpSession session) {
-		int vo=(int)session.getAttribute("u_idx");
+		Object obj=session.getAttribute("login");
+		MemberDTO mdto = (MemberDTO) obj;
+		int vo=mdto.getU_idx();
 		
 		int totalCnt=myPageService.getWalletCnt(vo);
 		int blc=myPageService.getLastBalance(vo);
@@ -127,7 +134,9 @@ public class MyPageController {
 	}
 	@RequestMapping("payout.do")
 	public ModelAndView payOut(HttpSession session) {
-		int vo=(int)session.getAttribute("u_idx");
+		Object obj=session.getAttribute("login");
+		MemberDTO mdto = (MemberDTO) obj;
+		int vo=mdto.getU_idx();
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("u_idx", vo);
 		mav.setViewName("mypage/payoutpopup");
@@ -166,7 +175,9 @@ public class MyPageController {
 	@RequestMapping("showPayInfo.do")
 	public ModelAndView payInfo(@RequestParam(value = "cp",defaultValue = "1") int cp,HttpSession session) {
 		
-		int vo=(int)session.getAttribute("u_idx");
+		Object obj=session.getAttribute("login");
+		MemberDTO mdto = (MemberDTO) obj;
+		int vo=mdto.getU_idx();
 		int totalCnt=myPageService.getTradeCnt(vo);
 		int listSize=10;
 		int pageSize=5;
