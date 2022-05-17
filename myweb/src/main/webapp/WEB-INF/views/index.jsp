@@ -48,6 +48,31 @@
   <div style="align:center;">
     <p class="lead"><img src="img/banner.png" style="align:center;"></p>
     </div>
+   <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  리뷰작성
+</button>
+
+Modal
+<form name="review" action="writeReview.do">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">리뷰 작성</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <textarea name="rv_content" style="width:450px;height:500px;"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+        <button type="submit" class="btn btn-primary">리뷰작성</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form> -->
   </section>
   <div class="album py-5 bg-light">
     <div class="container">

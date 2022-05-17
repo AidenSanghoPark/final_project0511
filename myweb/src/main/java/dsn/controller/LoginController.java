@@ -98,8 +98,47 @@ public class LoginController {
         return "/index"; 
     }
 	
-	
+	@RequestMapping(value="/loginPage.do",method=RequestMethod.POST)
+    public String loginProcess(HttpSession session,MemberDTO dto, HttpServletResponse response){
 	 
+	 System.out.println("ckb="+dto.isAutologin());
+        String returnURL = "";
+        if ( session.getAttribute("login") != null ){
+           
+            session.removeAttribute("login"); 
+        }
+         
+     
+        MemberDTO vo = memberService.login(dto);
+	 if ( vo != null ){ 
+            session.setAttribute("login", vo); 
+            session.setAttribute("u_idx", vo.getU_idx());
+            session.setAttribute("u_pwd", vo.getU_pwd());
+            returnURL = "index";
+            if (dto.isAutologin() == true){
+                Cookie cookie = new Cookie("loginCookie", session.getId());
+                cookie.setPath("/");
+                int amount = 60 * 60 * 24 * 7;
+                cookie.setMaxAge(amount);
+                response.addCookie(cookie);
+                
+                Date sessionLimit = new Date(System.currentTimeMillis() + (1000*amount));
+                
+                memberService.autoLogin(session.getId(), sessionLimit, vo.getU_id());
+            }else if(dto.isAutologin() == false) {
+            	
+            	Cookie cookie=new Cookie("loginCookie",session.getId());
+            	cookie.setMaxAge(0);
+            	response.addCookie(cookie);
+            	
+            }
+
+        }else { 
+            returnURL = "member/login";
+        }
+         
+        return returnURL; 
+    }
 
 
 }
