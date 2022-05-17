@@ -369,6 +369,7 @@ a{
 			</div>
 		</div>
 	</div>
+ <form name="contestJoin" action="contestJoinSubmit.do" method="post" enctype="multipart/form-data">
 	<div>
 		<div>
 			<a>참여작</a>|<a>브리핑</a>|<a>아이디어 작성</a>
@@ -377,127 +378,26 @@ a{
 			디자이너 닉네임
 		</div>
 		<div>
-			작품 제목 <input type="text" name="d_name">
+			작품 제목 <input type="text" name="d_name" value="${d_subject}">
 		</div>
 		<div>
+			<input type="file" name="uploadfile1">
 		</div>
 		<div>
-			<input type="file" name="uploadfile1" id="uploadfile1" >
+			<input type="file" name="uploadfile2">
 		</div>
-		<div class="img_wrap">
-           <img id="img1" />
-       </div>
+		
 		<div>
-			<input type="file" name="uploadfile2" id="uploadfile2" >
-		</div>
-		<div class="img_wrap">
-           <img id="img2" />
-       </div>
-		<div>
-			<textarea rows="50" cols="100" name="d_content"></textarea>
+			<textarea rows="50" cols="100" name="d_content" value="${d_content}"></textarea>
 		</div>
 		<div>
 			<input type="checkbox" name="check">
 		</div>
 		<div>
-			<input type="button" id="btn_submit" value="콘테스트 참여" onclick="javascript:fn_submit()">
+			<input type="submit" value="콘테스트 참여">
 		</div>
 	</div>
-<script type="text/javascript">
-    //이미지 미리보기
-    var sel_file;
-    var maxSize = 5 * 1024 * 1024; // 5MB
-
-	var fileSize = $("#uploadfile1")[0].files[0].size;
-	
- 
-    $(document).ready(function() {
-        $("#uploadfile1").on("change", handleImgFileSelect);
-    });
- 
-    function handleImgFileSelect(e) {
-        var files = e.target.files;
-        var filesArr = Array.prototype.slice.call(files);
- 
-        var reg = /(.*?)\/(jpg|jpeg|png|bmp)$/;
- 
-        filesArr.forEach(function(f) {
-            if (!f.type.match(reg)) {
-                alert("이미지 파일만 업로드 가능합니다.");
-                $("#uploadfile1").val("");
-                return;
-            }else if(fileSize > maxSize){
-        		alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.");
-        		$("#uploadfile1").val("");
-        		return false;
-        	}
- 
-            sel_file = f;
- 
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $("#img1").attr("src", e.target.result);
-            }
-            reader.readAsDataURL(f);
-        });
-    }
-    
-    var sel_file2;
-    
-    $(document).ready(function() {
-        $("#uploadfile2").on("change", handleImgFileSelect);
-    });
- 
-    function handleImgFileSelect2(e) {
-        var files = e.target.files;
-        var filesArr = Array.prototype.slice.call(files);
- 
-        var reg = /(.*?)\/(jpg|jpeg|png|bmp)$/;
- 
-        filesArr.forEach(function(f) {
-            if (!f.type.match(reg)) {
-                alert("이미지 파일만 업로드 가능합니다.");
-                return;
-            }
- 
-            sel_file2 = f;
- 
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $("#img2").attr("src", e.target.result);
-            }
-            reader.readAsDataURL(f);
-        });
-    }
-</script>
-    
-<script>
-//파일 업로드
-function fn_submit(){
-        
-        var form = new FormData();
-        form.append( "d_name", $("#d_name")[0].files[0] );
-        form.append( "d_content", $("#d_content")[0].files[0] );
-        form.append( "uploadfile1", $("#uploadfile1")[0].files[0] );
-        form.append( "uploadfile2", $("#uploadfile2")[0].files[0] );
-         jQuery.ajax({
-             url : "/myweb/contestJoinSubmit.do"
-           , enctype : "multipart/form-data"
-           , type : "POST"
-           , processData : false
-           , contentType : false
-           , data : form
-           , success:function(response) {
-               alert("콘테스트 참여 완료");
-               console.log(response);
-           }
-           ,error: function (jqXHR) 
-           { 
-               alert(jqXHR.responseText); 
-           }
-       });
-}
-</script>
+</form>
 <%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>
