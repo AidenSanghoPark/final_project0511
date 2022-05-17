@@ -32,6 +32,9 @@ private SqlSessionTemplate sqlMap;
 		memberManageDTO dto = sqlMap.selectOne("dsn.admin.memberContent", u_id);
 		return dto;
 	}
-	
+	@Override
+		public int memberBlockUpdate(memberManageDTO dto) {
+			return sqlMap.update("dsn.admin.memberBlockUpdate", dto);
+		}
 	
 }

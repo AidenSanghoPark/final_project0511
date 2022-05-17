@@ -27,7 +27,7 @@
 		AND C_DATEDIFF <= 0
 		]]>
 	</select>
-	<select id="conInfo" parameterType="integer" resultType="dsn.contest.model.ConDTO">
+	<select id="conInfo" parameterType="Integer" resultType="dsn.contest.model.ConDTO">
 		SELECT
 			*
 		FROM
@@ -54,6 +54,9 @@
 	</insert>
 
 	<insert id="addNaming" parameterType="dsn.contest.model.ConDTO">
+		<selectKey keyProperty="c_idx" resultType="Integer" order="BEFORE">
+			SELECT F_CLIENT_C_IDX.NEXTVAL AS C_IDX FROM DUAL
+		</selectKey>
 		INSERT INTO F_CLIENT
 			  (C_IDX
 			  , C_SUBJECT
@@ -74,7 +77,7 @@
 			  , C_DATEDIFF
 			  , C_LOGO)
 		VALUES(
-			F_CLIENT_C_IDX.NEXTVAL,
+			#{c_idx},
 			#{c_subject},
 			#{c_deas},
 			#{c_company},
@@ -85,13 +88,36 @@
 			#{c_details},
 			'idea',
 			0,
-			2000,
+			#{c_pay},
 			sysdate,
-			sysdate,
+			sysdate+7,
 			'0',
-			'n',
+			'N',
 			0,
 			#{c_logo}
 		)	
 	</insert>
+	
+	<insert id="addNamingTrade" parameterType="dsn.trade.model.TrdDTO">
+	<selectKey order="BEFORE" keyProperty="t_idx" resultType="Integer">
+		SELECT T_IDX.NEXTVAL AS T_IDX FROM DUAL
+	</selectKey>
+		INSERT INTO F_TRADE
+		VALUES
+		(
+			#{t_idx},
+			#{u_idx},
+			#{c_idx},
+			#{t_pay},
+			#{t_type},
+			SYSDATE
+		)
+	</insert>
+	
+	<update id="updateTrd" parameterType="dsn.contest.model.ConDTO">
+		UPDATE F_TRADE
+		SET
+		C_IDX = #{c_idx}
+		WHERE T_IDX = #{t_idx}
+	</update>
 </mapper>

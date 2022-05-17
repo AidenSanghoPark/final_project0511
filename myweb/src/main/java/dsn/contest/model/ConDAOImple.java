@@ -6,6 +6,8 @@ import org.apache.commons.collections.map.HashedMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import dsn.trade.model.TrdDTO;
+
 public class ConDAOImple implements ConDAO{
 
 		@Autowired
@@ -29,5 +31,14 @@ public class ConDAOImple implements ConDAO{
 		public int addNaming(ConDTO dto) {
 			int count = sqlMap.insert("addNaming", dto);
 			return count;
+		}
+		@Override
+		public int addNamingTrade(TrdDTO dto) {
+			int count = sqlMap.insert("addNamingTrade", dto);
+			return count;
+		}
+		@Override
+		public void updateTrd(ConDTO dto) {
+			sqlMap.update("updateTrd", dto);
 		}
 }

@@ -35,4 +35,11 @@
 			U_ID=#{u_id}
 	</select>
 	
+	<update id="dsn.admin.memberBlockUpdate" parameterType="dsn.memberManage.model.memberManageDTO">
+		UPDATE F_USER
+		SET
+		U_BLOCK = #{u_block}
+		WHERE U_IDX = #{u_idx}
+	</update>
+	
 </mapper>

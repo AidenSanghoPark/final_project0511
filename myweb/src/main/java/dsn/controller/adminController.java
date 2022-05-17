@@ -71,7 +71,7 @@ public class adminController {
 		mav.addObject("lists", lists);
 		mav.addObject("pageStr", pageStr);
 
-		mav.setViewName("admin/memberList");
+		mav.setViewName("admin/adminMemberList");
 
 		return mav;
 	}
@@ -89,6 +89,22 @@ public class adminController {
 		mav.addObject("dto", dto);
 		mav.setViewName("admin/modal/memberContent");
 		// }
+		return mav;
+	}
+	
+	@RequestMapping("memberBlockUpdate.do")
+	public ModelAndView memberBlockUpdate(memberManageDTO dto) {
+
+		int result = memberManageService.memberBlockUpdate(dto);
+
+		ModelAndView mav = new ModelAndView();
+
+		String msg = result > 0 ? "완료되었습니다." : "실패하였습니다.";
+
+		mav.addObject("returnUrl", "memberManage.do");
+		mav.addObject("msg", msg);
+		mav.setViewName("admin/adminMsg");
+
 		return mav;
 	}
 

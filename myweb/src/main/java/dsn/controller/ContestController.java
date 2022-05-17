@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import dsn.contest.model.*;
 import dsn.module.*;
+import dsn.trade.model.TrdDTO;
 
 @Controller
 public class ContestController {
@@ -56,19 +57,25 @@ public class ContestController {
 	}
 	//���̹� form
 	@RequestMapping(value = "/namingHold_add.do", method = RequestMethod.POST)
-	@ResponseBody
-	public String namingHoldForm(MultipartHttpServletRequest request, ConDTO dto) {	
+	public ModelAndView namingHoldForm(MultipartHttpServletRequest request, ConDTO dto) {	
 		
-//		ModelAndView mav=new ModelAndView();
-//		System.out.println(dto.getC_cate());
-//		System.out.println(dto.getUpload().getOriginalFilename());	
+		ModelAndView mav=new ModelAndView();
 		int result = conService.addNaming(dto);
-//		mav.addObject("result", result);
+		conService.updateTrd(dto);
+		mav.addObject("result", result);
 		//mav.addObject("upload", dto.getUpload());
 		String path = request.getSession().getServletContext().getRealPath("img/");
 		copyInto(dto.getUpload(), path); 
-//		mav.setViewName("yongJson");
-		return result+"";
+		mav.setViewName("contest/logoHold"); //임시방편 jsp 경로 바꿔야함
+		return mav;
+	}
+	//���̹� form
+	@RequestMapping(value = "/namingHoldTrade_add.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String namingHoldTradeForm(TrdDTO dto) {	
+		
+		int result = conService.addNamingTrade(dto);
+		return dto.getT_idx()+"";
 	}
 	//���Ϻ���
 	public void copyInto(MultipartFile upload, String path) {

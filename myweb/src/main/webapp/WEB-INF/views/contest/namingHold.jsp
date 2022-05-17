@@ -80,6 +80,7 @@ section.pricing {
 </head>
 <body>
 <%@include file="/WEB-INF/views/header.jsp" %>
+<form name="naming" action="namingHold_add.do" method="post" id="ftest" enctype="multipart/form-data">
 <div class="container" style="text-align: center;">
    <ul class="tab_title" style="list-style-type: none;">
        <li class="on" style="float: left;">브리핑 작성</li>
@@ -89,9 +90,11 @@ section.pricing {
    <br>
    <div class="tab_cont">
       <section class="on">
-         <form name="naming" action="namingHold.do" method="post" id="ftest">
             <input type="hidden" id="c_cate" name="c_cate" value="${c_cate}">
             <input type="hidden" id="c_logo" name="c_logo" value="${c_logo}">
+            <input type="hidden" id="t_idx" name="t_idx">
+            <input type="hidden" id="c_pay" name="c_pay">
+            <input type="hidden" id="selectType">
                <div>
                   <b>콘테스트 제목</b>&nbsp;&nbsp;<input type="text" name="c_subject" id="subject" required>
                </div>
@@ -108,7 +111,7 @@ section.pricing {
                      <th>원하는 로고타입 3가지선택</th>
                      <td><input type="checkbox" name="logo" value="1" id="checkImg"></td>
                      <td><input type="checkbox" name="logo" value="2" id="checkImg"></td>
-                     <td><input type="checkbox" name="logo" value="3" id="checkImg"></td>
+                     <td><input type="checkbox" name="logo" value="3" id="checkImg3"></td>
                   </tr>
                   <tr>
                      <th></th>
@@ -133,7 +136,6 @@ section.pricing {
                <div>
                   <input type="button" value="다음" onclick="nextNaming()">
                </div>
-            </form>
       </section>
       <section style="display: none;">
          <section class="pricing py-5">
@@ -161,7 +163,7 @@ section.pricing {
                 Reports</li>
             </ul>
             <div class="d-grid">
-              <a href="#" class="btn btn-primary text-uppercase" onclick="selectPrice('300000')">선택</a>
+              <a href="#" class="btn btn-primary text-uppercase" onclick="selectPrice('300000', '저가형')">선택</a>
             </div>
           </div>
         </div>
@@ -185,7 +187,7 @@ section.pricing {
                 Reports</li>
             </ul>
             <div class="d-grid">
-              <a href="#" class="btn btn-primary text-uppercase" onclick="selectPrice('500000')">선택</a>
+              <a href="#" class="btn btn-primary text-uppercase" onclick="selectPrice('500000', '일반형')">선택</a>
             </div>
           </div>
         </div>
@@ -208,7 +210,7 @@ section.pricing {
               <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Unlimited</strong> Free Subdomains</li>
             </ul>
             <div class="d-grid">
-              <a href="#" class="btn btn-primary text-uppercase" onclick="selectPrice('1000000')">선택</a>
+              <a href="#" class="btn btn-primary text-uppercase" onclick="selectPrice('1000000','고급형')">선택</a>
             </div>
           </div>
         </div>
@@ -233,7 +235,7 @@ section.pricing {
                 Reports</li>
             </ul>
             <div class="d-grid">
-              <a href="#" class="btn btn-primary text-uppercase" onclick="selectPrice('1500000')">선택</a>
+              <a href="#" class="btn btn-primary text-uppercase" onclick="selectPrice('1500000','프리미엄형')">선택</a>
             </div>
           </div>
         </div>
@@ -246,10 +248,11 @@ section.pricing {
       </div>
          <!-- 총 상금 -->
          <div style="text-align: center;" id="price">   
+         	<%-- <input type="hidden" id="c_cate" name="c_cate" value="${c_cate//저가형? 고가형?}"> --%>
             <p><span>총상금</span> : <input type="text" id="totalPrice" name="totalPrice" />원</p>
             <p><span>수수료(10%)</span> : <input type="text" id="comm" name="comm" />원</p>  
             <p><span>부가세</span> : <input type="text" id="vat" name="vat" />원 </p>
-            <hr style="width: 300px; padding-left: 500px;">
+           <!--  <hr style="width: 300px; padding-left: 500px;"> -->
             <p><b>합계</b> : <input type="text" id="t_pay" name="t_pay" />원</p>
          </div>
          <div>
@@ -265,7 +268,8 @@ section.pricing {
 </section>
       </section>
    </div>
-</div>   
+</div>
+</form>   
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="js/httpRequest.js"></script>
 <script>
@@ -277,13 +281,29 @@ function randomNum(){
    var ranNum = Math.floor(Math.random() * 999999);
 }
 
+//체크박스 유효성 갯수제한
+jQuery(document).ready(function($) {
+    $("input[name=logo]:checkbox").change(function() {// 체크박스들이 변경됬을때
+        var cnt = $("#checkImg3").val();
+        if( cnt==$("input[name=logo]:checkbox:checked").length ) {
+            $(":checkbox:not(:checked)").attr("disabled", "disabled");
+        } else {
+            $("input[name=logo]:checkbox").removeAttr("disabled");
+        }
+    });
+ 
+});
+
 function namingAdd() { 
    //var ckArr = [];
    var cLogo = "";
    var totalCnt = $("input[name='logo']:checked").length;
+   
+   
       //each문이란
       //선택자에대한 모든것을 가져와서 그 수만큼 반복문을 돌린다.
       $("input[name='logo']:checked").each(function(index) {
+    	  	
          //배열넣을때만
          //push란 값을 넣어준다.
          //ckArr.push($(this).val());
@@ -297,37 +317,63 @@ function namingAdd() {
          }
          
       });
+     
       
       $("#c_logo").val(cLogo);
+      $("#c_pay").val($("#t_pay").val());
+      
+      if(confirm("입력하신 내용을 저장하시겠습니까?")){
+    	  $("#ftest").submit();  
+      }else{
+    	  return false;
+      }
       
       //ajax는 data주고받기를 json타입으로한다.
       //json key:value 되어있다.
       //java에선 map과 비슷함
             
-      var ftest = document.getElementById('ftest');
-      var fo = new FormData(ftest);
-      $.ajax({
-         url: '/myweb/namingHold_add.do', 
-         type: 'post',               
-         dataType: 'json',
-         enctype: 'multipart/form-data',
-         contentType: false,            
-         processData: false, 
-         data: fo,
-         success : function(result){
+//       var ftest = document.getElementById('ftest');
+//       var fo = new FormData(ftest);
+//       $.ajax({
+//          url: '/myweb/namingHold_add.do', 
+//          type: 'post',               
+//          dataType: 'json',
+//          enctype: 'multipart/form-data',
+//          contentType: false,            
+//          processData: false, 
+//          data: fo,
+//          success : function(result){
             
-         if(!result == '0'){
-            alert("저장이 완료되었습니다.");
+//          if(!result == '0'){
+//             alert("저장이 완료되었습니다.");
             
-            //$(".tab_title li").eq(1).trigger('click'); // 하단에 $(document).ready에 선언 되어있는
-            // .click부분에서 다음단계는 무조건 2번째 즉 section0, section1중 section1이여야 하기 때문에
-            // section1을 trigger로 click해줘서 제이쿼리 click이 돌게함.
-         }
-      }
-   });
+//             //$(".tab_title li").eq(1).trigger('click'); // 하단에 $(document).ready에 선언 되어있는
+//             // .click부분에서 다음단계는 무조건 2번째 즉 section0, section1중 section1이여야 하기 때문에
+//             // section1을 trigger로 click해줘서 제이쿼리 click이 돌게함.
+//          }
+//       }
+//    });
 }
 
 function nextNaming(){
+	if($("#subject").val() == ""){
+		alert("제목을 입력해주세요");
+		return false;
+	}
+	if($("#company").val() == ""){
+		alert("회사명을 입력해주세요");
+		return false;
+	}
+	if($("#deas").val() == ""){
+		alert("서비스 설명을 입력해주세요");
+		return false;
+	}
+	if($("#rogoName").val() == ""){
+		alert("상호명을 입력해주세요");
+		return false;
+	}
+	
+	
    $(".tab_title li").eq(1).trigger('click'); // 하단에 $(document).ready에 선언 되어있는
     // .click부분에서 다음단계는 무조건 2번째 즉 section0, section1중 section1이여야 하기 때문에
     // section1을 trigger로 click해줘서 제이쿼리 click이 돌게함.
@@ -340,7 +386,7 @@ function pay(){
         pg: "kakaopay",
         pay_method: "kakaopay",
         merchant_uid: randomNum(),
-        name: "노르웨이 회전 의자",
+        name: $("#selectType").val(), 
         amount: $("#t_pay").val(),
         buyer_email: "gildong@gmail.com",
         buyer_name: "홍길동",
@@ -349,8 +395,30 @@ function pay(){
         buyer_postcode: "01181" */
     }, function (rsp) { // callback
         if (rsp.success) {
-            alert("결제성공");
-            namingAdd();
+            // ajax 거래내역 insert 추가 필요
+            
+            var dataForm = {
+				"t_pay" : $("#t_pay").val()
+				//, "u_idx" : u_idx
+				//, "c_idx" : c_idx
+				//, "t_type" : t_type
+            };
+            
+            $.ajax({
+		         url: 'namingHoldTrade_add.do', 
+		         type: 'post',               
+		         dataType: 'json',
+		         data: dataForm,
+		         success : function(result){
+		            
+			         if(!result == '0'){
+			        	 alert("결제성공");
+			        	 $("#t_idx").val(result);
+			        	 namingAdd();
+			         }
+		      	}
+            });
+            
         } else {
             alert("결제취소");
             // 결제 실패 시 로직,
@@ -370,15 +438,19 @@ function pay(){
        });
    });
    
-   function selectPrice(selectPrice){
-	    
+   function selectPrice(selectPrice, selectTextName){
+	   var selectType = selectTextName;
        var selectPriceNum = parseInt(selectPrice);
        var comm = selectPriceNum*0.1;
        var vat = (selectPriceNum+comm)*0.1;
+       var conType = "";
        $("#totalPrice").val(selectPrice);
        $("#comm").val(comm);
-       $("#vat").val(vat); // 어차피 다 바꿔야함 테스트중임 허걱 ㅇㅋ
+       $("#vat").val(vat); 
        $("#t_pay").val(selectPriceNum+comm+vat);
+       $("#selectType").val(selectType);
+       
+       /* $("h5").text(selectPrice); */
    }
 </script>      
 <%@include file="/WEB-INF/views/footer.jsp" %>

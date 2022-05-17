@@ -15,25 +15,27 @@ public class memberManageDTO {
 	private String u_wallet;
 	private int u_type;
 	private Date u_date;
+	private String u_block;
 	
 	public memberManageDTO() {
 		super();
 	}
 
-	public memberManageDTO(int uIdx, String uId, String uPwd, String uName, String uNick, String uBirth, String uTel,
-			String uEmail1, String uWallet, int uType, Date uDate) {
+	public memberManageDTO(int u_idx, String u_id, String u_pwd, String u_name, String u_nick, String u_birth,
+			String u_tel, String u_email, String u_wallet, int u_type, Date u_date, String u_block) {
 		super();
-		this.u_idx = uIdx;
-		this.u_id = uId;
-		this.u_pwd = uPwd;
-		this.u_name = uName;
-		this.u_nick = uNick;
-		this.u_birth = uBirth;
-		this.u_tel = uTel;
-		this.u_email = uEmail1;
-		this.u_wallet = uWallet;
-		this.u_type = uType;
-		this.u_date = uDate;
+		this.u_idx = u_idx;
+		this.u_id = u_id;
+		this.u_pwd = u_pwd;
+		this.u_name = u_name;
+		this.u_nick = u_nick;
+		this.u_birth = u_birth;
+		this.u_tel = u_tel;
+		this.u_email = u_email;
+		this.u_wallet = u_wallet;
+		this.u_type = u_type;
+		this.u_date = u_date;
+		this.u_block = u_block;
 	}
 
 	public int getU_idx() {
@@ -123,4 +125,14 @@ public class memberManageDTO {
 	public void setU_date(Date u_date) {
 		this.u_date = u_date;
 	}
+
+	public String getU_block() {
+		return u_block;
+	}
+
+	public void setU_block(String u_block) {
+		this.u_block = u_block;
+	}
+
+	
 }

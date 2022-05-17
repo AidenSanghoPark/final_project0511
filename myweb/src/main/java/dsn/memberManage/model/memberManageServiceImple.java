@@ -39,5 +39,10 @@ public class memberManageServiceImple implements memberManageService {
 		cnt = cnt == 0 ? 1 : cnt ; 
 	return cnt;
 	}
-
+	
+	@Override
+	public int memberBlockUpdate(memberManageDTO dto) {
+		int count = memberManageDao.memberBlockUpdate(dto);
+		return count;
+	}
 }

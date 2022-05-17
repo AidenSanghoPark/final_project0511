@@ -3,6 +3,7 @@ package dsn.memberManage.model;
 import java.util.List;
 import java.util.Map;
 
+
 public interface memberManageDAO {
 	
 	//회원 리스트 출력 메서드
@@ -11,4 +12,6 @@ public interface memberManageDAO {
 	public memberManageDTO memberContent(String u_id);
 	//페이징 관련
 	public int getTotalCnt();
+	//회원 블록처리
+	public int memberBlockUpdate(memberManageDTO dto);
 }

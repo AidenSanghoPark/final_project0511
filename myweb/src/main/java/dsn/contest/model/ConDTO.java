@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class ConDTO {
 
 	private int c_idx;
+	private int t_idx;
 	   private String c_subject;
 	   private String c_deas;
 	   private String c_company;
@@ -49,6 +50,12 @@ public class ConDTO {
 		this.u_idx = u_idx;
 		this.c_datediff = c_datediff;
 		this.upload = upload;
+	}
+	public int getT_idx() {
+		return t_idx;
+	}
+	public void setT_idx(int t_idx) {
+		this.t_idx = t_idx;
 	}
 	public int getC_idx() {
 		return c_idx;
