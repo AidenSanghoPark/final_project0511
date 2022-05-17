@@ -1,9 +1,10 @@
 package dsn.controller;
 
 import java.io.File;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,8 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import dsn.member.model.MemberService;
-import dsn.contest.model.ConDTO;
-import dsn.contest.model.ConService;
+import dsn.contest.model.*;
 @Controller
 public class ContestController {
 	
@@ -52,8 +52,19 @@ public class ContestController {
 	@ResponseBody
 	public String logoHoldForm(MultipartHttpServletRequest request, ConDTO dto) {   
 	      
-	System.out.println(dto.getC_pay());	
+	   Date date = new Date();
+	   
+	   
 	   int result = conService.addLogo(dto);
+	   int pay=(int) ((dto.getC_pay()*10)+(dto.getC_pay()*1.1)+dto.getC_pay());
+	   	   
+	   TradeDTO tdto=new TradeDTO();
+	   tdto.setT_pay(pay);
+	   tdto.setU_idx(dto.getU_idx());
+	   
+	   System.out.println("t_pay"+tdto.getT_pay());
+	   System.out.println("u_idx"+tdto.getU_idx());
+	   
 	   String path = request.getSession().getServletContext().getRealPath("img/");
 	   copyInto(dto.getUpload(), path); 
 	   return result + "";
@@ -130,6 +141,5 @@ public class ContestController {
 		copyInto(dto.getUpload(), path); 
 		return result + "";
 	}
-	//결제 내역
 
 }

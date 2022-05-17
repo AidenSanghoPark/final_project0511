@@ -31,10 +31,10 @@ public class ConDAOImple implements ConDAO {
 		int count = sqlMap.insert("addPrint", dto);
 		return count;
 	}
-//	@Override
-//	public int addTrade(TradeDTO dto) {
-//		int count = sqlMap.insert("addTrade", dto);
-//		return count;
-//		
-//	}
+	@Override
+	public int addTrade(TradeDTO dto) {
+		int count = sqlMap.insert("addTrade", dto);
+		return count;
+		
+	}
 }

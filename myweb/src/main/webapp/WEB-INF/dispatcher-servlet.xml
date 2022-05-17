@@ -10,6 +10,7 @@
 	http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	
+		
 	<!-- configs -->
 	<context:component-scan base-package="dsn"></context:component-scan>
 	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"></bean>
@@ -21,22 +22,15 @@
 	<bean id="myPageService" class="dsn.mypage.model.MyPageServiceImple">
 		<property name="myPageDao" ref="myPageDao"></property>
 	</bean>
-	
-	
+	<bean id="conService" class="dsn.contest.model.ConServiceImple">
+		<property name="conDao" ref="conDao"></property>
+	</bean>
+		
 	<!-- views -->
 	<bean id="yongJson" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
 		<property name="contentType" value="application/json;charset=UTF-8"> </property>
 	 </bean>
 	 
-	 
-	<!-- dao -->
-	<bean id="myPageDao" class="dsn.mypage.model.MyPageDAOImple">
-		<constructor-arg>
-			<ref bean="sqlSessionTemplate"/>
-		</constructor-arg>		
-	</bean>
-	
-	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="order" value="1"></property>

@@ -21,7 +21,7 @@
          0,
          #{c_pay},
          sysdate,
-         sysdate,
+         sysdate+7,
          0,
          'n',
          0
@@ -99,4 +99,16 @@
          0
       )   
    </insert>  
+   <insert id="addTrade" parameterType="dsn.contest.model.TradeDTO">
+   		INSERT INTO
+   			F_TRADE  		
+   		VALUES(
+   			F_TRADE_T_IDX.NEXTVAL,
+   			#{u_idx},
+   			0,
+   			#{t_pay},
+   			1,
+   			sysdate  			
+   		)  			
+   </insert>
 </mapper>

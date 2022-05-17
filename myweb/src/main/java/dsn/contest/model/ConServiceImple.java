@@ -64,11 +64,11 @@ public class ConServiceImple implements ConService {
 		int count = conDao.addPrint(dto);
 		return count;
 	}
-	//@Override
-	//public int addTrade(TradeDTO dto) {
+	@Override
+	public int addTrade(TradeDTO dto) {
 
-		//int count = conDao.addTrade(dto);
-		//return count;
-	//}
+		int count = conDao.addTrade(dto);
+		return count;
+	}
 	
 }

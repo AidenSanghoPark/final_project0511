@@ -80,6 +80,7 @@ section.pricing {
 </head>
 <body>
 <%@include file="/WEB-INF/views/header.jsp" %>
+<form name="naming" action="namingHold.do" method="post" id="ftest">
 <div class="container" style="text-align: center;">
    <ul class="tab_title" style="list-style-type: none;">
        <li class="on" style="float: left;">브리핑 작성</li>
@@ -89,7 +90,7 @@ section.pricing {
    <br>
    <div class="tab_cont" style="background-color: #EFEFEF;">
       <section class="on">
-         <form name="naming" action="namingHold.do" method="post" id="ftest">
+         
             <input type="hidden" id="c_cate" name="c_cate" value="${c_cate}">          
                <div style="text-align: left;">
                		<h2>STEP2</h2>
@@ -143,7 +144,7 @@ section.pricing {
                </div>
                <br>
                <br>
-            </form>
+            
       </section>
       <section style="display: none;">
          <section class="pricing py-5">
@@ -153,23 +154,20 @@ section.pricing {
       <div class="col-lg-4" style="width: 25%;">
         <div class="card mb-5 mb-lg-0">
           <div class="card-body">
-            <h5 class="card-title text-muted text-uppercase text-center">저가형</h5>
+            <img style="width:40px; height: 40px;" src="img/pay1.png"><h5 class="card-title text-muted text-uppercase text-center">저가형</h5>
             <input type="hidden" value="300000" name="c_pay"/>
-            <h6 class="card-price text-center" style="font-size: 25px; color: #383838;">300,000원</h6>
+            <h6 class="card-price text-center" style="font-size: 20px; color: #383838;">300,000원</h6>
             <hr>
-            <ul class="fa-ul">
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>Single User</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>5GB Storage</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Public Projects</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>Community Access</li>
-              <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Unlimited
-                Private Projects</li>
-              <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Dedicated
-                Phone Support</li>
-              <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Free Subdomain
-              </li>
-              <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Monthly Status
-                Reports</li>
+            <b style="font-size: 14px; color: #112B3C;">평균 참여작 20-30건</b>
+            <ul class="fa-ul" style="font-size: 8px; padding-right: 40px;">
+            <li><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span></li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>신진 디자이너 참여</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>1차 통과작 선정 불가</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>상금 환불 불가</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li> 
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>  
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>            
             </ul>
             <div class="d-grid">
              	<input type="button" value="선택" class="btn btn-primary text-uppercase selectPrice">
@@ -182,19 +180,18 @@ section.pricing {
         <div class="card mb-5 mb-lg-0">
           <div class="card-body">
              <input type="hidden" value="500000" name="c_pay"/>
-            <h5 class="card-title text-muted text-uppercase text-center">일반형</h5>
-            <h6 class="card-price text-center" style="font-size: 25px; color: #383838;">500,000원</h6>
+            <img style="width:40px; height: 40px;" src="img/pay2.png"><h5 class="card-title text-muted text-uppercase text-center">일반형</h5>
+            <h6 class="card-price text-center" style="font-size: 20px; color: #383838;">500,000원</h6>
             <hr>
-            <ul class="fa-ul">
-              <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>5 Users</strong></li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>50GB Storage</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Public Projects</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>Community Access</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Private Projects</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>Dedicated Phone Support</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>Free Subdomain</li>
-              <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Monthly Status
-                Reports</li>
+            <b style="font-size: 14px; color: #112B3C;">평균 참여작 40건 이상</b>
+            <ul class="fa-ul" style="font-size: 10px; padding-right: 40px;">
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>경력 디자이너 참여</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>1차 통과작 선정 가능</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>상금 환불 불가</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
             </ul>
             <div class="d-grid">
               <input type="button" value="선택" class="btn btn-primary text-uppercase selectPrice" name="c_pay">
@@ -207,18 +204,18 @@ section.pricing {
         <div class="card">
           <div class="card-body">
              <input type="hidden" value="1000000" name="c_pay"/>
-            <h5 class="card-title text-muted text-uppercase text-center">고급형</h5>
-            <h6 class="card-price text-center" style="font-size: 25px; color: #383838;">1,000,000원</h6>
+            <img style="width:40px; height: 40px;" src="img/pay3.png"><h5 class="card-title text-muted text-uppercase text-center">고급형</h5>
+            <h6 class="card-price text-center" style="font-size: 20px; color: #383838;">1,000,000원</h6>
             <hr>
-            <ul class="fa-ul">
-              <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Unlimited Users</strong>
-              </li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>150GB Storage</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Public </li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>Community Access</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Private</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>Dedicated Phone</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Unlimited</strong> Free Subdomains</li>
+            <b style="font-size: 14px; color: #112B3C;">평균 참여작 60건 이상</b>
+            <ul class="fa-ul" style="font-size: 10px; padding-right: 40px;">
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>경력 디자이너 참여</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>1차 통과작 선정 가능</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>상금 50% 환불 가능</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>리스트 상단 노출</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
             </ul>
             <div class="d-grid">
              	<input type="button" value="선택" class="btn btn-primary text-uppercase selectPrice">
@@ -231,19 +228,18 @@ section.pricing {
         <div class="card mb-5 mb-lg-0">
           <div class="card-body">
              <input type="hidden" value="1500000" name="c_pay"/>
-            <h5 class="card-title text-muted text-uppercase text-center">프리미엄형</h5>
-            <h6 class="card-price text-center" style="font-size: 25px; color: #383838;">1,500,000원</h6>
+            <img style="width:40px; height: 40px;" src="img/pay4.png"><h5 class="card-title text-muted text-uppercase text-center">프리미엄형</h5>
+            <h6 class="card-price text-center" style="font-size: 20px; color: #383838;">1,500,000원</h6>
             <hr>
-            <ul class="fa-ul">
-              <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>5 Users</strong></li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>50GB Storage</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Public Projects</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>Community Access</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>Unlimited Private Projects</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>Dedicated Phone Support</li>
-              <li><span class="fa-li"><i class="fas fa-check"></i></span>Free Subdomain</li>
-              <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Monthly Status
-                Reports</li>
+            <b style="font-size: 14px; color: #112B3C;">평균 참여작 100건 이상</b>
+            <ul class="fa-ul" style="font-size: 10px; padding-right: 40px;">
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>탑랭킹 디자이너 참여</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>1차 통과작 선정 가능</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>상금 50% 환불 가능</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>최상단 노출 옵션 무료</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>SNS 무료 컨텐츠 홍보</li>
+              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
             </ul>
             <div class="d-grid">
               <input type="button" value="선택" class="btn btn-primary text-uppercase selectPrice" name="c_pay">
@@ -251,7 +247,11 @@ section.pricing {
           </div>
         </div>
       </div>
+      <br>
+      <br>
       <hr>
+      <br>
+      <br>
       <div>
       <br>
       <br>
@@ -277,7 +277,8 @@ section.pricing {
 </section>
       </section>
    </div>
-</div>   
+</div>  
+</form>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="js/httpRequest.js"></script>
 <script>
@@ -318,6 +319,10 @@ function namingAdd() {
             
       var ftest = document.getElementById('ftest');
       var fo = new FormData(ftest);
+      
+      console.log(fo)
+      console.log($("#c_pay").val());
+      
       $.ajax({
          url: '/myweb/namingHold_add.do', 
          type: 'post',               

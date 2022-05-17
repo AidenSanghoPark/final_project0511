@@ -6,5 +6,5 @@ public interface ConDAO {
 	public int addNaming(ConDTO dto);
 	public int addCharacter(ConDTO dto);
 	public int addPrint(ConDTO dto);
-	//public int addTrade(TradeDTO dto);
+	public int addTrade(TradeDTO dto);
 }
