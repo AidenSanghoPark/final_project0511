@@ -37,4 +37,13 @@ public class ConDAOImple implements ConDAO {
 		return count;
 		
 	}
+	@Override
+	public ConDTO conInfo(int c_idx) {
+		return sqlMap.selectOne("conInfo",c_idx);
+	}
+	@Override
+	public int contestJoin(DesingerDTO dto) {
+		int cnt=sqlMap.insert("contestJoin", dto);
+		return cnt;
+	}
 }
