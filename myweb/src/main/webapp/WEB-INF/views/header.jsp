@@ -32,7 +32,10 @@
             <a class="nav-link" href="#">콘테스트 개최</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">디자이너</a>
+            <a class="nav-link" href="designer.do">디자이너</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="allReview.do">리뷰</a>
           </li>
         </ul>
        </div>

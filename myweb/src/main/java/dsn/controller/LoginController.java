@@ -35,7 +35,6 @@ public class LoginController {
 	@RequestMapping(value="/loginPage.do",method=RequestMethod.POST)
     public String loginProcess(HttpSession session,MemberDTO dto, HttpServletResponse response){
 	 
-	 System.out.println("ckb="+dto.isAutologin());
         String returnURL = "";
         if ( session.getAttribute("login") != null ){
            

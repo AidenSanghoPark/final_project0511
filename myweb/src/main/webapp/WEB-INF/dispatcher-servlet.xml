@@ -21,6 +21,9 @@
 	<bean id="myPageService" class="dsn.mypage.model.MyPageServiceImple">
 		<property name="myPageDao" ref="myPageDao"></property>
 	</bean>
+	<bean id="designerService" class="dsn.designer.model.DesignerServiceImple">
+		<property name="designerDao" ref="designerDao"></property>
+	</bean>
 	
 	
 	<!-- views -->
@@ -34,6 +37,11 @@
 		<constructor-arg>
 			<ref bean="sqlSessionTemplate"/>
 		</constructor-arg>		
+	</bean>
+	<bean id="designerDao" class="dsn.designer.model.DesignerDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"/>
+		</constructor-arg>
 	</bean>
 	
 	
