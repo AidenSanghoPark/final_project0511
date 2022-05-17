@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import dsn.member.model.MemberDTO;
 import dsn.member.model.MemberService;
 import dsn.contest.model.ConDTO;
 import dsn.contest.model.ConService;
@@ -57,23 +60,31 @@ public class ContestController {
 	}
 	//���̹� form
 	@RequestMapping(value = "/namingHold_add.do", method = RequestMethod.POST)
-	public ModelAndView namingHoldForm(MultipartHttpServletRequest request, ConDTO dto) {	
+	public ModelAndView namingHoldForm(MultipartHttpServletRequest request, ConDTO dto, HttpSession session) {	
 		
+		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
+		
+		dto.setU_idx(mdto.getU_idx());
 		ModelAndView mav=new ModelAndView();
 		int result = conService.addNaming(dto);
 		conService.updateTrd(dto);
 		mav.addObject("result", result);
 		//mav.addObject("upload", dto.getUpload());
-		String path = request.getSession().getServletContext().getRealPath("img/");
-		copyInto(dto.getUpload(), path); 
+		if(null != dto.getUpload()){
+			String path = request.getSession().getServletContext().getRealPath("img/");
+			copyInto(dto.getUpload(), path); 
+		}
 		mav.setViewName("contest/logoHold"); //임시방편 jsp 경로 바꿔야함
 		return mav;
 	}
 	//���̹� form
 	@RequestMapping(value = "/namingHoldTrade_add.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String namingHoldTradeForm(TrdDTO dto) {	
+	public String namingHoldTradeForm(TrdDTO dto, HttpSession session) {
 		
+		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
+		
+		dto.setU_idx(mdto.getU_idx());
 		int result = conService.addNamingTrade(dto);
 		return dto.getT_idx()+"";
 	}
@@ -131,7 +142,7 @@ public class ContestController {
 	@RequestMapping(value = "contestJoin.do", method = RequestMethod.GET)
 	public ModelAndView contestJoin(ConDTO dto) {
 		ModelAndView mav=new ModelAndView();
-		ConDTO con=conService.conInfo(1);
+		ConDTO con=conService.conInfo(dto.getC_idx());
 		mav.addObject("condto", con);
 		mav.setViewName("contest/contestJoin");
 		return mav;

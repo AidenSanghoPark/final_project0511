@@ -68,13 +68,11 @@
 			  , C_NAME
 			  , C_DETAILS
 			  , C_IDEA
-			  , C_READNUM
 			  , C_PAY
 			  , C_OPENDATE
 			  , C_ENDDATE
 			  , U_IDX
 			  , C_BLOCK
-			  , C_DATEDIFF
 			  , C_LOGO)
 		VALUES(
 			#{c_idx},
@@ -87,13 +85,11 @@
 			#{c_name},
 			#{c_details},
 			'idea',
-			0,
 			#{c_pay},
 			sysdate,
 			sysdate+7,
 			'0',
 			'N',
-			0,
 			#{c_logo}
 		)	
 	</insert>

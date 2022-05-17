@@ -88,6 +88,7 @@
 	<mvc:interceptors>	
 		<mvc:interceptor>
 			<mvc:mapping path="/contestJoin.do"/>
+			<mvc:mapping path="/namingHold.do"/>
 			<ref bean="authInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

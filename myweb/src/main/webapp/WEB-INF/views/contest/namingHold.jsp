@@ -320,7 +320,7 @@ function namingAdd() {
      
       
       $("#c_logo").val(cLogo);
-      $("#c_pay").val($("#t_pay").val());
+      $("#c_pay").val($("#totalPrice").val());
       
       if(confirm("입력하신 내용을 저장하시겠습니까?")){
     	  $("#ftest").submit();  
@@ -387,12 +387,12 @@ function pay(){
         pay_method: "kakaopay",
         merchant_uid: randomNum(),
         name: $("#selectType").val(), 
-        amount: $("#t_pay").val(),
-        buyer_email: "gildong@gmail.com",
-        buyer_name: "홍길동",
+        amount: $("#t_pay").val()
+       /*  buyer_email: "gildong@gmail.com",
+        buyer_name: "홍길동", 
         buyer_tel: "010-4242-4242"
-/*         buyer_addr: "서울특별시 강남구 신사동",
-        buyer_postcode: "01181" */
+        buyer_addr: "서울특별시 강남구 신사동",
+        buyer_postcode: "01181" */ 
     }, function (rsp) { // callback
         if (rsp.success) {
             // ajax 거래내역 insert 추가 필요
