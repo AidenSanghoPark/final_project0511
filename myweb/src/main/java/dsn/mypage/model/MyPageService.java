@@ -4,6 +4,7 @@ import java.util.List;
 
 import dsn.member.model.MemberDTO;
 import dsn.review.model.ReviewDTO;
+import dsn.trade.model.TradeDTO;
 import dsn.withdraw.model.WithDrawDTO;
 
 public interface MyPageService {
@@ -19,4 +20,6 @@ public interface MyPageService {
 	public int payout(WithDrawDTO dto);
 	public int getWalletCnt(int u_idx);
 	public int writeReview(ReviewDTO dto);
+	public List showPayInfo(int cp,int listSize, int u_idx);
+	public int getTradeCnt(int u_idx);
 }

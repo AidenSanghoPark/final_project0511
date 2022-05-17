@@ -48,6 +48,7 @@ public class LoginController {
         if ( vo != null ){ 
             session.setAttribute("login", vo); 
             session.setAttribute("u_idx", vo.getU_idx());
+            session.setAttribute("u_pwd", vo.getU_pwd());
             returnURL = "index";
             if (dto.isAutologin() == true){
                 Cookie cookie = new Cookie("loginCookie", session.getId());

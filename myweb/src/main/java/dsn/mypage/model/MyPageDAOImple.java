@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import dsn.member.model.MemberDTO;
 import dsn.review.model.ReviewDTO;
+import dsn.trade.model.TradeDTO;
 import dsn.withdraw.model.WithDrawDTO;
 
 public class MyPageDAOImple implements MyPageDAO {
@@ -72,5 +73,15 @@ public class MyPageDAOImple implements MyPageDAO {
 	public int writeReview(ReviewDTO dto) {
 		int count=sqlMap.insert("writeReview");
 		return count;
+	}
+	@Override
+	public List showPayInfo(Map map) {
+		List lists=sqlMap.selectList("tradeFind", map);
+		return lists;
+	}
+	@Override
+	public int getTradeCnt(int u_idx) {
+		int cnt =sqlMap.selectOne("getTradeCnt", u_idx);
+		return cnt;
 	}
 }

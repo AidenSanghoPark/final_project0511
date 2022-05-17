@@ -163,4 +163,20 @@ public class MyPageController {
 		mav.setViewName("mypage/popupclose");
 		return mav;
 	}
+	@RequestMapping("showPayInfo.do")
+	public ModelAndView payInfo(@RequestParam(value = "cp",defaultValue = "1") int cp,HttpSession session) {
+		
+		int vo=(int)session.getAttribute("u_idx");
+		int totalCnt=myPageService.getTradeCnt(vo);
+		int listSize=10;
+		int pageSize=5;
+		List lists=myPageService.showPayInfo(cp, listSize, vo);
+		String pageStr=dsn.page.PageModule.pageMake("showPayInfo.do", totalCnt, listSize, pageSize, cp);
+
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("pageStr", pageStr);
+		mav.addObject("lists", lists);
+		mav.setViewName("mypage/showpay");
+		return mav;
+	}
 }

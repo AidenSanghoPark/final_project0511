@@ -5,6 +5,7 @@ import java.util.Map;
 
 import dsn.member.model.MemberDTO;
 import dsn.review.model.ReviewDTO;
+import dsn.trade.model.TradeDTO;
 import dsn.withdraw.model.WithDrawDTO;
 
 public interface MyPageDAO {
@@ -20,4 +21,6 @@ public interface MyPageDAO {
 	public int payout(WithDrawDTO dto);
 	public int getWalletCnt(int u_idx);
 	public int writeReview(ReviewDTO dto);
+	public List showPayInfo(Map map);
+	public int getTradeCnt(int u_idx);
 }

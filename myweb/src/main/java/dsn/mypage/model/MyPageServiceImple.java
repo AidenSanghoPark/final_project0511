@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import dsn.member.model.MemberDTO;
 import dsn.review.model.ReviewDTO;
+import dsn.trade.model.TradeDTO;
 import dsn.withdraw.model.WithDrawDTO;
 
 @Service
@@ -103,5 +104,24 @@ public class MyPageServiceImple implements MyPageService {
 	public int writeReview(ReviewDTO dto) {
 		int count=myPageDao.writeReview(dto);
 		return count;
+	}
+	@Override
+	public List showPayInfo(int cp, int listSize, int u_idx) {
+		
+		int start=((cp-1)*listSize)+1;
+		int end=cp*listSize;
+		
+		Map map=new HashedMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("u_idx", u_idx);
+		List lists=myPageDao.showPayInfo(map);
+		return lists;
+	}
+	@Override
+	public int getTradeCnt(int u_idx) {
+		int cnt=myPageDao.getTradeCnt(u_idx);
+		cnt=cnt==0?1:cnt;
+		return cnt;
 	}
 }
