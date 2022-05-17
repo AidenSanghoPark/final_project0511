@@ -103,7 +103,7 @@ img {
                             </div>
                             <div class="d-flex flex-row align-items-center" style="width:400px;">
                                 <div class="d-flex flex-column mr-2" style="width:400px;">
-                                    <c:forEach var="photo" items="${photos}" begin="0" end="">
+                                    <c:forEach var="photo" items="${photos}">
 		                                    <div class="profile-image">
 		                                    	<img src="img/${photo.d_img_1}" width="100">&nbsp;&nbsp;&nbsp;&nbsp;
 		                                    </div>

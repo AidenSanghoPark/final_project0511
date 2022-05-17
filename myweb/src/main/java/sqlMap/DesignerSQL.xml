@@ -84,6 +84,8 @@
 			rnum <![CDATA[>=]]> #{start}
 		and
 			rnum <![CDATA[<=]]> #{end}
+		and
+			u_type = 2
 	</select>
 	<select id="designPhotos" parameterType="Map" resultType="dsn.designer.model.DesignerDTO">
 		select * from
@@ -95,5 +97,13 @@
 			rnum <![CDATA[<=]]> 3
 		and
 			u_idx=#{u_idx}
+	</select>
+	<select id="disignerAllList" resultType="dsn.designer.model.DesignerDTO" >
+		select
+			*
+		from
+			f_user
+		where
+			u_type = 2
 	</select>
 </mapper>
