@@ -4,11 +4,13 @@ import java.util.*;
 
 import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import dsn.member.model.MemberDTO;
 import dsn.profile.model.ProfileDTO;
+
 
 public class DesignerServiceImple implements DesignerService {
 	

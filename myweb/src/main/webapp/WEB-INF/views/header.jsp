@@ -26,10 +26,13 @@
             <a class="nav-link" href="#">콘테스트 개최</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">디자이너</a>
+            <a class="nav-link" href="portfolio.do">디자이너</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="contestJoin.do">콘테스트 참여</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="messege.do">콘테스트 참여</a>
           </li>
         </ul>
        </div>

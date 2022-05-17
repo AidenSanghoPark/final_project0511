@@ -23,15 +23,16 @@ public class ContestController {
 		mav.setViewName("contest/contestJoin");
 		return mav;
 	}
-	@RequestMapping(value = "contestJoin.do", method = RequestMethod.POST)
+	@RequestMapping(value = "contestJoinSubmit.do", method = RequestMethod.POST)
 	public ModelAndView contestJoinForm(MultipartHttpServletRequest request ,DesingerDTO dto) {
+		System.out.println(dto.getD_name());
 		ModelAndView mav=new ModelAndView();
 		FileUploadModule file=new FileUploadModule();
 		String path=request.getSession().getServletContext().getRealPath("img/");
 		file.copyInto(path,dto.getUploadfile1());
 		file.copyInto(path,dto.getUploadfile2());
 		int result=conService.contestJoin(dto);
-		mav.setViewName("myweb/index");
+		mav.setViewName("index");
 		return mav;
 	}
 	

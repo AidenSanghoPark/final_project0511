@@ -24,18 +24,17 @@
 	<bean id="conService" class="dsn.contest.model.ConServiceImple">
 		<property name="conDao" ref="conDao"></property>
 	</bean>
+	<bean id="designerService" class="dsn.designer.model.DesignerServiceImple">
+      <property name="designerDao" ref="designerDao"></property>
+   </bean>
+   
+   
 	<!-- views -->
 	<bean id="yongJson" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
 		<property name="contentType" value="application/json;charset=UTF-8"> </property>
-	 </bean>
+	 </bean>	 
 	 
-	 
-	<!-- dao -->
-	<bean id="myPageDao" class="dsn.mypage.model.MyPageDAOImple">
-		<constructor-arg>
-			<ref bean="sqlSessionTemplate"/>
-		</constructor-arg>		
-	</bean>
+	
 	
 	
 	<bean id="viewResolver"
