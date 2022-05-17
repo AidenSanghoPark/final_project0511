@@ -120,7 +120,9 @@ public class DesignerServiceImple implements DesignerService {
 
 	
 	@Override
-	public List designPhotos(int u_idx) {
+	public List designPhotos(Object u_idx) {
+		
+		System.out.println("service="+u_idx);
 		Map map=new HashedMap();
 		map.put("u_idx", u_idx);
 		

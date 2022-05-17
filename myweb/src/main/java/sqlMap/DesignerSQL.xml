@@ -100,7 +100,7 @@
 	</select>
 	<select id="disignerAllList" resultType="dsn.designer.model.DesignerDTO" >
 		select
-			*
+			u_idx
 		from
 			f_user
 		where

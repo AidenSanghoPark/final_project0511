@@ -168,22 +168,26 @@ public class DesignerController {
 		int pageSize=5;
 		String pageStr=dsn.page.PageModule.pageMake("designer.do", totalCnt, listSize, pageSize, cp);
 		
-		List u_idx=designerSevice.designerAllList();
+		List userlist=designerSevice.designerAllList();
 		
-		System.out.println("u_idx"+u_idx);
+//		for(int i=0;i<userlist.size();i++) {
+//			Object u_idx= userlist.get(i);
+//			
+//			System.out.println(u_idx);
+//			List photos=designerSevice.designPhotos(u_idx);
+//			mav.addObject("photos", photos);
+//		}
 		List lists=designerSevice.designerList(cp, listSize);
 		ProfileDTO pdto=designerSevice.profileInfo(1);
 		
-		List photos=designerSevice.designPhotos(1);
 		System.out.println("lists="+lists);
-		System.out.println("photos="+photos);
 
 		
 		
 		mav.addObject("lists", lists);
 		mav.addObject("pageStr", pageStr);
 		mav.addObject("pdto", pdto);
-		mav.addObject("photos", photos);
+		
 
 		mav.setViewName("designer/designer");
 		return mav;

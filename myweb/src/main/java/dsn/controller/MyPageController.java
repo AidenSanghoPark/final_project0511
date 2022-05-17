@@ -28,7 +28,7 @@ public class MyPageController {
 		int vo=(int)session.getAttribute("u_idx");	
 		ModelAndView mav=new ModelAndView();
 		if(vo==0) {
-			String msg="·Î±×ÀÎ ÈÄ ÀÌ¿ëÇØÁÖ¼¼¿ä";
+			String msg="ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½";
 			mav.addObject("msg", msg);
 			mav.addObject("gopage","index.do");
 			return mav;
@@ -58,7 +58,7 @@ public class MyPageController {
 	@RequestMapping("myPageUpdate.do")
 	public ModelAndView userUpdate(MyPageDTO dto) {
 		int result=myPageService.userUpdate(dto);
-		String msg=result>0?"Á¤º¸¼öÁ¤ ¿Ï·á":"Á¤º¸¼öÁ¤ ¿Ï·á";
+		String msg=result>0?"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½":"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½";
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg", msg);
 		mav.addObject("gopage", "myPage.do");
@@ -77,10 +77,10 @@ public class MyPageController {
 		String msg="";
 		if(checkpwd.equals(pwdconfirm)) {
 			int result=myPageService.pwdUpdate(pwdconfirm);
-			msg=result>0?"ºñ¹Ð¹øÈ£ º¯°æ ¿Ï·á":"ºñ¹Ð¹øÈ£ º¯°æ ½ÇÆÐ";
+			msg=result>0?"ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½":"ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½";
 			mav.addObject("gopage", "myPage.do");
 		}else {
-			msg="ºñ¹Ð¹øÈ£ ºÒÀÏÄ¡";
+			msg="ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½Ä¡";
 			mav.addObject("gopage", "passwordConfig.do");
 		}
 		mav.addObject("msg", msg);
