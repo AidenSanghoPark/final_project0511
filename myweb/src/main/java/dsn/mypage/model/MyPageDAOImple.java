@@ -6,6 +6,8 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import dsn.member.model.MemberDTO;
+import dsn.review.model.ReviewDTO;
+import dsn.withdraw.model.WithDrawDTO;
 
 public class MyPageDAOImple implements MyPageDAO {
 
@@ -22,13 +24,13 @@ public class MyPageDAOImple implements MyPageDAO {
 		return count;
 	}
 	@Override
-	public int pwdUpdate(String pwdconfirm) {
-		int count=sqlMap.update("pwdUpdate", pwdconfirm);
+	public int pwdUpdate(Map map) {
+		int count=sqlMap.update("pwdUpdate", map);
 		return count;
 	}
 	@Override
-	public int getTotalCnt() {
-		int cnt=sqlMap.selectOne("totalCnt");
+	public int getTotalCnt(int u_idx) {
+		int cnt=sqlMap.selectOne("totalCnt", u_idx);
 		return cnt;
 	}
 	@Override
@@ -53,8 +55,22 @@ public class MyPageDAOImple implements MyPageDAO {
 	}
 	@Override
 	public String pwdFind(int u_idx) {
-		String getlastpwd=sqlMap.selectOne("getLastPWD", u_idx);
-		return getlastpwd;
+		String u_pwd=sqlMap.selectOne("pwdFind", u_idx);
+		return u_pwd;
 	}
-	
+	@Override
+	public int payout(WithDrawDTO dto) {
+		int count=sqlMap.insert("payout", dto);
+		return count;
+	}
+	@Override
+	public int getWalletCnt(int u_idx) {
+		int cnt=sqlMap.selectOne("walletCnt", u_idx);
+		return cnt;
+	}
+	@Override
+	public int writeReview(ReviewDTO dto) {
+		int count=sqlMap.insert("writeReview");
+		return count;
+	}
 }

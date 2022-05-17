@@ -54,7 +54,6 @@ ul{
 <body>
 	<section class="profile">
 	<c:forEach var="userinfo" items="${userinfo }">
-	
       	<img class="photo" src="profileimg/pi.jpg">
         <h5><a href="profileConfig.do">${userinfo.u_name } 님</a></h5>
         <p>${userinfo.u_email }</p>
