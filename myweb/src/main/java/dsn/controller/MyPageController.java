@@ -28,25 +28,25 @@ public class MyPageController {
 		int vo=(int)session.getAttribute("u_idx");	
 		ModelAndView mav=new ModelAndView();
 		if(vo==0) {
-			String msg="ë¡œê·¸ì¸ í›„ ì´ìš©í•´ì£¼ì„¸ìš”";
+			String msg="·Î±×ÀÎ ÈÄ ÀÌ¿ëÇØÁÖ¼¼¿ä";
 			mav.addObject("msg", msg);
 			mav.addObject("gopage","index.do");
 			return mav;
 			
 		}else {
-		int totalCnt=myPageService.getTotalCnt();
-		int listSize=5;
-		int pageSize=5;
-		String pageStr=dsn.page.PageModule.pageMake("myPage.do", totalCnt, listSize, pageSize, cp);
-		List lists=myPageService.myPageList(cp, listSize, vo);
-		List userinfo=myPageService.userInfoFind(vo);
-		
-		mav.addObject("lists", lists);
-		mav.addObject("pageStr", pageStr);
-		mav.addObject("u_idx", vo);
-		mav.addObject("userinfo", userinfo);
-		mav.setViewName("mypage/mypage");
-		return mav;
+			int totalCnt=myPageService.getTotalCnt();
+			int listSize=5;
+			int pageSize=5;
+			String pageStr=dsn.page.PageModule.pageMake("myPage.do", totalCnt, listSize, pageSize, cp);
+			List lists=myPageService.myPageList(cp, listSize, vo);
+			List userinfo=myPageService.userInfoFind(vo);
+			
+			mav.addObject("lists", lists);
+			mav.addObject("pageStr", pageStr);
+			mav.addObject("u_idx", vo);
+			mav.addObject("userinfo", userinfo);
+			mav.setViewName("mypage/mypage");
+			return mav;
 		}
 	}
 	@RequestMapping("accountConfig.do")
@@ -58,7 +58,7 @@ public class MyPageController {
 	@RequestMapping("myPageUpdate.do")
 	public ModelAndView userUpdate(MyPageDTO dto) {
 		int result=myPageService.userUpdate(dto);
-		String msg=result>0?"ì •ë³´ìˆ˜ì • ì™„ë£Œ":"ì •ë³´ìˆ˜ì • ì™„ë£Œ";
+		String msg=result>0?"Á¤º¸¼öÁ¤ ¿Ï·á":"Á¤º¸¼öÁ¤ ¿Ï·á";
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg", msg);
 		mav.addObject("gopage", "myPage.do");
@@ -77,10 +77,10 @@ public class MyPageController {
 		String msg="";
 		if(checkpwd.equals(pwdconfirm)) {
 			int result=myPageService.pwdUpdate(pwdconfirm);
-			msg=result>0?"ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ ì™„ë£Œ":"ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ ì‹¤íŒ¨";
+			msg=result>0?"ºñ¹Ğ¹øÈ£ º¯°æ ¿Ï·á":"ºñ¹Ğ¹øÈ£ º¯°æ ½ÇÆĞ";
 			mav.addObject("gopage", "myPage.do");
 		}else {
-			msg="ë¹„ë°€ë²ˆí˜¸ ë¶ˆì¼ì¹˜";
+			msg="ºñ¹Ğ¹øÈ£ ºÒÀÏÄ¡";
 			mav.addObject("gopage", "passwordConfig.do");
 		}
 		mav.addObject("msg", msg);

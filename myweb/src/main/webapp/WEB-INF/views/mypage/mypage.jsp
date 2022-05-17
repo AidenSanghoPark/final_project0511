@@ -51,9 +51,9 @@ ul{
 	<c:forEach var="userinfo" items="${userinfo }">
 	
         <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false" src="mypageimg/cateimg.jpg"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em"></text></svg>
-        <h5><a href="profileConfig.do">${userinfo.u_name } 님</a></h5>
+        <h5><a href="profile.do">${userinfo.u_name } 님</a></h5>
         <p>${userinfo.u_email }</p>
-        <p><a class="btn btn-secondary" href="#">포트폴리오 관리</a></p><br>
+        <p><a class="btn btn-secondary" href="portfolio.do">포트폴리오 관리</a></p><br>
         <h3>참여한 콘테스트</h3><br>
         <h3>1:1 의뢰 관리</h3><br>
         <h3>가상계좌</h3><br>

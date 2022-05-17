@@ -52,7 +52,8 @@
 		SET
 			SESSION_ID = #{session_id},
 			LIMIT_DATE = #{limit_date}
-		WHERE U_ID = #{u_id}
+		WHERE
+			U_ID = #{u_id}
 	</update>
 	<select id="checkUserWithSessionKey" parameterType="dsn.member.model.MemberDTO" resultType="dsn.member.model.MemberDTO">
         SELECT
@@ -64,7 +65,6 @@
         AND
         	LIMIT_DATE > SYSDATE
     </select>
-    
 	<select id="selectSession" parameterType="dsn.member.model.MemberDTO" resultType="dsn.member.model.MemberDTO">
 		SELECT
 			*
