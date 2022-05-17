@@ -8,12 +8,6 @@
 	height:50px;
 	padding-left: 15px;
 }
-#loginJoin{
-	float: left;
-	text-decoration-line: none;
-   color: white;
- 	text-align: right;
-}
 </style>
 <header>
 <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
@@ -32,7 +26,13 @@
             <a class="nav-link" href="contestChoice.do">콘테스트 개최</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">디자이너</a>
+            <a class="nav-link" href="portfolio.do">디자이너</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contestJoin.do">콘테스트 참여</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="messege.do">콘테스트 참여</a>
           </li>
         </ul>
        </div>
@@ -40,7 +40,7 @@
         <div id="loginJoin">
 	       	<c:choose>
 				<c:when test="${empty login}">
-					<div><a href="loginPage.do">로그인</a> | <a href="joinChoice.do">회원가입</a></div>
+					<div><a href="login.do">로그인</a> | <a href="joinChoice.do">회원가입</a></div>
 				</c:when>
 				<c:otherwise>
 					<div>${nick}님 로그인중 | <a href="logout.do">로그아웃</a></div>

@@ -10,10 +10,13 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.util.WebUtils;
 
 import dsn.member.model.*;
@@ -25,125 +28,78 @@ public class LoginController {
 	private MemberService memberService;
 	
 	
-	@RequestMapping(value = "/loginPage.do",method = RequestMethod.GET)
-	public ModelAndView loginPageForm() {
-		ModelAndView mav=new ModelAndView();
-		mav.setViewName("member/login");
-		return mav;
+	
+	@RequestMapping(value="/login.do",method= RequestMethod.GET)
+	public String loginView(@ModelAttribute("loginVO")LoginDTO loginVO,HttpServletRequest request,Model model) throws Exception{
+		Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
+		if(null != inputFlashMap) {
+			model.addAttribute("msg",(String) inputFlashMap.get("msg"));
+		}
+		return "/login";
 	}
 	
-	@RequestMapping(value="/loginPage.do",method=RequestMethod.POST)
-    public String loginProcess(HttpSession session,MemberDTO dto, HttpServletResponse response){
-	 
-	 System.out.println("ckb="+dto.isAutologin());
-        String returnURL = "";
-        if ( session.getAttribute("login") != null ){
-           
-            session.removeAttribute("login"); 
-        }
+//	@RequestMapping(value = "/login.do",method = RequestMethod.GET)
+//	public void login() {
+//	}
+//	
+	@RequestMapping(value="/loginPost.do" , method= RequestMethod.POST)
+	public void loginPost(LoginDTO ldto, Model model, HttpSession session)throws Exception{
+		
+		MemberDTO memberVO = memberService.login(ldto);
+		if( memberVO == null || ldto.getU_pwd()==memberVO.getU_pwd()) {
+			return;
+		}
+		
+		
+		model.addAttribute("user", memberVO);
+		System.out.println(ldto.isUseCookie());
+		if(ldto.isUseCookie()) {
+			int amount = 60*60*24*7;
+			Date sessionLimit = new Date(System.currentTimeMillis() + (1000*amount));
+			memberService.autoLogin(session.getId(),memberVO.getU_id(), sessionLimit);
+		
+		}
+		
+	}
+	
+//	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
+//	public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception{
+//		session.removeAttribute("login");
+//		session.invalidate();
+//		
+//		Cookie loginCookie = WebUtils.getCookie(request,"loginCookie");
+//		if (loginCookie != null) {
+//			loginCookie.setPath("/");
+//			loginCookie.setMaxAge(0);
+//			
+//			response.addCookie(loginCookie);
+//		}
+//		return "/index";
+//		
+//	}
+	
+	@RequestMapping(value="/logout.do")
+    public String logout(HttpSession session,HttpServletRequest request, HttpServletResponse response) {
          
-     
-        MemberDTO vo = memberService.login(dto);
-         
-        if ( vo != null ){ 
-            session.setAttribute("login", vo); 
-            session.setAttribute("u_idx", vo.getU_idx());
-            returnURL = "index";
-            if (dto.isAutologin() == true){
-                Cookie cookie = new Cookie("loginCookie", session.getId());
-                cookie.setPath("/");
-                int amount = 60 * 60 * 24 * 7;
-                cookie.setMaxAge(amount);
-                response.addCookie(cookie);
-                
-                Date sessionLimit = new Date(System.currentTimeMillis() + (1000*amount));
-                
-                memberService.autoLogin(session.getId(), sessionLimit, vo.getU_id());
-            }else if(dto.isAutologin() == false) {
-            	
-            	Cookie cookie=new Cookie("loginCookie",session.getId());
-            	cookie.setMaxAge(0);
-            	response.addCookie(cookie);
-            	
+        Object obj = session.getAttribute("login");
+        if ( obj != null ){
+            MemberDTO vo = (MemberDTO)obj;
+            session.removeAttribute("login");
+            session.invalidate();
+            Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
+            if ( loginCookie != null ){
+                loginCookie.setPath("/");
+                loginCookie.setMaxAge(0);
+                response.addCookie(loginCookie);
+                Date date = new Date(System.currentTimeMillis());
+                memberService.autoLogin(vo.getU_id(),session.getId(), date);
             }
-
-        }else { 
-            returnURL = "member/login";
         }
-         
-        return returnURL; 
+        return "/index"; 
     }
 	
-//	 @RequestMapping(value="/loginPage.do",method=RequestMethod.POST)
-//	    public ModelAndView loginProcess(HttpSession session,MemberDTO dto, HttpServletResponse response){
-//		 System.out.println(dto.getU_id());
-//		 System.out.println(dto.getU_pwd());
-//		 System.out.println("ckb="+dto.isAutologin());
-//		 
-//		 	ModelAndView mav=new ModelAndView();
-//	        String returnURL = "";
-//	        if ( session.getAttribute("login") != null ){
-//	           
-//	            session.removeAttribute("login"); 
-//	        }
-//	         
-//	     
-//	        MemberDTO vo = memberService.login(dto);
-//	         System.out.println(vo.getU_id());
-//	        if ( vo != null ){ 
-//	            session.setAttribute("login", vo); 
-//	            mav.addObject("login","index.do");
-//	            mav.addObject("msg","ocok");
-//	            mav.setViewName("member/loginMsg");
-//	            if (dto.isAutologin() == true){
-//	            	System.out.println(session.getId());
-//	                Cookie cookie = new Cookie("loginCookie", session.getId());
-//	                cookie.setPath("/");
-//	                int amount = 60 * 60 * 24 * 7;
-//	                cookie.setMaxAge(amount);
-//	                response.addCookie(cookie);
-//	                
-//	                Date sessionLimit = new Date(System.currentTimeMillis() + (1000*amount));
-//	                
-//	                memberService.autoLogin(session.getId(), sessionLimit, vo.getU_id());
-//	            }else if(dto.isAutologin() == false) {
-//	            	System.out.println(session.getId());
-//	            	Cookie cookie=new Cookie("loginCookie",session.getId());
-//	            	cookie.setMaxAge(0);
-//	            	response.addCookie(cookie);
-//	            	
-//	            }
-//
-//	        }else { 
-//	        	mav.addObject("login","loginPage.do");
-//	        	mav.addObject("msg","ncok");
-//	            mav.setViewName("member/login");
-//	        }
-//	         
-//	        return mav;
-//	    }
+	
 	 
-	 @RequestMapping(value="/logout.do")
-	    public String logout(HttpSession session,HttpServletRequest request, HttpServletResponse response) {
-		 
-		 Object obj = session.getAttribute("login");
-	        if ( obj != null ){
-	            MemberDTO vo = (MemberDTO)obj;
-	            session.removeAttribute("login");
-	            session.invalidate(); 
-	            Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
-	            if ( loginCookie != null ){
-	                loginCookie.setPath("/");
-	              
-	                loginCookie.setMaxAge(0);
-	                response.addCookie(loginCookie);
-	           
-	                Date date = new Date(System.currentTimeMillis());
-	                memberService.autoLogin(session.getId(), date, vo.getU_id());
-	            }
-	        }
-	        
-	        return "index";
-	    }
+
 
 }

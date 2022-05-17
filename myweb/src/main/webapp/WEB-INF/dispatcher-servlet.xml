@@ -25,12 +25,19 @@
 	<bean id="conService" class="dsn.contest.model.ConServiceImple">
 		<property name="conDao" ref="conDao"></property>
 	</bean>
-		
+	<bean id="designerService" class="dsn.designer.model.DesignerServiceImple">
+      <property name="designerDao" ref="designerDao"></property>
+   </bean>
+   
+   
 	<!-- views -->
 	<bean id="yongJson" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
 		<property name="contentType" value="application/json;charset=UTF-8"> </property>
-	 </bean>
+	 </bean>	 
 	 
+	
+	
+	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="order" value="1"></property>
@@ -40,14 +47,30 @@
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<property name="order" value="0"></property>
 	</bean>
-	<bean id="authenticationInterceptor" class="dsn.member.interceptor.AuthenticationInterceptor">
-	 	<constructor-arg ref="memberService"></constructor-arg>
-	 </bean>
-	 <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <ref bean="authenticationInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>	
+	
+	
+	
+	
+	<bean id="loginInterceptor" class="dsn.member.interceptor.LoginInterceptor"/>
+	<bean id="authInterceptor" class="dsn.member.interceptor.AuthInterceptor"/>
+	<bean id="rememberInterceptor" class="dsn.member.interceptor.RememberInterceptor"/>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<ref bean="rememberInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/loginPost.do"/>
+			<ref bean="loginInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<mvc:interceptors>	
+		<mvc:interceptor>
+			<mvc:mapping path="/contestJoin.do"/>
+			<ref bean="authInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 	
 </beans>
