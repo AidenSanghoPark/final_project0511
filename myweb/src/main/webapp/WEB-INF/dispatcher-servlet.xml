@@ -2,47 +2,47 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context 
-	http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	
 	<!-- configs -->
 	<context:component-scan base-package="dsn"></context:component-scan>
 	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"></bean>
 
 	<!-- service -->
-	<bean id="myPageDao" class="dsn.mypage.model.MyPageDAOImple">
-		<constructor-arg>
-			<ref bean="sqlSessionTemplate"/>
-		</constructor-arg>
+	
+	<!-- views -->
+	<bean id="dsnDown" class="dsn.view.DownloadView"></bean>
+	<!-- views -->
+	<bean id="yongJson" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+		<property name="contentType" value="application/json;charset=UTF-8"> </property>
 	</bean>
+	
+	
+
 	<bean id="myPageService" class="dsn.mypage.model.MyPageServiceImple">
 		<property name="myPageDao" ref="myPageDao"></property>
 	</bean>
-	<bean id="ConDao" class="dsn.contest.model.ConDAOImple">
-		<constructor-arg>
-			<ref bean="sqlSessionTemplate"/>
-		</constructor-arg>
-	</bean>
-	<bean id="ConService" class="dsn.contest.model.ConServiceImple">
-		<property name="ConDao" ref="ConDao"></property>
-	</bean>
-	<!-- views -->
-	<bean id="dsnDown" class="dsn.view.DownloadView"></bean>
-	<bean id="yongJson" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"></bean>
+	<bean id="memberManageService" class="dsn.memberManage.model.memberManageServiceImple">
+      <property name="memberManageDao" ref="memberManageDao"></property>
+   	</bean>
+   	<bean id="memberService" class="dsn.member.model.MemberServiceImple">
+      <property name="memberDao" ref="memberDao"></property>
+   	</bean>
 	<bean id="conService" class="dsn.contest.model.ConServiceImple">
 		<property name="conDao" ref="conDao"></property>
 	</bean>
 	<bean id="designerService" class="dsn.designer.model.DesignerServiceImple">
       <property name="designerDao" ref="designerDao"></property>
    </bean>
-   
 	<bean id="adminService" class="dsn.admin.model.adminServiceImple">
 		<property name="adminDao" ref="adminDao"></property>
 	</bean>	
-   	<bean id="memberManageService" class="dsn.memberManage.model.memberManageServiceImple">
-      <property name="memberManageDao" ref="memberManageDao"></property>
-   	</bean>
    	<bean id="AskManageService" class="dsn.askManage.model.AskManageServiceImple">
       <property name="askManageDao" ref="askManageDao"></property>
    	</bean>
@@ -58,16 +58,12 @@
   	<bean id="ReportManageService" class="dsn.reportManage.model.ReportManageServiceImple">
       <property name="reportManageDao" ref="reportManageDao"></property>
    	</bean>
-   
 	<bean id="reviewService" class="dsn.review.model.ReviewServiceImple">
 		<property name="reviewDao" ref="reviewDao"></property>
 	</bean>
 	
 	
-	<!-- views -->
-	<bean id="yongJson" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
-		<property name="contentType" value="application/json;charset=UTF-8"> </property>
-	</bean>	 
+		 
 	 
 	<!-- dao -->
 	
@@ -83,13 +79,12 @@
 	</bean>
 	
 	
-	<bean id="dsnDown" class="dsn.view.DownloadView"></bean>
-	
 	<bean id="loginInterceptor" class="dsn.member.interceptor.LoginInterceptor"/>
 	<bean id="authInterceptor" class="dsn.member.interceptor.AuthInterceptor"/>
 	<bean id="rememberInterceptor" class="dsn.member.interceptor.RememberInterceptor"/>
 	<bean id="desingerInterceptor" class="dsn.member.interceptor.DesingerInterceptor"/>
 	<bean id="clientInterceptor" class="dsn.member.interceptor.ClientInterceptor"/>
+	
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>

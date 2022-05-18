@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import dsn.trade.model.TrdDTO;
 
+@Service
 public class ConServiceImple implements ConService{
 	
 	@Autowired

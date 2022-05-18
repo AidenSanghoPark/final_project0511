@@ -25,35 +25,32 @@
 	</bean>
 	
 	<!-- dao -->
-	<bean id="memberDao" class="dsn.member.model.MemberDAOImple">
-		<constructor-arg>
-				<ref bean="sqlSessionTemplate"/>
-		</constructor-arg>
-	</bean>
 	<bean id="myPageDao" class="dsn.mypage.model.MyPageDAOImple">
 		<constructor-arg>
 			<ref bean="sqlSessionTemplate"/>
 		</constructor-arg>		
 	</bean>
-	
-	<bean id="designerDao" class="dsn.designer.model.DesignerDAOImple">
-      <constructor-arg>
-         <ref bean="sqlSessionTemplate"/>
-      </constructor-arg>
-   </bean>
+	<bean id="memberManageDao" class="dsn.memberManage.model.memberManageDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"/>
+		</constructor-arg>
+	</bean>
+	<bean id="memberDao" class="dsn.member.model.MemberDAOImple">
+		<constructor-arg>
+				<ref bean="sqlSessionTemplate"/>
+		</constructor-arg>
+	</bean>
 	<bean id="conDao" class="dsn.contest.model.ConDAOImple">
 		<constructor-arg>
 			<ref bean="sqlSessionTemplate"/>
 		</constructor-arg>
 	</bean>
-	
+	<bean id="designerDao" class="dsn.designer.model.DesignerDAOImple">
+      <constructor-arg>
+         <ref bean="sqlSessionTemplate"/>
+      </constructor-arg>
+   </bean>
 	<bean id="adminDao" class="dsn.admin.model.adminDAOImple">
-		<constructor-arg>
-			<ref bean="sqlSessionTemplate"/>
-		</constructor-arg>
-	</bean>
-	
-	<bean id="memberManageDao" class="dsn.memberManage.model.memberManageDAOImple">
 		<constructor-arg>
 			<ref bean="sqlSessionTemplate"/>
 		</constructor-arg>
