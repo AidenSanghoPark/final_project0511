@@ -18,7 +18,7 @@
   	<select id="pwdFind" parameterType="Integer" resultType="String">
   		 SELECT U_PWD FROM F_USER WHERE U_IDX=#{u_idx}
   	</select>
-  	<select id="totalCnt" parameterType="Integer" resultType="Integer">
+  	<select id="dsn.mypage.totalCnt" parameterType="Integer" resultType="Integer">
   	SELECT COUNT(*) FROM F_CLIENT WHERE U_IDX=#{u_idx}
   	</select>
   	<select id="myPageList" parameterType="Map" resultType="dsn.contest.model.ConDTO">

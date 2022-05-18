@@ -14,7 +14,7 @@ public class IndexController {
 		
 		ModelAndView mav=new ModelAndView();
 		
-		mav.setViewName("index");
+		mav.setViewName("/index");
 		return mav;
 	}
 }

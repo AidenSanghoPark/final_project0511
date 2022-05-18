@@ -31,7 +31,7 @@ public class MyPageDAOImple implements MyPageDAO {
 	}
 	@Override
 	public int getTotalCnt(int u_idx) {
-		int cnt=sqlMap.selectOne("totalCnt", u_idx);
+		int cnt=sqlMap.selectOne("dsn.mypage.totalCnt", u_idx);
 		return cnt;
 	}
 	@Override
