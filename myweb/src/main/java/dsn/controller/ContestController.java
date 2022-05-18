@@ -1,10 +1,13 @@
 package dsn.controller;
 
 import java.io.File;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,60 +19,76 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import dsn.member.model.MemberDTO;
 import dsn.member.model.MemberService;
+import dsn.contest.model.ConDTO;
+import dsn.contest.model.ConService;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 import dsn.contest.model.*;
+import dsn.module.*;
+import dsn.trade.model.TrdDTO;
+
 @Controller
 public class ContestController {
 	
 	@Autowired
 	private ConService conService;
 	
-	//ÄÜÅ×½ºÆ® Å¸ÀÔ
+	//ï¿½ï¿½ï¿½×½ï¿½Æ® Å¸ï¿½ï¿½
 	@RequestMapping("/contestChoice.do")
 	public ModelAndView contestHold() {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("contest/contestChoice");
 		return mav;
 	}
-	//·Î°í ºä
-	@RequestMapping(value = "/logoHold.do", method = RequestMethod.GET)
-	public ModelAndView logoHoldView(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
+	//ï¿½ï¿½ï¿½Ì¹ï¿½ ï¿½ï¿½
+	@RequestMapping(value = "/namingHold.do", method = RequestMethod.GET)
+	public ModelAndView namingHoldView(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("c_cate", c_cate);
-		mav.setViewName("contest/logoHold");
+		mav.setViewName("contest/namingHold");
 		return mav;
 	}
-	//Ã¼Å©¹Ú½º
+	//Ã¼Å© ï¿½Ú½ï¿½
 	@RequestMapping(value = "/arrcheck.do", method = RequestMethod.POST)
 	@ResponseBody
 	public void arrCheck(@RequestParam(value = "valueArr[]")
-	                  List<String> valueArr) {
-	            System.out.println(valueArr);
+						List<String> valueArr) {
+	   		System.out.println(valueArr);
 	}
-	//·Î°í form
-	@RequestMapping(value = "/logoHold_add.do", method = RequestMethod.POST)
+	//ï¿½ï¿½ï¿½Ì¹ï¿½ form
+	@RequestMapping(value = "/namingHold_add.do", method = RequestMethod.POST)
+	public ModelAndView namingHoldForm(MultipartHttpServletRequest request, ConDTO dto, HttpSession session) {	
+		
+		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
+		
+		dto.setU_idx(mdto.getU_idx());
+		ModelAndView mav=new ModelAndView();
+		int result = conService.addNaming(dto);
+		conService.updateTrd(dto);
+		mav.addObject("result", result);
+		//mav.addObject("upload", dto.getUpload());
+		if(null != dto.getUpload()){
+			String path = request.getSession().getServletContext().getRealPath("img/");
+			copyInto(dto.getUpload(), path); 
+		}
+		mav.setViewName("contest/logoHold"); //ìž„ì‹œë°©íŽ¸ jsp ê²½ë¡œ ë°”ê¿”ì•¼í•¨
+		return mav;
+	}
+	//ï¿½ï¿½ï¿½Ì¹ï¿½ form
+	@RequestMapping(value = "/namingHoldTrade_add.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String logoHoldForm(MultipartHttpServletRequest request, ConDTO dto) {   
-	      
-	   Date date = new Date();
-	   
-	   
-	   int result = conService.addLogo(dto);
-	   int pay=(int) ((dto.getC_pay()*10)+(dto.getC_pay()*1.1)+dto.getC_pay());
-	   	   
-	   TradeDTO tdto=new TradeDTO();
-	   tdto.setT_pay(pay);
-	   tdto.setU_idx(dto.getU_idx());
-	   
-	   System.out.println("t_pay"+tdto.getT_pay());
-	   System.out.println("u_idx"+tdto.getU_idx());
-	   
-	   String path = request.getSession().getServletContext().getRealPath("img/");
-	   copyInto(dto.getUpload(), path); 
-	   return result + "";
+	public String namingHoldTradeForm(TrdDTO dto, HttpSession session) {
+		
+		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
+		
+		dto.setU_idx(mdto.getU_idx());
+		int result = conService.addNamingTrade(dto);
+		return dto.getT_idx()+"";
 	}
-	//ÆÄÀÏº¹»ç
+	//ï¿½ï¿½ï¿½Ïºï¿½ï¿½ï¿½
 	public void copyInto(MultipartFile upload, String path) {
 					
 		try {
@@ -83,27 +102,16 @@ public class ContestController {
 			e.printStackTrace();
 		}		
 	}
-	//³×ÀÌ¹Ö °³ÃÖ
-	@RequestMapping(value = "/namingHold.do", method = RequestMethod.GET)
+	//ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½
+	@RequestMapping(value = "/logoHold.do", method = RequestMethod.GET)
 	public ModelAndView rogoHold(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("c_cate", c_cate);
 		System.out.println(c_cate);
-		mav.setViewName("contest/namingHold");
+		mav.setViewName("contest/logoHold");
 		return mav;
 	}
-	//³×ÀÌ¹Ö form
-	@RequestMapping(value = "/namingHold_add.do", method = RequestMethod.POST)
-	@ResponseBody
-	public String namingHoldForm(MultipartHttpServletRequest request, ConDTO dto) { 
-			      
-		int result = conService.addNaming(dto);
-		String path = request.getSession().getServletContext().getRealPath("img/");
-		copyInto(dto.getUpload(), path); 
-		return result + "";
-	}
-	
-	//Ä³¸¯ÅÍ °³ÃÖ
+	//Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/characterHold.do", method = RequestMethod.GET)
 	public ModelAndView characterHold(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
 		ModelAndView mav=new ModelAndView();
@@ -112,17 +120,16 @@ public class ContestController {
 		mav.setViewName("contest/characterHold");
 		return mav;
 	}
-	//Ä³¸¯ÅÍ form
-	@RequestMapping(value = "/characterHold_add.do", method = RequestMethod.POST)
-	@ResponseBody
-	public String characterHoldorm(MultipartHttpServletRequest request, ConDTO dto) {   
-			      
-		int result = conService.addCharacter(dto);
-		String path = request.getSession().getServletContext().getRealPath("img/");
-		copyInto(dto.getUpload(), path); 
-		return result + "";
+	//ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½
+	@RequestMapping(value = "/productHold.do", method = RequestMethod.GET)
+	public ModelAndView productHold(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("c_cate", c_cate);
+		System.out.println(c_cate);
+		mav.setViewName("contest/productHold");
+		return mav;
 	}
-	//ÀÎ¼â °³ÃÖ
+	//ï¿½Î¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@RequestMapping(value = "/printHold.do", method = RequestMethod.GET)
 	public ModelAndView printHold(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
 		ModelAndView mav=new ModelAndView();
@@ -131,15 +138,27 @@ public class ContestController {
 		mav.setViewName("contest/printHold");
 		return mav;
 	}
-	//ÀÎ»õ form
-	@RequestMapping(value = "/printHold_add.do", method = RequestMethod.POST)
-	@ResponseBody
-	public String printrHoldForm(MultipartHttpServletRequest request, ConDTO dto) {   
-			      
-		int result = conService.addPrint(dto);
-		String path = request.getSession().getServletContext().getRealPath("img/");
-		copyInto(dto.getUpload(), path); 
-		return result + "";
+	
+	@RequestMapping(value = "contestJoin.do", method = RequestMethod.GET)
+	public ModelAndView contestJoin(ConDTO dto) {
+		ModelAndView mav=new ModelAndView();
+		ConDTO con=conService.conInfo(dto.getC_idx());
+		mav.addObject("condto", con);
+		mav.setViewName("contest/contestJoin");
+		return mav;
 	}
-
+	@RequestMapping(value = "contestJoinSubmit.do", method = RequestMethod.POST)
+	public ModelAndView contestJoinForm(MultipartHttpServletRequest request ,DesingerDTO dto) {
+		System.out.println(dto.getD_name());
+		ModelAndView mav=new ModelAndView();
+		FileUploadModule file=new FileUploadModule();
+		String path=request.getSession().getServletContext().getRealPath("img/");
+		file.copyInto(path,dto.getUploadfile1());
+		file.copyInto(path,dto.getUploadfile2());
+		int result=conService.contestJoin(dto);
+		mav.setViewName("index");
+		return mav;
+	}
+	
+	
 }

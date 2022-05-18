@@ -1,12 +1,12 @@
 package dsn.contest.model;
 
-public interface ConService {
+import dsn.trade.model.TrdDTO;
 
-	public int addLogo(ConDTO dto);
-	public int addNaming(ConDTO dto);
-	public int addCharacter(ConDTO dto);
-	public int addPrint(ConDTO dto);
-	public int addTrade(TradeDTO tdto);
+public interface ConService {
+	
 	public ConDTO conInfo(int c_idx);
 	public int contestJoin(DesingerDTO dto);
+	public int addNaming(ConDTO dto);
+	public int addNamingTrade(TrdDTO dto);
+	public void updateTrd(ConDTO dto);
 }

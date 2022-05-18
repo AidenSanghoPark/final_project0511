@@ -1,8 +1,8 @@
 package dsn.controller;
 
-import java.util.*;
+import java.util.Date;
+import java.util.Map;
 
-import java.util.regex.Matcher;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,20 +14,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.util.WebUtils;
 
-import dsn.member.model.*;
+import dsn.member.model.LoginDTO;
+import dsn.member.model.MemberDTO;
+import dsn.member.model.MemberService;
 
 @Controller
 public class LoginController {
 	
 	@Autowired
 	private MemberService memberService;
-	
-	
 	
 	@RequestMapping(value="/login.do",method= RequestMethod.GET)
 	public String loginView(@ModelAttribute("loginVO")LoginDTO loginVO,HttpServletRequest request,Model model) throws Exception{
@@ -38,10 +36,6 @@ public class LoginController {
 		return "/login";
 	}
 	
-//	@RequestMapping(value = "/login.do",method = RequestMethod.GET)
-//	public void login() {
-//	}
-//	
 	@RequestMapping(value="/loginPost.do" , method= RequestMethod.POST)
 	public void loginPost(LoginDTO ldto, Model model, HttpSession session)throws Exception{
 		
@@ -62,22 +56,6 @@ public class LoginController {
 		
 	}
 	
-//	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)
-//	public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) throws Exception{
-//		session.removeAttribute("login");
-//		session.invalidate();
-//		
-//		Cookie loginCookie = WebUtils.getCookie(request,"loginCookie");
-//		if (loginCookie != null) {
-//			loginCookie.setPath("/");
-//			loginCookie.setMaxAge(0);
-//			
-//			response.addCookie(loginCookie);
-//		}
-//		return "/index";
-//		
-//	}
-	
 	@RequestMapping(value="/logout.do")
     public String logout(HttpSession session,HttpServletRequest request, HttpServletResponse response) {
          
@@ -97,9 +75,4 @@ public class LoginController {
         }
         return "/index"; 
     }
-	
-	
-	 
-
-
 }

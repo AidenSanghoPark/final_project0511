@@ -26,7 +26,7 @@
             <a class="nav-link" href="contestChoice.do">콘테스트 개최</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="portfolio.do">디자이너</a>
+            <a class="nav-link" href="designer.do">디자이너</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="contestJoin.do">콘테스트 참여</a>
@@ -43,7 +43,7 @@
 					<div><a href="login.do">로그인</a> | <a href="joinChoice.do">회원가입</a></div>
 				</c:when>
 				<c:otherwise>
-					<div>${nick}님 로그인중 | <a href="logout.do">로그아웃</a></div>
+					<div><a style="color:yellow;">${login.u_name}님 로그인중</a> | <a href="logout.do">로그아웃</a></div>
 				</c:otherwise>
 			</c:choose>
         </div>

@@ -1,74 +1,26 @@
 package dsn.contest.model;
 
+
 import java.util.List;
 import java.util.Map;
 
-public class ConServiceImple implements ConService {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import dsn.trade.model.TrdDTO;
+
+@Service
+public class ConServiceImple implements ConService{
+	
+	@Autowired
 	private ConDAO conDao;
-
 	
 	public ConDAO getConDao() {
 		return conDao;
 	}
 
-	public void setConDao(ConDAO conDao) {
-		this.conDao = conDao;
-	}
-	//logo
-	@Override
-	public int addLogo(ConDTO dto) {
-		System.out.println("service="+dto.getC_cate());
-	    System.out.println("service="+dto.getUpload().getOriginalFilename());
-
-		//¾÷·Îµå°¡ null ¾Æ´Ò¶§¸¸ ¿À¸®Áö³¯ ÆÄÀÏ³×ÀÓ ÀúÀåÇÏ±â
-		if(dto.getUpload() != null) {
-			dto.setC_file(dto.getUpload().getOriginalFilename());
-		}
-		
-		int count = conDao.addLogo(dto);
-		return count;
-	}
-	//naming
-	@Override
-	public int addNaming(ConDTO dto) {
-		
-		//¾÷·Îµå°¡ null ¾Æ´Ò¶§¸¸ ¿À¸®Áö³¯ ÆÄÀÏ³×ÀÓ ÀúÀåÇÏ±â
-		if(dto.getUpload() != null) {
-			dto.setC_file(dto.getUpload().getOriginalFilename());
-		}
-		int count = conDao.addNaming(dto);
-		return count;
-	}
-	//char
-	@Override
-	public int addCharacter(ConDTO dto) {	
-		
-		//¾÷·Îµå°¡ null ¾Æ´Ò¶§¸¸ ¿À¸®Áö³¯ ÆÄÀÏ³×ÀÓ ÀúÀåÇÏ±â
-		if(dto.getUpload() != null) {
-			dto.setC_file(dto.getUpload().getOriginalFilename());
-		}
-		
-		int count = conDao.addCharacter(dto);
-		return count;
-	}
-	//print
-	@Override
-	public int addPrint(ConDTO dto) {
-		
-		//¾÷·Îµå°¡ null ¾Æ´Ò¶§¸¸ ¿À¸®Áö³¯ ÆÄÀÏ³×ÀÓ ÀúÀåÇÏ±â
-		if(dto.getUpload() != null) {
-			dto.setC_file(dto.getUpload().getOriginalFilename());
-		}
-		
-		int count = conDao.addPrint(dto);
-		return count;
-	}
-	@Override
-	public int addTrade(TradeDTO dto) {
-
-		int count = conDao.addTrade(dto);
-		return count;
+	public void setConDao(ConDAO bbsDao) {
+		this.conDao = bbsDao;
 	}
 	@Override
 	public ConDTO conInfo(int c_idx) {
@@ -82,4 +34,29 @@ public class ConServiceImple implements ConService {
 		}
 		return conDao.contestJoin(dto);
 	}
+
+
+	@Override
+	public int addNaming(ConDTO dto) {
+		System.out.println("service="+dto.getC_cate());
+		System.out.println("service="+dto.getUpload().getOriginalFilename());
+		//ï¿½ï¿½ï¿½Îµå°¡ null ï¿½Æ´Ò¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
+		if(dto.getUpload() != null) {
+			dto.setC_file(dto.getUpload().getOriginalFilename());
+		}
+		int count = conDao.addNaming(dto);
+		return count;
+	}
+
+	@Override
+	public int addNamingTrade(TrdDTO dto) {
+		int count = conDao.addNamingTrade(dto);
+		return count;
+	}
+
+	@Override
+	public void updateTrd(ConDTO dto) {
+		conDao.updateTrd(dto);
+	}	
+
 }

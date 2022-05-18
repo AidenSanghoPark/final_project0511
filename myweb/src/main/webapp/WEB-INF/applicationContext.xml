@@ -2,10 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="104857600"></property>
+		<property name="maxUploadSize" value="104857600"></property>	
 	</bean>
-
+	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
 		<property name="url" value="jdbc:oracle:thin:@javayong.tplinkdns.com:9001:orcl"></property>
@@ -29,6 +30,12 @@
 				<ref bean="sqlSessionTemplate"/>
 		</constructor-arg>
 	</bean>
+	<bean id="myPageDao" class="dsn.mypage.model.MyPageDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"/>
+		</constructor-arg>		
+	</bean>
+	
 	<bean id="designerDao" class="dsn.designer.model.DesignerDAOImple">
       <constructor-arg>
          <ref bean="sqlSessionTemplate"/>
@@ -39,9 +46,46 @@
 			<ref bean="sqlSessionTemplate"/>
 		</constructor-arg>
 	</bean>
-	<bean id="myPageDao" class="dsn.mypage.model.MyPageDAOImple">
+	
+	<bean id="adminDao" class="dsn.admin.model.adminDAOImple">
 		<constructor-arg>
 			<ref bean="sqlSessionTemplate"/>
-		</constructor-arg>		
+		</constructor-arg>
+	</bean>
+	
+	<bean id="memberManageDao" class="dsn.memberManage.model.memberManageDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="askManageDao" class="dsn.askManage.model.AskManageDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="noticeManageDao" class="dsn.noticeManage.model.NoticeManageDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="contManageDao" class="dsn.contManage.model.ContManageDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="designManageDao" class="dsn.designManage.model.DesignManageDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="reportManageDao" class="dsn.reportManage.model.ReportManageDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"/>
+		</constructor-arg>
 	</bean>
 </beans>
