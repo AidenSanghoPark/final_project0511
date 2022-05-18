@@ -11,4 +11,6 @@ public interface ConService {
 	public List cateEnd(int cp, int listSize, String c_cate);
 	public int dateUp();
 	public int ContestCnt();
+	public ConDTO conContent(int c_idx);
+	public int conCount(int c_readnum, int c_idx);
 }

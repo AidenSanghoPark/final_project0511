@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Service;
 
@@ -83,6 +84,27 @@ public class ConServiceImple implements ConService{
 		int cnt=conDao.ContestCnt();
 		cnt=cnt==0?1:cnt;
 		return cnt;
+	}
+	
+	@Override
+	public ConDTO conContent(int c_idx) {
+		ConDTO dto=conDao.conContent(c_idx);
+		int readnum=dto.getC_readnum();
+		dto.setC_readnum(readnum);
+		readnum++;
+		conCount(readnum,dto.getC_idx());
+		return dto;
+	}
+
+	@Override
+	public int conCount(int c_readnum, int c_idx) {
+		Map map=new HashedMap();
+		map.put("c_readnum", c_readnum);
+		map.put("c_idx", c_idx);
+		
+		int count=conDao.conCount(map);
+		return count;
+		
 	}
 
 

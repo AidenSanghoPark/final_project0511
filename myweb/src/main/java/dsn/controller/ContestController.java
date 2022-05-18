@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
@@ -22,7 +23,6 @@ import dsn.contest.model.ConDTO;
 import dsn.contest.*;
 import dsn.contest.model.ConService;
 import dsn.page.PageModule;
-import kr.co.vo.SearchCriteria;
 
 	@Controller
 	public class ContestController {
@@ -36,7 +36,6 @@ import kr.co.vo.SearchCriteria;
 			   @RequestParam(required = false, defaultValue = "전체") String c_cate,
 			   @RequestParam(required = false, defaultValue = "") String searchType,
 			   @RequestParam(required = false, defaultValue = "") String keyword) throws Exception {
-	      System.out.println(keyword);
 			PageModule PageModule = new PageModule();
 			PageModule.setSearchType(searchType);
 			PageModule.setKeyword(keyword);
@@ -124,10 +123,26 @@ import kr.co.vo.SearchCriteria;
 	@RequestMapping(value = "/conContent.do")
 	public ModelAndView conContent(
 			@RequestParam(value="c_idx", defaultValue = "0") int c_idx){
-			
+		ConDTO dto=conService.conContent(c_idx);
+		ModelAndView mav=new ModelAndView();
+		if(dto==null) {
+			mav.addObject("msg", "잘못된 접근 또는 삭제된 콘테스트입니다.");
+			mav.addObject("gopage","conList.do");
+			mav.setViewName("contest/conMsg");
+		}else {
+			mav.addObject("dto",dto);
+			mav.setViewName("contest/conContent");
 		}
-		return null;
+		return mav;
 	}
 
+	@RequestMapping("/fileDown.do")
+	public ModelAndView fileDown(@RequestParam("filename")String filename) {
+		File f=new File("C:/Users/user/Desktop/이젠/jspstudy4/myweb/src/main/webapp/upload/"+filename);
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("downloadFile",f);
+		mav.setViewName("dsnDown");
+		return mav;
+	}
 	
 }

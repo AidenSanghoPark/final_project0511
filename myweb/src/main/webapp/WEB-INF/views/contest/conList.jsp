@@ -384,8 +384,8 @@ a{
 	    		<br>
 	    		<label style="font-weight: bold;">디자인카테고리&nbsp;>&nbsp;</label>
 		    	<a href="/myweb/conList.do" >전체&nbsp;&nbsp;</a>
-		    	<a href="/myweb/conList.do?c_cate=네이밍">네이밍&nbsp;&nbsp;</a>
-		    	<a href="/myweb/conList.do?c_cate=로고">로고&nbsp;&nbsp;</a>
+		    	<a href="/myweb/conList.do?c_cate=naming">네이밍&nbsp;&nbsp;</a>
+		    	<a href="/myweb/conList.do?c_cate=logo">로고&nbsp;&nbsp;</a>
 		    	<a href="/myweb/conList.do?c_cate=캐릭터">캐릭터&nbsp;&nbsp;</a>
 		    	<a href="/myweb/conList.do?c_cate=인쇄">인쇄</a>
 		    	
@@ -393,20 +393,19 @@ a{
 		    	<br>
 	    </div> 
 	        <div style="width: 1000px; float: center:;">
-	        
-	        
-<!-- 검색창 -->	
-<form name="conList" action="conList.do" method="get">       
-	<select name="searchType">
-		<option value="title">제목</option>
-		<option value="content">내용</option>
-		<option value="titlecontent">제목+내용</option>
-	</select>
 
-	<input type="text" name='keyword'>
-	<button type="submit">검색</button>
-</form> 	
+		<!-- 검색창 -->	
+	<form name="conList" action="conList.do" method="get">       
+		<select name="searchType">
+			<option value="title">제목</option>
+			<option value="content">내용</option>
+			<option value="titlecontent">제목+내용</option>
+		</select>
 	
+		<input type="text" name='keyword'>
+		<button type="submit">검색</button>
+	</form>
+
 	<tbody>
 		<c:if test="${empty lists }">
 			<tr>
@@ -422,8 +421,8 @@ a{
 			    </a> 
 			    <div class="member-details" style="width:750px;"> 
 			        <div class="col-sm-4" style="float:left;"> 
-			        <c:url var="contentUrl" value="conListContent.do">
-					<c:param name="idx">${dto.c_idx }</c:param>
+			        <c:url var="contentUrl" value="conContent.do">
+					<c:param name="c_idx">${dto.c_idx }</c:param>
 				</c:url>
 							<!-- 콘테스트 제목 -->
 			                <h4> <a href="${contentUrl }" style="text-decoration: none; color: #2E2E2E; font-weight: bold; font-size: 17px;">${dto.c_subject }</a> </h4> 
@@ -444,6 +443,5 @@ a{
 	</div>
 	</div> 
 	</div>
-
 </body>
 </html>

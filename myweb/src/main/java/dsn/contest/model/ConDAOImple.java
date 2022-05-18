@@ -55,5 +55,19 @@ public class ConDAOImple implements ConDAO{
 			return cnt;
 		}
 
+
+		@Override
+		public ConDTO conContent(int c_idx) {
+			ConDTO dto=sqlMap.selectOne("conContent", c_idx);
+			return dto;
+		}
+
+
+		@Override
+		public int conCount(Map map) {
+			int count=sqlMap.update("conCount",map);
+			return count;
+		}
+
 		
 }
