@@ -2,25 +2,34 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-	http://www.springframework.org/schema/beans/spring-beans.xsd
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context 
-	http://www.springframework.org/schema/context/spring-context-4.0.xsd
-	http://www.springframework.org/schema/mvc
-	http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 	
 	<!-- configs -->
 	<context:component-scan base-package="dsn"></context:component-scan>
 	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"></bean>
 
 	<!-- service -->
-	<bean id="memberService" class="dsn.member.model.MemberServiceImple">
-		<property name="memberDao" ref="memberDao"></property>
+	<bean id="myPageDao" class="dsn.mypage.model.MyPageDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"/>
+		</constructor-arg>
 	</bean>
 	<bean id="myPageService" class="dsn.mypage.model.MyPageServiceImple">
 		<property name="myPageDao" ref="myPageDao"></property>
 	</bean>
+	<bean id="ConDao" class="dsn.contest.model.ConDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"/>
+		</constructor-arg>
+	</bean>
+	<bean id="ConService" class="dsn.contest.model.ConServiceImple">
+		<property name="ConDao" ref="ConDao"></property>
+	</bean>
+	<!-- views -->
+	<bean id="dsnDown" class="dsn.view.DownloadView"></bean>
+	<bean id="yongJson" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"></bean>
 	<bean id="conService" class="dsn.contest.model.ConServiceImple">
 		<property name="conDao" ref="conDao"></property>
 	</bean>

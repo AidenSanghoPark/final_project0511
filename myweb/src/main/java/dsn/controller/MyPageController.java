@@ -2,14 +2,13 @@ package dsn.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import dsn.mypage.model.MyPageDTO;
 import dsn.member.model.MemberDTO;
 import dsn.mypage.model.MyPageService;
 import dsn.review.model.ReviewDTO;
@@ -22,8 +21,9 @@ public class MyPageController {
 	@Autowired
 	private MyPageService myPageService;
 	
+	
 	@RequestMapping("myPage.do")
-	public ModelAndView myPage(@RequestParam(value = "cp",defaultValue = "1") int cp,HttpSession session){
+	public ModelAndView myPage(@RequestParam(value = "cp",defaultValue = "1") int cp){
 		
 		String msg="";
 		Object obj=session.getAttribute("login");
@@ -40,16 +40,15 @@ public class MyPageController {
 		int vo=mdto.getU_idx();
 		System.out.println(vo);
 		int totalCnt=myPageService.getTotalCnt(vo);
+		int totalCnt=myPageService.getTotalCnt();
 		int listSize=5;
 		int pageSize=5;
 		String pageStr=dsn.page.PageModule.pageMake("myPage.do", totalCnt, listSize, pageSize, cp);
-		List lists=myPageService.myPageList(cp, listSize, vo);
-		List userinfo=myPageService.userInfoFind(vo);
+		List lists=myPageService.myPageList(cp, listSize);
 		
-		mav.addObject("lists", lists);
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("lists",lists);
 		mav.addObject("pageStr", pageStr);
-		mav.addObject("u_idx", vo);
-		mav.addObject("userinfo", userinfo);
 		mav.setViewName("mypage/mypage");
 		}
 		return mav;
@@ -195,4 +194,5 @@ public class MyPageController {
 		mav.setViewName("mypage/paylists");
 		return mav;
 	}
+}
 }
