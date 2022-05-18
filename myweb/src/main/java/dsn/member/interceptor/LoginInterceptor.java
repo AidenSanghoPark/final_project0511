@@ -61,13 +61,17 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
             
             
         }else {
-        	response.setContentType("text/html; charset=UTF-8");
-
-            PrintWriter out = response.getWriter();
-
-            out.println("<script>alert('아이디 비밀번호가 일치하지 않습니다.'); history.go(-1);</script>");// <== 관리자 등급별로 메뉴 제어
-
-            out.flush();
+        	
+        	modelAndView.addObject("msg", "로그인 실패");
+        	modelAndView.addObject("gopage", "index.do");
+        	modelAndView.setViewName("/member/loginMsg");
+//        	response.setContentType("text/html; charset=UTF-8");
+//
+//            PrintWriter out = response.getWriter();
+//
+//            out.println("<script>alert('아이디 비밀번호가 일치하지 않습니다.'); history.go(-1);</script>");// <== 관리자 등급별로 메뉴 제어
+//
+//            out.flush();
         }
 	}
 	

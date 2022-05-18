@@ -14,8 +14,10 @@ import dsn.member.model.MemberDTO;
 
 public class DesingerInterceptor extends HandlerInterceptorAdapter{
 
-
-	
+	 
+     
+     
+   
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -26,16 +28,13 @@ public class DesingerInterceptor extends HandlerInterceptorAdapter{
 		MemberDTO mdto = (MemberDTO) obj;
 		ModelAndView mav= new ModelAndView();
 		if(mdto.getU_type()!=2) {
+	
 			
-			String refererURL = request.getHeader("referer");
-	        System.out.println(refererURL);
-			
-            Object URL = session.getAttribute("logUrl");
-            String logUrl= (String) URL;
-            System.out.println("logUrl="+URL);
-            response.sendRedirect((String) URL);
+//            Object URL = session.getAttribute("logUrl");
+//            String logUrl= (String) URL;
+//            System.out.println("logUrl="+URL);
+//            response.sendRedirect((String) URL);
             
-           
 //            StringBuffer sb=new StringBuffer();
 //    		
 //    		sb.append("<script>alert('디자이너만 참여 가능합니다.'); location.href:'");
@@ -52,11 +51,25 @@ public class DesingerInterceptor extends HandlerInterceptorAdapter{
 //
 //	            out.flush();
 			
-			return false;
+			return true;
 		}else {
 			return true;
 		}
     	
+	}
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
+		System.out.println("디자이너 컨트롤러 포스트 핸들러 작동");
+		HttpSession session=request.getSession();
+		Object URL = session.getAttribute("conUrl");
+        String conUrl= (String) URL;
+        System.out.println("conUrl="+URL);
+        
+        modelAndView.addObject("msg", "디자이너 회원만 참여 가능합니다.");
+        modelAndView.addObject("gopage", URL);
+        modelAndView.setViewName("/contest/contestMsg");
+		
 	}
 	
 	
