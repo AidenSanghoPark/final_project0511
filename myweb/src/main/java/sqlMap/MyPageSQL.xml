@@ -79,4 +79,14 @@
   	<select id="getTradeCnt" parameterType="Integer" resultType="Integer">
   		select count(*) from f_trade where u_idx=${u_idx}
   	</select>
+  	<select id="tradeFind" parameterType="Map" resultType="dsn.trade.model.TradeDTO">
+  		select * from
+			(select * from
+			(select rownum as rnum,a.* from
+			(select * from f_trade order by t_idx desc)a)b
+			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end})where u_idx=#{u_idx}
+  	</select>
+  	<select id="getTradeCnt" parameterType="Integer" resultType="Integer">
+  		select count(*) from f_trade where u_idx=${u_idx}
+  	</select>
   </mapper>
