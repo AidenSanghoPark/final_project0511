@@ -7,5 +7,6 @@
       <mapper resource="sqlMap/memberSQL.xml"/>
       <mapper resource="sqlMap/MyPageSQL.xml"/>
       <mapper resource="sqlMap/DesignerSQL.xml"/>
+      <mapper resource="sqlMap/ReviewSQL.xml"/>
    </mappers>
 </configuration>
