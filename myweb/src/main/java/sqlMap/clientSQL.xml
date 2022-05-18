@@ -1,5 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dsn.con">
+	
+	<!-- 진행중 콘테스트 sql -->
+	
+	<select id="conList" parameterType="Map" resultType="dsn.contest.model.ConDTO">
+		select * from
+		(select rownum as rnum,a.* from
+		(select * from f_client order by c_idx desc)a)b
+		where rnum<![CDATA[>=]]>#{start}
+		and rnum<![CDATA[<=]]>#{end} 
+		and c_datediff<![CDATA[<=]]>0
+			 <!-- searchType 없을 때 조건없이 처리되도록 하는 구문입니다 -->
+	</select>
+	
+	<select id="conEnd" parameterType="Map" resultType="dsn.contest.model.ConDTO">
+		select * from
+		(select rownum as rnum,a.* from
+		(select * from f_client order by c_idx desc)a)b
+		where rnum<![CDATA[>=]]>#{start}
+		and rnum<![CDATA[<=]]>#{end} 
+		and c_datediff<![CDATA[>=]]>0
+	</select>
+	
+	<select id="ContestCnt" resultType="Integer">
+		select count(*) from f_client
+	</select>
+	
+	<update id="conCount" parameterType="Map">
+	UPDATE 
+		f_client
+	SET
+		C_READNUM = #{c_readnum} WHERE C_IDX= #{c_idx}
+	</update>
+	
+	<select id="cateList" parameterType="Map" resultType="dsn.contest.model.ConDTO">
+	    select * from
+			(select rownum as rnum,a.* from
+			(select * from f_client where c_cate=#{c_cate} order by c_idx desc)a)b
+			where rnum<![CDATA[>=]]>#{start}
+			and rnum<![CDATA[<=]]>#{end} 
+			and c_datediff<![CDATA[<=]]>0
+   	</select>
+   
+   	<select id="cateEnd" parameterType="Map" resultType="dsn.contest.model.ConDTO">
+	    select * from
+			(select rownum as rnum,a.* from
+			(select * from f_client where c_cate=#{c_cate} order by c_idx desc)a)b
+			where rnum<![CDATA[>=]]>#{start}
+			and rnum<![CDATA[<=]]>#{end} 
+			and c_datediff<![CDATA[>=]]>0
+   	</select>
+   	
+    <update id="dateUp">
+    UPDATE F_CLIENT SET C_DATEDIFF=TRUNC(SYSDATE-C_ENDDATE)
+    </update>
+   
+   <!-- 검색페이지 -->
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND C_SUBJECT LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND C_DEAS LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (C_SUBJECT LIKE '%' || #{keyword} || '%') or (C_DEAS LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql>
+	
+</mapper>
+</mapper>
    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dsn.con">
