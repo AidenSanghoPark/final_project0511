@@ -1,12 +1,14 @@
 package dsn.controller;
 
 import java.io.File;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -140,7 +142,9 @@ public class ContestController {
 	}
 	
 	@RequestMapping(value = "contestJoin.do", method = RequestMethod.GET)
-	public ModelAndView contestJoin(ConDTO dto) {
+	public ModelAndView contestJoin(ConDTO dto, HttpServletRequest request) {
+//		String url=request.getHeader("REFERER");
+//    	request.getSession().setAttribute("logUrl", url);
 		ModelAndView mav=new ModelAndView();
 		ConDTO con=conService.conInfo(dto.getC_idx());
 		mav.addObject("condto", con);

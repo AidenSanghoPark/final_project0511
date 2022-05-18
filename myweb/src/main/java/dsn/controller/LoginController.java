@@ -29,6 +29,9 @@ public class LoginController {
 	
 	@RequestMapping(value="/login.do",method= RequestMethod.GET)
 	public String loginView(@ModelAttribute("loginVO")LoginDTO loginVO,HttpServletRequest request,Model model) throws Exception{
+		
+		String url=request.getHeader("REFERER");
+    	request.getSession().setAttribute("logUrl", url);
 		Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
 		if(null != inputFlashMap) {
 			model.addAttribute("msg",(String) inputFlashMap.get("msg"));
@@ -46,7 +49,6 @@ public class LoginController {
 		
 		
 		model.addAttribute("user", memberVO);
-		System.out.println(ldto.isUseCookie());
 		if(ldto.isUseCookie()) {
 			int amount = 60*60*24*7;
 			Date sessionLimit = new Date(System.currentTimeMillis() + (1000*amount));
