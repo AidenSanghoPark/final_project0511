@@ -116,4 +116,12 @@
 		C_IDX = #{c_idx}
 		WHERE T_IDX = #{t_idx}
 	</update>
+	<select id="myPageList" parameterType="Map" resultType="dsn.contest.model.ConDTO">
+			select * from
+			(select * from
+			(select rownum as rnum,a.* from
+			(select * from f_client order by c_idx desc)a)b
+			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end})where u_idx=#{u_idx}
+			
+  	</select>
 </mapper>

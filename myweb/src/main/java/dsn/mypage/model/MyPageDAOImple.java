@@ -81,7 +81,7 @@ public class MyPageDAOImple implements MyPageDAO {
 	}
 	@Override
 	public int getTradeCnt(int u_idx) {
-		int cnt =sqlMap.selectOne("getTradeCnt", u_idx);
+		int cnt=sqlMap.selectOne("getTradeCnt", u_idx);
 		return cnt;
 	}
 }

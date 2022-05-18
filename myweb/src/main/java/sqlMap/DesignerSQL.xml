@@ -96,4 +96,13 @@
 		and
 			u_idx=#{u_idx}
 	</select>
+	<insert id="writeReview" parameterType="Map">
+  		insert into f_review values(
+  			rv_idx.nextval,
+  			0,
+  			16,
+  			#{rv_content},
+  			sysdate
+  		)
+  	</insert>
 </mapper>

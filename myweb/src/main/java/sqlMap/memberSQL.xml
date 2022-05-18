@@ -91,5 +91,22 @@
      	AND
      		U_PWD = #{u_pwd}
     </select>
-   
+   <update id="userUpdate" parameterType="Map">
+		update f_user set
+  			u_nick=#{u_nick},
+  			u_tel=#{u_tel},
+  			u_email=#{u_email}
+  			where u_idx=#{u_idx}
+  		</update>
+  	<update id="pwdUpdate" parameterType="Map">
+  		UPDATE F_USER SET
+  			U_PWD=#{pwdconfirm}
+  			WHERE U_IDX=#{u_idx}
+  	</update>
+  	<select id="pwdFind" parameterType="Integer" resultType="String">
+  		 SELECT U_PWD FROM F_USER WHERE U_IDX=#{u_idx}
+  	</select>
+  	<select id="userInfoFind" parameterType="Map" resultType="dsn.member.model.MemberDTO">
+  		select * from f_user where u_idx=#{u_idx}
+  	</select>
 </mapper>	
