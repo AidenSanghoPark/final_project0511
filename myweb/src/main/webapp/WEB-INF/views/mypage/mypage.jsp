@@ -43,12 +43,30 @@ a {
 ul{
 	list-style:none;
 }
+.photo{
+   width: 150px;
+    height: 150px; 
+    border-radius: 70%;
+}
 </style>
 </head>
 <%@include file="/WEB-INF/views/header.jsp" %>
 <body>
 	<section class="profile">
 	<c:forEach var="userinfo" items="${userinfo }">
+		<input type="hidden" value="${userinfo.u_type }" name="type">
+      	<img class="photo" src="profileimg/pi.jpg">
+        <h5><a href="profileConfig.do">${userinfo.u_name } 님</a></h5>
+        <p>${userinfo.u_email }</p>
+        <p><a class="btn btn-secondary" href="#">포트폴리오 관리</a></p><br>
+        <c:choose>
+			<c:when test="${userinfo.u_type!='1'}">
+   			 	<h3 style="color:grey">참여한 콘테스트</h3><br>
+   		 	</c:when>
+   			<c:otherwise>
+   				<h3 style="color:grey">개최한 콘테스트</h3><br>
+   			</c:otherwise>
+ 	   </c:choose>
 	
         <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false" src="mypageimg/cateimg.jpg"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em"></text></svg>
         <h5><a href="profile.do">${userinfo.u_name } 님</a></h5>
@@ -56,15 +74,41 @@ ul{
         <p><a class="btn btn-secondary" href="portfolio.do">포트폴리오 관리</a></p><br>
         <h3>참여한 콘테스트</h3><br>
         <h3>1:1 의뢰 관리</h3><br>
-        <h3>가상계좌</h3><br>
+        <c:choose>
+			<c:when test="${userinfo.u_type!='1'}">
+   			 	<h3><a href="wallet.do">가상계좌</a></h3><br>
+   		 	</c:when>
+   			<c:otherwise>
+   				<h3><a href="showPayInfo.do">거래내역</a></h3><br>
+   			</c:otherwise>
+ 	   </c:choose>
         <h3><a href="accountConfig.do">계정설정</a></h3><br>
      </c:forEach>
     </section>
     <section class="coninfo">
-    	<h3 style="color:grey">참여한 콘테스트</h3><br>
+  	  <c:forEach var="userinfo" items="${userinfo }">
+		<c:choose>
+			<c:when test="${userinfo.u_type!='1'}">
+   			 	<h3 style="color:grey">참여한 콘테스트</h3><br>
+   		 	</c:when>
+   			<c:otherwise>
+   				<h3 style="color:grey">개최한 콘테스트</h3><br>
+   			</c:otherwise>
+ 	   </c:choose>
+ 	    </c:forEach>
+ 	    
     	<c:choose>
     		<c:when test="${empty lists }">
-    		<h3 style="color:grey;padding-left:300px;padding-top:200px;">아직 콘테스트에 참여하지 않으셨습니다.</h3>
+    			<c:forEach var="userinfo" items="${userinfo }">
+    			<c:choose>
+    				<c:when test="${userinfo.u_type!='1'}">
+    					<h3 style="color:grey;padding-left:300px;padding-top:200px;">아직 콘테스트에 참여하지 않으셨습니다.</h3>
+    				</c:when>
+    				<c:otherwise>
+    					<h3 style="color:grey;padding-left:300px;padding-top:200px;">아직 콘테스트를 등록하지 않으셨습니다.</h3>
+    				</c:otherwise>
+    			</c:choose>
+    			</c:forEach>
     		</c:when>
     	<c:otherwise>
     	<c:forEach var="dto" items="${lists }">
@@ -76,7 +120,6 @@ ul{
     	<div id="page">${pageStr }</div>
     	</c:otherwise>
     	</c:choose>
-    
     </section>
 <div style="padding-top:1200px;">
 <%@include file="/WEB-INF/views/footer.jsp" %>

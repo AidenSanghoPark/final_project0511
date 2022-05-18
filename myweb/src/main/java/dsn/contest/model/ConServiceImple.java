@@ -1,7 +1,13 @@
 package dsn.contest.model;
 
+
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import dsn.trade.model.TrdDTO;
 
 @Service
 public class ConServiceImple implements ConService{
@@ -28,5 +34,29 @@ public class ConServiceImple implements ConService{
 		}
 		return conDao.contestJoin(dto);
 	}
+
+
+	@Override
+	public int addNaming(ConDTO dto) {
+		System.out.println("service="+dto.getC_cate());
+		System.out.println("service="+dto.getUpload().getOriginalFilename());
+		//���ε尡 null �ƴҶ��� �������� ���ϳ��� �����ϱ�
+		if(dto.getUpload() != null) {
+			dto.setC_file(dto.getUpload().getOriginalFilename());
+		}
+		int count = conDao.addNaming(dto);
+		return count;
+	}
+
+	@Override
+	public int addNamingTrade(TrdDTO dto) {
+		int count = conDao.addNamingTrade(dto);
+		return count;
+	}
+
+	@Override
+	public void updateTrd(ConDTO dto) {
+		conDao.updateTrd(dto);
+	}	
 
 }
