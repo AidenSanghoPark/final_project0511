@@ -14,5 +14,6 @@
 	  <mapper resource="sqlMap/adminContSQL.xml"/>
 	  <mapper resource="sqlMap/adminDesignSQL.xml"/>
 	  <mapper resource="sqlMap/adminReportSQL.xml"/>
+      <mapper resource="sqlMap/ReviewSQL.xml"/>
    </mappers>
 </configuration>

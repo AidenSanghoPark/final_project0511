@@ -50,12 +50,33 @@
       <property name="reportManageDao" ref="reportManageDao"></property>
    	</bean>
    
+	<bean id="reviewService" class="dsn.review.model.ReviewServiceImple">
+		<property name="reviewDao" ref="reviewDao"></property>
+	</bean>
+	
+	
 	<!-- views -->
 	<bean id="yongJson" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
 		<property name="contentType" value="application/json;charset=UTF-8"> </property>
 	</bean>	 
 	 
 	<!-- dao -->
+	<bean id="myPageDao" class="dsn.mypage.model.MyPageDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"/>
+		</constructor-arg>		
+	</bean>
+	<bean id="designerDao" class="dsn.designer.model.DesignerDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"/>
+		</constructor-arg>
+	</bean>
+	<bean id="reviewDao" class="dsn.review.model.ReviewDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"/>
+		</constructor-arg>
+	</bean>
+	
 	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
