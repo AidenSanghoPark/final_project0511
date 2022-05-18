@@ -142,25 +142,31 @@ public class ContestController {
 	}
 	
 	@RequestMapping(value = "contestJoin.do", method = RequestMethod.GET)
-	public ModelAndView contestJoin(ConDTO dto, HttpServletRequest request) {
+	public ModelAndView contestJoin(ConDTO dto, HttpServletRequest request, HttpSession session) {
+		
+		Object obj=session.getAttribute("login");
+		MemberDTO mdto = (MemberDTO) obj;
 //		String url=request.getHeader("REFERER");
-//    	request.getSession().setAttribute("logUrl", url);
+//    	request.getSession().setAttribute("conUrl", url);
 		ModelAndView mav=new ModelAndView();
 		ConDTO con=conService.conInfo(dto.getC_idx());
+		mav.addObject("mdto",mdto);
 		mav.addObject("condto", con);
 		mav.setViewName("contest/contestJoin");
 		return mav;
 	}
 	@RequestMapping(value = "contestJoinSubmit.do", method = RequestMethod.POST)
 	public ModelAndView contestJoinForm(MultipartHttpServletRequest request ,DesingerDTO dto) {
-		System.out.println(dto.getD_name());
 		ModelAndView mav=new ModelAndView();
 		FileUploadModule file=new FileUploadModule();
 		String path=request.getSession().getServletContext().getRealPath("img/");
 		file.copyInto(path,dto.getUploadfile1());
 		file.copyInto(path,dto.getUploadfile2());
 		int result=conService.contestJoin(dto);
-		mav.setViewName("index");
+		String msg=result>0?"콘테스트 참여 완료":"콘테스트 참여 실패";
+		mav.addObject("msg",msg);
+		mav.addObject("gopage", "index.do");
+		mav.setViewName("/contest/contestMsg");
 		return mav;
 	}
 	

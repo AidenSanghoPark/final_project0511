@@ -17,22 +17,30 @@ public class ClientInterceptor extends HandlerInterceptorAdapter{
 	 private static final String LOGIN = "login";
 	
 	
-	 @Override
+		@Override
 		public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 				throws Exception {
 			
-			System.out.println("디자이너검증 인터셉터 작동");
+			System.out.println("클라이언트 검증 인터셉터 작동");
 			HttpSession session = request.getSession();
 			Object obj=session.getAttribute("login");
 			MemberDTO mdto = (MemberDTO) obj;
 			ModelAndView mav= new ModelAndView();
-			if(mdto.getU_type()!=1) {
-		
+			if(mdto.getU_type()!=2) {
+				System.out.println("클라이언트 컨트롤러 포스트 핸들러 작동");
+//				Object URL = session.getAttribute("conUrl");
+//		        String conUrl= (String) URL;
+//		        System.out.println("conUrl="+URL);
+//		        ModelAndView modelAndView=new ModelAndView();
+//		        modelAndView.addObject("msg", "디자이너 회원만 참여 가능합니다.");
+//		        modelAndView.addObject("gopage", URL);
+//		        modelAndView.setViewName("/contest/contestMsg");
+//				
 				
-//	            Object URL = session.getAttribute("logUrl");
-//	            String logUrl= (String) URL;
-//	            System.out.println("logUrl="+URL);
-//	            response.sendRedirect((String) URL);
+	            Object URL = session.getAttribute("logUrl");
+	            String logUrl= (String) URL;
+	            System.out.println("logUrl="+URL);
+	            response.sendRedirect((String) URL);
 	            
 //	            StringBuffer sb=new StringBuffer();
 //	    		
@@ -50,25 +58,11 @@ public class ClientInterceptor extends HandlerInterceptorAdapter{
 	//
 //		            out.flush();
 				
-				return true;
+				return false;
 			}else {
 				return true;
 			}
 	    	
-		}
-		@Override
-		public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-				ModelAndView modelAndView) throws Exception {
-			System.out.println("디자이너 컨트롤러 포스트 핸들러 작동");
-			HttpSession session=request.getSession();
-			Object URL = session.getAttribute("conUrl");
-	        String conUrl= (String) URL;
-	        System.out.println("conUrl="+URL);
-	        
-	        modelAndView.addObject("msg", "의뢰자 회원만 참여 가능합니다.");
-	        modelAndView.addObject("gopage", URL);
-	        modelAndView.setViewName("/contest/contestMsg");
-			
 		}
 		
 }

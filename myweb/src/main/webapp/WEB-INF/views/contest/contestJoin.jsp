@@ -376,6 +376,8 @@ a{
 		<div>
 			디자이너 닉네임
 		</div>
+		<form name="hidden" action="contestJoinSubmit.do" method="post" enctype = "multipart/form-data">
+		<input type="text" name="u_idx" value="${mdto.u_idx }">
 		<div>
 			작품 제목 <input type="text" name="d_name">
 		</div>
@@ -400,12 +402,13 @@ a{
 			<input type="checkbox" name="check">
 		</div>
 		<div>
-			<input type="button" id="btn_submit" value="콘테스트 참여" onclick="javascript:fn_submit()">
+			<input type="submit" id="btn_submit" value="콘테스트 참여" onclick="javascript:fn_submit()">
 		</div>
+		</form>
 	</div>
 <script type="text/javascript">
     //이미지 미리보기
-    var sel_file;
+    /* var sel_file;
     var maxSize = 5 * 1024 * 1024; // 5MB
 
 	var fileSize = $("#uploadfile1")[0].files[0].size;
@@ -468,12 +471,14 @@ a{
             }
             reader.readAsDataURL(f);
         });
-    }
+    } */
 </script>
     
 <script>
 //파일 업로드
-function fn_submit(){
+
+
+/* function fn_submit(){
         
         var form = new FormData();
         form.append( "d_name", $("#d_name")[0].files[0] );
@@ -496,7 +501,9 @@ function fn_submit(){
                alert(jqXHR.responseText); 
            }
        });
-}
+} */
+
+
 </script>
 <%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>

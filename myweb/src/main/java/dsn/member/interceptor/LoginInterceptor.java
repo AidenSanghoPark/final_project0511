@@ -53,9 +53,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
             String logUrl= (String) URL;
             System.out.println("logUrl="+URL);
             
-            if(logUrl.matches("logout.do")==true) {
+            if(logUrl.contains("logout.do")) {
             	response.sendRedirect(destination != null ? (String) destination : "index.do");
-            }else if(logUrl.matches("logout.do")==false){
+            }else {
             	response.sendRedirect(destination != null ? (String) destination : (String) URL);
             }
             
