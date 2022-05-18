@@ -4,7 +4,7 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dsn.con">
 	<select id="conList" parameterType="Map" resultType="dsn.contest.model.ConDTO">
-	<![CDATA[
+	
 		SELECT
 			*
 		FROM(
@@ -21,11 +21,11 @@
 				)A
 			)B
 		WHERE
-			RNUM >= #{start}
+			RNUM <![CDATA[>=]]> #{start}
 		AND
-			RNUM <= #{end}
-		AND C_DATEDIFF <= 0
-		]]>
+			RNUM <![CDATA[<=]]> #{end}
+		AND C_DATEDIFF <![CDATA[<=]]> 0
+		
 	</select>
 	<select id="conInfo" parameterType="Integer" resultType="dsn.contest.model.ConDTO">
 		SELECT
@@ -41,13 +41,13 @@
 		F_DESIGNER
 			VALUES(
 			F_DESIGNER_D_IDX.NEXTVAL
-			, 1
+			, #{u_idx}
 			, #{d_name}
 			, #{d_content}
 			, #{d_img_1}
 			, #{d_img_2}
 			, SYSDATE
-			, 1
+			, 0
 			, 'N'
 			, 1
 			)

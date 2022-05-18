@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <script>
-	<
-	location.href='${login}';
+window.alert('${msg}');
+location.href='${gopage}';
 </script>
