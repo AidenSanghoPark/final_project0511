@@ -61,21 +61,6 @@
 	</bean>	 
 	 
 	<!-- dao -->
-	<bean id="myPageDao" class="dsn.mypage.model.MyPageDAOImple">
-		<constructor-arg>
-			<ref bean="sqlSessionTemplate"/>
-		</constructor-arg>		
-	</bean>
-	<bean id="designerDao" class="dsn.designer.model.DesignerDAOImple">
-		<constructor-arg>
-			<ref bean="sqlSessionTemplate"/>
-		</constructor-arg>
-	</bean>
-	<bean id="reviewDao" class="dsn.review.model.ReviewDAOImple">
-		<constructor-arg>
-			<ref bean="sqlSessionTemplate"/>
-		</constructor-arg>
-	</bean>
 	
 	
 	<bean id="viewResolver"
@@ -89,7 +74,7 @@
 	</bean>
 	
 	
-	
+	<bean id="dsnDown" class="dsn.view.DownloadView"></bean>
 	
 	<bean id="loginInterceptor" class="dsn.member.interceptor.LoginInterceptor"/>
 	<bean id="authInterceptor" class="dsn.member.interceptor.AuthInterceptor"/>

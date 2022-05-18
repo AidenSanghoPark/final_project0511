@@ -20,7 +20,7 @@
       <div class="collapse navbar-collapse" id="navbarsExample02">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">콘테스트</a>
+            <a class="nav-link active" aria-current="page" href="conList.do">콘테스트</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">콘테스트 개최</a>

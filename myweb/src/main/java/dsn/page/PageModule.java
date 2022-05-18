@@ -18,9 +18,7 @@ public class PageModule {
 	      this.keyword = keyword;
 	  }
 	  
-public static String pageMake(
-		String pageName,int totalCnt,int listSize,int pageSize,int cp) {
-	
+
 	public static String pageMake(String pageName, int totalCnt, int listSize,int pageSize, int cp) {
 		
 		int totalPage = (totalCnt / listSize)+1;

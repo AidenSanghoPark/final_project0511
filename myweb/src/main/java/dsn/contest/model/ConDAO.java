@@ -1,10 +1,14 @@
 package dsn.contest.model;
 
 import java.util.List;
+
+
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import dsn.trade.model.TrdDTO;
 
 public interface ConDAO {
 
@@ -16,10 +20,6 @@ public interface ConDAO {
 	public int ContestCnt();
 	public ConDTO conContent(int c_idx);
 	public int conCount(Map map);
-	
-import dsn.trade.model.TrdDTO;
-
-public interface ConDAO {
 	public int addNaming(ConDTO dto);
 	public ConDTO conInfo(int c_idx);
 	public int contestJoin(DesingerDTO dto);

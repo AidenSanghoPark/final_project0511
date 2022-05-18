@@ -6,10 +6,14 @@ import java.util.Map;
 
 import org.apache.commons.collections.map.HashedMap;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import dsn.trade.model.TrdDTO;
 
 public class ConServiceImple implements ConService{
 	
+	@Autowired
 	private SqlSessionTemplate sqlMap;
 	
 	private ConDAO conDao;
@@ -105,31 +109,6 @@ public class ConServiceImple implements ConService{
 		int count=conDao.conCount(map);
 		return count;
 		
-	}
-
-package dsn.contest.model;
-
-
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import dsn.trade.model.TrdDTO;
-
-@Service
-public class ConServiceImple implements ConService{
-	
-	@Autowired
-	private ConDAO conDao;
-	
-	public ConDAO getConDao() {
-		return conDao;
-	}
-
-	public void setConDao(ConDAO bbsDao) {
-		this.conDao = bbsDao;
 	}
 	@Override
 	public ConDTO conInfo(int c_idx) {

@@ -3,6 +3,8 @@ package dsn.contest.model;
 import java.util.List;
 import java.util.Map;
 
+import dsn.trade.model.TrdDTO;
+
 
 public interface ConService {
 	public List conList(int cp, int listSize, String searchType, String keyword);
@@ -13,10 +15,6 @@ public interface ConService {
 	public int ContestCnt();
 	public ConDTO conContent(int c_idx);
 	public int conCount(int c_readnum, int c_idx);
-import dsn.trade.model.TrdDTO;
-
-public interface ConService {
-	
 	public ConDTO conInfo(int c_idx);
 	public int contestJoin(DesingerDTO dto);
 	public int addNaming(ConDTO dto);

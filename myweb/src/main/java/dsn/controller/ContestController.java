@@ -2,6 +2,7 @@ package dsn.controller;
 
 import java.io.File;
 
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
@@ -29,6 +30,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import dsn.contest.model.*;
 import dsn.module.*;
+import dsn.page.PageModule;
 import dsn.trade.model.TrdDTO;
 
 @Controller
@@ -169,37 +171,6 @@ public class ContestController {
 		mav.setViewName("/contest/contestMsg");
 		return mav;
 	}
-	
-	
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.*;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import dsn.contest.model.ConDAO;
-import dsn.contest.model.ConDAOImple;
-import dsn.contest.model.ConDTO;
-import dsn.contest.*;
-import dsn.contest.model.ConService;
-import dsn.page.PageModule;
-
-	@Controller
-	public class ContestController {
-
-	@Autowired
-	private ConService conService;
 	
 	@RequestMapping(value = "/conList.do")
 	   public ModelAndView conList(

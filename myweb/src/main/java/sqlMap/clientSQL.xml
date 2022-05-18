@@ -4,18 +4,6 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dsn.con">
 	
-	<!-- 진행중 콘테스트 sql -->
-	
-	<select id="conList" parameterType="Map" resultType="dsn.contest.model.ConDTO">
-		select * from
-		(select rownum as rnum,a.* from
-		(select * from f_client order by c_idx desc)a)b
-		where rnum<![CDATA[>=]]>#{start}
-		and rnum<![CDATA[<=]]>#{end} 
-		and c_datediff<![CDATA[<=]]>0
-			 <!-- searchType 없을 때 조건없이 처리되도록 하는 구문입니다 -->
-	</select>
-	
 	<select id="conEnd" parameterType="Map" resultType="dsn.contest.model.ConDTO">
 		select * from
 		(select rownum as rnum,a.* from
@@ -67,11 +55,6 @@
 		</if>
 	</sql>
 	
-</mapper>
-</mapper>
-   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="dsn.con">
 	<select id="conList" parameterType="Map" resultType="dsn.contest.model.ConDTO">
 	
 		SELECT
