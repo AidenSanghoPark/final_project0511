@@ -137,6 +137,7 @@ public class MyPageController {
 		Object obj=session.getAttribute("login");
 		MemberDTO mdto = (MemberDTO) obj;
 		int vo=mdto.getU_idx();
+		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("u_idx", vo);
 		mav.setViewName("mypage/payoutpopup");

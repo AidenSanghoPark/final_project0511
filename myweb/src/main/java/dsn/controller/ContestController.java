@@ -74,7 +74,7 @@ public class ContestController {
 			String path = request.getSession().getServletContext().getRealPath("img/");
 			copyInto(dto.getUpload(), path); 
 		}
-		mav.setViewName("contest/logoHold"); //임시방편 jsp 경로 바꿔야함
+		mav.setViewName("contest/contestChoice"); //
 		return mav;
 	}
 	//���̹� form
