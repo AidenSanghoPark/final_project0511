@@ -76,21 +76,38 @@ section.pricing {
     opacity: 1;
   }
 }
+#ul{
+	list-style-type: none;
+	background-color: #ccc;
+	width: 180px;
+	padding: 0;
+	margin: 0;
+}
+#btn{
+   text-decoration: none;
+   display: block;
+   color: #000;
+   padding: 8px 15px 8px 15px;
+   font-weight: bold;
+   border-bottom: 1px solid #fff;
+}
+#btn:hover {
+   background-color: tomato;
+   color: #fff;
+}
 </style>
 </head>
 <body>
 <%@include file="/WEB-INF/views/header.jsp" %>
-<div class="container" style="text-align: center;">
-   <ul class="tab_title" style="list-style-type: none;">
-       <li class="on" style="float: left;">브리핑 작성</li>
-       <li>상금결제</li>
+<div class="container" id="menu_example" style="text-align: center;">
+   <ul class="tab_title" id="ul" style="list-style-type: none; text-align: center;">
+       <li class="on" style="float: left;"><a href="#" id="btn">브리핑 작성</a></li>
+       <li><a href="#" id="btn">상금 결제</a></li>
    </ul>
-   <br>
    <br>
    <form name="ftest" action="logoHold.do" method="post" id="ftest">
    <div class="tab_cont" style="background-color: #EFEFEF;">
-      <section class="on">
-         
+      <section class="on">        
             <input type="hidden" id="c_cate" name="c_cate" value="${c_cate}">
             <input type="hidden" id="c_logo" name="c_logo" value="${c_logo}">
                <div style="text-align: left;">
@@ -165,137 +182,135 @@ section.pricing {
                   <input style="width: 300px;" type="button" class="btn btn btn-dark" value="다음으로" onclick="nextNaming()">
                </div>
                <br>       
-               <br> 
-               
-                      
-      </section>
-      <section style="display: none;">
-         <section class="pricing py-5">
-   <div class="container">
-    <div class="row">
-      <!-- 30만원 -->
-      <div class="col-lg-4" style="width: 25%;">
-        <div class="card mb-5 mb-lg-0">
-          <div class="card-body">
-            <img style="width:40px; height: 40px;" src="img/pay1.png"><h5 class="card-title text-muted text-uppercase text-center">저가형</h5>
-            <input type="hidden" value="300000"/>
-            <h6 class="card-price text-center" style="font-size: 20px; color: #383838;">300,000원</h6>
-            <hr>
-            <b style="font-size: 14px; color: #112B3C;">평균 참여작 20-30건</b>
-            <ul class="fa-ul" style="font-size: 8px;">
-            	<li><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
-             	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span></li>
-              	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>신진 디자이너 참여</li>
-              	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>1차 통과작 선정 불가</li>
-              	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>상금 환불 불가</li>
-              	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li> 
-              	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>  
-              	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>            
-            </ul>
-            <div class="d-grid">
-             	<input type="button" value="선택" class="btn btn-primary text-uppercase selectPrice">
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- 50만원 -->
-      <div class="col-lg-4" style="width: 25%;">
-        <div class="card mb-5 mb-lg-0">
-          <div class="card-body">
-             <input type="hidden" value="500000"/>
-            <img style="width:40px; height: 40px;" src="img/pay2.png"><h5 class="card-title text-muted text-uppercase text-center">일반형</h5>
-            <h6 class="card-price text-center" style="font-size: 20px; color: #383838;">500,000원</h6>
-            <hr>
-            <b style="font-size: 14px; color: #112B3C;">평균 참여작 40건 이상</b>
-            <ul class="fa-ul" style="font-size: 10px; padding-right: 40px;">
-              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
-              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>경력 디자이너 참여</li>
-              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>1차 통과작 선정 가능</li>
-              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>상금 환불 불가</li>
-              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
-              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
-              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
-            </ul>
-            <div class="d-grid">
-              <input type="button" value="선택" class="btn btn-primary text-uppercase selectPrice" name="c_pay">
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- 100만원 고급 -->
-      <div class="col-lg-4" style="width: 25%;">
-        <div class="card">
-          <div class="card-body">
-             <input type="hidden" value="1000000"/>
-            <img style="width:40px; height: 40px;" src="img/pay3.png"><h5 class="card-title text-muted text-uppercase text-center">고급형</h5>
-            <h6 class="card-price text-center" style="font-size: 20px; color: #383838;">1,000,000원</h6>
-            <hr>
-            <b style="font-size: 14px; color: #112B3C;">평균 참여작 60건 이상</b>
-            <ul class="fa-ul" style="font-size: 10px; padding-right: 40px;">
-              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
-              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>경력 디자이너 참여</li>
-              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>1차 통과작 선정 가능</li>
-              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>상금 50% 환불 가능</li>
-              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>리스트 상단 노출</li>
-              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
-              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
-            </ul>
-            <div class="d-grid">
-             	<input type="button" value="선택" class="btn btn-primary text-uppercase selectPrice">
-            </div>
-          </div>
-        </div>
-      </div>
-       <!-- 150만원 프리미엄 -->
-      <div class="col-lg-4" style="width: 25%;">
-        <div class="card mb-5 mb-lg-0">
-          <div class="card-body">
-             <input type="hidden" value="1500000"/>
-            <img style="width:40px; height: 40px;" src="img/pay4.png"><h5 class="card-title text-muted text-uppercase text-center">프리미엄형</h5>
-            <h6 class="card-price text-center" style="font-size: 20px; color: #383838;">1,500,000원</h6>
-            <hr>
-            <b style="font-size: 14px; color: #112B3C;">평균 참여작 100건 이상</b>
-            <ul class="fa-ul" style="font-size: 10px; padding-right: 40px;">
-              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
-              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>탑랭킹 디자이너 참여</li>
-              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>1차 통과작 선정 가능</li>
-              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>상금 50% 환불 가능</li>
-              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>최상단 노출 옵션 무료</li>
-              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>SNS 무료 컨텐츠 홍보</li>
-              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
-            </ul>
-            <div class="d-grid">
-              <input type="button" value="선택" class="btn btn-primary text-uppercase selectPrice" name="c_pay">
-            </div>
-          </div>
-        </div>
-      </div>
-      <hr>
-      <div>
-      <br>
-      <br>
-      <br>            
-      </div>
-         <!-- 총 상금 -->
-         <div style="text-align: center;" id="price">   
-            <p><span>총상금</span> : <input type="text" id="totalPrice" name="c_pay" style="text-align: right; width: 100px; border:none;"/>원</p>
-            <p><span>수수료</span> : <input type="text" id="comm" name="comm" style="text-align: right; width: 100px; border:none;"/>원</p>  
-            <p><span>부가세</span> : <input type="text" id="vat" name="vat" style="text-align: right; width: 100px; border:none;"/>원 </p>
-            <p><b>합계</b> : <input type="text" id="t_pay" name="t_pay" style="text-align: right; width: 100px; border:none;"/><b>원</b></p>
-         </div>
-         <div>
-      <br>
-      <br>
-      <br>            
-         </div>
-         <div class="d-grid gap-2 col-6 mx-auto">
-           <button class="btn btn-primary" type="button" onclick="pay();">KAKAO PAY</button>
-      </div>
-    </div>
-  </div>
-</section>
-      </section>
-   </div>
+               <br>            
+	      </section>
+	      <section style="display: none;">
+	         <section class="pricing py-5">
+	   <div class="container">
+	    <div class="row">
+	      <!-- 30만원 -->
+	      <div class="col-lg-4" style="width: 25%;">
+	        <div class="card mb-5 mb-lg-0">
+	          <div class="card-body">
+	            <img style="width:40px; height: 40px;" src="img/pay1.png"><h5 class="card-title text-muted text-uppercase text-center">저가형</h5>
+	            <input type="hidden" value="300000"/>
+	            <h6 class="card-price text-center" style="font-size: 20px; color: #383838;">300,000원</h6>
+	            <hr>
+	            <b style="font-size: 14px; color: #112B3C;">평균 참여작 20-30건</b>
+	            <ul class="fa-ul" style="font-size: 8px;">
+	            	<li><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
+	             	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span></li>
+	              	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>신진 디자이너 참여</li>
+	              	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>1차 통과작 선정 불가</li>
+	              	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>상금 환불 불가</li>
+	              	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li> 
+	              	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>  
+	              	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>            
+	            </ul>
+	            <div class="d-grid">
+	             	<input type="button" value="선택" class="btn btn-primary text-uppercase selectPrice">
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	      <!-- 50만원 -->
+	      <div class="col-lg-4" style="width: 25%;">
+	        <div class="card mb-5 mb-lg-0">
+	          <div class="card-body">
+	             <input type="hidden" value="500000"/>
+	            <img style="width:40px; height: 40px;" src="img/pay2.png"><h5 class="card-title text-muted text-uppercase text-center">일반형</h5>
+	            <h6 class="card-price text-center" style="font-size: 20px; color: #383838;">500,000원</h6>
+	            <hr>
+	            <b style="font-size: 14px; color: #112B3C;">평균 참여작 40건 이상</b>
+	            <ul class="fa-ul" style="font-size: 10px; padding-right: 40px;">
+	              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
+	              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>경력 디자이너 참여</li>
+	              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>1차 통과작 선정 가능</li>
+	              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>상금 환불 불가</li>
+	              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
+	              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
+	              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
+	            </ul>
+	            <div class="d-grid">
+	              <input type="button" value="선택" class="btn btn-primary text-uppercase selectPrice" name="c_pay">
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	      <!-- 100만원 고급 -->
+	      <div class="col-lg-4" style="width: 25%;">
+	        <div class="card">
+	          <div class="card-body">
+	             <input type="hidden" value="1000000"/>
+	            <img style="width:40px; height: 40px;" src="img/pay3.png"><h5 class="card-title text-muted text-uppercase text-center">고급형</h5>
+	            <h6 class="card-price text-center" style="font-size: 20px; color: #383838;">1,000,000원</h6>
+	            <hr>
+	            <b style="font-size: 14px; color: #112B3C;">평균 참여작 60건 이상</b>
+	            <ul class="fa-ul" style="font-size: 10px; padding-right: 40px;">
+	              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
+	              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>경력 디자이너 참여</li>
+	              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>1차 통과작 선정 가능</li>
+	              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>상금 50% 환불 가능</li>
+	              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>리스트 상단 노출</li>
+	              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
+	              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
+	            </ul>
+	            <div class="d-grid">
+	             	<input type="button" value="선택" class="btn btn-primary text-uppercase selectPrice">
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	       <!-- 150만원 프리미엄 -->
+	      <div class="col-lg-4" style="width: 25%;">
+	        <div class="card mb-5 mb-lg-0">
+	          <div class="card-body">
+	             <input type="hidden" value="1500000"/>
+	            <img style="width:40px; height: 40px;" src="img/pay4.png"><h5 class="card-title text-muted text-uppercase text-center">프리미엄형</h5>
+	            <h6 class="card-price text-center" style="font-size: 20px; color: #383838;">1,500,000원</h6>
+	            <hr>
+	            <b style="font-size: 14px; color: #112B3C;">평균 참여작 100건 이상</b>
+	            <ul class="fa-ul" style="font-size: 10px; padding-right: 40px;">
+	              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
+	              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>탑랭킹 디자이너 참여</li>
+	              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>1차 통과작 선정 가능</li>
+	              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>상금 50% 환불 가능</li>
+	              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>최상단 노출 옵션 무료</li>
+	              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>SNS 무료 컨텐츠 홍보</li>
+	              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
+	            </ul>
+	            <div class="d-grid">
+	              <input type="button" value="선택" class="btn btn-primary text-uppercase selectPrice" name="c_pay">
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	      <hr>
+	      <div>
+	      <br>
+	      <br>
+	      <br>            
+	      </div>
+	         <!-- 총 상금 -->
+	         <div style="text-align: center;" id="price">   
+	            <p><span>총상금</span> : <input type="text" id="totalPrice" name="c_pay" style="text-align: right; width: 100px; border:none;"/>원</p>
+	            <p><span>수수료</span> : <input type="text" id="comm" name="comm" style="text-align: right; width: 100px; border:none;"/>원</p>  
+	            <p><span>부가세</span> : <input type="text" id="vat" name="vat" style="text-align: right; width: 100px; border:none;"/>원 </p>
+	            <p><b>합계</b> : <input type="text" id="t_pay" name="t_pay" style="text-align: right; width: 100px; border:none;"/><b>원</b></p>
+	         </div>
+	         <div>
+	      <br>
+	      <br>
+	      <br>            
+	         </div>
+	         <div class="d-grid gap-2 col-6 mx-auto">
+	           <button class="btn btn-primary" type="button" onclick="pay();">KAKAO PAY</button>
+	      </div>
+	    </div>
+	  </div>
+	</section>
+	      </section>
+	   </div>
     </form> 
 </div>   
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

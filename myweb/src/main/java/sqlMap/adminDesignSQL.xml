@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dsn.adminDesign">
+
+<select id="dsn.adminDesign.totalCnt" resultType="Integer">
+	SELECT COUNT(*) FROM F_DESIGNER
+</select>
+
+<select id="dsn.adminDesign.designList" parameterType="Map" resultType="dsn.designManage.model.DesignManageDTO">
+		
+SELECT * FROM
+(SELECT ROWNUM AS RNUM,A.*FROM
+(SELECT 
+		F_DESIGNER.D_IDX,
+		F_DESIGNER.D_NAME,
+		F_USER.U_NICK,
+		F_DESIGNER.D_BLOCK		
+ FROM F_DESIGNER, F_USER
+ WHERE F_DESIGNER.U_IDX = F_USER.U_IDX
+ ORDER BY F_DESIGNER.D_IDX ASC)A)B
+WHERE RNUM <![CDATA[>=]]>#{start} AND 
+RNUM<![CDATA[<=]]>#{end}
+	
+</select>
+
+<select id="dsn.adminDesign.designContent" parameterType="Integer" resultType="dsn.designManage.model.DesignManageDTO">
+SELECT 		
+	F_DESIGNER.D_IDX,
+	F_USER.U_IDX,
+	F_DESIGNER.D_NAME,
+	F_DESIGNER.D.CONTENT,
+	F_DESIGNER.D_IMG_1,
+	F_DESIGNER.D_IMG_2,
+	F_DESIGNER.D_DATE,
+	F_DESIGNER.D_WIN,
+	F_USER.U_NICK,
+	F_DESIGNER.D_BLOCK,
+	F_DESIGNER.D_CATE		
+ FROM F_DESIGNER, F_USER
+WHERE F_DESIGNER.D_IDX= #{d_idx}
+</select>
+
+<update id="dsn.adminDesign.designBlockUpdate" parameterType="dsn.designManage.model.DesignManageDTO">
+	UPDATE F_DESIGNER
+	SET
+	D_BLOCK = #{d_block}
+	WHERE D_IDX = #{d_idx}
+</update>
+
+</mapper>
