@@ -162,24 +162,20 @@ public class DesignerController {
 	@RequestMapping(value = "designer.do", method = RequestMethod.GET)
 	public ModelAndView designer(@RequestParam(value = "cp", defaultValue = "1") int cp, DesignerDTO dto) {
 		
-		int totalCnt=designerSevice.designerTotalCnt();
+		int totalCnt=designerSevice.designerListTotalCnt();
 		int listSize=5;
 		int pageSize=5;
 		String pageStr=dsn.page.PageModule.pageMake("designer.do", totalCnt, listSize, pageSize, cp);
 		
-		int u_idx=dto.getU_idx();
-		List lists=designerSevice.designerList(cp, listSize, u_idx);
-		ProfileDTO pdto=designerSevice.profileInfo(u_idx);
-		List photos=designerSevice.designPhotos(u_idx);
-		System.out.println(photos);
+		
+		List lists=designerSevice.designerList(cp, listSize);
 
 		ModelAndView mav=new ModelAndView();
 		
 		mav.addObject("lists", lists);
-		mav.addObject("pageStr", pageStr);
-		mav.addObject("pdto", pdto);
-		mav.addObject("photos", photos);
-
+		System.out.println(lists);
+		mav.addObject("pageStr", pageStr); 
+		
 		mav.setViewName("designer/designer");
 		return mav;
 	}
