@@ -19,22 +19,15 @@ public class MemberDTO {
 	private Date u_date;
 	private String session_id;
 	private Date limit_date;
-	private Boolean autologin;
-	
+	private String u_block;
+	private boolean autologin;
 	public MemberDTO() {
 		super();
-	}
-	
-	public MemberDTO(String u_id, String u_pwd, String session_id) {
-		super();
-		this.u_id = u_id;
-		this.u_pwd = u_pwd;
-		this.session_id = session_id;
 	}
 
 	public MemberDTO(int u_idx, String u_id, String u_pwd, String u_name, String u_nick, String u_birth, String u_tel,
 			String u_email, String u_wallet, int u_type, Date u_date, String session_id, Date limit_date,
-			Boolean autologin) {
+			String u_block, boolean autologin) {
 		super();
 		this.u_idx = u_idx;
 		this.u_id = u_id;
@@ -49,6 +42,7 @@ public class MemberDTO {
 		this.u_date = u_date;
 		this.session_id = session_id;
 		this.limit_date = limit_date;
+		this.u_block = u_block;
 		this.autologin = autologin;
 	}
 
@@ -156,12 +150,25 @@ public class MemberDTO {
 		this.limit_date = limit_date;
 	}
 
-
-	public void setAutologin(Boolean autologin) {
-		this.autologin = autologin;
+	public String getU_block() {
+		return u_block;
 	}
+
+	public void setU_block(String u_block) {
+		this.u_block = u_block;
+	}
+
 	public boolean isAutologin() {
 		return autologin;
 	}
+
+	public void setAutologin(boolean autologin) {
+		this.autologin = autologin;
+	}
+
+	
+	
+	
+	
 
 }

@@ -1,8 +1,9 @@
 package dsn.review.model;
 
-import java.sql.*;
+import java.sql.Date;
 
 public class ReviewDTO {
+
 	private int rv_idx;
 	private int d_idx;
 	private int u_idx;

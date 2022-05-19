@@ -97,5 +97,41 @@
 		select d_name, c_cate, d_win, d_img_2, d_content
 		from f_designer
 		where d_idx = #{d_idx}
+	<select id="designPhotos" parameterType="Map" resultType="dsn.designer.model.DesignerDTO">
+		select * from
+			(select rownum as rnum, a.*from
+			(select d_img_1, u_idx from f_designer order by d_idx desc)a)b
+		where
+		    rnum <![CDATA[>=]]> 0
+		and
+			rnum <![CDATA[<=]]> 3
+		and
+			u_idx=#{u_idx}
 	</select>
+	<insert id="writeReview" parameterType="Map">
+  		insert into f_review values(
+  			rv_idx.nextval,
+  			0,
+  			16,
+  			#{rv_content},
+  			sysdate
+  		)
+  	</insert>
+	<select id="designerListTotalCnt" resultType="Integer">
+      select count(u_type) from f_user
+      where u_type = 2
+   </select>
+   <select id="designerList" resultType="dsn.designer.model.ListDTO">
+      select * from
+          (select rownum as rnum, a.*from
+          (SELECT p.p_img, p.p_info, u.u_nick, u.u_email, u.u_idx
+         from f_profile p, f_user u, f_designer d
+         where p.u_idx = u.u_idx
+         and u.u_idx = d.u_idx
+         and u.u_type = 2 )a)b
+      where
+         rnum <![CDATA[>=]]> #{start}
+      and
+         rnum <![CDATA[<=]]> #{end}
+   </select>
 </mapper>

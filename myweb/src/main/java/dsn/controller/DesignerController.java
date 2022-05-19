@@ -91,7 +91,7 @@ public class DesignerController {
 		String path=request.getSession().getServletContext().getRealPath("/profileimg/");
 		capyInto(path, dto.getUpload());
 		int result=designerSevice.profileInsert(dto);
-		String msg=result>0?"ÇÁ·ÎÇÊ ÀÔ·Â ¿Ï·á":"ÇÁ·ÎÇÊ ÀÔ·Â ½ÇÆÐ";
+		String msg=result>0?"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½Ï·ï¿½":"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½";
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg", msg);
 		mav.addObject("gopage", "profile.do");
@@ -108,7 +108,7 @@ public class DesignerController {
 		
 		System.out.println(dto.getP_img());
 		
-		String msg=result>0?"ÇÁ·ÎÇÊ ¼öÁ¤ ¿Ï·á":"ÇÁ·ÎÇÊ ¼öÁ¤ ½ÇÆÐ";
+		String msg=result>0?"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½":"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½";
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg", msg);
 		mav.addObject("gopage", "profile.do");
@@ -116,7 +116,7 @@ public class DesignerController {
 		return mav;
 	}
 	
-	/**ÆÄÀÏ º¹»ç °ü·Ã ¸Þ¼­µå*/
+	/**ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½*/
 	public void capyInto(String path,MultipartFile upload) {
 		try {
 			byte bytes[]=upload.getBytes();
@@ -158,15 +158,13 @@ public class DesignerController {
 		mav.setViewName("designer/review");
 		return mav;
 	}
-	
 	@RequestMapping(value = "designer.do", method = RequestMethod.GET)
-	public ModelAndView designer(@RequestParam(value = "cp", defaultValue = "1") int cp, DesignerDTO dto) {
+	public ModelAndView designer(@RequestParam(value = "cp", defaultValue = "1") int cp) {
 		
 		int totalCnt=designerSevice.designerListTotalCnt();
-		int listSize=5;
+		int listSize=1;
 		int pageSize=5;
 		String pageStr=dsn.page.PageModule.pageMake("designer.do", totalCnt, listSize, pageSize, cp);
-		
 		
 		List lists=designerSevice.designerList(cp, listSize);
 
@@ -179,6 +177,36 @@ public class DesignerController {
 		mav.setViewName("designer/designer");
 		return mav;
 	}
+//	@RequestMapping(value = "designer.do", method = RequestMethod.GET)
+//	public ModelAndView designer(@RequestParam(value = "cp", defaultValue = "1") int cp, DesignerDTO dto) {
+//		ModelAndView mav=new ModelAndView();
+//		
+//		int totalCnt=designerSevice.designerTotalCnt();
+//		int listSize=5;
+//		int pageSize=5;
+//		String pageStr=dsn.page.PageModule.pageMake("designer.do", totalCnt, listSize, pageSize, cp);
+//		
+////		List userlist=designerSevice.designerAllList();
+////		for(int i=0;i<userlist.size();i++) {
+////			
+////			List photos=designerSevice.designPhotos((int) userlist.get(i));
+////			mav.addObject("photos", photos);
+////		}
+//		List lists=designerSevice.designerList(cp, listSize);
+////		ProfileDTO pdto=designerSevice.profileInfo(1);
+//		
+//		System.out.println("lists="+lists);
+//
+//		
+//		
+//		mav.addObject("lists", lists);
+//		mav.addObject("pageStr", pageStr);
+////		mav.addObject("pdto", pdto);
+//		
+//
+//		mav.setViewName("designer/designer");
+//		return mav;
+//	}
 	
 	//@RequestMapping()
 	//public ModelAndView portfolioDetail(int d_idx) {
