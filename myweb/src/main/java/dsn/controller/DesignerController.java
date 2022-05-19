@@ -179,4 +179,12 @@ public class DesignerController {
 		mav.setViewName("designer/designer");
 		return mav;
 	}
+	
+	//@RequestMapping()
+	//public ModelAndView portfolioDetail(int d_idx) {
+	//	DesignerDTO ddto=designerSevice.portfolioDetail(d_idx);
+	//	ModelAndView mav=new ModelAndView();
+	//	mav.addObject("ddto", ddto);
+	//	mav.setViewName("des");
+	//}
 }

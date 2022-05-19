@@ -89,5 +89,11 @@ public class DesignerDAOImple implements DesignerDAO {
 		int cnt=sqlMap.selectOne("designerListTotalCnt");
 		return cnt;
 	}
+	
+	@Override
+	public DesignerDTO portfolioDetail(int d_idx) {
+		DesignerDTO dto=sqlMap.selectOne("portfolioDetail", d_idx);
+		return dto;
+	}
 
 }

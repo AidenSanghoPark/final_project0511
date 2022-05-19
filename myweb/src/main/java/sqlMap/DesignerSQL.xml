@@ -93,4 +93,9 @@
 		select count(u_type) from f_user
 		where u_type = 2
 	</select>
+	<select id="portfolioDetail" parameterType="Integer" resultType="dsn.designer.model.DesignerDTO">
+		select d_name, c_cate, d_win, d_img_2, d_content
+		from f_designer
+		where d_idx = #{d_idx}
+	</select>
 </mapper>
