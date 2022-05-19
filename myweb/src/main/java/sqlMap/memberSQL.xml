@@ -15,11 +15,12 @@
 			#{u_birth},
 			#{u_tel},
 			#{u_email},
-			0,
+			'0',
 			#{u_type},
 			sysdate,
 			sysdate,
-			'0'			
+			'0',
+			'n'					
 		)		
 	</insert>
 	 <select id="idCheck" parameterType="String" resultType="Integer">

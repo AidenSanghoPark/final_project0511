@@ -26,19 +26,60 @@ public class ConDAOImple implements ConDAO{
 			int cnt=sqlMap.insert("contestJoin", dto);
 			return cnt;
 		}
-
+		@Override
+		public void updateTrd(ConDTO dto) {
+			sqlMap.update("updateTrd", dto);
+		}
+		
+		//logo
+		@Override
+		public int addLogo(ConDTO dto) {
+			
+			int count = sqlMap.insert("addLogo", dto);
+			return count;
+		}
+		@Override
+		public int addLogoTrade(TrdDTO dto) {
+			
+			int count = sqlMap.insert("addLogoTrade", dto);
+			return count;
+		}
+				
+		//naming
 		@Override
 		public int addNaming(ConDTO dto) {
+			
 			int count = sqlMap.insert("addNaming", dto);
 			return count;
 		}
 		@Override
 		public int addNamingTrade(TrdDTO dto) {
+			
 			int count = sqlMap.insert("addNamingTrade", dto);
 			return count;
 		}
+		//char
 		@Override
-		public void updateTrd(ConDTO dto) {
-			sqlMap.update("updateTrd", dto);
+		public int addChar(ConDTO dto) {
+			
+			int count = sqlMap.insert("addChar", dto);
+			return count;
+		}
+		@Override
+		public int addCharTrade(TrdDTO dto) {
+			
+			int count = sqlMap.insert("addCharTrade", dto);
+			return count;
+		}
+		//print
+		@Override
+		public int addPrint(ConDTO dto) {
+			int count = sqlMap.insert("addPrint", dto);
+			return count;
+		}
+		@Override
+		public int addPrintTrade(TrdDTO dto) {
+			int count = sqlMap.insert("addPrintTrade", dto);
+			return count;
 		}
 }
