@@ -356,6 +356,7 @@ a{
 			<div class="col-sm-4" style="float:left;">
 				<c:url var="contentUrl" value="conList.do">
 					<c:param name="idx">${condto.c_idx }</c:param>
+					
 				</c:url>
 				<h4><a href="#" style="text-decoration: none; color: #2E2E2E; font-weight: bold; font-size: 17px;">${condto.c_subject }</a></h4>
 				<div style="padding: 10px; padding-left: 10px; width: 500px; height:70px; background-color:#EFEFFB; margin-left: 20px; color: #424242;">
@@ -370,6 +371,7 @@ a{
 		</div>
 	</div>
 	<div>
+		<input type="hidden" value="${condto.c_idx }">
 		<div>
 			<a>참여작</a>|<a>브리핑</a>|<a>아이디어 작성</a>
 		</div>
