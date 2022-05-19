@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -36,17 +37,17 @@
 			<label for="exampleFormControlInput1" class="form-label">내용</label>
 			<textarea class="form-control" id="exampleFormControlTextarea1" rows="3">${dto.n_content}</textarea>
 			
-			
-
 	</div>
 	
 			<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
+			<!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button> -->
 			</div>	
 		
 	</div>
 	
-
+	<div align="center">
+	<a href="#" rel="modal:close"><button class="btn btn-secondary" style="font-size:70%;">닫기</button></a>
+	</div>
 </form>
 
 
