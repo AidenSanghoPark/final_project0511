@@ -89,8 +89,7 @@ ul{
    				<h3 style="color:grey">개최한 콘테스트</h3><br>
    			</c:otherwise>
  	   </c:choose>
- 	    </c:forEach>
- 	    
+ 	    </c:forEach>	    
     	<c:choose>
     		<c:when test="${empty lists }">
     			<c:forEach var="userinfo" items="${userinfo }">

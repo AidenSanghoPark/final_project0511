@@ -89,27 +89,27 @@ ul{
 </section>
 <section class="wrap">
 	<p>
-       		<input type="password" name="lastpwd" autocomplete="off" required>
+       		<input type="password" name="lastpwd" autocomplete="off">
 			<label><span>Password</span></label>
  	</p> 	
     <p>
-       		<input type="password" name="checkpwd" id="userPw" autocomplete="off" required>
+       		<input type="password" name="checkpwd" id="userPw" autocomplete="off">
 			<label><span>New Password</span></label>
  	</p> 	
        		<h5 id="re_pw"></h5>
     <p>
-       		<input type="password" name="pwdconfirm" id="userPwChk" autocomplete="off" required>
+       		<input type="password" name="pwdconfirm" id="userPwChk" autocomplete="off">
 			<label><span>Verify Password</span></label>	
  	</p> 	
  			<h5 id="re_ck"></h5>
 
     <div class="d-grid gap-2" style="padding-right: 50px; padding-left: 45px;'">
-  			<input class="btn btn-dark" type="button" onclick="show()" style="width: 100%;" value="비밀번호 수정">
+  			<input class="btn btn-dark" type="button" onclick="pwdCheck()" style="width: 100%;" value="비밀번호 수정">
 		</div>	
-</section>
 <div style="padding-top:800px;">
 <%@include file="/WEB-INF/views/footer.jsp" %>
 </div>
+</section>
 </form>
 <script>
 //비밀번호 정규식

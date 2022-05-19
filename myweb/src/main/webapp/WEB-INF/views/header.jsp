@@ -34,27 +34,25 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="contestJoin.do">콘테스트 참여</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="messege.do">콘테스트 참여</a>
-          </li>     
+          </li>  
             <c:choose>
 				<c:when test="${empty login}">          			
-					<li class="nav-item" style="padding-left: 700px;"><a class="nav-link" href="login.do">로그인</a></li>
+					<li class="nav-item" style="padding-left: 900px;"><a class="nav-link" href="login.do">로그인</a></li>
 					<li class="nav-item"><a class="nav-link" href="joinChoice.do">회원가입</a></li>
 				</c:when>
 			<c:otherwise>
-					<a class="nav-link">${login.u_name}님 로그인중</a> | <a class="nav-link" href="logout.do">로그아웃</a>
+					<a class="nav-link" style="padding-left: 800px;">${login.u_name}님 로그인중</a> | <a class="nav-link" href="logout.do">로그아웃</a>
+					<li class="nav-item dropdown">
+		          	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		           	 	<img id="mypagept" src="img/mypage.jpg">
+		         	</a>
+          				<div class="dropdown-menu" aria-labelledby="navbarDropdown" border="1">
+	          				<img src="img/mypage.jpg" style="width: 70px; height: 70px; border-radius: 70%; padding-left: 50px;">	          		
+          				</div>
+       		 		</li>
 				</c:otherwise>
 			</c:choose>	
-			 <li class="nav-item dropdown">
-		          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-		            <img id="mypagept" src="img/mypage.jpg">
-		          </a>
-          		<div class="dropdown-menu" aria-labelledby="navbarDropdown" border="1">
-	          		<img src="img/mypage.jpg" style="width: 70px; height: 70px; border-radius: 70%; padding-left: 50px;">	          		
-          		</div>
-       		 </li>
+			 
         </ul>
        </div>
        </nav>
