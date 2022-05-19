@@ -6,6 +6,7 @@ public class DesignerDTO {
 	
 	private int d_idx;
 	private int u_idx;
+	private int c_idx;
 	private String d_name;
 	private String d_content;
 	private String d_img_1;
@@ -19,11 +20,14 @@ public class DesignerDTO {
 		super();
 	}
 	
-	public DesignerDTO(int d_idx, int u_idx, String d_name, String d_content, String d_img_1, String d_img_2,
+	
+
+	public DesignerDTO(int d_idx, int u_idx, int c_idx, String d_name, String d_content, String d_img_1, String d_img_2,
 			Date d_date, int d_win, char d_block, String d_cate) {
 		super();
 		this.d_idx = d_idx;
 		this.u_idx = u_idx;
+		this.c_idx = c_idx;
 		this.d_name = d_name;
 		this.d_content = d_content;
 		this.d_img_1 = d_img_1;
@@ -33,6 +37,20 @@ public class DesignerDTO {
 		this.d_block = d_block;
 		this.d_cate = d_cate;
 	}
+
+
+
+	public int getC_idx() {
+		return c_idx;
+	}
+
+
+
+	public void setC_idx(int c_idx) {
+		this.c_idx = c_idx;
+	}
+
+
 
 	public int getD_idx() {
 		return d_idx;

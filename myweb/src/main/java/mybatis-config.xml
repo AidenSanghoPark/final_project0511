@@ -7,11 +7,19 @@
       <mapper resource="sqlMap/memberSQL.xml"/>
       <mapper resource="sqlMap/MyPageSQL.xml"/>
       <mapper resource="sqlMap/clientSQL.xml"/>
+      <mapper resource="sqlMap/DesignerSQL.xml"/>
       <mapper resource="sqlMap/adminSQL.xml"/>
 	  <mapper resource="sqlMap/adminAskSQL.xml"/>
 	  <mapper resource="sqlMap/adminNoticeSQL.xml"/>
 	  <mapper resource="sqlMap/adminContSQL.xml"/>
 	  <mapper resource="sqlMap/adminDesignSQL.xml"/>
 	  <mapper resource="sqlMap/adminReportSQL.xml"/>
+      <mapper resource="sqlMap/ReviewSQL.xml"/>
+	  <mapper resource="sqlMap/TradeSQL.xml"/>
+	  <mapper resource="sqlMap/WalletSQL.xml"/>
+	  <mapper resource="sqlMap/DesignerSQL.xml"/>
+	  <mapper resource="sqlMap/WithdrawSQL.xml"/>
+	  <mapper resource="sqlMap/ReviewSQL.xml"/>
+	  <mapper resource="sqlMap/ProfileSQL.xml"/>
    </mappers>
 </configuration>

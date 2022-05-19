@@ -12,9 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dsn.member.model.MemberDTO;
 import dsn.mypage.model.MyPageService;
-import dsn.review.model.ReviewDTO;
+import dsn.virtualwallet.model.WalletDTO;
 import dsn.withdraw.model.WithDrawDTO;
-
 
 @Controller
 public class MyPageController {
@@ -28,20 +27,29 @@ public class MyPageController {
 		String msg="";
 		Object obj=session.getAttribute("login");
 		MemberDTO mdto = (MemberDTO) obj;
-		int vo=mdto.getU_idx();
+		
+		
 		ModelAndView mav=new ModelAndView();
 		if(obj==null) {
 			msg="로그인 후 이용해주세요";
 			mav.addObject("msg", msg);
 			mav.addObject("gopage","index.do");
+			mav.setViewName("memberMsg");
 		}else {
+		int vo=mdto.getU_idx();
+		System.out.println(vo);
 		int totalCnt=myPageService.getTotalCnt(vo);
+		int dtotalCnt=myPageService.getDesignerCnt(vo);
 		int listSize=5;
 		int pageSize=5;
+		String dpageStr=dsn.page.PageModule.pageMake("myPage.do", dtotalCnt, listSize, pageSize, cp);
 		String pageStr=dsn.page.PageModule.pageMake("myPage.do", totalCnt, listSize, pageSize, cp);
 		List lists=myPageService.myPageList(cp, listSize, vo);
 		List userinfo=myPageService.userInfoFind(vo);
+		List dlists=myPageService.myPageListByDesigner(cp, listSize, pageSize);
 		
+		mav.addObject("dpageStr", dpageStr);
+		mav.addObject("dlists", dlists);
 		mav.addObject("lists", lists);
 		mav.addObject("pageStr", pageStr);
 		mav.addObject("u_idx", vo);
@@ -137,7 +145,6 @@ public class MyPageController {
 		Object obj=session.getAttribute("login");
 		MemberDTO mdto = (MemberDTO) obj;
 		int vo=mdto.getU_idx();
-		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("u_idx", vo);
 		mav.setViewName("mypage/payoutpopup");
@@ -165,12 +172,16 @@ public class MyPageController {
 		
 	}
 	@RequestMapping("writeReview.do")
-	public ModelAndView writeReview(ReviewDTO dto) {
+	public ModelAndView writeReview(String rv_content,HttpSession session) {
+		Object obj=session.getAttribute("login");
+		MemberDTO mdto=(MemberDTO) obj;
+		int vo=mdto.getU_idx();
 		ModelAndView mav=new ModelAndView();
-		int result=myPageService.writeReview(dto);
+		int result=myPageService.writeReview(vo,rv_content);
 		String msg=result>0?"리뷰작성 완료":"리뷰작성 실패";
 		mav.addObject("msg", msg);
-		mav.setViewName("mypage/popupclose");
+		mav.addObject("gopage", "index.do");
+		mav.setViewName("mypage/mypagemsg");
 		return mav;
 	}
 	@RequestMapping("showPayInfo.do")
@@ -183,12 +194,12 @@ public class MyPageController {
 		int listSize=10;
 		int pageSize=5;
 		List lists=myPageService.showPayInfo(cp, listSize, vo);
+		
 		String pageStr=dsn.page.PageModule.pageMake("showPayInfo.do", totalCnt, listSize, pageSize, cp);
-
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("pageStr", pageStr);
 		mav.addObject("lists", lists);
-		mav.setViewName("mypage/showpay");
+		mav.setViewName("mypage/paylists");
 		return mav;
 	}
 }

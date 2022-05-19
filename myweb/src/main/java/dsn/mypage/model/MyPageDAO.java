@@ -20,7 +20,9 @@ public interface MyPageDAO {
 	public String pwdFind(int u_idx);
 	public int payout(WithDrawDTO dto);
 	public int getWalletCnt(int u_idx);
-	public int writeReview(ReviewDTO dto);
+	public int writeReview(Map map);
 	public List showPayInfo(Map map);
 	public int getTradeCnt(int u_idx);
+	public List myPageListByDesigner(Map map);
+	public int getDesignerCnt(int u_idx);
 }

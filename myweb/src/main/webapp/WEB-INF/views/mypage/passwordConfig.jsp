@@ -104,7 +104,7 @@ ul{
  			<h5 id="re_ck"></h5>
 
     <div class="d-grid gap-2" style="padding-right: 50px; padding-left: 45px;'">
-  			<input class="btn btn-dark" type="button" onclick="show()" style="width: 100%;" value="비밀번호 수정">
+  			<input class="btn btn-dark" type="submit" style="width: 100%;" value="비밀번호 수정">
 		</div>	
 </section>
 <div style="padding-top:800px;">
