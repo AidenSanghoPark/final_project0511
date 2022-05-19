@@ -22,4 +22,5 @@ public interface DesignerDAO {
 	public DesignerDTO portfolioDetail(int d_idx);
 	public List designPhotos(Map map);
 	public List designerAllList();
+	public int getDesignerCnt(int u_idx);
 }

@@ -11,6 +11,8 @@
 			rnum <![CDATA[>=]]> #{start}
 		and
 			rnum <![CDATA[<=]]> #{end}
+		and
+			u_idx=#{u_idx}
 	</select>
 	
 	<select id="portfolioTotalCnt" resultType="Integer">

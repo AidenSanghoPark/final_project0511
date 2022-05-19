@@ -23,4 +23,5 @@ public interface DesignerService {
 	public List designerList(int cp, int listSize);
 	public int designerListTotalCnt();
 	public DesignerDTO portfolioDetail(int d_idx);
+	public int getDesignerCnt(int u_idx);
 }
