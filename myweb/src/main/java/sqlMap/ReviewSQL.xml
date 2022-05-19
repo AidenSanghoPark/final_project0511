@@ -38,4 +38,3 @@
 		select count(*) from f_review
 	</select>
 </mapper>
-</mapper>

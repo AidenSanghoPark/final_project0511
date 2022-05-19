@@ -3,15 +3,5 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="dsn.withdraw">
-  	<insert id="payout" parameterType="Map">
-  		insert into f_withdraw values(
-  			w_idx.nextval,
-  			#{u_idx},
-  			#{w_bank},
-  			#{w_name},
-  			#{w_number},
-  			#{w_price},
-  			sysdate
-  		)
-  	</insert>
+  	
   </mapper>

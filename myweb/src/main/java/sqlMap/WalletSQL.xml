@@ -18,4 +18,15 @@
 		(SELECT A_IDX,U_IDX,A_BALANCE FROM F_ACCOUNT WHERE U_IDX=#{u_idx}
 		ORDER BY A_IDX DESC)WHERE ROWNUM=1
   	</select>
+  	<insert id="payout" parameterType="Map">
+  		insert into f_account values(
+  			a_idx.nextval,
+  			#{u_idx},
+  			'출금',
+  			sysdate,
+  			'-',
+  			#a_amount,
+  			#lastbalance
+  		)
+  	</insert>
 </mapper>

@@ -66,6 +66,4 @@
 	<select id="designerListTotalCnt" resultType="Integer">
 		select count(*) from f_user where u_type=2
 	</select>
-	
-</mapper>
 </mapper>
