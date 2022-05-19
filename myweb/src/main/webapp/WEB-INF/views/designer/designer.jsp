@@ -57,17 +57,8 @@
 	float: right;
 }
 img {
- 	max-width: 20%;
- 	max-height: 20%;
-}
-.profileimg {
-	height: 100px;
-	 width: 100px;
-	 float: left;
-}
-.desingerNick{
-	float: right;
-	padding-top: 35px;
+ 	max-width: 100%;
+ 	max-height: 100%;
 }
 </style>
 </head>
@@ -87,12 +78,12 @@ img {
                 
                 
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade active show" id="home" role="tabpanel">
-                        <div class="table-responsive">
+                    <div class="tab-pane fade active show" id="home" role="tabpanel" style="width: 1000px;">
+                        <div class="table-responsive" >
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th scope="col">프로필</th>
+                                        <th scope="col" style="width: 130px;">프로필</th>
                                         <th scope="col">소개</th>
                                         <th class="text-center" scope="col">ㅤ</th>
                                     </tr>
@@ -103,7 +94,7 @@ img {
                                     <tr class="inner-box">
                                         <td>
                                             <div class="event-img">
-                                                <img src="img/${dto.p_img}" alt="" />
+                                                <img src="profileimg/${dto.p_img}" alt="" />
                                             </div>
                                         </td>
                                         <td>
