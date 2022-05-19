@@ -4,24 +4,24 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dsn.review">
 	<insert id="writeReview" parameterType="Map">
-  		insert into f_review values(
-  			rv_idx.nextval,
-  			0,
-  			#{u_idx},
-  			#{rv_content},
-  			sysdate
-  		)
-  	</insert>
-  	<select id="review" parameterType="Map" resultType="dsn.review.model.ReviewDTO">
-  		select * from 
-			(select rownum as rnum, a.* from
-			(select * from f_review order by u_idx desc)a)b
-		where
-			rnum <![CDATA[>=]]> #{start}
-		and
-			rnum <![CDATA[<=]]> #{end}
-  	</select>
-  	<select id="reviewTotalCnt" resultType="Integer">
-		select count(*) from f_review
-	</select>
+        insert into f_review values(
+           rv_idx.nextval,
+           0,
+           #{u_idx},
+           #{rv_content},
+           sysdate
+        )
+     </insert>
+     <select id="review" parameterType="Map" resultType="dsn.review.model.ReviewDTO">
+        select * from 
+         (select rownum as rnum, a.* from
+         (select * from f_review order by u_idx desc)a)b
+      where
+         rnum <![CDATA[>=]]> #{start}
+      and
+         rnum <![CDATA[<=]]> #{end}
+     </select>
+     <select id="reviewTotalCnt" resultType="Integer">
+      select count(*) from f_review
+   </select>
 </mapper>

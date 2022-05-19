@@ -3,113 +3,122 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dsn.member">
-	<insert id="memberInsert" parameterType="dsn.member.model.MemberDTO">
-		INSERT INTO 
-			F_USER
-		VALUES(
-			F_USER_U_IDX.NEXTVAL,
-			#{u_id},
-			#{u_pwd},
-			#{u_name},
-			#{u_nick},
-			#{u_birth},
-			#{u_tel},
-			#{u_email},
-			'0',
-			#{u_type},
-			sysdate,
-			sysdate,
-			'0',
-			'n'
-					
-		)		
-	</insert>
-	 <select id="idCheck" parameterType="String" resultType="Integer">
+   <insert id="memberInsert" parameterType="dsn.member.model.MemberDTO">
+      INSERT INTO 
+         F_USER
+      VALUES(
+         F_USER_U_IDX.NEXTVAL,
+         #{u_id},
+         #{u_pwd},
+         #{u_name},
+         #{u_nick},
+         #{u_birth},
+         #{u_tel},
+         #{u_email},
+         '0',
+         #{u_type},
+         sysdate,
+         sysdate,
+         '0',
+         'n'
+               
+      )      
+   </insert>
+    <select id="idCheck" parameterType="String" resultType="Integer">
         SELECT 
-        	COUNT(*) 
+           COUNT(*) 
         FROM 
-        	F_USER 
+           F_USER 
         WHERE 
-        	u_id = #{u_id}
+           u_id = #{u_id}
     </select>
     <select id="nickCheck" parameterType="String" resultType="Integer">
         SELECT 
-        	COUNT(*) 
+           COUNT(*) 
         FROM 
-        	F_USER 
+           F_USER 
         WHERE 
-        	u_nick = #{u_nick}
+           u_nick = #{u_nick}
     </select>
     <select id="emailCheck" parameterType="String" resultType="Integer">
         SELECT 
-        	COUNT(*) 
+           COUNT(*) 
         FROM 
-        	F_USER 
+           F_USER 
         WHERE 
-        	u_email = #{u_email}
+           u_email = #{u_email}
     </select>
     <update id="autoLogin" parameterType="Map">
-		UPDATE
-			F_USER
-		SET
-			SESSION_ID = #{session_id},
-			LIMIT_DATE = #{limit_date}
-		WHERE
-			U_ID = #{u_id}
-	</update>
-	<select id="checkUserWithSessionKey" parameterType="dsn.member.model.MemberDTO" resultType="dsn.member.model.MemberDTO">
+      UPDATE
+         F_USER
+      SET
+         SESSION_ID = #{session_id},
+         LIMIT_DATE = #{limit_date}
+      WHERE
+         U_ID = #{u_id}
+   </update>
+   <select id="checkUserWithSessionKey" parameterType="dsn.member.model.MemberDTO" resultType="dsn.member.model.MemberDTO">
         SELECT
-        	*
+           *
         FROM
-        	F_USER
+           F_USER
         WHERE
-        	SESSION_ID = #{session_id}
+           SESSION_ID = #{session_id}
         AND
-        	LIMIT_DATE > SYSDATE
+           LIMIT_DATE > SYSDATE
     </select>
-	<select id="selectSession" parameterType="dsn.member.model.MemberDTO" resultType="dsn.member.model.MemberDTO">
-		SELECT
-			*
-		FROM
-			F_USER
-		WHERE
-			SESSION_ID = #{session_id}
-	</select>
-	<select id="getUser" parameterType="String" resultType="dsn.member.model.MemberDTO">
-		SELECT
-			*
-		FROM
-			F_USER
-		WHERE
-			U_ID=#{u_id}
+   <select id="selectSession" parameterType="dsn.member.model.MemberDTO" resultType="dsn.member.model.MemberDTO">
+      SELECT
+         *
+      FROM
+         F_USER
+      WHERE
+         SESSION_ID = #{session_id}
+   </select>
+   <select id="getUser" parameterType="String" resultType="dsn.member.model.MemberDTO">
+      SELECT
+         *
+      FROM
+         F_USER
+      WHERE
+         U_ID=#{u_id}
     </select>
      <select id="login" resultType="dsn.member.model.MemberDTO">
-     	SELECT
-     		*
-     	FROM
-     		F_USER
-     	WHERE
-     		U_ID = #{u_id}
-     	AND
-     		U_PWD = #{u_pwd}
+        SELECT
+           *
+        FROM
+           F_USER
+        WHERE
+           U_ID = #{u_id}
+        AND
+           U_PWD = #{u_pwd}
     </select>
    <update id="userUpdate" parameterType="Map">
-		update f_user set
-  			u_nick=#{u_nick},
-  			u_tel=#{u_tel},
-  			u_email=#{u_email}
-  			where u_idx=#{u_idx}
-  		</update>
-  	<update id="pwdUpdate" parameterType="Map">
-  		UPDATE F_USER SET
-  			U_PWD=#{pwdconfirm}
-  			WHERE U_IDX=#{u_idx}
-  	</update>
-  	<select id="pwdFind" parameterType="Integer" resultType="String">
-  		 SELECT U_PWD FROM F_USER WHERE U_IDX=#{u_idx}
-  	</select>
-  	<select id="userInfoFind" parameterType="Map" resultType="dsn.member.model.MemberDTO">
-  		select * from f_user where u_idx=#{u_idx}
-  	</select>
-	
-</mapper>	
+      update f_user set
+           u_nick=#{u_nick},
+           u_tel=#{u_tel},
+           u_email=#{u_email}
+           where u_idx=#{u_idx}
+        </update>
+     <update id="pwdUpdate" parameterType="Map">
+        UPDATE F_USER SET
+           U_PWD=#{pwdconfirm}
+           WHERE U_IDX=#{u_idx}
+     </update>
+     <select id="pwdFind" parameterType="Integer" resultType="String">
+         SELECT U_PWD FROM F_USER WHERE U_IDX=#{u_idx}
+     </select>
+     <select id="userInfoFind" parameterType="Map" resultType="dsn.member.model.MemberDTO">
+        select * from f_user where u_idx=#{u_idx}
+     </select>
+     <select id="userInfo" parameterType="Integer" resultType="dsn.member.model.MemberDTO">
+      select
+         *
+      from
+         f_user
+      where
+         u_idx=#{u_idx}
+   </select>
+   
+</mapper>   
+</mapper>   
