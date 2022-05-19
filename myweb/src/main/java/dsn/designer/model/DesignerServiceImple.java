@@ -139,5 +139,12 @@ public class DesignerServiceImple implements DesignerService {
 		return lists;
 	}
 	
+	@Override
+	public DesignerDTO portfolioDetail(int d_idx) {
+		DesignerDTO dto=DesignerDao.portfolioDetail(d_idx);
+		return dto;
+	}
+	
+	
 
 }

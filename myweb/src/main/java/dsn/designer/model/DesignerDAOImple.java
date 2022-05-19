@@ -99,4 +99,12 @@ public class DesignerDAOImple implements DesignerDAO {
 		List lists=sqlMap.selectList("designPhotos", map);
 		return lists;
 	}
+	
+	@Override
+	public DesignerDTO portfolioDetail(int d_idx) {
+		DesignerDTO dto=sqlMap.selectOne("portfolioDetail", d_idx);
+		return dto;
+	}
+	
+
 }

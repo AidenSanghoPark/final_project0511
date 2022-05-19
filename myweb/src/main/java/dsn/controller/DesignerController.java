@@ -32,7 +32,9 @@ public class DesignerController {
 	@RequestMapping("portfolio.do")
 	public ModelAndView portfolio(@RequestParam(value = "cp", defaultValue = "1") int cp, HttpSession session) {
 		
-		int u_idx=(int)session.getAttribute("u_idx");
+		Object obj=session.getAttribute("login");
+		MemberDTO mdto = (MemberDTO) obj;
+		int u_idx=mdto.getU_idx();
 		
 		int totalCnt=designerSevice.portfolioTotalCnt();
 		int listSize=5;
@@ -72,7 +74,9 @@ public class DesignerController {
 		//String path = servletContext.getRealPath("/");
 		//System.out.println(path); // Path test code
 		
-		int u_idx=(int)session.getAttribute("u_idx");
+		Object obj=session.getAttribute("login");
+		MemberDTO mdto = (MemberDTO) obj;
+		int u_idx=mdto.getU_idx();
 		
 		int win=designerSevice.designerWin(u_idx);
 		ProfileDTO pdto=designerSevice.profileInfo(u_idx);
@@ -91,7 +95,7 @@ public class DesignerController {
 		String path=request.getSession().getServletContext().getRealPath("/profileimg/");
 		capyInto(path, dto.getUpload());
 		int result=designerSevice.profileInsert(dto);
-		String msg=result>0?"������ �Է� �Ϸ�":"������ �Է� ����";
+		String msg=result>0?"ÇÁ·ÎÇÊ »çÁø ¾÷·Îµå ¿Ï·á":"ÇÁ·ÎÇÊ »çÁø ¾÷·Îµå ½ÇÆÐ";
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg", msg);
 		mav.addObject("gopage", "profile.do");
@@ -108,7 +112,7 @@ public class DesignerController {
 		
 		System.out.println(dto.getP_img());
 		
-		String msg=result>0?"������ ���� �Ϸ�":"������ ���� ����";
+		String msg=result>0?"ÇÁ·ÎÇÊ »çÁø ¼öÁ¤ ¿Ï·á":"ÇÁ·ÎÇÊ »çÁø ¼öÁ¤ ½ÇÆÐ";
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg", msg);
 		mav.addObject("gopage", "profile.do");
@@ -131,7 +135,9 @@ public class DesignerController {
 	@RequestMapping("review.do")
 	public ModelAndView review(@RequestParam(value = "cp", defaultValue = "1") int cp, HttpSession session) {
 		
-		int u_idx=(int)session.getAttribute("u_idx");
+		Object obj=session.getAttribute("login");
+		MemberDTO mdto = (MemberDTO) obj;
+		int u_idx=mdto.getU_idx();
 		
 		int totalCnt=designerSevice.reviewTotalCnt();
 		int listSize=5;
@@ -161,7 +167,7 @@ public class DesignerController {
 	public ModelAndView designer(@RequestParam(value = "cp", defaultValue = "1") int cp) {
 		
 		int totalCnt=designerSevice.designerListTotalCnt();
-		int listSize=1;
+		int listSize=10;
 		int pageSize=5;
 		String pageStr=dsn.page.PageModule.pageMake("designer.do", totalCnt, listSize, pageSize, cp);
 		
@@ -170,13 +176,19 @@ public class DesignerController {
 		ModelAndView mav=new ModelAndView();
 		
 		mav.addObject("lists", lists);
-		System.out.println(lists);
 		mav.addObject("pageStr", pageStr); 
 		
 		mav.setViewName("designer/designer");
 		return mav;
 	}
 	
+	//@RequestMapping()
+	//public ModelAndView portfolioDetail(int d_idx) {
+	//	DesignerDTO ddto=designerSevice.portfolioDetail(d_idx);
+	//	ModelAndView mav=new ModelAndView();
+	//	mav.addObject("ddto", ddto);
+	//	return mav;
+	//}
 	
 	
 //	@RequestMapping(value = "designer.do", method = RequestMethod.GET)
