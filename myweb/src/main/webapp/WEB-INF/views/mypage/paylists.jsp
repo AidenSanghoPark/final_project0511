@@ -60,20 +60,22 @@ a {
 	</thead>
 </table>
 <c:if test="${empty lists }">
-    	<h3 style="color:grey;padding-left:300px;padding-top:200px;">결제내역이 없습니다.</h3>
+	<div style="text-align:center">
+    	<h3 style="color:grey;padding-top:200px;">결제내역이 없습니다.</h3>
+    </div>
 </c:if>
     <c:forEach var="lists" items="${lists }">
 <table class="list">
     <tr style="border:1px solid;">
-		<td>${lists.t_date }</td>
-		<td style="width:600px;">${lists.t_pay} </td>
+		<td >${lists.t_date }</td>
+		<td style="width:600px;color:blue">${lists.t_pay}&nbsp;원</td>
 		<c:choose>
 			<c:when test="${lists.t_type=='0'}">
-				<td style="color:red">결제 대기중</td>
+				<td>무통장입금</td>
 			</c:when>
-				<c:otherwise>
-				<td style="color:blue">완료</td>
-				</c:otherwise>
+			<c:when test="${lists.t_type=='1'}">
+				<td>카카오페이</td>
+			</c:when>
 		</c:choose>
 	</tr>
 </table><br>

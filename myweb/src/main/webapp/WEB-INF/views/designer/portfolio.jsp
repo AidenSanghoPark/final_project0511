@@ -32,6 +32,24 @@ h5{
     height: 150px; 
     border-radius: 70%;
 }
+.modal {
+        text-align: center;
+}
+ 
+@media screen and (min-width: 768px) { 
+        .modal:before {
+                display: inline-block;
+                vertical-align: middle;
+                content: " ";
+                height: 100%;
+        }
+}
+ 
+.modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+}
 </style>
 </head>
 <body>
@@ -77,8 +95,8 @@ h5{
 				<tr>
 					<c:forEach var="dto" items="${lists}">
 						<td>
-							<a data-bs-toggle="modal" data-bs-target="#exampleModal" id="${dto.d_idx}"><img src="designimg/${dto.d_img_1}.PNG"></a><br>
-							<label><a data-bs-toggle="modal" data-bs-target="#exampleModal" id="${dto.d_idx}">${dto.d_name}</a></label>
+							<a data-bs-toggle="modal" data-bs-target="#myModal" data-test="${dto.d_idx}"><img src="designimg/${dto.d_img_1}.PNG"></a><br>
+							<label><a data-bs-toggle="modal" data-bs-target="#myModal" data-test="${dto.d_idx}">${dto.d_name}</a></label>
 						</td>
 					</c:forEach>
 				</tr>
@@ -88,23 +106,21 @@ h5{
 	</section>
 </form>
 
-<!— Modal —>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <textarea></textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-        <button type="submit" class="btn btn-primary">리뷰작성</button>
-      </div>
-    </div>
-  </div>
+<!-- Modal --> 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
+        <div class="modal-dialog" style="float: left; padding-left: 500px;"> 
+                <div class="modal-content" style="width: 700px;">
+                        <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">디자인명, 카테고리, 우승여부</h4>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> 
+                        </div> 
+                        <div class="modal-body"> 
+                                <p><img src="img/portfolioDetail.PNG" class="img-responsive" style="width: 100%;"></p> 
+                                <p>상세내용</p>
+                                <p><input type="button" value="해당 콘테스트" id="#" onclick="#"></p>
+                        </div> 
+                </div> 
+        </div> 
 </div>
 <%@include file="/WEB-INF/views/footer.jsp" %>
 </body>

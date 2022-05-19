@@ -49,11 +49,9 @@
     <p class="lead"><img src="img/banner.png" style="align:center;"></p>
     </div>
    <!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+ <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   리뷰작성
 </button>
-
-Modal
 <form name="review" action="writeReview.do">
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -72,7 +70,7 @@ Modal
     </div>
   </div>
 </div>
-</form> -->
+</form>
   </section>
   <div class="album py-5 bg-light">
     <div class="container">

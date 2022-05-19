@@ -70,8 +70,8 @@ public class MyPageDAOImple implements MyPageDAO {
 		return cnt;
 	}
 	@Override
-	public int writeReview(ReviewDTO dto) {
-		int count=sqlMap.insert("writeReview");
+	public int writeReview(Map map) {
+		int count=sqlMap.insert("writeReview", map);
 		return count;
 	}
 	@Override
@@ -82,6 +82,16 @@ public class MyPageDAOImple implements MyPageDAO {
 	@Override
 	public int getTradeCnt(int u_idx) {
 		int cnt=sqlMap.selectOne("getTradeCnt", u_idx);
+		return cnt;
+	}
+	@Override
+	public List myPageListByDesigner(Map map) {
+		List lists=sqlMap.selectList("designerListByIdx", map);
+		return lists;
+	}
+	@Override
+	public int getDesignerCnt(int u_idx) {
+		int cnt=sqlMap.selectOne("getDesignerCnt", u_idx);
 		return cnt;
 	}
 }

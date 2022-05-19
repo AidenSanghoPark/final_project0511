@@ -19,5 +19,7 @@
 	  <mapper resource="sqlMap/WalletSQL.xml"/>
 	  <mapper resource="sqlMap/DesignerSQL.xml"/>
 	  <mapper resource="sqlMap/WithdrawSQL.xml"/>
+	  <mapper resource="sqlMap/ReviewSQL.xml"/>
+	  <mapper resource="sqlMap/ProfileSQL.xml"/>
    </mappers>
 </configuration>
