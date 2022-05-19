@@ -58,7 +58,7 @@ ul{
 	<section class="profile">
 		<input type="hidden" value="${userinfo.u_type }" name="type">
       	<img class="photo" src="profileimg/pi.jpg">
-        <h5><a href="profileConfig.do">${userinfo.u_name } 님</a></h5>
+        <h5><a href="profile.do">${userinfo.u_name } 님</a></h5>
         <p>${userinfo.u_email }</p>
         <p><a class="btn btn-secondary" href="portfolio.do">포트폴리오 관리</a></p><br>
    			 	<h3 style="color:grey">콘테스트 참가작</h3><br>
