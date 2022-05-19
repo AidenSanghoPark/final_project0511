@@ -51,7 +51,7 @@ a {
 </head>
 <body>
 <%@ include file="/WEB-INF/views/header.jsp" %>
-<c:forEach var="dto" items="${lists }">
+
 <c:choose>
 	<c:when test="${!empty blc }">
 <div style="padding-left: 80px;padding-top: 100px;">
@@ -62,7 +62,6 @@ a {
 		<table>
 			<tr>
 				<th>계좌 등록</th>
-				
 			</tr>
 		</table>
 		</fieldset>
@@ -97,7 +96,7 @@ a {
 	<c:if test="${empty lists }">
     	<h3 style="color:grey;padding-left:300px;padding-top:200px;">계좌 내역이 없습니다.</h3>
     </c:if>
-    
+    <c:forEach var="dto" items="${lists }">
     <tr style="border:1px solid;">
 		<td>${dto.a_type }</td>
 		<td>${dto.a_date }</td>
@@ -106,6 +105,7 @@ a {
 		<td style="color:blue">${dto.a_amount}</td>
 		<td>${dto.a_balance }</td>
 	</tr>
+	</c:forEach>
 </table><br>
 <div style="text-align:center">
  ${pageStr }
@@ -113,7 +113,6 @@ a {
 </div>
 	</c:when>
 </c:choose>
-</c:forEach>
 <div style="padding-top:200px;">
 <%@include file="/WEB-INF/views/footer.jsp" %>
 </div>

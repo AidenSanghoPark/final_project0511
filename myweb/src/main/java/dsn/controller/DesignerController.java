@@ -43,7 +43,6 @@ public class DesignerController {
 		
 		List lists=designerSevice.portfolio(cp, listSize, u_idx);
 		
-		int win=designerSevice.designerWin(u_idx);
 		ProfileDTO pdto=designerSevice.profileInfo(u_idx);
 		MemberDTO udto=designerSevice.userInfo(u_idx);
 		
@@ -52,7 +51,6 @@ public class DesignerController {
 		mav.addObject("lists", lists);
 		mav.addObject("pageStr", pageStr);
 		
-		mav.addObject("win", win);
 		mav.addObject("pdto", pdto);
 		mav.addObject("udto", udto);
 		mav.addObject("u_idx", u_idx);

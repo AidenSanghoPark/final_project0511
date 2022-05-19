@@ -96,7 +96,7 @@ public class DesignerServiceImple implements DesignerService {
 	
 	@Override
 	public int designerWin(int u_idx) {
-		int cnt=DesignerDao.designerWin(1);
+		int cnt=DesignerDao.designerWin(u_idx);
 		return cnt;
 	}
 	

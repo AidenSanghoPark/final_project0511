@@ -16,14 +16,6 @@
    <select id="portfolioTotalCnt" resultType="Integer">
       select count(*) from f_designer
    </select>
-   <select id="designerWin" parameterType="Integer" resultType="Integer">
-      select
-         count(d_win)
-      from
-         f_designer
-      where
-         u_idx=#{u_idx}
-   </select>
    <select id="designPhotos" parameterType="Map" resultType="dsn.designer.model.DesignerDTO">
       select * from
          (select rownum as rnum, a.*from
