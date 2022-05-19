@@ -32,7 +32,6 @@
             <a class="nav-link" href="contestJoin.do">콘테스트 참여</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="messege.do">콘테스트 참여</a>
             <a class="nav-link" href="allReview.do">리뷰</a>
           </li>
         </ul>

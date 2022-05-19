@@ -41,19 +41,18 @@
 			and rnum<![CDATA[<=]]>#{end} 
 			and c_datediff<![CDATA[>=]]>0
    	</select>
-   	
+   	 <select id="conContent" parameterType="Integer" resultType="dsn.contest.model.ConDTO">
+      select
+         *
+      from
+         f_client
+      where
+         c_idx=#{c_idx}
+   </select>
     <update id="dateUp">
     UPDATE F_CLIENT SET C_DATEDIFF=TRUNC(SYSDATE-C_ENDDATE)
     </update>
    
-   <!-- 검색페이지 -->
-	<sql id="search">
-		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">AND C_SUBJECT LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'c'.toString()">AND C_DEAS LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'tc'.toString()">AND (C_SUBJECT LIKE '%' || #{keyword} || '%') or (C_DEAS LIKE '%' || #{keyword} || '%')</if>
-		</if>
-	</sql>
 	
 	<select id="conList" parameterType="Map" resultType="dsn.contest.model.ConDTO">
 	
@@ -147,6 +146,7 @@
 	</insert>
 	
 	<insert id="addNamingTrade" parameterType="dsn.trade.model.TrdDTO">
+	
 	<selectKey order="BEFORE" keyProperty="t_idx" resultType="Integer">
 		SELECT T_IDX.NEXTVAL AS T_IDX FROM DUAL
 	</selectKey>
@@ -168,12 +168,4 @@
 		C_IDX = #{c_idx}
 		WHERE T_IDX = #{t_idx}
 	</update>
-	<select id="myPageList" parameterType="Map" resultType="dsn.contest.model.ConDTO">
-			select * from
-			(select * from
-			(select rownum as rnum,a.* from
-			(select * from f_client order by c_idx desc)a)b
-			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end})where u_idx=#{u_idx}
-			
-  	</select>
 </mapper>

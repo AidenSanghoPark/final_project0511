@@ -40,8 +40,8 @@ public class DesingerInterceptor extends HandlerInterceptorAdapter{
 			
             Object URL = session.getAttribute("logUrl");
             String logUrl= (String) URL;
-            System.out.println("logUrl="+URL);
-            response.sendRedirect((String) URL);
+//            System.out.println("logUrl="+URL);
+//            response.sendRedirect((String) URL);
             
 //            StringBuffer sb=new StringBuffer();
 //    		
@@ -49,15 +49,26 @@ public class DesingerInterceptor extends HandlerInterceptorAdapter{
 //    		sb.append(logUrl);
 //    		sb.append("';</script>");
     		
-	        
-	        
-//	            response.setContentType("text/html; charset=UTF-8");
-//
-//	            PrintWriter out = response.getWriter();
-//
-//	            out.println("<script>alert('디자이너만 참여 가능합니다.'); history.go(-1);</script>");// <== 관리자 등급별로 메뉴 제어
-//
-//	            out.flush();
+	        System.out.println("dinter="+logUrl);
+	        System.out.println(logUrl.contains("index.jsp")==true);
+	        	if(logUrl.contains("index.jsp")){
+	        		response.setContentType("text/html; charset=UTF-8");
+	        		System.out.println("디자이너검증");
+		            PrintWriter out = response.getWriter();
+
+		            out.println("<script>alert('디자이너만 참여 가능합니다.'); history.back(-2);</script>");// <== 관리자 등급별로 메뉴 제어
+
+		            out.flush();
+	        	}else if(logUrl.contains("index.jsp")==false) {
+	        		response.setContentType("text/html; charset=UTF-8");
+
+		            PrintWriter out = response.getWriter();
+		            System.out.println("디자이너검증2");
+		            out.println("<script>alert('디자이너만 참여 가능합니다.'); history.back(-1);</script>");// <== 관리자 등급별로 메뉴 제어
+
+		            out.flush();
+	        	}
+	            
 			
 			return false;
 		}else {

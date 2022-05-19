@@ -15,25 +15,34 @@
 	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"></bean>
 
 	<!-- service -->
-	<bean id="memberService" class="dsn.member.model.MemberServiceImple">
-		<property name="memberDao" ref="memberDao"></property>
+	
+	<!-- views -->
+	<bean id="dsnDown" class="dsn.view.DownloadView"></bean>
+	<!-- views -->
+	<bean id="yongJson" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+		<property name="contentType" value="application/json;charset=UTF-8"> </property>
 	</bean>
+	
+	
+
 	<bean id="myPageService" class="dsn.mypage.model.MyPageServiceImple">
 		<property name="myPageDao" ref="myPageDao"></property>
 	</bean>
+	<bean id="memberManageService" class="dsn.memberManage.model.memberManageServiceImple">
+      <property name="memberManageDao" ref="memberManageDao"></property>
+   	</bean>
+   	<bean id="memberService" class="dsn.member.model.MemberServiceImple">
+      <property name="memberDao" ref="memberDao"></property>
+   	</bean>
 	<bean id="conService" class="dsn.contest.model.ConServiceImple">
 		<property name="conDao" ref="conDao"></property>
 	</bean>
 	<bean id="designerService" class="dsn.designer.model.DesignerServiceImple">
       <property name="designerDao" ref="designerDao"></property>
    </bean>
-   
 	<bean id="adminService" class="dsn.admin.model.adminServiceImple">
 		<property name="adminDao" ref="adminDao"></property>
 	</bean>	
-   	<bean id="memberManageService" class="dsn.memberManage.model.memberManageServiceImple">
-      <property name="memberManageDao" ref="memberManageDao"></property>
-   	</bean>
    	<bean id="AskManageService" class="dsn.askManage.model.AskManageServiceImple">
       <property name="askManageDao" ref="askManageDao"></property>
    	</bean>
@@ -49,16 +58,12 @@
   	<bean id="ReportManageService" class="dsn.reportManage.model.ReportManageServiceImple">
       <property name="reportManageDao" ref="reportManageDao"></property>
    	</bean>
-   
 	<bean id="reviewService" class="dsn.review.model.ReviewServiceImple">
 		<property name="reviewDao" ref="reviewDao"></property>
 	</bean>
 	
 	
-	<!-- views -->
-	<bean id="yongJson" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
-		<property name="contentType" value="application/json;charset=UTF-8"> </property>
-	</bean>	 
+		 
 	 
 	<!-- dao -->
 	
@@ -74,13 +79,13 @@
 	</bean>
 	
 	
-	<bean id="dsnDown" class="dsn.view.DownloadView"></bean>
-	
 	<bean id="loginInterceptor" class="dsn.member.interceptor.LoginInterceptor"/>
 	<bean id="authInterceptor" class="dsn.member.interceptor.AuthInterceptor"/>
 	<bean id="rememberInterceptor" class="dsn.member.interceptor.RememberInterceptor"/>
 	<bean id="desingerInterceptor" class="dsn.member.interceptor.DesingerInterceptor"/>
 	<bean id="clientInterceptor" class="dsn.member.interceptor.ClientInterceptor"/>
+	<bean id="blockInterceptor" class="dsn.member.interceptor.BlockInterceptor"/>
+	
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
@@ -108,6 +113,18 @@
 	<mvc:interceptors>	
 		<mvc:interceptor>
 			<mvc:mapping path="/contestJoin.do"/>
+			<mvc:mapping path="/loginHold.do"/>
+			<mvc:mapping path="/namingHold.do"/>
+			<mvc:mapping path="/characterHold.do"/>
+			<mvc:mapping path="/printHold.do"/>
+			<mvc:mapping path="/myPage.do"/>
+			<mvc:mapping path="/ask.do"/>			
+			<ref bean="blockInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<mvc:interceptors>	
+		<mvc:interceptor>
+			<mvc:mapping path="/contest.do"/>
 			<ref bean="desingerInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

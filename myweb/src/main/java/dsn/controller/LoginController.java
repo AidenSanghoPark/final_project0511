@@ -43,7 +43,9 @@ public class LoginController {
 	public void loginPost(LoginDTO ldto, Model model, HttpSession session)throws Exception{
 		
 		MemberDTO memberVO = memberService.login(ldto);
-		if( memberVO == null || ldto.getU_pwd()==memberVO.getU_pwd()) {
+		
+		System.out.println("logincontroller"+memberVO.getU_block());
+		if( memberVO == null || ldto.getU_pwd() == memberVO.getU_pwd()) {
 			return;
 		}
 		
