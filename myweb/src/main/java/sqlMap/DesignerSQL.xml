@@ -96,13 +96,16 @@
 		and
 			u_idx=#{u_idx}
 	</select>
-	<insert id="writeReview" parameterType="Map">
-  		insert into f_review values(
-  			rv_idx.nextval,
-  			0,
-  			16,
-  			#{rv_content},
-  			sysdate
-  		)
-  	</insert>
+	<select id="designerListByIdx" parameterType="Map" resultType="dsn.designer.model.DesignerDTO">
+		select * from 
+			(select rownum as rnum, a.* from
+			(select * from f_user where u_idx=#{u_idx} order by u_idx desc)a)b
+		where
+			rnum <![CDATA[>=]]> #{start}
+		and
+			rnum <![CDATA[<=]]> #{end}
+	</select>
+	<select id="getDesignerCnt">
+		SELECT COUNT(*) FROM F_DESIGNER WEHRE U_IDX=#{u_idx}
+	</select>
 </mapper>

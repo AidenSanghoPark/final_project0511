@@ -101,9 +101,12 @@ public class MyPageServiceImple implements MyPageService {
 		return cnt;
 	}
 	@Override
-	public int writeReview(ReviewDTO dto) {
-		int count=myPageDao.writeReview(dto);
-		return count;
+	public int writeReview(int u_idx,String rv_content) {
+		Map map=new HashedMap();
+		map.put("u_idx", u_idx);
+		map.put("rv_content", rv_content);
+		int rvar=myPageDao.writeReview(map);
+		return rvar;
 	}
 	@Override
 	public List showPayInfo(int cp, int listSize, int u_idx) {
@@ -123,5 +126,18 @@ public class MyPageServiceImple implements MyPageService {
 		int cnt=myPageDao.getTradeCnt(u_idx);
 		cnt=cnt==0?1:cnt;
 		return cnt;
+	}
+	@Override
+	public List myPageListByDesigner(int cp, int listSize, int u_idx) {
+		
+		int start=((cp-1)*listSize)+1;
+		int end=cp*listSize;
+		
+		Map map=new HashedMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("u_idx", u_idx);
+		List lists=myPageDao.myPageListByDesigner(map);
+		return lists;
 	}
 }
