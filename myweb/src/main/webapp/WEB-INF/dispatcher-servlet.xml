@@ -107,7 +107,7 @@
 			<mvc:mapping path="/printHold.do"/>
 			<mvc:mapping path="/myPage.do"/>
 			<mvc:mapping path="/ask.do"/>			
-			<ref bean="blockInterceptor"/>
+			<ref bean="authInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
 	<mvc:interceptors>	
@@ -119,7 +119,7 @@
 			<mvc:mapping path="/printHold.do"/>
 			<mvc:mapping path="/myPage.do"/>
 			<mvc:mapping path="/ask.do"/>			
-			<ref bean="authInterceptor"/>
+			<ref bean="blockInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
 	<mvc:interceptors>	

@@ -76,17 +76,6 @@
 		where
 			u_idx=#{u_idx}
 	</select>
-	<select id="designerList" parameterType="Map" resultType="dsn.member.model.MemberDTO">
-		select * from 
-			(select rownum as rnum, a.* from
-			(select * from f_user order by u_idx desc)a)b
-		where
-			rnum <![CDATA[>=]]> #{start}
-		and
-			rnum <![CDATA[<=]]> #{end}
-		and
-			u_type = 2
-	</select>
 	<select id="designPhotos" parameterType="Map" resultType="dsn.designer.model.DesignerDTO">
 		select * from
 			(select rownum as rnum, a.*from
@@ -107,12 +96,21 @@
   			sysdate
   		)
   	</insert>
-	<select id="disignerAllList" resultType="integer" >
-		select
-			u_idx
-		from
-			f_user
-		where
-			u_type = 2
-	</select>
+	<select id="designerListTotalCnt" resultType="Integer">
+      select count(u_type) from f_user
+      where u_type = 2
+   </select>
+   <select id="designerList" resultType="dsn.designer.model.ListDTO">
+      select * from
+          (select rownum as rnum, a.*from
+          (SELECT p.p_img, p.p_info, u.u_nick, u.u_email, u.u_idx
+         from f_profile p, f_user u, f_designer d
+         where p.u_idx = u.u_idx
+         and u.u_idx = d.u_idx
+         and u.u_type = 2 )a)b
+      where
+         rnum <![CDATA[>=]]> #{start}
+      and
+         rnum <![CDATA[<=]]> #{end}
+   </select>
 </mapper>

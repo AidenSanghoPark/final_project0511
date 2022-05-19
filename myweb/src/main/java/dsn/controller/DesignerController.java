@@ -158,35 +158,53 @@ public class DesignerController {
 		mav.setViewName("designer/review");
 		return mav;
 	}
-	
 	@RequestMapping(value = "designer.do", method = RequestMethod.GET)
-	public ModelAndView designer(@RequestParam(value = "cp", defaultValue = "1") int cp, DesignerDTO dto) {
-		ModelAndView mav=new ModelAndView();
+	public ModelAndView designer(@RequestParam(value = "cp", defaultValue = "1") int cp) {
 		
-		int totalCnt=designerSevice.designerTotalCnt();
-		int listSize=5;
+		int totalCnt=designerSevice.designerListTotalCnt();
+		int listSize=1;
 		int pageSize=5;
 		String pageStr=dsn.page.PageModule.pageMake("designer.do", totalCnt, listSize, pageSize, cp);
 		
-		List userlist=designerSevice.designerAllList();
-		for(int i=0;i<userlist.size();i++) {
-			
-			List photos=designerSevice.designPhotos((int) userlist.get(i));
-			mav.addObject("photos", photos);
-		}
 		List lists=designerSevice.designerList(cp, listSize);
-		ProfileDTO pdto=designerSevice.profileInfo(1);
-		
-		System.out.println("lists="+lists);
 
-		
+		ModelAndView mav=new ModelAndView();
 		
 		mav.addObject("lists", lists);
-		mav.addObject("pageStr", pageStr);
-		mav.addObject("pdto", pdto);
+		System.out.println(lists);
+		mav.addObject("pageStr", pageStr); 
 		
-
 		mav.setViewName("designer/designer");
 		return mav;
 	}
+//	@RequestMapping(value = "designer.do", method = RequestMethod.GET)
+//	public ModelAndView designer(@RequestParam(value = "cp", defaultValue = "1") int cp, DesignerDTO dto) {
+//		ModelAndView mav=new ModelAndView();
+//		
+//		int totalCnt=designerSevice.designerTotalCnt();
+//		int listSize=5;
+//		int pageSize=5;
+//		String pageStr=dsn.page.PageModule.pageMake("designer.do", totalCnt, listSize, pageSize, cp);
+//		
+////		List userlist=designerSevice.designerAllList();
+////		for(int i=0;i<userlist.size();i++) {
+////			
+////			List photos=designerSevice.designPhotos((int) userlist.get(i));
+////			mav.addObject("photos", photos);
+////		}
+//		List lists=designerSevice.designerList(cp, listSize);
+////		ProfileDTO pdto=designerSevice.profileInfo(1);
+//		
+//		System.out.println("lists="+lists);
+//
+//		
+//		
+//		mav.addObject("lists", lists);
+//		mav.addObject("pageStr", pageStr);
+////		mav.addObject("pdto", pdto);
+//		
+//
+//		mav.setViewName("designer/designer");
+//		return mav;
+//	}
 }

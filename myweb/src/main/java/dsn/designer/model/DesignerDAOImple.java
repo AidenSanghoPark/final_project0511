@@ -94,4 +94,9 @@ public class DesignerDAOImple implements DesignerDAO {
 		List lists=sqlMap.selectList("disignerAllList");
 		return lists;
 	}
+	@Override
+	public List designPhotos(Map map) {
+		List lists=sqlMap.selectList("designPhotos", map);
+		return lists;
+	}
 }

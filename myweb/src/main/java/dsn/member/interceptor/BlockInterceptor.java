@@ -21,40 +21,13 @@ public class BlockInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		
-		System.out.println("블락 인터셉터");
 		HttpSession session = request.getSession();
 		Object obj=session.getAttribute("login");
 		MemberDTO mdto = (MemberDTO) obj;
 		ModelAndView mav= new ModelAndView();
 		
-		System.out.println(mdto.getU_block());
-		Object y="Y";
-		String yy="Y";
-		System.out.println(mdto.getU_idx()==41);
-		System.out.println(mdto.getU_block()==y);
-		System.out.println(mdto.getU_block()==yy);
-		if(mdto.getU_block()=="Y") {
-			System.out.println("블 컨트롤러 포스트 핸들러 작동");
-//			Object URL = session.getAttribute("conUrl");
-//	        String conUrl= (String) URL;
-//	        System.out.println("conUrl="+URL);
-//	        ModelAndView modelAndView=new ModelAndView();
-//	        modelAndView.addObject("msg", "디자이너 회원만 참여 가능합니다.");
-//	        modelAndView.addObject("gopage", URL);
-//	        modelAndView.setViewName("/contest/contestMsg");
-//			
-			
-//            Object URL = session.getAttribute("logUrl");
-//            String logUrl= (String) URL;
-//            System.out.println("logUrl="+URL);
-//            response.sendRedirect((String) URL);
-            
-//            StringBuffer sb=new StringBuffer();
-//    		
-//    		sb.append("<script>alert('디자이너만 참여 가능합니다.'); location.href:'");
-//    		sb.append(logUrl);
-//    		sb.append("';</script>");
+		if("Y".equals(mdto.getU_block())) {
+
     		
 	        		response.setContentType("text/html; charset=UTF-8");
 		            PrintWriter out = response.getWriter();
