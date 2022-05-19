@@ -286,5 +286,16 @@ public class ContestController {
 		mav.setViewName("dsnDown");
 		return mav;
 	}
+	@RequestMapping("/contestChoice.do")
+	public ModelAndView contestChoice() {
+		ModelAndView mav=new ModelAndView();
+		conService.contestEnd(0);
+		conService.designerWin(0);
+		conService.payUpdate(0, 0);
+		mav.addObject("gopage", "conList.do");
+		mav.addObject("msg", "당선작 선정 완료");
+		mav.setViewName("contest/contestMsg");
+		return mav;
+	}
 	
 }

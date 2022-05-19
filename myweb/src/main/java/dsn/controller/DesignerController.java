@@ -116,7 +116,6 @@ public class DesignerController {
 		return mav;
 	}
 	
-	/**���� ���� ���� �޼���*/
 	public void capyInto(String path,MultipartFile upload) {
 		try {
 			byte bytes[]=upload.getBytes();
@@ -177,6 +176,9 @@ public class DesignerController {
 		mav.setViewName("designer/designer");
 		return mav;
 	}
+	
+	
+	
 //	@RequestMapping(value = "designer.do", method = RequestMethod.GET)
 //	public ModelAndView designer(@RequestParam(value = "cp", defaultValue = "1") int cp, DesignerDTO dto) {
 //		ModelAndView mav=new ModelAndView();

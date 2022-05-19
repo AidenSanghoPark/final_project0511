@@ -101,6 +101,7 @@
 			, 0
 			, 'N'
 			, 1
+			, 7
 			)
 	</insert>
 
@@ -168,4 +169,28 @@
 		C_IDX = #{c_idx}
 		WHERE T_IDX = #{t_idx}
 	</update>
+	<update id="designerWin">
+   		UPDATE
+   			F_DESIGNER
+   		SET
+   			D_WIN = 1
+   		WHERE
+   			D_IDX = #{d_idx}
+   </update>
+   <update id="contestEnd">
+   		UPDATE
+   			F_CLIENT
+   		SET
+   			C_DATEDIFF = 0
+   		WHERE
+   			C_IDX = #{c_idx}
+   </update>
+   <update id="payUpdate">
+   		UPDATE
+   			F_ACCOUNT
+   		SET
+   			A_BALANCE = #{a_balance}
+   		WHERE
+   			U_IDX = #{u_idx}
+   </update>
 </mapper>

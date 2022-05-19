@@ -20,4 +20,7 @@ public interface ConService {
 	public int addNaming(ConDTO dto);
 	public int addNamingTrade(TrdDTO dto);
 	public void updateTrd(ConDTO dto);
+	public void designerWin(int d_idx);
+	public void contestEnd(int c_idx);
+	public void payUpdate(int a_balance, int u_idx);
 }

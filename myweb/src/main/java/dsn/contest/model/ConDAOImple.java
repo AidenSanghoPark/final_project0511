@@ -95,4 +95,18 @@ public class ConDAOImple implements ConDAO{
 		public void updateTrd(ConDTO dto) {
 			sqlMap.update("updateTrd", dto);
 		}
+		@Override
+		public void contestEnd(int c_idx) {
+			sqlMap.update("contestEnd",c_idx);
+		
+		}
+		@Override
+		public void designerWin(int d_idx) {
+			sqlMap.update("designerWin", d_idx);
+		}
+		@Override
+		public void payUpdate(Map map) {
+			sqlMap.update("payUpdate",map);
+		
+		}
 }

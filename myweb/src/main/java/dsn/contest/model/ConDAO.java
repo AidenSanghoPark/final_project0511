@@ -25,4 +25,7 @@ public interface ConDAO {
 	public int contestJoin(DesingerDTO dto);
 	public int addNamingTrade(TrdDTO dto);
 	public void updateTrd(ConDTO dto);
+	public void designerWin(int d_idx);
+	public void contestEnd(int c_idx);
+	public void payUpdate(Map map);
 }

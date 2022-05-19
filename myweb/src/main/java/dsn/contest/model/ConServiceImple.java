@@ -147,5 +147,20 @@ public class ConServiceImple implements ConService{
 	public void updateTrd(ConDTO dto) {
 		conDao.updateTrd(dto);
 	}	
+	@Override
+	public void contestEnd(int c_idx) {
+		conDao.contestEnd(c_idx);
+		
+	}@Override
+	public void designerWin(int d_idx) {
+		conDao.designerWin(d_idx);
+		
+	}@Override
+	public void payUpdate(int a_balance, int u_idx) {
+		Map map=new HashedMap();
+		map.put("a_balance", a_balance);
+		map.put("u_idx", u_idx);
+		conDao.payUpdate(map);
+	}
 
 }
