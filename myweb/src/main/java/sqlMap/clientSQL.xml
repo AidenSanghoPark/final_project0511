@@ -52,8 +52,7 @@
 			, 1
 			)
 	</insert>
-
-	<insert id="addNaming" parameterType="dsn.contest.model.ConDTO">
+	<insert id="addLogo" parameterType="dsn.contest.model.ConDTO">
 		<selectKey keyProperty="c_idx" resultType="Integer" order="BEFORE">
 			SELECT F_CLIENT_C_IDX.NEXTVAL AS C_IDX FROM DUAL
 		</selectKey>
@@ -92,8 +91,58 @@
 			'N',
 			#{c_logo}
 		)	
+	</insert>	
+	<insert id="addLogoTrade" parameterType="dsn.trade.model.TrdDTO">
+	<selectKey order="BEFORE" keyProperty="t_idx" resultType="Integer">
+		SELECT T_IDX.NEXTVAL AS T_IDX FROM DUAL
+	</selectKey>
+		INSERT INTO F_TRADE
+		VALUES(
+			#{t_idx},
+			#{u_idx},
+			#{c_idx},
+			#{t_pay},
+			#{t_type},
+			SYSDATE
+		)
 	</insert>
-	
+	<insert id="addNaming" parameterType="dsn.contest.model.ConDTO">
+		<selectKey keyProperty="c_idx" resultType="Integer" order="BEFORE">
+			SELECT F_CLIENT_C_IDX.NEXTVAL AS C_IDX FROM DUAL
+		</selectKey>
+		INSERT INTO 
+			F_CLIENT
+		(
+			C_IDX
+			,C_SUBJECT
+			,C_DEAS
+			,C_COMPANY
+			,C_CATE
+			,C_FILE
+			,C_DETAILS
+			,C_IDEA
+			,C_PAY
+			,C_OPENDATE
+			,C_ENDDATE
+			,U_IDX
+			,C_BLOCK
+		)
+		VALUES(
+			#{c_idx},
+			#{c_subject},
+			#{c_deas},
+			#{c_company},
+			#{c_cate},
+			#{c_file},
+			#{c_details},
+			#{c_idea},
+			#{c_pay},
+			sysdate,
+			sysdate+7,
+			#{u_idx},
+			'N'
+		)	
+	</insert>
 	<insert id="addNamingTrade" parameterType="dsn.trade.model.TrdDTO">
 	<selectKey order="BEFORE" keyProperty="t_idx" resultType="Integer">
 		SELECT T_IDX.NEXTVAL AS T_IDX FROM DUAL
@@ -109,7 +158,110 @@
 			SYSDATE
 		)
 	</insert>
-	
+	<insert id="addChar" parameterType="dsn.contest.model.ConDTO">
+		<selectKey keyProperty="c_idx" resultType="Integer" order="BEFORE">
+			SELECT F_CLIENT_C_IDX.NEXTVAL AS C_IDX FROM DUAL
+		</selectKey>
+		INSERT INTO 
+			F_CLIENT
+		(
+			C_IDX
+			,C_SUBJECT
+			,C_DEAS
+			,C_COMPANY
+			,C_CATE
+			,C_FILE
+			,C_DETAILS
+			,C_IDEA
+			,C_PAY
+			,C_OPENDATE
+			,C_ENDDATE
+			,U_IDX
+			,C_BLOCK
+		)
+		VALUES(
+			#{c_idx},
+			#{c_subject},
+			#{c_deas},
+			#{c_company},
+			#{c_cate},
+			#{c_file},
+			#{c_details},
+			#{c_idea},
+			#{c_pay},
+			sysdate,
+			sysdate+7,
+			#{u_idx},
+			'N'
+		)	
+	</insert>
+	<insert id="addCharTrade" parameterType="dsn.trade.model.TrdDTO">
+	<selectKey order="BEFORE" keyProperty="t_idx" resultType="Integer">
+		SELECT T_IDX.NEXTVAL AS T_IDX FROM DUAL
+	</selectKey>
+		INSERT INTO F_TRADE
+		VALUES
+		(
+			#{t_idx},
+			#{u_idx},
+			#{c_idx},
+			#{t_pay},
+			#{t_type},
+			SYSDATE
+		)
+	</insert>
+	<insert id="addPrint" parameterType="dsn.contest.model.ConDTO">
+		<selectKey keyProperty="c_idx" resultType="Integer" order="BEFORE">
+			SELECT F_CLIENT_C_IDX.NEXTVAL AS C_IDX FROM DUAL
+		</selectKey>
+		INSERT INTO 
+			F_CLIENT
+		(
+			C_IDX
+			,C_SUBJECT
+			,C_DEAS
+			,C_COMPANY
+			,C_CATE
+			,C_FILE
+			,C_DETAILS
+			,C_IDEA
+			,C_PAY
+			,C_OPENDATE
+			,C_ENDDATE
+			,U_IDX
+			,C_BLOCK
+		)
+		VALUES(
+			#{c_idx},
+			#{c_subject},
+			#{c_deas},
+			#{c_company},
+			#{c_cate},
+			#{c_file},
+			#{c_details},
+			#{c_idea},
+			#{c_pay},
+			sysdate,
+			sysdate+7,
+			#{u_idx},
+			'N'
+		)	
+	</insert>
+	<insert id="addPrintTrade" parameterType="dsn.trade.model.TrdDTO">
+	<selectKey order="BEFORE" keyProperty="t_idx" resultType="Integer">
+		SELECT T_IDX.NEXTVAL AS T_IDX FROM DUAL
+	</selectKey>
+		INSERT INTO F_TRADE
+		VALUES
+		(
+			#{t_idx},
+			#{u_idx},
+			#{c_idx},
+			#{t_pay},
+			#{t_type},
+			SYSDATE
+		)
+	</insert>	
 	<update id="updateTrd" parameterType="dsn.contest.model.ConDTO">
 		UPDATE F_TRADE
 		SET

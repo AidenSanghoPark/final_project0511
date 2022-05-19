@@ -39,9 +39,6 @@ section{
 					<a href="characterHold.do?c_cate=character"><img src="img/type3.PNG" id="img"></a>
 				</td>
 				<td>
-					<a href="productHold.do?c_cate=product"><img src="img/type4.PNG" id="img"></a>
-				</td>
-				<td>
 					<a href="printHold.do?c_cate=print"><img src="img/type5.PNG" id="img"></a>
 				</td>
 			</tr>
