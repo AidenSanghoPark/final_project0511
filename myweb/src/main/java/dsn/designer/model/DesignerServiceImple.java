@@ -117,7 +117,6 @@ public class DesignerServiceImple implements DesignerService {
 		List lists=DesignerDao.designerList(map);
 		return lists;
 	}
-
 	
 	@Override
 	public List designPhotos(Object u_idx) {
@@ -128,6 +127,10 @@ public class DesignerServiceImple implements DesignerService {
 		
 		List lists=DesignerDao.designPhotos(map);
 		return lists;
+	public int designerListTotalCnt() {
+		int cnt=DesignerDao.designerListTotalCnt();
+		cnt=cnt==0?1:cnt;
+		return cnt;
 	}
 	@Override
 	public List designerAllList() {

@@ -57,8 +57,8 @@
 	float: right;
 }
 img {
- 	max-width: 100%;
- 	max-height: 100%;
+ 	max-width: 20%;
+ 	max-height: 20%;
 }
 .profileimg {
 	height: 100px;
@@ -83,43 +83,64 @@ img {
                     <div><span class="activity-done"></span></div>
                     <div class="icons"><input type="text" name="designerName"><input type="submit" value="검색" class="fa fa-search"></div>
                 </div>
-                <c:forEach var="dto" items="${lists}">
-                <div class="mt-3">
-                    <ul class="list list-inline">
-                        <li class="d-flex justify-content-between">
-                            <div class="d-flex flex-row align-items-center"><i class="fa fa-check-circle checkicon"></i>
-                                <div class="ml-2">
-                                	<div class="profileimg" style="padding:10px;"><img src="profileimg/${pdto.p_img}"></div>
-                                	<div class="desingerNick" style="padding-left: 10px; font-weight: bold;">${dto.u_nick}</div>
-                                    <div class="d-flex flex-row mt-1 text-black-50 date-time">
-                                    </div>
-                                    <div>
-                                    	<span class="ml-2" style="padding-left: 15px;">
-	                                    	<input type="button" value="포트폴리오" onclick="#">&nbsp;&nbsp;
-	                                    	<input type="button" value="이메일" onclick="#">
-                                    	</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-row align-items-center" style="width:400px;">
-                                <div class="d-flex flex-column mr-2" style="width:400px;">
-                                    <c:forEach var="photo" items="${photos}">
-		                                    <div class="profile-image">
-		                                    	<img src="img/${photo.d_img_1}" width="100">&nbsp;&nbsp;&nbsp;&nbsp;
-		                                    </div>
+                
+                
+                
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade active show" id="home" role="tabpanel">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">프로필</th>
+                                        <th scope="col">소개</th>
+                                        <th class="text-center" scope="col">ㅤ</th>
+                                    </tr>
+                                </thead>
+                                
+                                <tbody>
+                                <c:forEach var="dto" items="${lists}">
+                                    <tr class="inner-box">
+                                        <td>
+                                            <div class="event-img">
+                                                <img src="img/${dto.p_img}" alt="" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="event-wrap">
+                                                <h3><a href="#">${dto.u_nick}</a></h3>
+                                                <div class="meta">
+                                                    <div class="categories">${dto.u_email}
+                                                    </div>
+                                                    <div class="time">
+                                                        <span>${dto.p_info}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="primary-btn">
+                                                <input type="button" value="포트폴리오" onclick="porfolio.do?u_idx=${dto.u_idx}" >
+                                            </div>
+                                        </td>
+                                    </tr>
                                     </c:forEach>
+                                   </tbody>
+                                   
+                                  </table>
+                                 </div>
                                 </div>
-                                <i class="fa fa-ellipsis-h"></i>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                </c:forEach>
+                               </div>
+                            
+                
                 <div id="page">${pageStr}</div>
             </div>
         </div>
     </div>
 </form>
 <%@include file="/WEB-INF/views/footer.jsp" %>
+<script>
+console.log(dto.u_nick)
+</script>
 </body>
 </html>

@@ -17,6 +17,7 @@ public interface DesignerDAO {
 	public int portfolioTotalCnt();
 	public int reviewTotalCnt();
 	public int designerTotalCnt();
+	public int designerListTotalCnt();
 	public List designerList(Map map);
 	public List designPhotos(Map map);
 	public List designerAllList();
