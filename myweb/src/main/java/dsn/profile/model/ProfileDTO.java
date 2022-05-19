@@ -9,21 +9,38 @@ public class ProfileDTO {
 	private String p_img;
 	private String p_info;
 	private String u_wallet;
+	private String u_bank;
 	private MultipartFile upload;
 	
 	public ProfileDTO() {
 		super();
 	}
 	
-	public ProfileDTO(int p_idx, int u_idx, String p_img, String p_info, String u_wallet, MultipartFile upload) {
+	
+	public ProfileDTO(int p_idx, int u_idx, String p_img, String p_info, String u_wallet, String u_bank,
+			MultipartFile upload) {
 		super();
 		this.p_idx = p_idx;
 		this.u_idx = u_idx;
 		this.p_img = p_img;
 		this.p_info = p_info;
 		this.u_wallet = u_wallet;
+		this.u_bank = u_bank;
 		this.upload = upload;
 	}
+	
+	
+
+	public String getU_bank() {
+		return u_bank;
+	}
+
+
+	public void setU_bank(String u_bank) {
+		this.u_bank = u_bank;
+	}
+
+
 	public MultipartFile getUpload() {
 		return upload;
 	}

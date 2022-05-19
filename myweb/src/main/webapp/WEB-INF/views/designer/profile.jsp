@@ -90,8 +90,25 @@ h5{
 			</tr>
 			<tr>
 				<th>계좌번호</th>
-				<td><input type="text" value="${pdto.u_wallet}" name="u_wallet"></td>
-			<tr>
+				<td>
+					<select name="u_bank">
+						<option>${pdto.u_bank}</option>
+						<option>카카오</option>
+						<option>KB국민</option>
+						<option>우리</option>
+						<option>신한</option>
+						<option>BC</option>
+						<option>하나</option>
+						<option>SC제일</option>
+						<option>한국TC</option>
+						<option>농협</option>
+						<option>삼성</option>
+						<option>롯데</option>
+						<option>케이</option>
+						<option>현대</option>	
+					</select>
+				<input type="text" value="${pdto.u_wallet}" name="u_wallet"></td>
+			</tr>
 			<tr>
 				<td><input type="submit" value="수정하기" id="sujung"></td>
 			</tr>
