@@ -335,7 +335,22 @@ main {
 a{
 	text-decoration: none;
 }
+.button {
+  background-color: #000000;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
 
+.button:hover {opacity: 1}
 </style>
 
 <script type="text/javascript"
@@ -375,15 +390,16 @@ a{
 			            <h4 style="padding-right: 45px; text-align: right; font-size: 15px; color: gray;"><label style="font-weight: bold;">남은기간</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D${dto.c_datediff }</h4> 
 			        </div>    
 			    </div> 
+
 			</div>
-			
-		<div style="width: 40%; margin: 0 auto;">
-			<div style="background-color: lightgray; float: left;">브리핑 보기</div>
-			<div style="background-color: lightgray; float: right;"><a href="contestJoin.do">콘테스트 참여</a></div>
+			<br>
+		<div style="width: 40%; margin: 0 auto; padding-left: 10px;">
+			<button class="button">참여작 보기</button>
+			<button class="button">브리핑 보기</button>
+			<a href="contestJoin.do?c_idx=${dto.c_idx }"><button class="button">콘테스트 참여</button></a>
 		</div>
-		<br>
-	<div style="padding-left: 30px; padding-top: 10px; background-color: #ffffff; width: 60%; margin: 0 auto;">
-	
+		
+<div style="padding-left: 30px; padding-top: 10px; background-color: #ffffff; width: 60%; margin: 0 auto;">
 	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>콘테스트 의뢰내용 보기</b></h5>
 
 	<fieldset style="border: solid 1px #a4a4a4; width: 800px; height: 100%; padding: 10px;
