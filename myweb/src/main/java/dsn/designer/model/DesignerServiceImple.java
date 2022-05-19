@@ -107,28 +107,37 @@ public class DesignerServiceImple implements DesignerService {
 	}
 	
 	@Override
-	public List designerList(int cp, int listSize, int u_idx) {
+	public List designerList(int cp, int listSize) {
 		int start=((cp-1)*listSize)+1;
 		int end=cp*listSize;
 		Map map=new HashedMap();
 		map.put("start", start);
 		map.put("end", end);
-		map.put("u_idx", u_idx);
 		
 		List lists=DesignerDao.designerList(map);
 		return lists;
 	}
-
 	
 	@Override
-	public List designPhotos(int u_idx) {
+	public List designPhotos(Object u_idx) {
+		
+		System.out.println("service="+u_idx);
 		Map map=new HashedMap();
 		map.put("u_idx", u_idx);
 		
 		List lists=DesignerDao.designPhotos(map);
 		return lists;
 	}
-	
+	public int designerListTotalCnt() {
+		int cnt=DesignerDao.designerListTotalCnt();
+		cnt=cnt==0?1:cnt;
+		return cnt;
+	}
+	@Override
+	public List designerAllList() {
+		List lists=DesignerDao.designerAllList();
+		return lists;
+	}
 	
 
 }

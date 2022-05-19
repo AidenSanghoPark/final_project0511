@@ -1,12 +1,15 @@
 package dsn.controller;
 
 import java.io.File;
+
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +30,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import dsn.contest.model.*;
 import dsn.module.*;
+import dsn.page.PageModule;
 import dsn.trade.model.TrdDTO;
 
 @Controller
@@ -74,7 +78,7 @@ public class ContestController {
 			String path = request.getSession().getServletContext().getRealPath("img/");
 			copyInto(dto.getUpload(), path); 
 		}
-		mav.setViewName("contest/logoHold"); //임시방편 jsp 경로 바꿔야함
+		mav.setViewName("contest/contestChoice"); //
 		return mav;
 	}
 	//���̹� form
@@ -140,25 +144,164 @@ public class ContestController {
 	}
 	
 	@RequestMapping(value = "contestJoin.do", method = RequestMethod.GET)
-	public ModelAndView contestJoin(ConDTO dto) {
+	public ModelAndView contestJoin(ConDTO dto, HttpServletRequest request, HttpSession session) {
+		
+		Object obj=session.getAttribute("login");
+		MemberDTO mdto = (MemberDTO) obj;
+//		String url=request.getHeader("REFERER");
+//    	request.getSession().setAttribute("conUrl", url);
 		ModelAndView mav=new ModelAndView();
 		ConDTO con=conService.conInfo(dto.getC_idx());
+		mav.addObject("mdto",mdto);
 		mav.addObject("condto", con);
 		mav.setViewName("contest/contestJoin");
 		return mav;
 	}
 	@RequestMapping(value = "contestJoinSubmit.do", method = RequestMethod.POST)
-	public ModelAndView contestJoinForm(MultipartHttpServletRequest request ,DesingerDTO dto) {
-		System.out.println(dto.getD_name());
+	public ModelAndView contestJoinForm(MultipartHttpServletRequest request ,DesignerDTO dto) {
+		
+		System.out.println("conJoinForm="+dto.getC_cate());
+		System.out.println("conJoinForm="+dto.getC_idx());
+		System.out.println("conJoinForm="+dto.getU_idx());
+		System.out.println("conJoinForm="+dto.getD_content());
+		System.out.println("conJoinForm="+dto.getD_name());
 		ModelAndView mav=new ModelAndView();
 		FileUploadModule file=new FileUploadModule();
 		String path=request.getSession().getServletContext().getRealPath("img/");
 		file.copyInto(path,dto.getUploadfile1());
 		file.copyInto(path,dto.getUploadfile2());
 		int result=conService.contestJoin(dto);
-		mav.setViewName("index");
+		String msg=result>0?"콘테스트 참여 완료":"콘테스트 참여 실패";
+		mav.addObject("msg",msg);
+		mav.addObject("gopage", "index.do");
+		mav.setViewName("/contest/contestMsg");
 		return mav;
 	}
 	
+	@RequestMapping(value = "/conList.do")
+	   public ModelAndView conList(
+			   @RequestParam(value="cp",defaultValue = "1") int cp,
+			   @RequestParam(required = false, defaultValue = "전체") String c_cate,
+			   @RequestParam(required = false, defaultValue = "") String searchType,
+			   @RequestParam(required = false, defaultValue = "") String keyword) throws Exception {
+			PageModule PageModule = new PageModule();
+			PageModule.setSearchType(searchType);
+			PageModule.setKeyword(keyword);
+
+		    int totalCnt=conService.ContestCnt();
+			int listSize=3;
+			int pageSize=3;
+			
+			List lists = null;
+			String p_command = "";
+			if(c_cate.equals("전체")) {
+				lists=conService.conList(cp,listSize,searchType,keyword);
+			}else {
+				lists = conService.cateList(cp, listSize, c_cate);
+			}
+			
+			String pageStr="";
+			if(searchType=="") {
+				pageStr=dsn.page.PageModule.pageMake(p_command, totalCnt, listSize, pageSize, cp);
+			}else {
+				pageStr=dsn.page.PageModule.searchPageMake(p_command,
+					totalCnt, listSize, pageSize, cp, searchType, keyword);
+			}
+			
+			int dateUp=conService.dateUp();
+			
+	      //페이징 처리 끝
+	      
+	      ModelAndView mav=new ModelAndView();
+	      mav.addObject("dateUp",dateUp);
+	      mav.addObject("c_cate",c_cate);
+		  mav.addObject("pageStr",pageStr);
+		  mav.addObject("lists",lists);
+		  mav.setViewName("contest/conList");
+	      
+	      return mav; 
+	   } 
+
+	
+	@RequestMapping(value = "/conEnd.do")
+	   public ModelAndView conEnd(
+			   @RequestParam(value="cp",defaultValue = "1") int cp,
+			   @RequestParam(required = false, defaultValue = "전체") String c_cate,
+			   @RequestParam(required = false, defaultValue = "") String searchType,
+			   @RequestParam(required = false, defaultValue = "") String keyword) throws Exception {
+	      System.out.println(keyword);
+			PageModule PageModule = new PageModule();
+			PageModule.setSearchType(searchType);
+			PageModule.setKeyword(keyword);
+
+		    int totalCnt=conService.ContestCnt();
+			int listSize=3;
+			int pageSize=3;
+			
+			List lists = null;
+			String p_command = "";
+			if(c_cate.equals("전체")) {
+				lists=conService.conEnd(cp,listSize,searchType,keyword);
+			}else {
+				lists = conService.cateEnd(cp, listSize, c_cate);
+			}
+			
+			String pageStr="";
+			if(searchType=="") {
+				pageStr=dsn.page.PageModule.pageMake(p_command, totalCnt, listSize, pageSize, cp);
+			}else {
+				pageStr=dsn.page.PageModule.searchPageMake(p_command,
+					totalCnt, listSize, pageSize, cp, searchType, keyword);
+			}
+			
+			int dateUp=conService.dateUp();
+			
+	      //페이징 처리 끝
+	      
+	      ModelAndView mav=new ModelAndView();
+	      mav.addObject("dateUp",dateUp);
+	      mav.addObject("c_cate",c_cate);
+		  mav.addObject("pageStr",pageStr);
+		  mav.addObject("lists",lists);
+		  mav.setViewName("contest/conEnd");
+	      
+	      return mav; 
+	   } 
+	
+	@RequestMapping(value = "/conContent.do")
+	public ModelAndView conContent(
+			@RequestParam(value="c_idx", defaultValue = "0") int c_idx){
+		ConDTO dto=conService.conContent(c_idx);
+		ModelAndView mav=new ModelAndView();
+		if(dto==null) {
+			mav.addObject("msg", "잘못된 접근 또는 삭제된 콘테스트입니다.");
+			mav.addObject("gopage","conList.do");
+			mav.setViewName("contest/conMsg");
+		}else {
+			mav.addObject("dto",dto);
+			mav.setViewName("contest/conContent");
+		}
+		return mav;
+	}
+
+	@RequestMapping("/fileDown.do")
+	public ModelAndView fileDown(@RequestParam("filename")String filename) {
+		File f=new File("C:/Users/user/Desktop/이젠/jspstudy4/myweb/src/main/webapp/upload/"+filename);
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("downloadFile",f);
+		mav.setViewName("dsnDown");
+		return mav;
+	}
+	@RequestMapping("/contestChoice.do")
+	public ModelAndView contestChoice() {
+		ModelAndView mav=new ModelAndView();
+		conService.contestEnd(0);
+		conService.designerWin(0);
+		conService.payUpdate(0, 0);
+		mav.addObject("gopage", "conList.do");
+		mav.addObject("msg", "당선작 선정 완료");
+		mav.setViewName("contest/contestMsg");
+		return mav;
+	}
 	
 }

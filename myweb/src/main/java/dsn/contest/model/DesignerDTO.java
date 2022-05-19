@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class DesingerDTO {
+public class DesignerDTO {
 	
 	private int d_idx;
 	private int u_idx;
@@ -15,14 +15,15 @@ public class DesingerDTO {
 	private Date d_date;
 	private int d_win;
 	private String d_block;
-	private String d_cate;
+	private String c_cate;
+	private int c_idx;
 	private MultipartFile uploadfile1;
 	private MultipartFile uploadfile2;
-	public DesingerDTO() {
+	public DesignerDTO() {
 		super();
 	}
-	public DesingerDTO(int d_idx, int u_idx, String d_name, String d_content, String d_img_1, String d_img_2,
-			Date d_date, int d_win, String d_block, String d_cate, MultipartFile uploadfile1,
+	public DesignerDTO(int d_idx, int u_idx, String d_name, String d_content, String d_img_1, String d_img_2,
+			Date d_date, int d_win, String d_block, String c_cate, int c_idx, MultipartFile uploadfile1,
 			MultipartFile uploadfile2) {
 		super();
 		this.d_idx = d_idx;
@@ -34,7 +35,8 @@ public class DesingerDTO {
 		this.d_date = d_date;
 		this.d_win = d_win;
 		this.d_block = d_block;
-		this.d_cate = d_cate;
+		this.c_cate = c_cate;
+		this.c_idx = c_idx;
 		this.uploadfile1 = uploadfile1;
 		this.uploadfile2 = uploadfile2;
 	}
@@ -92,11 +94,17 @@ public class DesingerDTO {
 	public void setD_block(String d_block) {
 		this.d_block = d_block;
 	}
-	public String getD_cate() {
-		return d_cate;
+	public String getC_cate() {
+		return c_cate;
 	}
-	public void setD_cate(String d_cate) {
-		this.d_cate = d_cate;
+	public void setC_cate(String c_cate) {
+		this.c_cate = c_cate;
+	}
+	public int getC_idx() {
+		return c_idx;
+	}
+	public void setC_idx(int c_idx) {
+		this.c_idx = c_idx;
 	}
 	public MultipartFile getUploadfile1() {
 		return uploadfile1;

@@ -18,6 +18,8 @@ public interface DesignerService {
 	public int portfolioTotalCnt();
 	public int reviewTotalCnt();
 	public int designerTotalCnt();
-	public List designerList(int cp, int listSize, int u_idx);
-	public List designPhotos(int u_idx);
+	public List designPhotos(Object u_idx);
+	public List designerAllList();
+	public List designerList(int cp, int listSize);
+	public int designerListTotalCnt();
 }

@@ -166,6 +166,4 @@ public class ConDTO {
 		this.upload = upload;
 	}
 	
-	
-	
 }

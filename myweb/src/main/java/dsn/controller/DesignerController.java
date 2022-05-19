@@ -91,7 +91,7 @@ public class DesignerController {
 		String path=request.getSession().getServletContext().getRealPath("/profileimg/");
 		capyInto(path, dto.getUpload());
 		int result=designerSevice.profileInsert(dto);
-		String msg=result>0?"ÇÁ·ÎÇÊ ÀÔ·Â ¿Ï·á":"ÇÁ·ÎÇÊ ÀÔ·Â ½ÇÆÐ";
+		String msg=result>0?"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½Ï·ï¿½":"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½";
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg", msg);
 		mav.addObject("gopage", "profile.do");
@@ -108,7 +108,7 @@ public class DesignerController {
 		
 		System.out.println(dto.getP_img());
 		
-		String msg=result>0?"ÇÁ·ÎÇÊ ¼öÁ¤ ¿Ï·á":"ÇÁ·ÎÇÊ ¼öÁ¤ ½ÇÆÐ";
+		String msg=result>0?"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½":"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½";
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg", msg);
 		mav.addObject("gopage", "profile.do");
@@ -116,7 +116,6 @@ public class DesignerController {
 		return mav;
 	}
 	
-	/**ÆÄÀÏ º¹»ç °ü·Ã ¸Þ¼­µå*/
 	public void capyInto(String path,MultipartFile upload) {
 		try {
 			byte bytes[]=upload.getBytes();
@@ -158,29 +157,56 @@ public class DesignerController {
 		mav.setViewName("designer/review");
 		return mav;
 	}
-	
 	@RequestMapping(value = "designer.do", method = RequestMethod.GET)
-	public ModelAndView designer(@RequestParam(value = "cp", defaultValue = "1") int cp, DesignerDTO dto) {
+	public ModelAndView designer(@RequestParam(value = "cp", defaultValue = "1") int cp) {
 		
-		int totalCnt=designerSevice.designerTotalCnt();
-		int listSize=5;
+		int totalCnt=designerSevice.designerListTotalCnt();
+		int listSize=1;
 		int pageSize=5;
 		String pageStr=dsn.page.PageModule.pageMake("designer.do", totalCnt, listSize, pageSize, cp);
 		
-		int u_idx=dto.getU_idx();
-		List lists=designerSevice.designerList(cp, listSize, u_idx);
-		ProfileDTO pdto=designerSevice.profileInfo(u_idx);
-		List photos=designerSevice.designPhotos(u_idx);
-		System.out.println(photos);
+		List lists=designerSevice.designerList(cp, listSize);
 
 		ModelAndView mav=new ModelAndView();
 		
 		mav.addObject("lists", lists);
-		mav.addObject("pageStr", pageStr);
-		mav.addObject("pdto", pdto);
-		mav.addObject("photos", photos);
-
+		System.out.println(lists);
+		mav.addObject("pageStr", pageStr); 
+		
 		mav.setViewName("designer/designer");
 		return mav;
 	}
+	
+	
+	
+//	@RequestMapping(value = "designer.do", method = RequestMethod.GET)
+//	public ModelAndView designer(@RequestParam(value = "cp", defaultValue = "1") int cp, DesignerDTO dto) {
+//		ModelAndView mav=new ModelAndView();
+//		
+//		int totalCnt=designerSevice.designerTotalCnt();
+//		int listSize=5;
+//		int pageSize=5;
+//		String pageStr=dsn.page.PageModule.pageMake("designer.do", totalCnt, listSize, pageSize, cp);
+//		
+////		List userlist=designerSevice.designerAllList();
+////		for(int i=0;i<userlist.size();i++) {
+////			
+////			List photos=designerSevice.designPhotos((int) userlist.get(i));
+////			mav.addObject("photos", photos);
+////		}
+//		List lists=designerSevice.designerList(cp, listSize);
+////		ProfileDTO pdto=designerSevice.profileInfo(1);
+//		
+//		System.out.println("lists="+lists);
+//
+//		
+//		
+//		mav.addObject("lists", lists);
+//		mav.addObject("pageStr", pageStr);
+////		mav.addObject("pdto", pdto);
+//		
+//
+//		mav.setViewName("designer/designer");
+//		return mav;
+//	}
 }

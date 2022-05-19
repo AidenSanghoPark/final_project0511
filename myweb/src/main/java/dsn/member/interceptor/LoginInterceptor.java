@@ -1,5 +1,7 @@
 package dsn.member.interceptor;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +20,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println("loginter");
 		HttpSession session = request.getSession();
 		
 		if(session.getAttribute(LOGIN) != null) {
@@ -37,10 +38,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
         ModelMap modelMap = modelAndView.getModelMap();
         Object memberVO =  modelMap.get("user");
         
-        System.out.println("loginter post mvo="+memberVO);
-        
-        System.out.println("loginter copkie="+request.getParameter("useCookie"));
-        
         if (memberVO != null) {
             httpSession.setAttribute(LOGIN, memberVO);
             
@@ -52,8 +49,29 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
             }
             
             Object destination = httpSession.getAttribute("destination");
-            Object URL = httpSession.getAttribute("URL");
-            response.sendRedirect(destination != null ? (String) destination : "index.do");
+            Object URL = httpSession.getAttribute("logUrl");
+            String logUrl= (String) URL;
+            System.out.println("logUrl="+URL);
+            
+            if(logUrl.contains("logout.do")) {
+            	response.sendRedirect(destination != null ? (String) destination : "index.do");
+            }else {
+            	response.sendRedirect(destination != null ? (String) destination : (String) URL);
+            }
+            
+            
+        }else {
+        	
+        	modelAndView.addObject("msg", "로그인 실패");
+        	modelAndView.addObject("gopage", "index.do");
+        	modelAndView.setViewName("/member/loginMsg");
+//        	response.setContentType("text/html; charset=UTF-8");
+//
+//            PrintWriter out = response.getWriter();
+//
+//            out.println("<script>alert('아이디 비밀번호가 일치하지 않습니다.'); history.go(-1);</script>");// <== 관리자 등급별로 메뉴 제어
+//
+//            out.flush();
         }
 	}
 	
