@@ -2,8 +2,8 @@ package dsn.page;
 
 public class PageModule {
 
-	private String searchType = ""; // 검색 타입(카테고리)
-	  private String keyword = ""; // 검색 키워드
+	private String searchType = "";
+	  private String keyword = "";
 	   
 	  public String getSearchType() {
 	      return searchType;
@@ -31,16 +31,15 @@ public class PageModule {
 		
 		sb.append("<nav aria-label='...'><ul class='pagination justify-content-center'>");
 		
-		//왼쪽으로 가는 화살표 코드
+		
 		if(userGroup!=0){
 			sb.append("<li class='page-item'><a href='");
 			sb.append(pageName);
 			sb.append("?cp=");
 			int temp = (userGroup-1)*pageSize+pageSize;
 			sb.append(temp);
-			sb.append("'>&lt;&lt;</a>"); //왼쪽 화살표 문자표시
-			sb.append("' class='page-link'>Previous</a></li>");
-			//<a href="pageTest.jsp?cp=<%=(userGroup-1)*pageSize+pageSize%>">&lt;&lt;</a>
+			sb.append("'>&lt;&lt;</a>"); 
+			sb.append("'</li>");
 		}
 		
 		
@@ -65,8 +64,8 @@ public class PageModule {
 			sb.append("?cp=");
 			int temp=(userGroup+1)*pageSize+1;
 			sb.append(temp);
-			sb.append("'>&gt;&gt;</a>"); //오른쪽 화살표 문자표
-			sb.append("' class=\"page-link\">Next</a></li>");
+			sb.append("'>&gt;&gt;</a>");
+			sb.append("'</li>");
 		
 		}
 		
@@ -95,7 +94,7 @@ public class PageModule {
 				sb.append(searchType);
 				sb.append("&keyword=");
 				sb.append(keyword);	
-				sb.append("'>&lt;&lt;</a>"); //왼쪽 화살표 문자표시
+				sb.append("'>&lt;&lt;</a>"); 
 			}
 			
 			for(int i=(userGroup*pageSize+1);
@@ -121,7 +120,7 @@ public class PageModule {
 				sb.append("?cp=");
 				int temp=(userGroup+1)*pageSize+1;
 				sb.append(temp);
-				sb.append("'>&gt;&gt;</a>"); //오른쪽 화살표 문자표시
+				sb.append("'>&gt;&gt;</a>");
 			}
 			return sb.toString();
 		}

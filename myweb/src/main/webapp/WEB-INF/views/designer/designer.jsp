@@ -78,7 +78,7 @@ img {
                 
                 
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade active show" id="home" role="tabpanel" style="width: 1000px;">
+                    <div class="tab-pane fade active show" id="home" role="tabpanel">
                         <div class="table-responsive" >
                             <table class="table">
                                 <thead>
@@ -111,7 +111,7 @@ img {
                                         </td>
                                         <td>
                                             <div class="primary-btn">
-                                                <input type="button" value="포트폴리오" onclick="porfolio.do?u_idx=${dto.u_idx}" >
+                                                <input type="button" value="포트폴리오" onclick="portOpen()" >
                                             </div>
                                         </td>
                                     </tr>
@@ -131,7 +131,9 @@ img {
 </form>
 <%@include file="/WEB-INF/views/footer.jsp" %>
 <script>
-console.log(dto.u_nick)
+function portOpen(){
+	location.href='porfolio.do?u_idx=${dto.u_idx}';
+}
 </script>
 </body>
 </html>
