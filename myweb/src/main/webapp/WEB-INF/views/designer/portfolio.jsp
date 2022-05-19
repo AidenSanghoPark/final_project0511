@@ -107,7 +107,7 @@ h5{
 </form>
 
 <!-- Modal --> 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true""> 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
         <div class="modal-dialog" style="float: left; padding-left: 500px;"> 
                 <div class="modal-content" style="width: 700px;">
                         <div class="modal-header">

@@ -32,7 +32,9 @@ public class DesignerController {
 	@RequestMapping("portfolio.do")
 	public ModelAndView portfolio(@RequestParam(value = "cp", defaultValue = "1") int cp, HttpSession session) {
 		
-		int u_idx=(int)session.getAttribute("u_idx");
+		Object obj=session.getAttribute("login");
+		MemberDTO mdto = (MemberDTO) obj;
+		int u_idx=mdto.getU_idx();
 		
 		int totalCnt=designerSevice.portfolioTotalCnt();
 		int listSize=5;
@@ -72,7 +74,9 @@ public class DesignerController {
 		//String path = servletContext.getRealPath("/");
 		//System.out.println(path); // Path test code
 		
-		int u_idx=(int)session.getAttribute("u_idx");
+		Object obj=session.getAttribute("login");
+		MemberDTO mdto = (MemberDTO) obj;
+		int u_idx=mdto.getU_idx();
 		
 		int win=designerSevice.designerWin(u_idx);
 		ProfileDTO pdto=designerSevice.profileInfo(u_idx);
@@ -132,7 +136,9 @@ public class DesignerController {
 	@RequestMapping("review.do")
 	public ModelAndView review(@RequestParam(value = "cp", defaultValue = "1") int cp, HttpSession session) {
 		
-		int u_idx=(int)session.getAttribute("u_idx");
+		Object obj=session.getAttribute("login");
+		MemberDTO mdto = (MemberDTO) obj;
+		int u_idx=mdto.getU_idx();
 		
 		int totalCnt=designerSevice.reviewTotalCnt();
 		int listSize=5;
@@ -182,6 +188,6 @@ public class DesignerController {
 	//	DesignerDTO ddto=designerSevice.portfolioDetail(d_idx);
 	//	ModelAndView mav=new ModelAndView();
 	//	mav.addObject("ddto", ddto);
-	//	mav.setViewName("des");
+	//	return mav;
 	//}
 }

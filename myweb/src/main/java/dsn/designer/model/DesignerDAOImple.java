@@ -105,5 +105,6 @@ public class DesignerDAOImple implements DesignerDAO {
 		DesignerDTO dto=sqlMap.selectOne("portfolioDetail", d_idx);
 		return dto;
 	}
+	
 
 }
