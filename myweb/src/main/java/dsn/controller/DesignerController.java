@@ -169,13 +169,11 @@ public class DesignerController {
 		String pageStr=dsn.page.PageModule.pageMake("designer.do", totalCnt, listSize, pageSize, cp);
 		
 		List userlist=designerSevice.designerAllList();
-		
-//		for(int i=0;i<userlist.size();i++) {
-//			Object u_idx= userlist.get(i);
-//			System.out.println(u_idx);
-//			List photos=designerSevice.designPhotos(u_idx);
-//			mav.addObject("photos", photos);
-//		}
+		for(int i=0;i<userlist.size();i++) {
+			
+			List photos=designerSevice.designPhotos((int) userlist.get(i));
+			mav.addObject("photos", photos);
+		}
 		List lists=designerSevice.designerList(cp, listSize);
 		ProfileDTO pdto=designerSevice.profileInfo(1);
 		

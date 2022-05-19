@@ -379,7 +379,7 @@ a{
 			
 		<div style="width: 40%; margin: 0 auto;">
 			<div style="background-color: lightgray; float: left;">브리핑 보기</div>
-			<div style="background-color: lightgray; float: right;">콘테스트 참여</div>
+			<div style="background-color: lightgray; float: right;"><a href="contestJoin.do">콘테스트 참여</a></div>
 		</div>
 		<br>
 	<div style="padding-left: 30px; padding-top: 10px; background-color: #ffffff; width: 60%; margin: 0 auto;">

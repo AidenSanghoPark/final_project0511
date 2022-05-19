@@ -84,6 +84,7 @@
 	<bean id="rememberInterceptor" class="dsn.member.interceptor.RememberInterceptor"/>
 	<bean id="desingerInterceptor" class="dsn.member.interceptor.DesingerInterceptor"/>
 	<bean id="clientInterceptor" class="dsn.member.interceptor.ClientInterceptor"/>
+	<bean id="blockInterceptor" class="dsn.member.interceptor.BlockInterceptor"/>
 	
 	<mvc:interceptors>
 		<mvc:interceptor>
@@ -106,12 +107,24 @@
 			<mvc:mapping path="/printHold.do"/>
 			<mvc:mapping path="/myPage.do"/>
 			<mvc:mapping path="/ask.do"/>			
-			<ref bean="authInterceptor"/>
+			<ref bean="blockInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
 	<mvc:interceptors>	
 		<mvc:interceptor>
 			<mvc:mapping path="/contestJoin.do"/>
+			<mvc:mapping path="/loginHold.do"/>
+			<mvc:mapping path="/namingHold.do"/>
+			<mvc:mapping path="/characterHold.do"/>
+			<mvc:mapping path="/printHold.do"/>
+			<mvc:mapping path="/myPage.do"/>
+			<mvc:mapping path="/ask.do"/>			
+			<ref bean="authInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<mvc:interceptors>	
+		<mvc:interceptor>
+			<mvc:mapping path="/contest.do"/>
 			<ref bean="desingerInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

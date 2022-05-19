@@ -107,7 +107,7 @@
   			sysdate
   		)
   	</insert>
-	<select id="disignerAllList" resultType="dsn.designer.model.DesignerDTO" >
+	<select id="disignerAllList" resultType="integer" >
 		select
 			u_idx
 		from

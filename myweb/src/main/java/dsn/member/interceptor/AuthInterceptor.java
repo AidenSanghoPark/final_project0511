@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import dsn.member.model.MemberDTO;
+
 public class AuthInterceptor extends HandlerInterceptorAdapter{
 
 	 private static final String LOGIN = "login";

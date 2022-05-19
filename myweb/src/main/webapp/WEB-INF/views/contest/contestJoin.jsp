@@ -407,6 +407,18 @@ a{
 		</form>
 	</div>
 <script type="text/javascript">
+	var type = ${login.u_type};
+	console.log(type);
+	if(type != 2) {
+		alert('디자이너 회원만 참여 가능합니다.');
+		history.back(-1);
+	}
+	/* var block =${login.u_type};
+	console.log(type);
+	if(type != 'y') {
+		alert('참여 가능합니다.');
+		history.back(-1);
+	} */
     //이미지 미리보기
     /* var sel_file;
     var maxSize = 5 * 1024 * 1024; // 5MB
