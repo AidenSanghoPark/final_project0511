@@ -17,16 +17,10 @@ public interface ConService {
 	public int conCount(int c_readnum, int c_idx);
 	public ConDTO conInfo(int c_idx);
 	public int contestJoin(DesignerDTO dto);
-	public int addNaming(ConDTO dto);
-	public int addNamingTrade(TrdDTO dto);
 	public void updateTrd(ConDTO dto);
 	public void designerWin(int d_idx);
 	public void contestEnd(int c_idx);
 	public void payUpdate(int a_balance, int u_idx);
-}
-	public int contestJoin(DesingerDTO dto);
-	public ConDTO conInfo(int c_idx);
-	public void updateTrd(ConDTO dto);
 	
 	//logo
 	public int addLogo(ConDTO dto);	
@@ -43,5 +37,4 @@ public interface ConService {
 	//print
 	public int addPrint(ConDTO dto);
 	public int addPrintTrade(TrdDTO dto);
-}
 }

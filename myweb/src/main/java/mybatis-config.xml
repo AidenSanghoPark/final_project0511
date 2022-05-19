@@ -14,6 +14,7 @@
 	  <mapper resource="sqlMap/adminContSQL.xml"/>
 	  <mapper resource="sqlMap/adminDesignSQL.xml"/>
 	  <mapper resource="sqlMap/adminReportSQL.xml"/>
+	  <mapper resource="sqlMap/adminWithdrawSQL.xml"/>
       <mapper resource="sqlMap/ReviewSQL.xml"/>
 	  <mapper resource="sqlMap/TradeSQL.xml"/>
 	  <mapper resource="sqlMap/WalletSQL.xml"/>

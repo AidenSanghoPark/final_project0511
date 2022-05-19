@@ -27,6 +27,8 @@ import dsn.noticeManage.model.NoticeManageDTO;
 import dsn.noticeManage.model.NoticeManageService;
 import dsn.reportManage.model.ReportManageDTO;
 import dsn.reportManage.model.ReportManageService;
+import dsn.withdraw.model.WithDrawDTO;
+import dsn.withdrawManage.model.WithdrawManageService;
 
 @Controller
 public class adminController {
@@ -56,6 +58,9 @@ public class adminController {
 
 	@Autowired
 	private ReportManageService ReportManageService;
+	
+	@Autowired
+	private WithdrawManageService WithdrawManageService;
 
 	@RequestMapping("memberManage.do")
 	public ModelAndView memberList(@RequestParam(value = "cp", defaultValue = "1") int cp) {
@@ -462,6 +467,44 @@ public class adminController {
 		String msg = result > 0 ? "완료되었습니다." : "실패하였습니다.";
 
 		mav.addObject("returnUrl", "askManage.do");
+		mav.addObject("msg", msg);
+		mav.setViewName("admin/adminMsg");
+
+		return mav;
+	}
+	
+	@RequestMapping("adminWithdraw.do")
+	public ModelAndView withdraw(@RequestParam(value = "cp", defaultValue = "1") int cp) {
+		int totalCnt = WithdrawManageService.getTotalCnt();
+		int listSize = 10;
+		int pageSize = 5;
+		String pageStr = dsn.page.PageModule.pageMake("adminWithdraw.do", totalCnt, listSize, pageSize, cp);
+
+		List lists = WithdrawManageService.withdrawList(cp, listSize);
+
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("lists", lists);
+		mav.addObject("pageStr", pageStr);
+
+		mav.setViewName("admin/adminAccount");
+
+		return mav;
+	}
+	
+	@RequestMapping("adminWithdrawStatusUpdate.do")
+	public ModelAndView withdrawStatusUpdate(WithDrawDTO dto) {
+
+		int result = WithdrawManageService.withdrawStatusUpdate(dto);
+		
+		if(result > 0) {
+			result = WithdrawManageService.accountInsert(dto);
+		}
+
+		ModelAndView mav = new ModelAndView();
+
+		String msg = result > 0 ? "완료되었습니다." : "실패하였습니다.";
+
+		mav.addObject("returnUrl", "adminWithdraw.do");
 		mav.addObject("msg", msg);
 		mav.setViewName("admin/adminMsg");
 

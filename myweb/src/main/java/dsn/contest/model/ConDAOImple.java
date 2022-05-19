@@ -84,26 +84,6 @@ public class ConDAOImple implements ConDAO{
 			return cnt;
 		}
 
-
-		@Override
-		public ConDTO conInfo(int c_idx) {
-			return sqlMap.selectOne("conInfo",c_idx);
-		}
-		@Override
-		public int contestJoin(DesignerDTO dto) {
-			int cnt=sqlMap.insert("contestJoin", dto);
-			return cnt;
-		}
-
-		@Override
-		public ConDTO conInfo(int c_idx) {
-			return sqlMap.selectOne("conInfo",c_idx);
-		}
-		@Override
-		public int contestJoin(DesingerDTO dto) {
-			int cnt=sqlMap.insert("contestJoin", dto);
-			return cnt;
-		}
 		@Override
 		public void updateTrd(ConDTO dto) {
 			sqlMap.update("updateTrd", dto);
@@ -174,4 +154,5 @@ public class ConDAOImple implements ConDAO{
 			sqlMap.update("payUpdate",map);
 		
 		}
+
 }

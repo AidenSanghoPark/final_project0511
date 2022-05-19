@@ -124,28 +124,6 @@ public class ConServiceImple implements ConService{
 		return conDao.contestJoin(dto);
 	}
 
-	}
-	@Override
-	public ConDTO conInfo(int c_idx) {
-		return conDao.conInfo(c_idx);
-	}
-	@Override
-	public int contestJoin(DesignerDTO dto) {
-		if(dto.getUploadfile1() != null|| dto.getUploadfile2() != null) {
-			dto.setD_img_1(dto.getUploadfile1().getOriginalFilename());
-			dto.setD_img_2(dto.getUploadfile2().getOriginalFilename());
-		}
-		return conDao.contestJoin(dto);
-	}
-
-
-
-
-
-
-
-	
-
 	//logo
 	@Override
 	public int addLogo(ConDTO dto) {
@@ -157,23 +135,6 @@ public class ConServiceImple implements ConService{
 		}
 		int count = conDao.addLogo(dto);
 		return count;
-	}
-
-	@Override
-	public int addNamingTrade(TrdDTO dto) {
-		int count = conDao.addNamingTrade(dto);
-		return count;
-	}
-
-	@Override
-	public int addNamingTrade(TrdDTO dto) {
-		int count = conDao.addNamingTrade(dto);
-		return count;
-	}
-
-	@Override
-	public void updateTrd(ConDTO dto) {
-		conDao.updateTrd(dto);
 	}
 
 	@Override
@@ -248,9 +209,5 @@ public class ConServiceImple implements ConService{
 	public int addPrintTrade(TrdDTO dto) {
 		int count = conDao.addPrintTrade(dto);
 		return count;
-	}
-	@Override
-	public void updateTrd(ConDTO dto) {
-		conDao.updateTrd(dto);
 	}
 }

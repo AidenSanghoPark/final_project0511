@@ -61,6 +61,9 @@
 	<bean id="reviewService" class="dsn.review.model.ReviewServiceImple">
 		<property name="reviewDao" ref="reviewDao"></property>
 	</bean>
+	<bean id="WithdrawManageService" class="dsn.withdrawManage.model.WithdrawManageServiceImple">
+		<property name="withdrawManageDao" ref="withdrawManageDao"></property>
+	</bean>
 	
 	
 		 
