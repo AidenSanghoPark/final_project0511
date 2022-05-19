@@ -56,7 +56,6 @@ ul{
 	<c:choose>
 		<c:when test="${userinfo.u_type!='1' }">
 	<section class="profile">
-		<input type="hidden" value="${userinfo.u_type }" name="type">
       	<img class="photo" src="profileimg/pi.jpg">
         <h5><a href="profileConfig.do">${userinfo.u_name } 님</a></h5>
         <p>${userinfo.u_email }</p>
@@ -87,7 +86,6 @@ ul{
     	</c:when>
     	<c:otherwise>
     	<section class="profile">
-		<input type="hidden" value="${userinfo.u_type }" name="type">
       	<img class="photo" src="profileimg/pi.jpg">
         <h5><a href="profileConfig.do">${userinfo.u_name } 님</a></h5>
         <p>${userinfo.u_email }</p>
