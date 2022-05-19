@@ -89,4 +89,9 @@ public class MyPageDAOImple implements MyPageDAO {
 		List lists=sqlMap.selectList("designerListByIdx", map);
 		return lists;
 	}
+	@Override
+	public int getDesignerCnt(int u_idx) {
+		int cnt=sqlMap.selectOne("getDesignerCnt", u_idx);
+		return cnt;
+	}
 }

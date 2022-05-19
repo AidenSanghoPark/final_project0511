@@ -140,4 +140,10 @@ public class MyPageServiceImple implements MyPageService {
 		List lists=myPageDao.myPageListByDesigner(map);
 		return lists;
 	}
+	@Override
+	public int getDesignerCnt(int u_idx) {
+		int cnt=myPageDao.getDesignerCnt(u_idx);
+		cnt=cnt==0?1:cnt;
+		return cnt;
+	}
 }

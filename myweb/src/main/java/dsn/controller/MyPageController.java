@@ -34,13 +34,16 @@ public class MyPageController {
 			mav.addObject("gopage","index.do");
 		}else {
 		int totalCnt=myPageService.getTotalCnt(vo);
+		int dtotalCnt=myPageService.getDesignerCnt(vo);
 		int listSize=5;
 		int pageSize=5;
+		String dpageStr=dsn.page.PageModule.pageMake("myPage.do", dtotalCnt, listSize, pageSize, cp);
 		String pageStr=dsn.page.PageModule.pageMake("myPage.do", totalCnt, listSize, pageSize, cp);
 		List lists=myPageService.myPageList(cp, listSize, vo);
 		List userinfo=myPageService.userInfoFind(vo);
 		List dlists=myPageService.myPageListByDesigner(cp, listSize, pageSize);
 		
+		mav.addObject("dpageStr", dpageStr);
 		mav.addObject("dlists", dlists);
 		mav.addObject("lists", lists);
 		mav.addObject("pageStr", pageStr);

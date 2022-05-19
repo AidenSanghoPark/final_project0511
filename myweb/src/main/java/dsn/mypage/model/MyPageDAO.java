@@ -24,4 +24,5 @@ public interface MyPageDAO {
 	public List showPayInfo(Map map);
 	public int getTradeCnt(int u_idx);
 	public List myPageListByDesigner(Map map);
+	public int getDesignerCnt(int u_idx);
 }

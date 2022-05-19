@@ -24,4 +24,5 @@ public interface MyPageService {
 	public List showPayInfo(int cp,int listSize, int u_idx);
 	public int getTradeCnt(int u_idx);
 	public List myPageListByDesigner(int cp, int listSize, int u_idx);
+	public int getDesignerCnt(int u_idx);
 }
