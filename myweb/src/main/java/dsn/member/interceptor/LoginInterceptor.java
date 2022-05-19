@@ -32,7 +32,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		System.out.println("로그인 인터셉터 포스트 핸들 작동");
 		
         HttpSession httpSession = request.getSession();
         ModelMap modelMap = modelAndView.getModelMap();
@@ -51,7 +50,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
             Object destination = httpSession.getAttribute("destination");
             Object URL = httpSession.getAttribute("logUrl");
             String logUrl= (String) URL;
-            System.out.println("logUrl="+URL);
             
             if(logUrl.contains("logout.do")) {
             	response.sendRedirect(destination != null ? (String) destination : "index.do");

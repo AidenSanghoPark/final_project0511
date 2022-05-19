@@ -34,6 +34,9 @@
           <li class="nav-item">
             <a class="nav-link" href="allReview.do">리뷰</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="portfolio.do">포트폴리오 모달</a>
+          </li>
         </ul>
        </div>
        </nav>

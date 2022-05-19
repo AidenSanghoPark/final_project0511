@@ -101,4 +101,5 @@
    <select id="getDesignerCnt" parameterType="Integer" resultType="Integer">
       SELECT COUNT(*) FROM F_DESIGNER WHERE U_IDX=#{u_idx}
    </select>
+   
 </mapper>

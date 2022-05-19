@@ -29,6 +29,10 @@ public class DesignerServiceImple implements DesignerService {
 	public List portfolio(int cp, int listSize, int u_idx) {
 		int start=((cp-1)*listSize)+1;
 		int end=cp*listSize;
+		
+		System.out.println("start="+start);
+		System.out.println("end"+end);
+		System.out.println(u_idx);
 		Map map=new HashedMap();
 		map.put("start", start);
 		map.put("end", end);

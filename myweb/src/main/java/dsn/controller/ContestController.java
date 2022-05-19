@@ -160,11 +160,6 @@ public class ContestController {
 	@RequestMapping(value = "contestJoinSubmit.do", method = RequestMethod.POST)
 	public ModelAndView contestJoinForm(MultipartHttpServletRequest request ,DesignerDTO dto) {
 		
-		System.out.println("conJoinForm="+dto.getC_cate());
-		System.out.println("conJoinForm="+dto.getC_idx());
-		System.out.println("conJoinForm="+dto.getU_idx());
-		System.out.println("conJoinForm="+dto.getD_content());
-		System.out.println("conJoinForm="+dto.getD_name());
 		ModelAndView mav=new ModelAndView();
 		FileUploadModule file=new FileUploadModule();
 		String path=request.getSession().getServletContext().getRealPath("img/");
@@ -188,6 +183,7 @@ public class ContestController {
 			PageModule.setSearchType(searchType);
 			PageModule.setKeyword(keyword);
 
+			System.out.println(cp);
 		    int totalCnt=conService.ContestCnt();
 			int listSize=3;
 			int pageSize=3;
