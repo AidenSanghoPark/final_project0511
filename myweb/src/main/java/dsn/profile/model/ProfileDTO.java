@@ -15,8 +15,6 @@ public class ProfileDTO {
 		super();
 	}
 	
-	
-	
 	public ProfileDTO(int p_idx, int u_idx, String p_img, String p_info, String u_wallet, MultipartFile upload) {
 		super();
 		this.p_idx = p_idx;
@@ -26,9 +24,6 @@ public class ProfileDTO {
 		this.u_wallet = u_wallet;
 		this.upload = upload;
 	}
-
-
-
 	public MultipartFile getUpload() {
 		return upload;
 	}

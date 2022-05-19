@@ -1,6 +1,7 @@
 package dsn.mypage.model;
 
 import java.util.List;
+import java.util.Map;
 
 import dsn.member.model.MemberDTO;
 import dsn.review.model.ReviewDTO;
@@ -19,7 +20,9 @@ public interface MyPageService {
 	public String pwdFind(int u_idx);
 	public int payout(WithDrawDTO dto);
 	public int getWalletCnt(int u_idx);
-	public int writeReview(ReviewDTO dto);
+	public int writeReview(int u_idx,String rv_content);
 	public List showPayInfo(int cp,int listSize, int u_idx);
 	public int getTradeCnt(int u_idx);
+	public List myPageListByDesigner(int cp, int listSize, int u_idx);
+	public int getDesignerCnt(int u_idx);
 }

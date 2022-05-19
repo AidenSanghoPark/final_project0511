@@ -76,10 +76,14 @@
 		where
 			u_idx=#{u_idx}
 	</select>
-	<select id="portfolioDetail" parameterType="Integer" resultType="dsn.designer.model.DesignerDTO">
-		select d_name, c_cate, d_win, d_img_2, d_content
-		from f_designer
-		where d_idx = #{d_idx}
+	<select id="designerList" parameterType="Map" resultType="dsn.member.model.MemberDTO">
+		select * from 
+			(select rownum as rnum, a.* from
+			(select * from f_user order by u_idx desc)a)b
+		where
+			rnum <![CDATA[>=]]> #{start}
+		and
+			rnum <![CDATA[<=]]> #{end}
 	</select>
 	<select id="designPhotos" parameterType="Map" resultType="dsn.designer.model.DesignerDTO">
 		select * from
@@ -92,30 +96,16 @@
 		and
 			u_idx=#{u_idx}
 	</select>
-	<insert id="writeReview" parameterType="Map">
-  		insert into f_review values(
-  			rv_idx.nextval,
-  			0,
-  			16,
-  			#{rv_content},
-  			sysdate
-  		)
-  	</insert>
-	<select id="designerListTotalCnt" resultType="Integer">
-      select count(u_type) from f_user
-      where u_type = 2
-   </select>
-   <select id="designerList" resultType="dsn.designer.model.ListDTO">
-      select * from
-          (select rownum as rnum, a.*from
-          (SELECT p.p_img, p.p_info, u.u_nick, u.u_email, u.u_idx
-         from f_profile p, f_user u, f_designer d
-         where p.u_idx = u.u_idx
-         and u.u_idx = d.u_idx
-         and u.u_type = 2 )a)b
-      where
-         rnum <![CDATA[>=]]> #{start}
-      and
-         rnum <![CDATA[<=]]> #{end}
-   </select>
+	<select id="designerListByIdx" parameterType="Map" resultType="dsn.designer.model.DesignerDTO">
+		select * from 
+			(select rownum as rnum, a.* from
+			(select * from f_user where u_idx=#{u_idx} order by u_idx desc)a)b
+		where
+			rnum <![CDATA[>=]]> #{start}
+		and
+			rnum <![CDATA[<=]]> #{end}
+	</select>
+	<select id="getDesignerCnt" parameterType="Integer" resultType="Integer">
+		SELECT COUNT(*) FROM F_DESIGNER WHERE U_IDX=#{u_idx}
+	</select>
 </mapper>
