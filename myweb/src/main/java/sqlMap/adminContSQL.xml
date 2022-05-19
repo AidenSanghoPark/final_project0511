@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dsn.adminCont">
+
+	<select id="dsn.adminCont.totalCnt" resultType="Integer">
+		SELECT COUNT(*) FROM F_CLIENT
+	</select>
+
+	<select id="dsn.adminCont.contAllList" parameterType="Map" resultType="dsn.contManage.model.ContManageDTO">
+		
+		SELECT * FROM
+		(SELECT ROWNUM AS RNUM,A.*FROM
+		(SELECT 
+				 F_CLIENT.C_IDX
+				,F_CLIENT.C_SUBJECT
+				,F_CLIENT.C_DEAS
+				,F_CLIENT.C_COMPANY
+				,F_CLIENT.C_CATE
+				,F_CLIENT.C_LOGO
+				,F_CLIENT.C_COLOR
+				,F_CLIENT.C_FILE
+				,F_CLIENT.C_NAME
+				,F_CLIENT.C_DETAILS
+				,F_CLIENT.C_IDEA
+				,F_CLIENT.C_READNUM
+				,F_CLIENT.C_PAY
+				,F_CLIENT.C_OPENDATE
+				,F_CLIENT.C_ENDDATE
+				,F_CLIENT.U_IDX
+				,F_CLIENT.C_BLOCK
+				,F_USER.U_ID
+				,F_USER.U_NAME
+		 FROM F_CLIENT, F_USER
+		 WHERE F_CLIENT.U_IDX = F_USER.U_IDX
+		 ORDER BY F_CLIENT.C_IDX ASC)A)B
+		WHERE RNUM <![CDATA[>=]]>#{start} AND 
+		RNUM<![CDATA[<=]]>#{end}
+		
+	</select>
+	
+	<select id="dsn.adminCont.contContent" parameterType="Integer" resultType="dsn.contManage.model.ContManageDTO">
+		SELECT 
+				F_CLIENT.C_IDX
+				,F_CLIENT.C_SUBJECT
+				,F_CLIENT.C_DEAS
+				,F_CLIENT.C_COMPANY
+				,F_CLIENT.C_CATE
+				,F_CLIENT.C_LOGO
+				,F_CLIENT.C_COLOR
+				,F_CLIENT.C_FILE
+				,F_CLIENT.C_NAME
+				,F_CLIENT.C_DETAILS
+				,F_CLIENT.C_IDEA
+				,F_CLIENT.C_READNUM
+				,F_CLIENT.C_PAY
+				,F_CLIENT.C_OPENDATE
+				,F_CLIENT.C_ENDDATE
+				,F_CLIENT.U_IDX
+				,F_CLIENT.C_BLOCK
+				,F_USER.U_NAME
+		 FROM F_CLIENT, F_USER
+		WHERE F_CLIENT.C_IDX= #{c_idx}
+	</select>
+	
+	<update id="dsn.adminCont.contBlockUpdate" parameterType="dsn.contManage.model.ContManageDTO">
+		UPDATE F_CLIENT
+		SET
+		C_BLOCK = #{c_block}
+		WHERE C_IDX = #{c_idx}
+	</update>
+</mapper>

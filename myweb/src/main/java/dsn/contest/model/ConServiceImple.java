@@ -6,10 +6,14 @@ import java.util.Map;
 
 import org.apache.commons.collections.map.HashedMap;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import dsn.trade.model.TrdDTO;
 
 public class ConServiceImple implements ConService{
 	
+	@Autowired
 	private SqlSessionTemplate sqlMap;
 	
 	private ConDAO conDao;
@@ -106,6 +110,41 @@ public class ConServiceImple implements ConService{
 		return count;
 		
 	}
+	@Override
+	public ConDTO conInfo(int c_idx) {
+		return conDao.conInfo(c_idx);
+	}
+	@Override
+	public int contestJoin(DesingerDTO dto) {
+		if(dto.getUploadfile1() != null|| dto.getUploadfile2() != null) {
+			dto.setD_img_1(dto.getUploadfile1().getOriginalFilename());
+			dto.setD_img_2(dto.getUploadfile2().getOriginalFilename());
+		}
+		return conDao.contestJoin(dto);
+	}
 
+
+	@Override
+	public int addNaming(ConDTO dto) {
+		System.out.println("service="+dto.getC_cate());
+		System.out.println("service="+dto.getUpload().getOriginalFilename());
+		//���ε尡 null �ƴҶ��� �������� ���ϳ��� �����ϱ�
+		if(dto.getUpload() != null) {
+			dto.setC_file(dto.getUpload().getOriginalFilename());
+		}
+		int count = conDao.addNaming(dto);
+		return count;
+	}
+
+	@Override
+	public int addNamingTrade(TrdDTO dto) {
+		int count = conDao.addNamingTrade(dto);
+		return count;
+	}
+
+	@Override
+	public void updateTrd(ConDTO dto) {
+		conDao.updateTrd(dto);
+	}	
 
 }

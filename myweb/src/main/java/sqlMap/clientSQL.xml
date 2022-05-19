@@ -4,18 +4,6 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dsn.con">
 	
-	<!-- 진행중 콘테스트 sql -->
-	
-	<select id="conList" parameterType="Map" resultType="dsn.contest.model.ConDTO">
-		select * from
-		(select rownum as rnum,a.* from
-		(select * from f_client order by c_idx desc)a)b
-		where rnum<![CDATA[>=]]>#{start}
-		and rnum<![CDATA[<=]]>#{end} 
-		and c_datediff<![CDATA[<=]]>0
-			 <!-- searchType 없을 때 조건없이 처리되도록 하는 구문입니다 -->
-	</select>
-	
 	<select id="conEnd" parameterType="Map" resultType="dsn.contest.model.ConDTO">
 		select * from
 		(select rownum as rnum,a.* from
@@ -67,4 +55,125 @@
 		</if>
 	</sql>
 	
+	<select id="conList" parameterType="Map" resultType="dsn.contest.model.ConDTO">
+	
+		SELECT
+			*
+		FROM(
+			SELECT
+				ROWNUM AS RNUM
+				, A.*
+			FROM(
+				SELECT
+					*
+				FROM 
+					F_CLIENT
+				ORDER BY
+					C_IDX DESC
+				)A
+			)B
+		WHERE
+			RNUM <![CDATA[>=]]> #{start}
+		AND
+			RNUM <![CDATA[<=]]> #{end}
+		AND C_DATEDIFF <![CDATA[<=]]> 0
+		
+	</select>
+	<select id="conInfo" parameterType="Integer" resultType="dsn.contest.model.ConDTO">
+		SELECT
+			*
+		FROM
+			F_CLIENT
+		WHERE
+			C_IDX = #{c_idx}
+	</select>
+	<insert id="contestJoin" parameterType="dsn.contest.model.ConDTO">
+		INSERT
+			INTO
+		F_DESIGNER
+			VALUES(
+			F_DESIGNER_D_IDX.NEXTVAL
+			, #{u_idx}
+			, #{d_name}
+			, #{d_content}
+			, #{d_img_1}
+			, #{d_img_2}
+			, SYSDATE
+			, 0
+			, 'N'
+			, 1
+			)
+	</insert>
+
+	<insert id="addNaming" parameterType="dsn.contest.model.ConDTO">
+		<selectKey keyProperty="c_idx" resultType="Integer" order="BEFORE">
+			SELECT F_CLIENT_C_IDX.NEXTVAL AS C_IDX FROM DUAL
+		</selectKey>
+		INSERT INTO F_CLIENT
+			  (C_IDX
+			  , C_SUBJECT
+			  , C_DEAS
+			  , C_COMPANY
+			  , C_CATE
+			  , C_COLOR
+			  , C_FILE
+			  , C_NAME
+			  , C_DETAILS
+			  , C_IDEA
+			  , C_PAY
+			  , C_OPENDATE
+			  , C_ENDDATE
+			  , U_IDX
+			  , C_BLOCK
+			  , C_LOGO)
+		VALUES(
+			#{c_idx},
+			#{c_subject},
+			#{c_deas},
+			#{c_company},
+			#{c_cate},
+			#{c_color},
+			#{c_file},
+			#{c_name},
+			#{c_details},
+			'idea',
+			#{c_pay},
+			sysdate,
+			sysdate+7,
+			'0',
+			'N',
+			#{c_logo}
+		)	
+	</insert>
+	
+	<insert id="addNamingTrade" parameterType="dsn.trade.model.TrdDTO">
+	<selectKey order="BEFORE" keyProperty="t_idx" resultType="Integer">
+		SELECT T_IDX.NEXTVAL AS T_IDX FROM DUAL
+	</selectKey>
+		INSERT INTO F_TRADE
+		VALUES
+		(
+			#{t_idx},
+			#{u_idx},
+			#{c_idx},
+			#{t_pay},
+			#{t_type},
+			SYSDATE
+		)
+	</insert>
+	
+	<update id="updateTrd" parameterType="dsn.contest.model.ConDTO">
+		UPDATE F_TRADE
+		SET
+		C_IDX = #{c_idx}
+		WHERE T_IDX = #{t_idx}
+	</update>
+	<select id="myPageList" parameterType="Map" resultType="dsn.contest.model.ConDTO">
+			select * from
+			(select * from
+			(select rownum as rnum,a.* from
+			(select * from f_client order by c_idx desc)a)b
+			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end})where u_idx=#{u_idx}
+			
+  	</select>
 </mapper>

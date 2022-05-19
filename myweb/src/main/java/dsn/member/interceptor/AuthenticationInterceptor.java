@@ -32,8 +32,6 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter{
             if ( loginCookie != null ){ 
                 String session_id = loginCookie.getValue();
                 
-                System.out.println(session_id);
-                
                 MemberDTO userDTO = memberService.checkUserWithSessionKey(session_id);
                  
                 System.out.println(userDTO.getU_id());
