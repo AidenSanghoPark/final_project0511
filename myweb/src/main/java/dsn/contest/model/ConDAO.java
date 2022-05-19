@@ -22,7 +22,7 @@ public interface ConDAO {
 	public int conCount(Map map);
 	public int addNaming(ConDTO dto);
 	public ConDTO conInfo(int c_idx);
-	public int contestJoin(DesingerDTO dto);
+	public int contestJoin(DesignerDTO dto);
 	public int addNamingTrade(TrdDTO dto);
 	public void updateTrd(ConDTO dto);
 	public void designerWin(int d_idx);

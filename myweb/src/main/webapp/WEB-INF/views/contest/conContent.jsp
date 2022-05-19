@@ -379,7 +379,7 @@ a{
 					<c:param name="idx">${dto.c_idx }</c:param>
 				</c:url>
 							<!-- 콘테스트 제목 -->
-			                <h4> <a href="${contentUrl }" style="text-decoration: none; color: #2E2E2E; font-weight: bold; font-size: 17px;">${dto.c_subject }</a> </h4> 
+			                <h4> <a href="${contentUrl}" style="text-decoration: none; color: #2E2E2E; font-weight: bold; font-size: 17px;">${dto.c_subject }</a> </h4> 
 			                <div style="padding: 10px; padding-left: 10px; width: 500px; height:70px; background-color:#EFEFFB; margin-left: 20px; color: #424242;">
 			                	${dto.c_deas }<br><br>
 			                </div>
@@ -396,7 +396,7 @@ a{
 		<div style="width: 40%; margin: 0 auto; padding-left: 10px;">
 			<button class="button">참여작 보기</button>
 			<button class="button">브리핑 보기</button>
-			<a href="contestJoin.do?c_idx=${dto.c_idx }"><button class="button">콘테스트 참여</button></a>
+			<a href="contestJoin.do?c_idx=${dto.c_idx }&c_type=${dto.c_cate}"><button class="button">콘테스트 참여</button></a>
 		</div>
 		
 <div style="padding-left: 30px; padding-top: 10px; background-color: #ffffff; width: 60%; margin: 0 auto;">

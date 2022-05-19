@@ -86,7 +86,7 @@
 		WHERE
 			C_IDX = #{c_idx}
 	</select>
-	<insert id="contestJoin" parameterType="dsn.contest.model.ConDTO">
+	<insert id="contestJoin" parameterType="dsn.contest.model.DesignerDTO">
 		INSERT
 			INTO
 		F_DESIGNER
@@ -100,8 +100,8 @@
 			, SYSDATE
 			, 0
 			, 'N'
-			, 1
-			, 7
+			, #{c_cate}
+			, #{c_idx}
 			)
 	</insert>
 
@@ -191,6 +191,6 @@
    		SET
    			A_BALANCE = #{a_balance}
    		WHERE
-   			U_IDX = #{u_idx}
+   			U_IDX = U_IDX + #{u_idx} 
    </update>
 </mapper>
