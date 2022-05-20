@@ -44,7 +44,6 @@ public class RememberInterceptor extends HandlerInterceptorAdapter{
 	        // session 객체를 가져옴
 	        HttpSession session = request.getSession();
 	        Object obj = session.getAttribute("login");
-	         
 	        if ( obj == null ){
 	            Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
 	            if ( loginCookie != null ){

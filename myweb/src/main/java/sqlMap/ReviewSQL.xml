@@ -12,15 +12,6 @@
            sysdate
         )
      </insert>
-     <select id="review" parameterType="Map" resultType="dsn.review.model.ReviewDTO">
-        select * from 
-         (select rownum as rnum, a.* from
-         (select * from f_review order by u_idx desc)a)b
-      where
-         rnum <![CDATA[>=]]> #{start}
-      and
-         rnum <![CDATA[<=]]> #{end}
-     </select>
      <select id="reviewTotalCnt" resultType="Integer">
       select count(*) from f_review
    </select>

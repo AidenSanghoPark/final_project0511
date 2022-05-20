@@ -15,6 +15,9 @@ import dsn.mypage.model.MyPageService;
 import dsn.virtualwallet.model.WalletDTO;
 import dsn.withdraw.model.WithDrawDTO;
 
+import dsn.review.model.ReviewDTO;
+
+
 @Controller
 public class MyPageController {
 	

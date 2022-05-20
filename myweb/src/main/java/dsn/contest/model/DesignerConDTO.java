@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class DesignerDTO {
+public class DesignerConDTO {
 	
 	private int d_idx;
 	private int u_idx;
@@ -19,10 +19,10 @@ public class DesignerDTO {
 	private int c_idx;
 	private MultipartFile uploadfile1;
 	private MultipartFile uploadfile2;
-	public DesignerDTO() {
+	public DesignerConDTO() {
 		super();
 	}
-	public DesignerDTO(int d_idx, int u_idx, String d_name, String d_content, String d_img_1, String d_img_2,
+	public DesignerConDTO(int d_idx, int u_idx, String d_name, String d_content, String d_img_1, String d_img_2,
 			Date d_date, int d_win, String d_block, String c_cate, int c_idx, MultipartFile uploadfile1,
 			MultipartFile uploadfile2) {
 		super();

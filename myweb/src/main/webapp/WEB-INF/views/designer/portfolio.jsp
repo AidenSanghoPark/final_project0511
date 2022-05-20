@@ -95,21 +95,47 @@ h5{
 				<tr>
 					<c:forEach var="dto" items="${lists}">
 						<td>
-							<a data-bs-toggle="modal" data-bs-target="#myModal" data-test="${dto.d_idx}"><img src="designimg/${dto.d_img_1}.PNG"></a><br>
+							<a data-bs-toggle="modal" data-bs-target="#exampleModal" data-test="${dto.d_idx}"><img src="img/${dto.d_img_1}"></a><br>
 							<label><a data-bs-toggle="modal" data-bs-target="#myModal" data-test="${dto.d_idx}">${dto.d_name}</a></label>
+							
 						</td>
 					</c:forEach>
 				</tr>
 			</tbody>
 		</table>
 		<div id="page">${pageStr}</div>
+		<!-- modal 구동 버튼 (trigger) -->
+
 	</section>
 </form>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Modal --> 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
         <div class="modal-dialog" style="float: left; padding-left: 500px;"> 
-                <div class="modal-content" style="width: 700px;">
+                <div class="modal-content" style="width: 85%;">
                         <div class="modal-header">
                                 <h4 class="modal-title" id="myModalLabel">디자인명, 카테고리, 우승여부</h4>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> 

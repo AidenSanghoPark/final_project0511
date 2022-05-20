@@ -24,8 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dsn.member.model.MemberDTO;
 import dsn.member.model.MemberService;
-import dsn.contest.model.ConDTO;
-import dsn.contest.model.ConService;
+
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import dsn.contest.model.*;
@@ -223,13 +222,8 @@ public class ContestController {
 		return mav;
 	}
 	@RequestMapping(value = "contestJoinSubmit.do", method = RequestMethod.POST)
-	public ModelAndView contestJoinForm(MultipartHttpServletRequest request ,DesignerDTO dto) {
+	public ModelAndView contestJoinForm(MultipartHttpServletRequest request ,DesignerConDTO dto) {
 		
-		System.out.println("conJoinForm="+dto.getC_cate());
-		System.out.println("conJoinForm="+dto.getC_idx());
-		System.out.println("conJoinForm="+dto.getU_idx());
-		System.out.println("conJoinForm="+dto.getD_content());
-		System.out.println("conJoinForm="+dto.getD_name());
 		ModelAndView mav=new ModelAndView();
 		FileUploadModule file=new FileUploadModule();
 		String path=request.getSession().getServletContext().getRealPath("img/");
@@ -253,6 +247,7 @@ public class ContestController {
 			PageModule.setSearchType(searchType);
 			PageModule.setKeyword(keyword);
 
+			System.out.println(cp);
 		    int totalCnt=conService.ContestCnt();
 			int listSize=3;
 			int pageSize=3;
@@ -365,7 +360,20 @@ public class ContestController {
 		conService.payUpdate(0, 0);
 		mav.addObject("gopage", "conList.do");
 		mav.addObject("msg", "당선작 선정 완료");
-		mav.setViewName("contest/contestMsg");
+		mav.setViewName("/contest/contestMsg");
+		return mav;
+	}
+	@RequestMapping("/contestContent.do")
+	public ModelAndView contestContent(
+			@RequestParam int d_idx,
+			@RequestParam int c_idx) {
+		
+		System.out.println("content d_idx="+d_idx);
+		System.out.println("content c_idx="+c_idx);
+		ModelAndView mav=new ModelAndView();
+		DesignerConDTO dto=conService.contestContent(d_idx,c_idx);
+		mav.addObject("ddto", dto);
+		mav.setViewName("/contest/contestContent");
 		return mav;
 	}
 	

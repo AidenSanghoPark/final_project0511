@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import dsn.contest.model.ConService;
 import dsn.member.model.MemberDTO;
 import dsn.profile.model.ProfileDTO;
 
@@ -29,6 +30,10 @@ public class DesignerServiceImple implements DesignerService {
 	public List portfolio(int cp, int listSize, int u_idx) {
 		int start=((cp-1)*listSize)+1;
 		int end=cp*listSize;
+		
+		System.out.println("start="+start);
+		System.out.println("end"+end);
+		System.out.println(u_idx);
 		Map map=new HashedMap();
 		map.put("start", start);
 		map.put("end", end);
@@ -144,7 +149,10 @@ public class DesignerServiceImple implements DesignerService {
 		DesignerDTO dto=DesignerDao.portfolioDetail(d_idx);
 		return dto;
 	}
-	
-	
+	@Override
+	public int getDesignerCnt(int u_idx) {
+		int count=DesignerDao.getDesignerCnt(u_idx);
+		return count;
+	}
 
 }

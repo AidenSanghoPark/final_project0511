@@ -9,6 +9,7 @@ import org.apache.commons.collections.map.HashedMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import dsn.contest.model.*;
 import dsn.trade.model.TrdDTO;
 
 
@@ -154,5 +155,9 @@ public class ConDAOImple implements ConDAO{
 			sqlMap.update("payUpdate",map);
 		
 		}
-
+		@Override
+		public DesignerConDTO contestContent(Map map) {
+			DesignerConDTO dto=sqlMap.selectOne("contestContent", map);
+			return dto;
+		}
 }

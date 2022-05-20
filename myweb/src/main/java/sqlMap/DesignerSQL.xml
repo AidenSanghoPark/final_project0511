@@ -3,29 +3,91 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dsn.designer">
-   <select id="portfolio" parameterType="Map" resultType="dsn.designer.model.DesignerDTO">
-      select * from 
-         (select rownum as rnum, a.* from
-         (select * from f_designer order by d_idx desc)a)b
+	<select id="portfolio" parameterType="Map" resultType="dsn.designer.model.DesignerDTO">
+		select * from 
+			(select rownum as rnum, a.* from
+			(select * from f_designer order by d_idx desc)a)b
+		where
+			rnum <![CDATA[>=]]> #{start}
+		and
+			rnum <![CDATA[<=]]> #{end}
+		and
+			u_idx = #{u_idx}
+	</select>
+	<select id="review" parameterType="Map" resultType="dsn.review.model.ReviewDTO">
+  		select * from 
+			(select rownum as rnum, a.* from
+			(select * from f_review order by u_idx desc)a)b
+		where
+			rnum <![CDATA[>=]]> #{start}
+		and
+			rnum <![CDATA[<=]]> #{end}
+  	</select>
+	<select id="portfolioTotalCnt" resultType="Integer">
+		select count(*) from f_designer
+	</select>
+	<select id="reviewTotalCnt" resultType="Integer">
+		select count(*) from f_review
+	</select>
+	<select id="designerTotalCnt" resultType="Integer">
+		select count(*) from f_user
+	</select>
+	<insert id="profileInsert" parameterType="dsn.profile.model.ProfileDTO">
+		insert into
+			f_profile
+		values(
+			p_idx.nextval,
+			#{u_idx},
+			#{p_img},
+			#{p_info},
+			#{u_wallet}
+		)
+	</insert>
+	<select id="userInfo" parameterType="Integer" resultType="dsn.member.model.MemberDTO">
+		select
+			*
+		from
+			f_user
+		where
+			u_idx=#{u_idx}
+	</select>
+	<select id="designPhotos" parameterType="Map" resultType="dsn.designer.model.DesignerDTO">
+		select * from
+			(select rownum as rnum, a.*from
+			(select d_img_1, u_idx from f_designer order by d_idx desc)a)b
+		where
+		    rnum <![CDATA[>=]]> 0
+		and
+			rnum <![CDATA[<=]]> 3
+		and
+			u_idx=#{u_idx}
+	</select>
+	<insert id="writeReview" parameterType="Map">
+  		insert into f_review values(
+  			rv_idx.nextval,
+  			0,
+  			16,
+  			#{rv_content},
+  			sysdate
+  		)
+  	</insert>
+	<select id="designerListTotalCnt" resultType="Integer">
+      select count(u_type) from f_user
+      where u_type = 2
+   </select>
+   
+   <select id="designerList" resultType="dsn.designer.model.ListDTO">
+      select * from
+          (select rownum as rnum, a.*from
+          (SELECT p.p_img, p.p_info, u.u_nick, u.u_email, u.u_idx
+         from f_profile p, f_user u, f_designer d
+         where p.u_idx = u.u_idx
+         and u.u_idx = d.u_idx
+         and u.u_type = 2 )a)b
       where
          rnum <![CDATA[>=]]> #{start}
       and
          rnum <![CDATA[<=]]> #{end}
-   </select>
-   
-   <select id="portfolioTotalCnt" resultType="Integer">
-      select count(*) from f_designer
-   </select>
-   <select id="designPhotos" parameterType="Map" resultType="dsn.designer.model.DesignerDTO">
-      select * from
-         (select rownum as rnum, a.*from
-         (select d_img_1, u_idx from f_designer order by d_idx desc)a)b
-      where
-          rnum <![CDATA[>=]]> 0
-      and
-         rnum <![CDATA[<=]]> 3
-      and
-         u_idx=#{u_idx}
    </select>
    <select id="designerListByIdx" parameterType="Map" resultType="dsn.designer.model.DesignerDTO">
       select * from 
@@ -39,24 +101,4 @@
    <select id="getDesignerCnt" parameterType="Integer" resultType="Integer">
       SELECT COUNT(*) FROM F_DESIGNER WHERE U_IDX=#{u_idx}
    </select>
- <select id="designerList" resultType="dsn.designer.model.ListDTO">
-      select * from
-          (select rownum as rnum, a.*from
-          (SELECT p.p_img, p.p_info, u.u_nick, u.u_email, u.u_idx
-         from f_profile p, f_user u, f_designer d
-         where p.u_idx = u.u_idx
-         and u.u_idx = d.u_idx
-         and u.u_type = 2 )a)b
-      where
-         rnum <![CDATA[>=]]> #{start}
-      and
-         rnum <![CDATA[<=]]> #{end}
-   </select>
-   <select id="designerTotalCnt" resultType="Integer">
-      select count(*) from f_user
-   </select>
-   <select id="designerListTotalCnt" resultType="Integer">
-      select count(*) from f_user where u_type=2
-   </select>
-   
 </mapper>

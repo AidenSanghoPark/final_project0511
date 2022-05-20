@@ -37,7 +37,6 @@ public class MemberDAOImple implements MemberDAO {
 	}
 	@Override
 	public void autoLogin(Map map) {
-		System.out.println("dao"+map.get("session_id"));
 		sqlMap.update("autoLogin",map);
 	}
 	@Override
@@ -52,7 +51,6 @@ public class MemberDAOImple implements MemberDAO {
 	@Override
 	public MemberDTO checkUserWithSessionKey(String session_id) {
 		MemberDTO dto=sqlMap.selectOne("checkUserWithSessionKey",session_id);
-		System.out.println("dao="+dto.getU_id());
 		return dto;
 	}
 	

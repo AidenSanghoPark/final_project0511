@@ -50,9 +50,6 @@ public class MemberServiceImple implements MemberService {
 	@Override
 	public void autoLogin(String session_id, String u_id ,Date limit_date) {
 		
-		System.out.println(session_id);
-		System.out.println(u_id);
-		System.out.println(limit_date);
 		Map map=new HashMap();
 		map.put("session_id",session_id);
 		map.put("u_id", u_id);
@@ -74,10 +71,7 @@ public class MemberServiceImple implements MemberService {
 	
 	@Override
 	public MemberDTO checkUserWithSessionKey(String session_id) {
-		System.out.println("service sid="+session_id);
 		MemberDTO dto = memberDao.checkUserWithSessionKey(session_id);
-		
-		System.out.println(dto.getSession_id());
 		return dto;
 	}
 

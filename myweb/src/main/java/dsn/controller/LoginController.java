@@ -44,7 +44,6 @@ public class LoginController {
 		
 		MemberDTO memberVO = memberService.login(ldto);
 		
-		System.out.println("logincontroller"+memberVO.getU_block());
 		if( memberVO == null || ldto.getU_pwd() == memberVO.getU_pwd()) {
 			return;
 		}
