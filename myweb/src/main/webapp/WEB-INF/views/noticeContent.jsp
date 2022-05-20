@@ -39,11 +39,18 @@
 			
 
 	</div>
-	
+	<!--
 			<div class="modal-footer">
-			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
+	 		<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
 			</div>	
-		
+		 -->
+	</div>
+	
+	
+	<div align="center">
+	
+	<a href="#" rel="modal:close"><button class="btn btn-secondary" style="font-size:70%;">닫기</button></a>
+	
 	</div>
 	
 

@@ -39,38 +39,31 @@ public class ContestController {
 	@Autowired
 	private ConService conService;
 	
-	
-	@RequestMapping("/contestChoice.do")
+	//콘테스트 초이스
+	@RequestMapping("/categoryChoice.do")
 	public ModelAndView contestHold() {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("contest/contestChoice");
 		return mav;
 	}
-	
-	@RequestMapping(value = "/namingHold.do", method = RequestMethod.GET)
-	public ModelAndView namingHoldView(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
+	//로고 뷰
+	@RequestMapping(value = "/logoHold.do", method = RequestMethod.GET)
+	public ModelAndView logoHolddView(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("c_cate", c_cate);
-		mav.setViewName("contest/namingHold");
+		mav.setViewName("contest/logoHold");
 		return mav;
 	}
-	
-	@RequestMapping(value = "/arrcheck.do", method = RequestMethod.POST)
-	@ResponseBody
-	public void arrCheck(@RequestParam(value = "valueArr[]")
-						List<String> valueArr) {
-	   		System.out.println(valueArr);
-	}
-
-	@RequestMapping(value = "/namingHold_add.do", method = RequestMethod.POST)
-	public ModelAndView namingHoldForm(MultipartHttpServletRequest request, ConDTO dto, HttpSession session) {	
+	//로고 form
+	@RequestMapping(value = "/logoHold_add.do", method = RequestMethod.POST)
+	public ModelAndView logoHoldForm(MultipartHttpServletRequest request, ConDTO dto, HttpSession session) {	
 		
 		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
 		
 		dto.setU_idx(mdto.getU_idx());
-		ModelAndView mav=new ModelAndView();
-		int result = conService.addNaming(dto);
+		ModelAndView mav = new ModelAndView();
+		int result = conService.addLogo(dto);
 		conService.updateTrd(dto);
 		mav.addObject("result", result);
 		//mav.addObject("upload", dto.getUpload());
@@ -78,20 +71,24 @@ public class ContestController {
 			String path = request.getSession().getServletContext().getRealPath("img/");
 			copyInto(dto.getUpload(), path); 
 		}
-		mav.setViewName("contest/contestChoice"); //
+		mav.setViewName("contest/logoHold");
 		return mav;
 	}
-	//占쏙옙占싱뱄옙 form
-	@RequestMapping(value = "/namingHoldTrade_add.do", method = RequestMethod.POST)
+	//로고 트레이드 form
+	@RequestMapping(value = "/logoHoldTrade_add.do", method = RequestMethod.POST)
 	@ResponseBody
-	public String namingHoldTradeForm(TrdDTO dto, HttpSession session) {
+	public String logoHoldTradeForm(TrdDTO dto, HttpSession session) {
 		
 		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
 		
 		dto.setU_idx(mdto.getU_idx());
-		int result = conService.addNamingTrade(dto);
+		System.out.println(mdto.getU_idx());
+		int result = conService.addLogoTrade(dto);
 		return dto.getT_idx()+"";
 	}
+	//네이밍 뷰
+	@RequestMapping(value = "/namingHold.do", method = RequestMethod.GET)
+	public ModelAndView namingHold(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
 	//占쏙옙占싹븝옙占쏙옙
 	public void copyInto(MultipartFile upload, String path) {
 					
@@ -112,10 +109,42 @@ public class ContestController {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("c_cate", c_cate);
 		System.out.println(c_cate);
-		mav.setViewName("contest/logoHold");
+		mav.setViewName("contest/namingHold");
 		return mav;
 	}
-	//캐占쏙옙占쏙옙 占쏙옙占쏙옙
+	//네이밍 폼
+	@RequestMapping(value = "/namingHold_add.do", method = RequestMethod.POST)
+	public ModelAndView namingHoldForm(MultipartHttpServletRequest request, ConDTO dto, HttpSession session) {	
+		
+		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
+		
+		dto.setU_idx(mdto.getU_idx());
+		ModelAndView mav = new ModelAndView();
+		int result = conService.addNaming(dto);
+		conService.updateTrd(dto);
+		mav.addObject("result", result);
+		//mav.addObject("upload", dto.getUpload());
+		if(null != dto.getUpload()){
+			String path = request.getSession().getServletContext().getRealPath("img/");
+			copyInto(dto.getUpload(), path); 
+		}
+		mav.setViewName("contest/namingHold");
+		return mav;
+	}
+	//네이밍 트레이드
+	@RequestMapping(value = "/namingHoldTrade_add.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String namingHoldTradeForm(TrdDTO dto, HttpSession session) {
+			
+		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
+			
+		dto.setU_idx(mdto.getU_idx());
+		System.out.println(mdto.getU_idx());
+		int result = conService.addLogoTrade(dto);
+		return dto.getT_idx()+"";
+	}
+	
+	//캐릭터 뷰
 	@RequestMapping(value = "/characterHold.do", method = RequestMethod.GET)
 	public ModelAndView characterHold(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
 		ModelAndView mav=new ModelAndView();
@@ -124,16 +153,38 @@ public class ContestController {
 		mav.setViewName("contest/characterHold");
 		return mav;
 	}
-	//占쏙옙품 占쏙옙占쏙옙
-	@RequestMapping(value = "/productHold.do", method = RequestMethod.GET)
-	public ModelAndView productHold(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("c_cate", c_cate);
-		System.out.println(c_cate);
-		mav.setViewName("contest/productHold");
+	//캐릭터 폼
+	@RequestMapping(value = "/charHold_add.do", method = RequestMethod.POST)
+	public ModelAndView	charHoldForm(MultipartHttpServletRequest request, ConDTO dto, HttpSession session) {	
+			
+		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
+			
+		dto.setU_idx(mdto.getU_idx());
+		ModelAndView mav = new ModelAndView();
+		int result = conService.addChar(dto);
+		conService.updateTrd(dto);
+		mav.addObject("result", result);
+		//mav.addObject("upload", dto.getUpload());
+		if(null != dto.getUpload()){
+			String path = request.getSession().getServletContext().getRealPath("img/");
+			copyInto(dto.getUpload(), path); 
+		}
+		mav.setViewName("contest/characterHold");
 		return mav;
 	}
-	//占싸쇽옙 占쏙옙占쏙옙
+	//캐릭터 트레이드
+	@RequestMapping(value = "/charHoldTrade_add.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String charHoldTradeForm(TrdDTO dto, HttpSession session) {
+				
+		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
+				
+		dto.setU_idx(mdto.getU_idx());
+		System.out.println(mdto.getU_idx());
+		int result = conService.addCharTrade(dto);
+		return dto.getT_idx()+"";
+	}
+	//인쇄 뷰
 	@RequestMapping(value = "/printHold.do", method = RequestMethod.GET)
 	public ModelAndView printHold(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
 		ModelAndView mav=new ModelAndView();
@@ -141,6 +192,37 @@ public class ContestController {
 		System.out.println(c_cate);
 		mav.setViewName("contest/printHold");
 		return mav;
+	}
+	//인쇄 폼
+	@RequestMapping(value = "/printHold_add.do", method = RequestMethod.POST)
+	public ModelAndView	printHoldForm(MultipartHttpServletRequest request, ConDTO dto, HttpSession session) {	
+				
+		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
+				
+		dto.setU_idx(mdto.getU_idx());
+		ModelAndView mav = new ModelAndView();
+		int result = conService.addPrint(dto);
+		conService.updateTrd(dto);
+		mav.addObject("result", result);
+		//mav.addObject("upload", dto.getUpload());
+		if(null != dto.getUpload()){
+			String path = request.getSession().getServletContext().getRealPath("img/");
+			copyInto(dto.getUpload(), path); 
+		}
+		mav.setViewName("contest/printHold");
+		return mav;
+	}
+	//인쇄 트레이드
+	@RequestMapping(value = "/printHoldTrade_add.do", method = RequestMethod.POST)
+	@ResponseBody
+	public String printHoldTradeForm(TrdDTO dto, HttpSession session) {
+					
+		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
+					
+		dto.setU_idx(mdto.getU_idx());
+		System.out.println(mdto.getU_idx());
+		int result = conService.addPrintTrade(dto);
+		return dto.getT_idx()+"";
 	}
 	
 	@RequestMapping(value = "contestJoin.do", method = RequestMethod.GET)
@@ -334,5 +416,25 @@ public class ContestController {
 		
 		mav.setViewName("contest/conPart");
 		return mav;
+	//체크 박스
+	@RequestMapping(value = "/arrcheck.do", method = RequestMethod.POST)
+	@ResponseBody
+	public void arrCheck(@RequestParam(value = "valueArr[]")
+	List<String> valueArr) {
+		System.out.println(valueArr);
+	}
+	//파일 복사
+	public void copyInto(MultipartFile upload, String path) {
+		
+		try {
+			byte bytes[] = upload.getBytes();
+			File f = new File(path + upload.getOriginalFilename());
+			FileOutputStream fos = new FileOutputStream(f);
+			fos.write(bytes);
+			fos.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
 	}
 }

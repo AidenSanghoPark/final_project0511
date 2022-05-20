@@ -6,10 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>DSN ADMIN LOGIN</title>
+<meta name="theme-color" content="#7952b3">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<meta name="theme-color" content="#7952b3">
-
 <style>
 .bd-placeholder-img {
 	font-size: 1.125rem;
