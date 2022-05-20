@@ -351,15 +351,56 @@ a{
 }
 
 .button:hover {opacity: 1}
+
+      .modal {
+		position: fixed;
+        top: 30%;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        display: none;
+
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+
+      .modal.show {
+        display: block;
+      }
+
+      .modal_body {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+		height: 100%;
+		margin: 10px;
+        width: 1000px;
+		overflow-y: auto;
+        padding: 40px;
+
+        text-align: center;
+
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
+        box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+        transform: translateX(-50%) translateY(-50%);
+      }
+      .modal-dialog{
+    overflow-y: initial !important
+	}
+	
 </style>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript"
+  <script type="text/javascript"
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="https://kit.fontawesome.com/180c933499.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/180c933499.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 <%@ include file="/WEB-INF/views/header.jsp" %>
 
 <head>
@@ -393,11 +434,11 @@ a{
 			            <h4 style="padding-right: 45px; text-align: right; font-size: 15px; color: gray;"><label style="font-weight: bold;">남은기간</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D${dto.c_datediff }</h4> 
 			        </div>    
 			    </div> 
-
 			</div>
+
 			<br>
 		<div style="width: 40%; margin: 0 auto; padding-left: 10px;">
-			<button class="button" style="color: #2E3968">참여작 보기</button>
+			<button class="button">참여작 보기</button>
 			<a href="conContent.do?c_idx=${c_idx }"><button class="button">브리핑 보기</button></a>
 			<a href="contestJoin.do?c_idx=${c_idx }"><button class="button">콘테스트 참여</button></a>
 		</div>
@@ -415,9 +456,33 @@ a{
 			</c:if>
 			<tbody>
 				<tr>
-					<c:forEach var="dto" items="${dlists}">
-					<td><img style="width: 300px;" src="img/${dto.d_img_1}">
-					<p>${dto.d_name }</p></td>
+					<c:forEach var="dto" items="${dlists}" varStatus="vs">
+					
+					<td><a class="btn-open-popup"><img style="width: 300px;" src="img/${dto.d_img_1}">
+					<p>${dto.d_name }</p></a></td>
+					
+					<!-- 모달 -->		    
+					<div class="modal">
+					      <div class="modal_body">
+					      	
+					      	<div style="width: 30%; height:100%; background-color:#EFEFF6; float: right; border-radius: 5px;
+					      	  position: sticky; top: 0;">
+					      		<h4>${dto.d_name }</h4>
+					      		<h4>디자이너 이름</h4>
+					      		<br>
+					      		<p style="text-align: left; padding-left: 20px;">참여작 내용</p>
+					      		<br>
+					      		<button class="button" style="width: 230px; height: 50px; border-radius: 3px; ">당선하기<br></button>
+					      	</div>
+					      	
+					      	<div style="float: left;">
+					      		<img style="width: 70%; height: 100%; float: left;" src="img/${dto.d_img_2}">
+					      		<img style="width: 70%; height: 100%; float: left;" src="img/${dto.d_img_2}">
+					      	</div>
+					      	
+					      </div>
+					</div>
+					
 					</c:forEach>
 				</tr>
 			</tbody>
@@ -426,4 +491,32 @@ a{
 	</section>
 </div>
 </body>
+    <script>
+      const body = document.querySelector('body');
+      const modal = document.querySelector('.modal');
+      const btnOpenPopup = document.querySelector('.btn-open-popup');
+
+      btnOpenPopup.addEventListener('click', () => {
+        modal.classList.toggle('show');
+
+        if (modal.classList.contains('show')) {
+          body.style.overflow = 'hidden';
+        }
+      });
+
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+          modal.classList.toggle('show');
+
+          if (!modal.classList.contains('show')) {
+            body.style.overflow = 'auto';
+          }
+        }
+      });
+      
+      $(document).ready(function () {
+    	    $('head').append('<style type="text/css">.modal .modal-body {max-height: ' + ($('body').height() * .8) + 'px;overflow-y: auto;}.modal-open .modal{overflow-y: hidden !important;}</style>');
+    	});
+    </script>
+  
 </html>
