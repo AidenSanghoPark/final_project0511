@@ -149,6 +149,10 @@ public class DesignerServiceImple implements DesignerService {
 		DesignerDTO dto=DesignerDao.portfolioDetail(d_idx);
 		return dto;
 	}
-	
+	@Override
+	public int getDesignerCnt(int u_idx) {
+		int count=DesignerDao.getDesignerCnt(u_idx);
+		return count;
+	}
 
 }

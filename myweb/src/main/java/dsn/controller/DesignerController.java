@@ -35,16 +35,14 @@ public class DesignerController {
 		Object obj=session.getAttribute("login");
 		MemberDTO mdto = (MemberDTO) obj;
 		int u_idx=mdto.getU_idx();
-		System.out.println("port"+u_idx);
-		int totalCnt=designerService.portfolioTotalCnt();
+		int totalCnt=designerService.getDesignerCnt(u_idx);
 		int listSize=5;
 		int pageSize=3;
 		String pageStr=dsn.page.PageModule.pageMake("portfolio.do", totalCnt, listSize, pageSize, cp);
 		List lists=designerService.portfolio(cp, listSize, u_idx);
-		System.out.println(lists);
 		ProfileDTO pdto=designerService.profileInfo(u_idx);
 		MemberDTO udto=designerService.userInfo(u_idx);
-		
+		System.out.println(udto.getU_nick());
 		ModelAndView mav=new ModelAndView();
 		
 		mav.addObject("lists", lists);
@@ -106,7 +104,6 @@ public class DesignerController {
 		dto.setP_img(dto.getUpload().getOriginalFilename());
 		int result=designerService.profileUpdate(dto);
 		
-		System.out.println(dto.getP_img());
 		
 		String msg=result>0?"ok":"no";
 		ModelAndView mav=new ModelAndView();

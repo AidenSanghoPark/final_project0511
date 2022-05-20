@@ -95,7 +95,7 @@ h5{
 				<tr>
 					<c:forEach var="dto" items="${lists}">
 						<td>
-							<a data-bs-toggle="modal" data-bs-target="#exampleModal" data-test="${dto.d_idx}"><img src="designimg/${dto.d_img_1}.PNG"></a><br>
+							<a data-bs-toggle="modal" data-bs-target="#exampleModal" data-test="${dto.d_idx}"><img src="img/${dto.d_img_1}"></a><br>
 							<label><a data-bs-toggle="modal" data-bs-target="#myModal" data-test="${dto.d_idx}">${dto.d_name}</a></label>
 							
 						</td>
