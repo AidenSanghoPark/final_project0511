@@ -144,7 +144,7 @@ input[type=text]:focus{
 	                 <img src="img/logotype2.jpg" style="width: 100px; height: 100px;">
 	                 	<input type="checkbox" name="logo" value="2" id="checkImg">
 	                 <img src="img/logotype3.jpg" style="width: 100px; height: 100px;">
-	                 	<input type="checkbox" name="logo" value="3" id="checkImg">
+	                 	<input type="checkbox" name="logo" value="3" id="checkImg3">
 	              <br>
 	              <br>
 	              <br>     	                 
@@ -317,8 +317,12 @@ input[type=text]:focus{
 			      <br>            
 		         </div>
 		         <div class="d-grid gap-2 col-6 mx-auto">
-		           <button class="btn btn-primary" type="button" onclick="pay();">KAKAO PAY</button>
-		      </div>
+		           <button class="btn btn-primary" type="button" onclick="payKakao();">KAKAO PAY</button>
+		         </div>
+		         <div class="d-grid gap-2 col-6 mx-auto">
+		           <button class="btn btn-primary" type="button" onclick="payCard();">카드결제</button>
+		         </div>
+		         
 		    </div>
 		  </div>
 		</section>
@@ -349,6 +353,7 @@ jQuery(document).ready(function($) {
     });
  
 });
+
 
 function namingAdd() { 
    //var ckArr = [];
@@ -435,9 +440,9 @@ function nextNaming(){
     // section1을 trigger로 click해줘서 제이쿼리 click이 돌게함.
 }
 
-function pay(){
+function payKakao(){
 //     var totalPrice = $("#totalPrice").val();
-    // IMP.request_pay(param, callback) 결제창 호출
+// IMP.request_pay(param, callback) 결제창 호출
     IMP.request_pay({ // param
         pg: "kakaopay",
         pay_method: "kakaopay",
@@ -482,6 +487,46 @@ function pay(){
     });
 }
 
+function payCard(){
+	IMP.request_pay({
+	    pg : 'html5_inicis',
+	    pay_method : 'card',
+	    merchant_uid: randomNum(), // 상점에서 관리하는 주문 번호를 전달
+	    name: $("#selectType").val(), 
+        amount: $("#t_pay").val()
+	}, function(rsp) { // callback 로직
+		if (rsp.success) {
+            // ajax 거래내역 insert 추가 필요
+            
+            var dataForm = {
+            "t_pay" : $("#t_pay").val()
+            //, "u_idx" : u_idx
+            //, "c_idx" : c_idx
+            //, "t_type" : t_type
+            };
+            
+            $.ajax({
+               url: 'logoHoldTrade_add.do', 
+               type: 'post',               
+               dataType: 'json',
+               data: dataForm,
+               success : function(result){
+                  
+                  if(!result == '0'){
+                     alert("결제성공");
+                     $("#t_idx").val(result);
+                     namingAdd();
+                  }
+               }
+            });
+            
+        } else {
+            alert("결제취소");
+            // 결제 실패 시 로직,
+        }
+	});
+}
+
    $(document).ready(function(){
       $(".tab_title li").click(function() {
           var idx = $(this).index();
@@ -510,6 +555,6 @@ function pay(){
    }
 </script>      
 <%@include file="/WEB-INF/views/footer.jsp" %>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>   
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

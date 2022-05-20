@@ -10,6 +10,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import dsn.contest.model.*;
+import dsn.designer.model.DesignerDTO;
 import dsn.trade.model.TrdDTO;
 
 public interface ConDAO {
@@ -22,7 +23,7 @@ public interface ConDAO {
 	public int ContestCnt();
 	public ConDTO conContent(int c_idx);
 	public int conCount(Map map);
-	public int contestJoin(DesignerDTO dto);
+	public int contestJoin(DesignerConDTO dto);
 	public void designerWin(int d_idx);
 	public void contestEnd(int c_idx);
 	public void payUpdate(Map map);
@@ -44,9 +45,5 @@ public interface ConDAO {
 	//print
 	public int addPrint(ConDTO dto);
 	public int addPrintTrade(TrdDTO dto);
-	
-	
-	public void designerWin(int d_idx);
-	public void contestEnd(int c_idx);
-	public void payUpdate(Map map);
+	public DesignerConDTO contestContent(Map map);
 }

@@ -19,8 +19,6 @@ public interface ConService {
 	public int conCount(int c_readnum, int c_idx);
 	public ConDTO conInfo(int c_idx);
 	public int contestJoin(DesignerConDTO dto);
-	public int addNaming(ConDTO dto);
-	public int addNamingTrade(TrdDTO dto);
 	public void updateTrd(ConDTO dto);
 	public void designerWin(int d_idx);
 	public void contestEnd(int c_idx);
