@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dsn.review">
+	<insert id="writeReview" parameterType="Map">
+        insert into f_review values(
+           rv_idx.nextval,
+           0,
+           #{u_idx},
+           #{rv_content},
+           sysdate
+        )
+     </insert>
+     <select id="reviewTotalCnt" resultType="Integer">
+      select count(*) from f_review
+   </select>
+</mapper>

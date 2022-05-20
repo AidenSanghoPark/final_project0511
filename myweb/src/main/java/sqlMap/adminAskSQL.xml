@@ -14,13 +14,30 @@
 		 ORDER BY Q_IDX ASC)A)B
 		WHERE RNUM <![CDATA[>=]]>#{start} AND 
 		RNUM<![CDATA[<=]]>#{end}
-		
 	</select>
+	
+	<select id="dsn.adminAsk.askUserList" parameterType="Map"  resultType="dsn.askManage.model.AskManageDTO">
+		SELECT * FROM
+		(SELECT ROWNUM AS RNUM,A.*FROM
+		(SELECT F_QNA.Q_IDX, F_QNA.Q_SUBJECT, F_USER.U_NAME, F_QNA.Q_DATE, F_QNA.Q_CHECK
+		 FROM F_QNA, F_USER 
+		 WHERE F_QNA.U_IDX = F_USER.U_IDX 
+		 AND F_QNA.U_IDX = #{u_idx}
+		 ORDER BY Q_IDX ASC)A)B
+		WHERE RNUM <![CDATA[>=]]>#{start} AND 
+		RNUM<![CDATA[<=]]>#{end}
+	</select>
+
 
 	<select id="dsn.adminAsk.totalCnt" resultType="Integer">
 	
 		SELECT COUNT(*) FROM F_QNA
 		
+	</select>
+	
+	<select id="dsn.adminAsk.userTotalCnt" resultType="Integer">
+		SELECT COUNT(*) FROM F_QNA 
+		WHERE U_IDX = #{u_idx}
 	</select>
 	
 	<select id="dsn.adminAsk.askContent" parameterType="Integer" resultType="dsn.askManage.model.AskManageDTO">
@@ -29,16 +46,48 @@
 		from
 			F_QNA, F_USER
 		where
-			F_QNA.Q_IDX = F_USER.U_IDX
+			F_QNA.U_IDX = F_USER.U_IDX
 		AND	Q_IDX=#{q_idx}
 	</select>
 
 
-<update id="dsn.adminAsk.askCheckUpdate" parameterType="dsn.askManage.model.AskManageDTO">
-	UPDATE F_QNA
-	SET 
-	Q_CHECK = #{q_check}
-	WHERE Q_IDX = #{q_idx}
-</update>
+	<update id="dsn.adminAsk.askCheckUpdate" parameterType="dsn.askManage.model.AskManageDTO">
+		UPDATE F_QNA
+		SET 
+		Q_CHECK = #{q_check}
+		WHERE Q_IDX = #{q_idx}
+	</update>
+	
+	<delete id="dsn.adminAsk.askDelete" parameterType="Integer">
+		DELETE FROM F_QNA WHERE Q_IDX = #{q_idx}
+	</delete>
 
+	<insert id="dsn.adminAsk.askWrite" parameterType="dsn.askManage.model.AskManageDTO">
+		INSERT INTO F_QNA
+		(
+		Q_IDX
+		,Q_SUBJECT
+		,U_IDX
+		,Q_CONTENT
+		,Q_DATE
+		)
+		VALUES(
+				Q_IDX.NEXTVAL, #{q_subject}, #{u_idx}, #{q_content}, SYSDATE
+		)
+	</insert>
+	
+	<select id="dsn.adminAsk.askUpdateForm" parameterType="Integer" resultType="dsn.askManage.model.AskManageDTO">
+		SELECT * FROM F_QNA
+		WHERE Q_IDX = #{q_idx}
+	</select>
+	
+	<update id="dsn.adminAsk.askUpdate" parameterType="dsn.askManage.model.AskManageDTO">
+		UPDATE F_QNA
+		SET
+		Q_SUBJECT = #{q_subject}
+		, Q_CONTENT = #{q_content}
+		WHERE Q_IDX = #{q_idx}
+	</update>
+	
+	
   </mapper>

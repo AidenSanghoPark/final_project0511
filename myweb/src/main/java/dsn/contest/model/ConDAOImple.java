@@ -1,12 +1,15 @@
 package dsn.contest.model;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.collections.map.HashedMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import dsn.contest.model.*;
 import dsn.trade.model.TrdDTO;
+
 
 public class ConDAOImple implements ConDAO{
 
@@ -46,6 +49,60 @@ public class ConDAOImple implements ConDAO{
 		}
 				
 		//naming
+		
+
+		@Override
+		public List cateList(Map map) {
+			List lists=sqlMap.selectList("cateList", map);
+			return lists;
+		}
+
+
+		@Override
+		public List conList(Map map) {
+			List lists=sqlMap.selectList("conList", map);
+			return lists;
+		}
+		
+		@Override
+		public List cateEnd(Map map) {
+			List lists=sqlMap.selectList("cateEnd", map);
+			return lists;
+		}
+
+
+		@Override
+		public List conEnd(Map map) {
+			List lists=sqlMap.selectList("conEnd", map);
+			return lists;
+		}
+
+		@Override
+		public int dateUp() {
+			int dateUp=sqlMap.update("dateUp");
+			return dateUp;
+		}
+
+		@Override
+		public int ContestCnt() {
+			int cnt=sqlMap.selectOne("ContestCnt");
+			return cnt;
+		}
+
+
+		@Override
+		public ConDTO conContent(int c_idx) {
+			ConDTO dto=sqlMap.selectOne("conContent", c_idx);
+			return dto;
+		}
+
+
+		@Override
+		public int conCount(Map map) {
+			int count=sqlMap.update("conCount",map);
+			return count;
+		}
+
 		@Override
 		public int addNaming(ConDTO dto) {
 			
@@ -82,4 +139,30 @@ public class ConDAOImple implements ConDAO{
 			int count = sqlMap.insert("addPrintTrade", dto);
 			return count;
 		}
+		@Override
+		public void contestEnd(int c_idx) {
+			sqlMap.update("contestEnd",c_idx);
+		
+		}
+		@Override
+		public void designerWin(int d_idx) {
+			sqlMap.update("designerWin", d_idx);
+		}
+		@Override
+		public void payUpdate(Map map) {
+			sqlMap.update("payUpdate",map);
+		
+		}
+		@Override
+		public DesignerConDTO contestContent(Map map) {
+			DesignerConDTO dto=sqlMap.selectOne("contestContent", map);
+			return dto;
+		}
+		
+		@Override
+		public List conPart(Map map) {
+			List dlists=sqlMap.selectList("conPart", map);
+			return dlists;
+		}
+
 }

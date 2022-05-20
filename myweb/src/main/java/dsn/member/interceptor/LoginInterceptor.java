@@ -1,5 +1,7 @@
 package dsn.member.interceptor;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,31 +17,15 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 	 private static final String LOGIN = "login";
 	
 	
-	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
-		System.out.println("loginter");
-		HttpSession session = request.getSession();
-		
-		if(session.getAttribute(LOGIN) != null) {
-			System.out.println("인터셉터가 세션에 남아있 던 세션을 제거했습니다.");
-			session.removeAttribute(LOGIN);
-		}
-		return true;
-	}
+	
 	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		System.out.println("로그인 인터셉터 포스트 핸들 작동");
 		
         HttpSession httpSession = request.getSession();
         ModelMap modelMap = modelAndView.getModelMap();
         Object memberVO =  modelMap.get("user");
-        
-        System.out.println("loginter post mvo="+memberVO);
-        
-        System.out.println("loginter copkie="+request.getParameter("useCookie"));
         
         if (memberVO != null) {
             httpSession.setAttribute(LOGIN, memberVO);
@@ -52,8 +38,28 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
             }
             
             Object destination = httpSession.getAttribute("destination");
-            Object URL = httpSession.getAttribute("URL");
-            response.sendRedirect(destination != null ? (String) destination : "index.do");
+            Object URL = httpSession.getAttribute("logUrl");
+            String logUrl= (String) URL;
+            
+            if(logUrl.contains("logout.do")) {
+            	response.sendRedirect(destination != null ? (String) destination : "index.do");
+            }else {
+            	response.sendRedirect(destination != null ? (String) destination : (String) URL);
+            }
+            
+            
+        }else {
+        	
+        	modelAndView.addObject("msg", "로그인 실패");
+        	modelAndView.addObject("gopage", "index.do");
+        	modelAndView.setViewName("/member/loginMsg");
+//        	response.setContentType("text/html; charset=UTF-8");
+//
+//            PrintWriter out = response.getWriter();
+//
+//            out.println("<script>alert('아이디 비밀번호가 일치하지 않습니다.'); history.go(-1);</script>");// <== 관리자 등급별로 메뉴 제어
+//
+//            out.flush();
         }
 	}
 	

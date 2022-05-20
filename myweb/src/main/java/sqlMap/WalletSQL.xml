@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="dsn.virtualwallet">
+	<select id="virtualWallet" parameterType="Map" resultType="dsn.virtualwallet.model.WalletDTO">
+			select * from
+			(select * from
+			(select rownum as rnum,a.* from
+			(select * from f_account order by a_idx desc)a)b
+			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end})where u_idx=#{u_idx}
+  	</select>
+  	<select id="walletCnt" parameterType="Integer" resultType="Integer">
+  	SELECT COUNT(*) FROM F_ACCOUNT WHERE U_IDX=#{u_idx}
+  	</select>
+  	<select id="getLastBalance" parameterType="Integer" resultType="Integer">
+  		SELECT A_BALANCE FROM
+		(SELECT A_IDX,U_IDX,A_BALANCE FROM F_ACCOUNT WHERE U_IDX=#{u_idx}
+		ORDER BY A_IDX DESC)WHERE ROWNUM=1
+  	</select>
+</mapper>

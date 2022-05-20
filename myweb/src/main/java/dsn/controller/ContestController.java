@@ -1,12 +1,15 @@
 package dsn.controller;
 
 import java.io.File;
+
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +24,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dsn.member.model.MemberDTO;
 import dsn.member.model.MemberService;
-import dsn.contest.model.ConDTO;
-import dsn.contest.model.ConService;
+
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import dsn.contest.model.*;
 import dsn.module.*;
+import dsn.page.PageModule;
+import dsn.profile.model.ProfileDTO;
 import dsn.trade.model.TrdDTO;
 
 @Controller
@@ -205,23 +209,32 @@ public class ContestController {
 	}
 	
 	@RequestMapping(value = "contestJoin.do", method = RequestMethod.GET)
-	public ModelAndView contestJoin(ConDTO dto) {
+	public ModelAndView contestJoin(ConDTO dto, HttpServletRequest request, HttpSession session) {
+		
+		Object obj=session.getAttribute("login");
+		MemberDTO mdto = (MemberDTO) obj;
+//		String url=request.getHeader("REFERER");
+//    	request.getSession().setAttribute("conUrl", url);
 		ModelAndView mav=new ModelAndView();
 		ConDTO con=conService.conInfo(dto.getC_idx());
+		mav.addObject("mdto",mdto);
 		mav.addObject("condto", con);
 		mav.setViewName("contest/contestJoin");
 		return mav;
 	}
 	@RequestMapping(value = "contestJoinSubmit.do", method = RequestMethod.POST)
-	public ModelAndView contestJoinForm(MultipartHttpServletRequest request ,DesingerDTO dto) {
-		System.out.println(dto.getD_name());
+	public ModelAndView contestJoinForm(MultipartHttpServletRequest request ,DesignerConDTO dto) {
+		
 		ModelAndView mav=new ModelAndView();
 		FileUploadModule file=new FileUploadModule();
 		String path=request.getSession().getServletContext().getRealPath("img/");
 		file.copyInto(path,dto.getUploadfile1());
 		file.copyInto(path,dto.getUploadfile2());
 		int result=conService.contestJoin(dto);
-		mav.setViewName("index");
+		String msg=result>0?"肄섑뀒�뒪�듃 李몄뿬 �셿猷�":"肄섑뀒�뒪�듃 李몄뿬 �떎�뙣";
+		mav.addObject("msg",msg);
+		mav.addObject("gopage", "index.do");
+		mav.setViewName("/contest/contestMsg");
 		return mav;
 	}
 	//체크 박스

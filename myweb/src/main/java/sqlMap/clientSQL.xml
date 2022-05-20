@@ -1,10 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dsn.con">
+	
+	<select id="conEnd" parameterType="Map" resultType="dsn.contest.model.ConDTO">
+		select * from
+		(select rownum as rnum,a.* from
+		(select * from f_client order by c_idx desc)a)b
+		where rnum<![CDATA[>=]]>#{start}
+		and rnum<![CDATA[<=]]>#{end} 
+		and c_datediff<![CDATA[>=]]>0
+	</select>
+	
+	<select id="ContestCnt" resultType="Integer">
+		select count(*) from f_client
+	</select>
+	
+	<update id="conCount" parameterType="Map">
+	UPDATE 
+		f_client
+	SET
+		C_READNUM = #{c_readnum} WHERE C_IDX= #{c_idx}
+	</update>
+	
+	<select id="cateList" parameterType="Map" resultType="dsn.contest.model.ConDTO">
+	    select * from
+			(select rownum as rnum,a.* from
+			(select * from f_client where c_cate=#{c_cate} order by c_idx desc)a)b
+			where rnum<![CDATA[>=]]>#{start}
+			and rnum<![CDATA[<=]]>#{end} 
+			and c_datediff<![CDATA[<=]]>0
+   	</select>
+   
+   	<select id="cateEnd" parameterType="Map" resultType="dsn.contest.model.ConDTO">
+	    select * from
+			(select rownum as rnum,a.* from
+			(select * from f_client where c_cate=#{c_cate} order by c_idx desc)a)b
+			where rnum<![CDATA[>=]]>#{start}
+			and rnum<![CDATA[<=]]>#{end} 
+			and c_datediff<![CDATA[>=]]>0
+   	</select>
+   	 <select id="conContent" parameterType="Integer" resultType="dsn.contest.model.ConDTO">
+      select
+         *
+      from
+         f_client
+      where
+         c_idx=#{c_idx}
+   </select>
+    <update id="dateUp">
+    UPDATE F_CLIENT SET C_DATEDIFF=TRUNC(SYSDATE-C_ENDDATE)
+    </update>
+   
+	
 	<select id="conList" parameterType="Map" resultType="dsn.contest.model.ConDTO">
-	<![CDATA[
+	
 		SELECT
 			*
 		FROM(
@@ -21,11 +72,11 @@
 				)A
 			)B
 		WHERE
-			RNUM >= #{start}
+			RNUM <![CDATA[>=]]> #{start}
 		AND
-			RNUM <= #{end}
-		AND C_DATEDIFF <= 0
-		]]>
+			RNUM <![CDATA[<=]]> #{end}
+		AND C_DATEDIFF <![CDATA[<=]]> 0
+		
 	</select>
 	<select id="conInfo" parameterType="Integer" resultType="dsn.contest.model.ConDTO">
 		SELECT
@@ -35,21 +86,22 @@
 		WHERE
 			C_IDX = #{c_idx}
 	</select>
-	<insert id="contestJoin" parameterType="dsn.contest.model.ConDTO">
+	<insert id="contestJoin" parameterType="dsn.contest.model.DesignerConDTO">
 		INSERT
 			INTO
 		F_DESIGNER
 			VALUES(
 			F_DESIGNER_D_IDX.NEXTVAL
-			, 1
+			, #{u_idx}
 			, #{d_name}
 			, #{d_content}
 			, #{d_img_1}
 			, #{d_img_2}
 			, SYSDATE
-			, 1
+			, 0
 			, 'N'
-			, 1
+			, #{c_cate}
+			, #{c_idx}
 			)
 	</insert>
 	<insert id="addLogo" parameterType="dsn.contest.model.ConDTO">
@@ -144,6 +196,7 @@
 		)	
 	</insert>
 	<insert id="addNamingTrade" parameterType="dsn.trade.model.TrdDTO">
+	
 	<selectKey order="BEFORE" keyProperty="t_idx" resultType="Integer">
 		SELECT T_IDX.NEXTVAL AS T_IDX FROM DUAL
 	</selectKey>
@@ -268,4 +321,65 @@
 		C_IDX = #{c_idx}
 		WHERE T_IDX = #{t_idx}
 	</update>
+	
+	<select id="conPart" parameterType="Integer" resultType="dsn.designer.model.DesignerDTO">
+		select * from 
+			(select rownum as rnum, a.* from
+			(select * from f_designer where c_idx=#{c_idx} order by d_idx desc)a)b
+		where
+			rnum <![CDATA[>=]]> #{start}
+		and
+			rnum <![CDATA[<=]]> #{end}
+	</select>
+	<update id="designerWin" parameterType="Integer">
+		update f_designer set
+                     d_win=1
+                      where d_idx = #{d_idx}
+   </update>
+   <update id="contestEnd" parameterType="Integer">
+   		UPDATE
+   			F_CLIENT
+   		SET
+   			C_DATEDIFF = 0
+   		WHERE
+   			C_IDX = #{c_idx}
+   </update>
+	<select id="myPageList" parameterType="Map" resultType="dsn.contest.model.ConDTO">
+			select * from
+			(select * from
+			(select rownum as rnum,a.* from
+			(select * from f_client order by c_idx desc)a)b
+			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end})where u_idx=#{u_idx}
+  	</select>
+  	<select id="contestContent" parameterType="Map" resultType="dsn.contest.model.DesignerConDTO">
+  		SELECT
+  			*
+  		FROM
+  			F_DESIGNER
+  		WHERE
+  			D_IDX = #{d_idx}
+  		AND
+  			c_idx = #{c_idx}
+  	</select>
+  	<insert id="payUpdate" parameterType="Map">
+  		INSERT
+			INTO
+		F_ACCOUNT
+			VALUES(
+			A_IDX.NEXTVAL
+			, '16'
+			, '입금'
+			, sysdate 
+			, '1232'
+			, '상금적립'
+			, 50000
+			, (SELECT 
+            a_balance 
+        FROM 
+            f_account 
+        WHERE a_idx = (SELECT max(a_idx) FROM f_account)
+        
+        and u_idx = 16)+50000
+			)
+  	</insert>
 </mapper>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import dsn.contest.model.ConService;
 import dsn.member.model.MemberDTO;
 import dsn.profile.model.ProfileDTO;
 
@@ -24,17 +25,18 @@ public class DesignerServiceImple implements DesignerService {
 	public void setDesignerDao(DesignerDAO designerDao) {
 		this.DesignerDao = designerDao;
 	}
-
+	
 	@Override
-	public List portfolio(int cp, int listSize, int u_idx) {
+	public List portfolio2(int cp, int listSize, int u_idx) {
 		int start=((cp-1)*listSize)+1;
 		int end=cp*listSize;
+		
 		Map map=new HashedMap();
 		map.put("start", start);
 		map.put("end", end);
 		map.put("u_idx", u_idx);
 		
-		List lists=DesignerDao.portfolio(map);
+		List lists=DesignerDao.portfolio2(map);
 		return lists;
 	}
 	
@@ -96,7 +98,7 @@ public class DesignerServiceImple implements DesignerService {
 	
 	@Override
 	public int designerWin(int u_idx) {
-		int cnt=DesignerDao.designerWin(1);
+		int cnt=DesignerDao.designerWin(u_idx);
 		return cnt;
 	}
 	
@@ -107,28 +109,49 @@ public class DesignerServiceImple implements DesignerService {
 	}
 	
 	@Override
-	public List designerList(int cp, int listSize, int u_idx) {
+	public List designerList(int cp, int listSize) {
 		int start=((cp-1)*listSize)+1;
 		int end=cp*listSize;
 		Map map=new HashedMap();
 		map.put("start", start);
 		map.put("end", end);
-		map.put("u_idx", u_idx);
 		
 		List lists=DesignerDao.designerList(map);
 		return lists;
 	}
-
 	
 	@Override
-	public List designPhotos(int u_idx) {
+	public List designPhotos(Object u_idx) {
+		
 		Map map=new HashedMap();
 		map.put("u_idx", u_idx);
 		
 		List lists=DesignerDao.designPhotos(map);
 		return lists;
 	}
+	public int designerListTotalCnt() {
+		int cnt=DesignerDao.designerListTotalCnt();
+		cnt=cnt==0?1:cnt;
+		return cnt;
+	}
+	@Override
+	public List designerAllList() {
+		List lists=DesignerDao.designerAllList();
+		return lists;
+	}
 	
+	@Override
+	public DesignerDTO portfolioDetail(int d_idx) {
+		DesignerDTO dto=DesignerDao.portfolioDetail(d_idx);
+		return dto;
+	}
+	
+	@Override
+	public int getDesignerCnt(int u_idx) {
+		int cnt=DesignerDao.getDesignerCnt(u_idx);
+		cnt=cnt==0?1:cnt;
+		return cnt;
+	}
 	
 
 }
