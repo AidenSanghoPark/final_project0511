@@ -30,6 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 import dsn.contest.model.*;
 import dsn.module.*;
 import dsn.page.PageModule;
+import dsn.profile.model.ProfileDTO;
 import dsn.trade.model.TrdDTO;
 
 @Controller
@@ -80,7 +81,7 @@ public class ContestController {
 		mav.setViewName("contest/contestChoice"); //
 		return mav;
 	}
-	//���̹� form
+	//占쏙옙占싱뱄옙 form
 	@RequestMapping(value = "/namingHoldTrade_add.do", method = RequestMethod.POST)
 	@ResponseBody
 	public String namingHoldTradeForm(TrdDTO dto, HttpSession session) {
@@ -91,7 +92,7 @@ public class ContestController {
 		int result = conService.addNamingTrade(dto);
 		return dto.getT_idx()+"";
 	}
-	//���Ϻ���
+	//占쏙옙占싹븝옙占쏙옙
 	public void copyInto(MultipartFile upload, String path) {
 					
 		try {
@@ -105,7 +106,7 @@ public class ContestController {
 			e.printStackTrace();
 		}		
 	}
-	//�ΰ� ����
+	//占싸곤옙 占쏙옙占쏙옙
 	@RequestMapping(value = "/logoHold.do", method = RequestMethod.GET)
 	public ModelAndView rogoHold(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
 		ModelAndView mav=new ModelAndView();
@@ -114,7 +115,7 @@ public class ContestController {
 		mav.setViewName("contest/logoHold");
 		return mav;
 	}
-	//ĳ���� ����
+	//캐占쏙옙占쏙옙 占쏙옙占쏙옙
 	@RequestMapping(value = "/characterHold.do", method = RequestMethod.GET)
 	public ModelAndView characterHold(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
 		ModelAndView mav=new ModelAndView();
@@ -123,7 +124,7 @@ public class ContestController {
 		mav.setViewName("contest/characterHold");
 		return mav;
 	}
-	//��ǰ ����
+	//占쏙옙품 占쏙옙占쏙옙
 	@RequestMapping(value = "/productHold.do", method = RequestMethod.GET)
 	public ModelAndView productHold(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
 		ModelAndView mav=new ModelAndView();
@@ -132,7 +133,7 @@ public class ContestController {
 		mav.setViewName("contest/productHold");
 		return mav;
 	}
-	//�μ� ����
+	//占싸쇽옙 占쏙옙占쏙옙
 	@RequestMapping(value = "/printHold.do", method = RequestMethod.GET)
 	public ModelAndView printHold(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
 		ModelAndView mav=new ModelAndView();
@@ -165,7 +166,7 @@ public class ContestController {
 		file.copyInto(path,dto.getUploadfile1());
 		file.copyInto(path,dto.getUploadfile2());
 		int result=conService.contestJoin(dto);
-		String msg=result>0?"콘테스트 참여 완료":"콘테스트 참여 실패";
+		String msg=result>0?"肄섑뀒�뒪�듃 李몄뿬 �셿猷�":"肄섑뀒�뒪�듃 李몄뿬 �떎�뙣";
 		mav.addObject("msg",msg);
 		mav.addObject("gopage", "index.do");
 		mav.setViewName("/contest/contestMsg");
@@ -175,7 +176,7 @@ public class ContestController {
 	@RequestMapping(value = "/conList.do")
 	   public ModelAndView conList(
 			   @RequestParam(value="cp",defaultValue = "1") int cp,
-			   @RequestParam(required = false, defaultValue = "전체") String c_cate,
+			   @RequestParam(required = false, defaultValue = "�쟾泥�") String c_cate,
 			   @RequestParam(required = false, defaultValue = "") String searchType,
 			   @RequestParam(required = false, defaultValue = "") String keyword) throws Exception {
 			PageModule PageModule = new PageModule();
@@ -189,7 +190,7 @@ public class ContestController {
 			
 			List lists = null;
 			String p_command = "";
-			if(c_cate.equals("전체")) {
+			if(c_cate.equals("�쟾泥�")) {
 				lists=conService.conList(cp,listSize,searchType,keyword);
 			}else {
 				lists = conService.cateList(cp, listSize, c_cate);
@@ -205,7 +206,6 @@ public class ContestController {
 			
 			int dateUp=conService.dateUp();
 			
-	      //페이징 처리 끝
 	      
 	      ModelAndView mav=new ModelAndView();
 	      mav.addObject("dateUp",dateUp);
@@ -221,7 +221,7 @@ public class ContestController {
 	@RequestMapping(value = "/conEnd.do")
 	   public ModelAndView conEnd(
 			   @RequestParam(value="cp",defaultValue = "1") int cp,
-			   @RequestParam(required = false, defaultValue = "전체") String c_cate,
+			   @RequestParam(required = false, defaultValue = "�쟾泥�") String c_cate,
 			   @RequestParam(required = false, defaultValue = "") String searchType,
 			   @RequestParam(required = false, defaultValue = "") String keyword) throws Exception {
 	      System.out.println(keyword);
@@ -235,7 +235,7 @@ public class ContestController {
 			
 			List lists = null;
 			String p_command = "";
-			if(c_cate.equals("전체")) {
+			if(c_cate.equals("�쟾泥�")) {
 				lists=conService.conEnd(cp,listSize,searchType,keyword);
 			}else {
 				lists = conService.cateEnd(cp, listSize, c_cate);
@@ -251,7 +251,7 @@ public class ContestController {
 			
 			int dateUp=conService.dateUp();
 			
-	      //페이징 처리 끝
+	      //�럹�씠吏� 泥섎━ �걹
 	      
 	      ModelAndView mav=new ModelAndView();
 	      mav.addObject("dateUp",dateUp);
@@ -269,7 +269,7 @@ public class ContestController {
 		ConDTO dto=conService.conContent(c_idx);
 		ModelAndView mav=new ModelAndView();
 		if(dto==null) {
-			mav.addObject("msg", "잘못된 접근 또는 삭제된 콘테스트입니다.");
+			mav.addObject("msg", "�옒紐삳맂 �젒洹� �삉�뒗 �궘�젣�맂 肄섑뀒�뒪�듃�엯�땲�떎.");
 			mav.addObject("gopage","conList.do");
 			mav.setViewName("contest/conMsg");
 		}else {
@@ -281,7 +281,7 @@ public class ContestController {
 
 	@RequestMapping("/fileDown.do")
 	public ModelAndView fileDown(@RequestParam("filename")String filename) {
-		File f=new File("C:/Users/user/Desktop/이젠/jspstudy4/myweb/src/main/webapp/upload/"+filename);
+		File f=new File("C:/Users/user/Desktop/�씠�젨/jspstudy4/myweb/src/main/webapp/upload/"+filename);
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("downloadFile",f);
 		mav.setViewName("dsnDown");
@@ -315,4 +315,24 @@ public class ContestController {
 		return mav;
 	}
 	
+	@RequestMapping("conPart.do")
+	public ModelAndView conPart(@RequestParam(value = "cp", defaultValue = "1") int cp,
+			@RequestParam(value="c_idx", defaultValue="0") int c_idx) {
+		ConDTO dto=conService.conContent(c_idx);
+		int totalCnt=conService.ContestCnt();
+		int listSize=5;
+		int pageSize=5;
+		String pageStr=dsn.page.PageModule.pageMake("conPart.do", totalCnt, listSize, pageSize, cp);
+		
+		List dlists=conService.conPart(cp, listSize, c_idx);
+		ModelAndView mav=new ModelAndView();
+		
+		mav.addObject("dlists", dlists);
+		mav.addObject("pageStr", pageStr);
+		mav.addObject("dto",dto);
+		mav.addObject("c_idx", c_idx);
+		
+		mav.setViewName("contest/conPart");
+		return mav;
+	}
 }

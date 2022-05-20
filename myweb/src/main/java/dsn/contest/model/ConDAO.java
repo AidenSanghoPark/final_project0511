@@ -31,4 +31,5 @@ public interface ConDAO {
 	public void contestEnd(int c_idx);
 	public void payUpdate(Map map);
 	public DesignerConDTO contestContent(Map map);
+	public List conPart(Map map);
 }

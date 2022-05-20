@@ -15,13 +15,14 @@ public class DesignerDTO {
 	private int d_win;
 	private char d_block;
 	private String c_cate;
+	private int c_idx;
 	
 	public DesignerDTO() {
 		super();
 	}
 
-	public DesignerDTO(int d_idx, int u_idx, int c_idx, String d_name, String d_content, String d_img_1, String d_img_2,
-			Date d_date, int d_win, char d_block, String c_cate) {
+	public DesignerDTO(int d_idx, int u_idx, String d_name, String d_content, String d_img_1, String d_img_2,
+			Date d_date, int d_win, char d_block, String c_cate, int c_idx) {
 		super();
 		this.d_idx = d_idx;
 		this.u_idx = u_idx;
@@ -122,6 +123,14 @@ public class DesignerDTO {
 
 	public void setC_cate(String c_cate) {
 		this.c_cate = c_cate;
+	}
+
+	public int getC_idx() {
+		return c_idx;
+	}
+
+	public void setC_idx(int c_idx) {
+		this.c_idx = c_idx;
 	}
 	
 	

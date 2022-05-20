@@ -26,4 +26,5 @@ public interface ConService {
 	public void contestEnd(int c_idx);
 	public void payUpdate(int u_idx,String c_subject,int a_account,int uidx,int account);
 	public DesignerConDTO contestContent(int d_idx, int c_idx);
+	public List conPart(int cp, int listSize, int c_idx);
 }
