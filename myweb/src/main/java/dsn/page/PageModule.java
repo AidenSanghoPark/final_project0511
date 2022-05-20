@@ -94,7 +94,7 @@ public class PageModule {
 				sb.append(searchType);
 				sb.append("&keyword=");
 				sb.append(keyword);	
-				sb.append("'>&lt;&lt;</a>"); 
+				sb.append("'&lt;&lt;</a>"); 
 			}
 			
 			for(int i=(userGroup*pageSize+1);
@@ -120,7 +120,7 @@ public class PageModule {
 				sb.append("?cp=");
 				int temp=(userGroup+1)*pageSize+1;
 				sb.append(temp);
-				sb.append("'>&gt;&gt;</a>");
+				sb.append("'&gt;&gt;</a>");
 			}
 			return sb.toString();
 		}

@@ -25,7 +25,7 @@ import java.io.*;
 public class DesignerController {
 	
 	@Autowired
-	private DesignerService designerSevice;
+	private DesignerService designerService;
 	
 	@Autowired ServletContext servletContext;
 	
@@ -36,16 +36,43 @@ public class DesignerController {
 		MemberDTO mdto = (MemberDTO) obj;
 		int u_idx=mdto.getU_idx();
 		
-		int totalCnt=designerSevice.portfolioTotalCnt();
+		int totalCnt=designerService.getDesignerCnt(u_idx);
 		int listSize=5;
 		int pageSize=5;
 		String pageStr=dsn.page.PageModule.pageMake("portfolio.do", totalCnt, listSize, pageSize, cp);
 		
-		List lists=designerSevice.portfolio(cp, listSize, u_idx);
+		List lists=designerService.portfolio(cp, listSize, u_idx);
+		System.out.println(lists);
 		
-		int win=designerSevice.designerWin(u_idx);
-		ProfileDTO pdto=designerSevice.profileInfo(u_idx);
-		MemberDTO udto=designerSevice.userInfo(u_idx);
+		ProfileDTO pdto=designerService.profileInfo(u_idx);
+		MemberDTO udto=designerService.userInfo(u_idx);
+		
+		ModelAndView mav=new ModelAndView();
+		
+		mav.addObject("lists", lists);
+		mav.addObject("pageStr", pageStr);
+		
+		mav.addObject("pdto", pdto);
+		mav.addObject("udto", udto);
+		mav.addObject("u_idx", u_idx);
+		
+		mav.setViewName("designer/portfolio");
+		return mav;
+	}
+	
+	@RequestMapping("portfolio2.do")
+	public ModelAndView portfolio2(@RequestParam(value = "cp", defaultValue = "1") int cp, @RequestParam(value="u_idx") int u_idx) {
+		
+		int totalCnt=designerService.portfolioTotalCnt();
+		int listSize=5;
+		int pageSize=5;
+		String pageStr=dsn.page.PageModule.pageMake("portfolio.do", totalCnt, listSize, pageSize, cp);
+		
+		List lists=designerService.portfolio(cp, listSize, u_idx);
+		
+		int win=designerService.designerWin(u_idx);
+		ProfileDTO pdto=designerService.profileInfo(u_idx);
+		MemberDTO udto=designerService.userInfo(u_idx);
 		
 		ModelAndView mav=new ModelAndView();
 		
@@ -78,9 +105,9 @@ public class DesignerController {
 		MemberDTO mdto = (MemberDTO) obj;
 		int u_idx=mdto.getU_idx();
 		
-		int win=designerSevice.designerWin(u_idx);
-		ProfileDTO pdto=designerSevice.profileInfo(u_idx);
-		MemberDTO udto=designerSevice.userInfo(u_idx);
+		int win=designerService.designerWin(u_idx);
+		ProfileDTO pdto=designerService.profileInfo(u_idx);
+		MemberDTO udto=designerService.userInfo(u_idx);
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("win", win);
 		mav.addObject("pdto", pdto);
@@ -94,7 +121,7 @@ public class DesignerController {
 	public ModelAndView profileInsert(MultipartHttpServletRequest request, ProfileDTO dto) {
 		String path=request.getSession().getServletContext().getRealPath("/profileimg/");
 		capyInto(path, dto.getUpload());
-		int result=designerSevice.profileInsert(dto);
+		int result=designerService.profileInsert(dto);
 		String msg=result>0?"프로필 사진 업로드 완료":"프로필 사진 업로드 실패";
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg", msg);
@@ -108,7 +135,7 @@ public class DesignerController {
 		String path=request.getSession().getServletContext().getRealPath("/profileimg/");
 		capyInto(path, dto.getUpload());
 		dto.setP_img(dto.getUpload().getOriginalFilename());
-		int result=designerSevice.profileUpdate(dto);
+		int result=designerService.profileUpdate(dto);
 		
 		System.out.println(dto.getP_img());
 		
@@ -140,16 +167,16 @@ public class DesignerController {
 		MemberDTO mdto = (MemberDTO) obj;
 		int u_idx=mdto.getU_idx();
 		
-		int totalCnt=designerSevice.reviewTotalCnt();
+		int totalCnt=designerService.reviewTotalCnt();
 		int listSize=5;
 		int pageSize=5;
 		String pageStr=dsn.page.PageModule.pageMake("review.do", totalCnt, listSize, pageSize, cp);
 		
-		int win=designerSevice.designerWin(u_idx);
-		ProfileDTO pdto=designerSevice.profileInfo(u_idx);
-		MemberDTO udto=designerSevice.userInfo(u_idx);
+		int win=designerService.designerWin(u_idx);
+		ProfileDTO pdto=designerService.profileInfo(u_idx);
+		MemberDTO udto=designerService.userInfo(u_idx);
 		
-		List lists=designerSevice.review(cp, listSize, u_idx);
+		List lists=designerService.review(cp, listSize, u_idx);
 		
 		ModelAndView mav=new ModelAndView();
 		
@@ -167,12 +194,12 @@ public class DesignerController {
 	@RequestMapping(value = "designer.do", method = RequestMethod.GET)
 	public ModelAndView designer(@RequestParam(value = "cp", defaultValue = "1") int cp) {
 		
-		int totalCnt=designerSevice.designerListTotalCnt();
+		int totalCnt=designerService.designerListTotalCnt();
 		int listSize=10;
 		int pageSize=5;
 		String pageStr=dsn.page.PageModule.pageMake("designer.do", totalCnt, listSize, pageSize, cp);
 		
-		List lists=designerSevice.designerList(cp, listSize);
+		List lists=designerService.designerList(cp, listSize);
 
 		ModelAndView mav=new ModelAndView();
 		

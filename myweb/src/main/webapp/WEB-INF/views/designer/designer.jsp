@@ -74,9 +74,6 @@ img {
                     <div><span class="activity-done"></span></div>
                     <div class="icons"><input type="text" name="designerName"><input type="submit" value="검색" class="fa fa-search"></div>
                 </div>
-                
-                
-                
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade active show" id="home" role="tabpanel">
                         <div class="table-responsive" >
@@ -111,7 +108,10 @@ img {
                                         </td>
                                         <td>
                                             <div class="primary-btn">
-                                                <input type="button" value="포트폴리오" onclick="portOpen()" >
+                                            	<c:url var="contentUrl" value="porfolio2.do">
+													<c:param name="u_idx">${dto.u_idx}</c:param>
+												</c:url>
+                                                <a href="${contentUrl}"><input type="button" value="포트폴리오" ></a>
                                             </div>
                                         </td>
                                     </tr>
@@ -122,18 +122,11 @@ img {
                                  </div>
                                 </div>
                                </div>
-                            
-                
                 <div id="page">${pageStr}</div>
             </div>
         </div>
     </div>
 </form>
 <%@include file="/WEB-INF/views/footer.jsp" %>
-<script>
-function portOpen(){
-	location.href='porfolio.do?u_idx=${dto.u_idx}';
-}
-</script>
 </body>
 </html>
