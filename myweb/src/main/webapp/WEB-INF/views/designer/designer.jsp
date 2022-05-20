@@ -108,10 +108,10 @@ img {
                                         </td>
                                         <td>
                                             <div class="primary-btn">
-                                            	<c:url var="contentUrl" value="porfolio2.do">
+                                            	<c:url var="contentUrl" value="portfolio2.do">
 													<c:param name="u_idx">${dto.u_idx}</c:param>
 												</c:url>
-                                                <a href="${contentUrl}"><input type="button" value="포트폴리오" ></a>
+                                                <a href="${contentUrl}"><input type="button" value="포트폴리오"></a>
                                             </div>
                                         </td>
                                     </tr>

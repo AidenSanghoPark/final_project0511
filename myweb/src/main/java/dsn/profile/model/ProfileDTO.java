@@ -97,21 +97,6 @@ public class ProfileDTO {
 	}
 
 
-	public String getU_bank() {
-		return u_bank;
-	}
-
-
-	public void setU_bank(String u_bank) {
-		this.u_bank = u_bank;
-	}
-
-
-	public MultipartFile getUpload() {
-		return upload;
-	}
-
-
 	public void setUpload(MultipartFile upload) {
 		this.upload = upload;
 	}

@@ -29,51 +29,20 @@ public class DesignerController {
 	
 	@Autowired ServletContext servletContext;
 	
-	@RequestMapping("portfolio.do")
-	public ModelAndView portfolio(@RequestParam(value = "cp", defaultValue = "1") int cp, HttpSession session) {
-		
-		Object obj=session.getAttribute("login");
-		MemberDTO mdto = (MemberDTO) obj;
-		int u_idx=mdto.getU_idx();
-		
-		int totalCnt=designerService.getDesignerCnt(u_idx);
-		int listSize=5;
-		int pageSize=3;
-		String pageStr=dsn.page.PageModule.pageMake("portfolio.do", totalCnt, listSize, pageSize, cp);
-		
-		List lists=designerService.portfolio(cp, listSize, u_idx);
-		System.out.println(lists);
-		
-		ProfileDTO pdto=designerService.profileInfo(u_idx);
-		MemberDTO udto=designerService.userInfo(u_idx);
-		
-		ModelAndView mav=new ModelAndView();
-		
-		mav.addObject("lists", lists);
-		mav.addObject("pageStr", pageStr);
-		
-		mav.addObject("pdto", pdto);
-		mav.addObject("udto", udto);
-		mav.addObject("u_idx", u_idx);
-		
-		mav.setViewName("designer/portfolio");
-		return mav;
-	}
 	
 	@RequestMapping("portfolio2.do")
 	public ModelAndView portfolio2(@RequestParam(value = "cp", defaultValue = "1") int cp, @RequestParam(value="u_idx") int u_idx) {
 		
-		int totalCnt=designerService.portfolioTotalCnt();
+		int totalCnt=designerService.getDesignerCnt(u_idx);
+		System.out.println("totalCnt= "+totalCnt);
 		int listSize=5;
 		int pageSize=5;
-		String pageStr=dsn.page.PageModule.pageMake("portfolio.do", totalCnt, listSize, pageSize, cp);
-		
+		String pageStr=dsn.page.PageModule.paramPageMake("portfolio2.do", totalCnt, listSize, pageSize, cp, u_idx);
+				
 		List lists=designerService.portfolio(cp, listSize, u_idx);
 		
-		int win=designerService.designerWin(u_idx);
 		ProfileDTO pdto=designerService.profileInfo(u_idx);
 		MemberDTO udto=designerService.userInfo(u_idx);
-		System.out.println(udto.getU_nick());
 		ModelAndView mav=new ModelAndView();
 		
 		mav.addObject("lists", lists);
@@ -87,12 +56,33 @@ public class DesignerController {
 		return mav;
 	}
 	
-//	@RequestMapping("profile.do")
-//	public ModelAndView profile() {
-//		ModelAndView mav=new ModelAndView();
-//		mav.setViewName("designer/profile");
-//		return mav;
-//	}
+	@RequestMapping("review.do")
+	public ModelAndView review(@RequestParam(value = "cp", defaultValue = "1") int cp, @RequestParam(value="u_idx") int u_idx) {
+		
+		int totalCnt=designerService.reviewTotalCnt();
+		int listSize=5;
+		int pageSize=5;
+		String pageStr=dsn.page.PageModule.pageMake("review.do", totalCnt, listSize, pageSize, cp);
+		
+		
+		ProfileDTO pdto=designerService.profileInfo(u_idx);
+		MemberDTO udto=designerService.userInfo(u_idx);
+		
+		List lists=designerService.review(cp, listSize, u_idx);
+		
+		ModelAndView mav=new ModelAndView();
+		
+		mav.addObject("lists", lists);
+		mav.addObject("pageStr", pageStr);
+		
+	
+		mav.addObject("pdto", pdto);
+		mav.addObject("udto", udto);
+		mav.addObject("u_idx", u_idx);
+		
+		mav.setViewName("designer/review");
+		return mav;
+	}
 	
 	@RequestMapping(value = "profile.do", method = RequestMethod.GET)
 	public ModelAndView profileContent(HttpSession session) {
@@ -156,37 +146,7 @@ public class DesignerController {
 		}
 	}
 	
-	@RequestMapping("review.do")
-	public ModelAndView review(@RequestParam(value = "cp", defaultValue = "1") int cp, HttpSession session) {
-		
-		Object obj=session.getAttribute("login");
-		MemberDTO mdto = (MemberDTO) obj;
-		int u_idx=mdto.getU_idx();
-		
-		int totalCnt=designerService.reviewTotalCnt();
-		int listSize=5;
-		int pageSize=5;
-		String pageStr=dsn.page.PageModule.pageMake("review.do", totalCnt, listSize, pageSize, cp);
-		
-		int win=designerService.designerWin(u_idx);
-		ProfileDTO pdto=designerService.profileInfo(u_idx);
-		MemberDTO udto=designerService.userInfo(u_idx);
-		
-		List lists=designerService.review(cp, listSize, u_idx);
-		
-		ModelAndView mav=new ModelAndView();
-		
-		mav.addObject("lists", lists);
-		mav.addObject("pageStr", pageStr);
-		
-		mav.addObject("win", win);
-		mav.addObject("pdto", pdto);
-		mav.addObject("udto", udto);
-		mav.addObject("u_idx", u_idx);
-		
-		mav.setViewName("designer/review");
-		return mav;
-	}
+	
 	@RequestMapping(value = "designer.do", method = RequestMethod.GET)
 	public ModelAndView designer(@RequestParam(value = "cp", defaultValue = "1") int cp) {
 		
