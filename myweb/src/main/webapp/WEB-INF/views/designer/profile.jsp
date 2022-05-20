@@ -52,7 +52,7 @@ h5{
 		<section class="picture">
 			<h5>프로필 사진</h5><hr>
 			<img class="photo" src="profileimg/profile.PNG"><br>
-			<input type="file" name="upload">
+			<input type="file" name="upload" accept="image/png, image/jpeg">
 		</section>
 		<section class="infoConfig">
 		<h4>로그인 정보</h4><hr>
@@ -97,7 +97,7 @@ h5{
 		<section class="picture">
 			<h5>프로필 사진</h5><hr>
 			<img class="photo" src="/myweb/profileimg/${pdto.p_img}"><br>
-			<input type="file" name="upload" value="${pdto.p_img}">
+			<input type="file" name="upload" value="${pdto.p_img}" accept="image/png, image/jpeg">
 		</section>
 		<section class="infoConfig">
 		<h4>로그인 정보</h4><hr>
