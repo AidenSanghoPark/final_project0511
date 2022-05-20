@@ -171,5 +171,20 @@ public class ConServiceImple implements ConService{
 		DesignerConDTO dto=conDao.contestContent(map);
 		return dto;
 	}
+	}
+
+	@Override
+	public List conPart(int cp, int listSize, int c_idx) {
+		int start=((cp-1)*listSize)+1;
+		int end=cp*listSize;
+		Map map=new HashedMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("c_idx", c_idx);
+		
+		List dlists=conDao.conPart(map);
+		return dlists;
+	}
+
 
 }

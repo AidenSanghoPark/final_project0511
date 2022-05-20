@@ -9,7 +9,7 @@
 <meta name="description" content="">
 <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.88.1">
-<title>디자인 콘테스트 참여 | DSN</title>
+<title>참여작 페이지 | DSN</title>
 </head>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -351,13 +351,56 @@ a{
 }
 
 .button:hover {opacity: 1}
-</style>
 
-<script type="text/javascript"
+      .modal {
+		position: fixed;
+        top: 30%;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        display: none;
+
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+
+      .modal.show {
+        display: block;
+      }
+
+      .modal_body {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+		height: 100%;
+		margin: 10px;
+        width: 1000px;
+		overflow-y: auto;
+        padding: 40px;
+
+        text-align: center;
+
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
+        box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+        transform: translateX(-50%) translateY(-50%);
+      }
+      .modal-dialog{
+    overflow-y: initial !important
+	}
+	
+</style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript"
 		src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="https://kit.fontawesome.com/180c933499.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/180c933499.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 <%@ include file="/WEB-INF/views/header.jsp" %>
 
 <head>
@@ -369,6 +412,7 @@ a{
 </head>
 <hr>
 <body style="background-color: #eeeeee;">	
+
 			<div class="member-entry" style="width:900px; padding-left: 20px; margin: 0 auto;"> 
 			    <a href="#" class="member-img"> 
 			        <img src="https://ifh.cc/g/vAq0AJ.png" class="circle-img" style="padding-top: 10px;"> 
@@ -376,95 +420,103 @@ a{
 			    <div class="member-details" style="width:750px;"> 
 			        <div class="col-sm-4" style="float:left;"> 
 			        <c:url var="contentUrl" value="conListContent.do">
-					<c:param name="idx">${dto.c_idx }</c:param>
+					<c:param name="idx"></c:param>
 				</c:url>
 							<!-- 콘테스트 제목 -->
-			                <h4> <a href="${contentUrl}" style="text-decoration: none; color: #2E2E2E; font-weight: bold; font-size: 17px;">${dto.c_subject }</a> </h4> 
+			                <h4> <a href="" style="text-decoration: none; color: #2E2E2E; font-weight: bold; font-size: 17px;"></a>${dto.c_subject }</h4> 
 			                <div style="padding: 10px; padding-left: 10px; width: 500px; height:70px; background-color:#EFEFFB; margin-left: 20px; color: #424242;">
-			                	${dto.c_deas }<br><br>
+			                	${dto.c_deas } <br><br>
 			                </div>
 			            </div>
 			        <div class="row info-list" style="float:right; text-align: left; width:200px; font-size: 10px; padding-top: 20px;"> 
-			            <h3 style="font-size: 20px; font-weight: bold; color: #424242;">상금&nbsp;&nbsp;&nbsp;&nbsp;${dto.c_pay } 만원</h3> 
+			            <h3 style="font-size: 20px; font-weight: bold; color: #424242;">상금&nbsp;&nbsp;&nbsp;&nbsp; ${dto.c_pay } 만원</h3> 
 			            <h4 style="padding-right: 45px; text-align: right; font-size: 15px; color: gray;"><label style="font-weight: bold;">참여인원</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${dto.u_idx }명</h4> 
 			            <h4 style="padding-right: 45px; text-align: right; font-size: 15px; color: gray;"><label style="font-weight: bold;">남은기간</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D${dto.c_datediff }</h4> 
 			        </div>    
 			    </div> 
-
 			</div>
+
 			<br>
 		<div style="width: 40%; margin: 0 auto; padding-left: 10px;">
-			<a href="conPart.do?c_idx=${dto.c_idx }"><button class="button">참여작 보기</button></a>
-			<button class="button">브리핑 보기</button>
-			<a href="contestJoin.do?c_idx=${dto.c_idx }"><button class="button">콘테스트 참여</button></a>
-			<input type="hidden" value="${dto.c_idx }" name="c_idx">
+			<button class="button">참여작 보기</button>
+			<a href="conContent.do?c_idx=${c_idx }"><button class="button">브리핑 보기</button></a>
+			<a href="contestJoin.do?c_idx=${c_idx }"><button class="button">콘테스트 참여</button></a>
 		</div>
 		
 <div style="padding-left: 30px; padding-top: 10px; background-color: #ffffff; width: 60%; margin: 0 auto;">
-	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>콘테스트 의뢰내용 보기</b></h5>
-
-	<fieldset style="border: solid 1px #a4a4a4; width: 800px; height: 100%; padding: 10px;
-	line-height: 30px;">
-		<table style="width: 100%; height: 100%;">
-			<tr>
-			<td style="width: 100px; font-weight: bold;"><i class="fa-solid fa-angle-right"></i>&nbsp;&nbsp;제목</td>
-			<td>${dto.c_subject }</td>
-			</tr>
-			<tr>
-			<td style="width: 100px; font-weight: bold;"><i class="fa-solid fa-angle-right"></i>&nbsp;&nbsp;회사명</td>
-			<td>${dto.c_company }</td>
-			</tr>
-			<tr>
-			<td style="width: 100px; font-weight: bold;"><i class="fa-solid fa-angle-right"></i>&nbsp;&nbsp;서비스설명</td>
-			<td>${dto.c_deas }</td>
-			</tr>
+	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>콘테스트 참여작 보기</b></h5>
+	<section>
+		<table>
+			<c:if test="${empty dlists}">
+				<tfoot>
+					<tr>
+						<td colspan="3">참여자가 없습니다 ㄱ-</td>
+					</tr>
+				</tfoot>
+			</c:if>
+			<tbody>
+				<tr>
+					<c:forEach var="dto" items="${dlists}" varStatus="vs">
+					
+					<td><a class="btn-open-popup"><img style="width: 300px;" src="img/${dto.d_img_1}">
+					<p>${dto.d_name }</p></a></td>
+					
+					<!-- 모달 -->		    
+					<div class="modal">
+					      <div class="modal_body">
+					      	
+					      	<div style="width: 30%; height:100%; background-color:#EFEFF6; float: right; border-radius: 5px;
+					      	  position: sticky; top: 0;">
+					      		<h4>${dto.d_name }</h4>
+					      		<h4>디자이너 이름</h4>
+					      		<br>
+					      		<p style="text-align: left; padding-left: 20px;">참여작 내용</p>
+					      		<br>
+					      		<button class="button" style="width: 230px; height: 50px; border-radius: 3px; ">당선하기<br></button>
+					      	</div>
+					      	
+					      	<div style="float: left;">
+					      		<img style="width: 70%; height: 100%; float: left;" src="img/${dto.d_img_2}">
+					      		<img style="width: 70%; height: 100%; float: left;" src="img/${dto.d_img_2}">
+					      	</div>
+					      	
+					      </div>
+					</div>
+					
+					</c:forEach>
+				</tr>
+			</tbody>
+			<div>&nbsp;</div>
 		</table>
-	</fieldset>
-	<form>
-	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-gem"></i><b>&nbsp;무엇을 디자인 해드릴까요?</b></h5>
-	<fieldset style="border: solid 1px #a4a4a4; width: 800px; height: 100%; padding: 10px;
-	line-height: 30px;">
-		${dto.c_idea }
-	</fieldset>
-	
-	<c:if test="${dto.c_cate=='logo'}">
-		<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-heart"></i><b>&nbsp;선호하는 로고 스타일을 골라주세요.</b></h5>
-		<fieldset style="border: solid 1px #a4a4a4; width: 800px; height: 100%; padding: 10px;
-	line-height: 30px;">
-			<c:forTokens var="filename" items="${dto.c_logo}" delims="," varStatus="st">
-			<img src="logo/${filename}.jpg" style="width: 10%;">
-				<c:if test="${!st.last}">
-				</c:if>
-			</c:forTokens>
-				<c:if test="${!st.last}">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				</c:if>
-		</fieldset>
-	</c:if>
-	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-circle-down"></i><b>&nbsp;디자이너가 참고할 자료가 있으신가요?</b></h5>
-	<fieldset style="border: solid 1px #a4a4a4; width: 800px; height: 100%; padding: 10px;
-	line-height: 30px;">
-		<c:if test="${empty dto.c_file }"> <!-- 선조건) 파일이 없으면 등록된 파일이 없다고 하기 -->
-			<li>등록된 파일이 없습니다.</li>
-		</c:if>
-		<c:forEach var="temp" items="${dto.c_file}"> <!-- temp에 저장되는거: 파일 위치 -->
-			<c:url var="downUrl" value="fileDown.do">
-				<c:param name="filename">${dto.c_file}</c:param>
-			</c:url><!-- 파라미터 여러개 넘길 때 유용 -->
-			<a href="${downUrl }">${dto.c_file}</a><!-- 목록 출력 -->
-		</c:forEach>
-	</fieldset>
-	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-solid fa-fill-drip"></i><b>&nbsp;원하는 색상</b></h5>
-	<fieldset style="border: solid 1px #a4a4a4; width: 800px; height: 100%; padding: 10px;
-	line-height: 30px;">
-		${dto.c_color }
-	</fieldset>
-	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-solid fa-arrow-down-short-wide"></i><b>&nbsp;디자인 상세내용</b></h5>
-	<fieldset style="border: solid 1px #a4a4a4; width: 800px; height: 100%; padding: 10px;
-	line-height: 30px;">
-		${dto.c_details }
-	</fieldset>
-	</form>
+	</section>
 </div>
 </body>
+    <script>
+      const body = document.querySelector('body');
+      const modal = document.querySelector('.modal');
+      const btnOpenPopup = document.querySelector('.btn-open-popup');
+
+      btnOpenPopup.addEventListener('click', () => {
+        modal.classList.toggle('show');
+
+        if (modal.classList.contains('show')) {
+          body.style.overflow = 'hidden';
+        }
+      });
+
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+          modal.classList.toggle('show');
+
+          if (!modal.classList.contains('show')) {
+            body.style.overflow = 'auto';
+          }
+        }
+      });
+      
+      $(document).ready(function () {
+    	    $('head').append('<style type="text/css">.modal .modal-body {max-height: ' + ($('body').height() * .8) + 'px;overflow-y: auto;}.modal-open .modal{overflow-y: hidden !important;}</style>');
+    	});
+    </script>
+  
 </html>

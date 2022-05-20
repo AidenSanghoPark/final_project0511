@@ -55,48 +55,63 @@ public class DesignerDTO {
 	public int getD_idx() {
 		return d_idx;
 	}
+
 	public void setD_idx(int d_idx) {
 		this.d_idx = d_idx;
 	}
+
 	public int getU_idx() {
 		return u_idx;
 	}
+
 	public void setU_idx(int u_idx) {
 		this.u_idx = u_idx;
 	}
+
 	public String getD_name() {
 		return d_name;
 	}
+
 	public void setD_name(String d_name) {
 		this.d_name = d_name;
 	}
+
 	public String getD_content() {
 		return d_content;
 	}
+
 	public void setD_content(String d_content) {
 		this.d_content = d_content;
 	}
+
 	public String getD_img_1() {
 		return d_img_1;
 	}
+
 	public void setD_img_1(String d_img_1) {
 		this.d_img_1 = d_img_1;
 	}
+
 	public String getD_img_2() {
 		return d_img_2;
 	}
+
 	public void setD_img_2(String d_img_2) {
 		this.d_img_2 = d_img_2;
 	}
+
 	public Date getD_date() {
 		return d_date;
 	}
+
 	public void setD_date(Date d_date) {
 		this.d_date = d_date;
 	}
+
 	public int getD_win() {
 		return d_win;
 	}
+
 	public void setD_win(int d_win) {
 		this.d_win = d_win;
 	}
