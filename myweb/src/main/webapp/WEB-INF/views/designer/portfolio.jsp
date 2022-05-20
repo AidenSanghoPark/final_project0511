@@ -76,7 +76,7 @@ h5{
 </c:if>
 	<section>
 		<hr>
-		<h5><a href="portfolio2.do?u_idx?${u_idx}">포트폴리오</a> <a href="review.do?u_idx?${u_idx}">리뷰</a></h5>
+		<h5><a href="portfolio2.do?u_idx=${u_idx}">포트폴리오</a> <a href="review.do?u_idx=${u_idx}">리뷰</a></h5>
 		<hr>
 	</section>
 <form name="portfoilos">

@@ -83,8 +83,8 @@ public class DesignerServiceImple implements DesignerService {
 	}
 	
 	@Override
-	public int reviewTotalCnt() {
-		int cnt=DesignerDao.reviewTotalCnt();
+	public int reviewTotalCnt(int u_idx) {
+		int cnt=DesignerDao.reviewTotalCnt(u_idx);
 		cnt=cnt==0?1:cnt;
 		return cnt;
 	}

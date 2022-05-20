@@ -34,7 +34,6 @@ public class DesignerController {
 	public ModelAndView portfolio2(@RequestParam(value = "cp", defaultValue = "1") int cp, @RequestParam(value="u_idx") int u_idx) {
 		
 		int totalCnt=designerService.getDesignerCnt(u_idx);
-		System.out.println("totalCnt= "+totalCnt);
 		int listSize=5;
 		int pageSize=5;
 		String pageStr=dsn.page.PageModule.paramPageMake("portfolio2.do", totalCnt, listSize, pageSize, cp, u_idx);
@@ -59,7 +58,7 @@ public class DesignerController {
 	@RequestMapping("review.do")
 	public ModelAndView review(@RequestParam(value = "cp", defaultValue = "1") int cp, @RequestParam(value="u_idx") int u_idx) {
 		
-		int totalCnt=designerService.reviewTotalCnt();
+		int totalCnt=designerService.reviewTotalCnt(u_idx);
 		int listSize=5;
 		int pageSize=5;
 		String pageStr=dsn.page.PageModule.pageMake("review.do", totalCnt, listSize, pageSize, cp);

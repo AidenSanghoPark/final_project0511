@@ -50,8 +50,8 @@ public class DesignerDAOImple implements DesignerDAO {
 	}
 	
 	@Override
-	public int reviewTotalCnt() {
-		int cnt=sqlMap.selectOne("reviewTotalCnt");
+	public int reviewTotalCnt(int u_idx) {
+		int cnt=sqlMap.selectOne("reviewTotalCnt", u_idx);
 		return cnt;
 	}
 	
