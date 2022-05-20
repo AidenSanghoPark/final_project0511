@@ -35,7 +35,7 @@
             <a class="nav-link" href="allReview.do">리뷰</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="portfolio.do">포트폴리오 모달</a>
+            <a class="nav-link" href="contestContent.do?c_idx=58&d_idx=36">참여작 상세보기</a>
           </li>
         </ul>
        </div>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import dsn.contest.model.ConService;
 import dsn.member.model.MemberDTO;
 import dsn.profile.model.ProfileDTO;
 
@@ -148,7 +149,6 @@ public class DesignerServiceImple implements DesignerService {
 		DesignerDTO dto=DesignerDao.portfolioDetail(d_idx);
 		return dto;
 	}
-	
 	
 
 }

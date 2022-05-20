@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import dsn.contest.model.*;
 import dsn.trade.model.TrdDTO;
 
 @Service
@@ -116,7 +117,7 @@ public class ConServiceImple implements ConService{
 		return conDao.conInfo(c_idx);
 	}
 	@Override
-	public int contestJoin(DesignerDTO dto) {
+	public int contestJoin(DesignerConDTO dto) {
 		if(dto.getUploadfile1() != null|| dto.getUploadfile2() != null) {
 			dto.setD_img_1(dto.getUploadfile1().getOriginalFilename());
 			dto.setD_img_2(dto.getUploadfile2().getOriginalFilename());
@@ -161,6 +162,14 @@ public class ConServiceImple implements ConService{
 		map.put("a_balance", a_balance);
 		map.put("u_idx", u_idx);
 		conDao.payUpdate(map);
+	}
+	@Override
+	public DesignerConDTO contestContent(int d_idx, int c_idx) {
+		Map map=new HashedMap();
+		map.put("d_idx", d_idx);
+		map.put("c_idx", c_idx);
+		DesignerConDTO dto=conDao.contestContent(map);
+		return dto;
 	}
 
 }

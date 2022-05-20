@@ -75,11 +75,10 @@ public class DesignerController {
 		MemberDTO mdto = (MemberDTO) obj;
 		int u_idx=mdto.getU_idx();
 		
-		int win=designerService.designerWin(u_idx);
+		
 		ProfileDTO pdto=designerService.profileInfo(u_idx);
 		MemberDTO udto=designerService.userInfo(u_idx);
 		ModelAndView mav=new ModelAndView();
-		mav.addObject("win", win);
 		mav.addObject("pdto", pdto);
 		mav.addObject("udto", udto);
 		mav.addObject("u_idx", u_idx);
