@@ -80,7 +80,7 @@ div{
 	   <img src="img/joinmain.gif" height="1000" width="700">
 	</div>
 	<div id="r_join">
-		<section class="wrap">
+		<section class="wrap" style="padding-top: 300px;">
 			<form name="login" action="loginPost.do" method="post" id="memberJoin">
 				<p>
                 	<input type="text" name="u_id" id="userId" required>
@@ -93,7 +93,9 @@ div{
                 	<h5 id="re_check"></h5>
 				<input type="hidden" name="_autologin" value="on">
 				<input type="checkbox" name="useCookie" id="autologin">로그인유지
-				<input type="submit" value="LOGIN" onclick="logincheck()" >
+				<br>
+				<br>
+				<button class="btn btn-dark" type="submit" onclick="logincheck()"  style="width: 100%;">LOGIN</button>
 			</form>
 		</section>
 </div>

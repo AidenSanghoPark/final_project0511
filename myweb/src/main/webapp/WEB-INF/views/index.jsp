@@ -244,7 +244,6 @@
 	</section>
 	<br>
 	<br>
-	<hr>
 </main>
 <%@ include file="/WEB-INF/views/footer.jsp" %>
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>  

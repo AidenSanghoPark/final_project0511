@@ -89,22 +89,22 @@ ul{
 </section>
 <section class="wrap">
 	<p>
-       		<input type="password" name="lastpwd" autocomplete="off">
+       		<input type="password" name="lastpwd" autocomplete="off" required>
 			<label><span>Password</span></label>
  	</p> 	
     <p>
-       		<input type="password" name="checkpwd" id="userPw" autocomplete="off">
+       		<input type="password" name="checkpwd" id="userPw" autocomplete="off" required>
 			<label><span>New Password</span></label>
  	</p> 	
        		<h5 id="re_pw"></h5>
     <p>
-       		<input type="password" name="pwdconfirm" id="userPwChk" autocomplete="off">
+       		<input type="password" name="pwdconfirm" id="userPwChk" autocomplete="off" required>
 			<label><span>Verify Password</span></label>	
  	</p> 	
  			<h5 id="re_ck"></h5>
 
     <div class="d-grid gap-2" style="padding-right: 50px; padding-left: 45px;'">
-  			<input class="btn btn-dark" type="button" onclick="pwdCheck()" style="width: 100%;" value="비밀번호 수정">
+  			<input class="btn btn-dark" type="submit" style="width: 100%;" value="비밀번호 수정">
 		</div>	
 <div style="padding-top:800px;">
 <%@include file="/WEB-INF/views/footer.jsp" %>
@@ -118,8 +118,7 @@ function pwdCheck() {
 	
 	if(!passCheck.test($('#userPw').val())){
 		
-	  	$('#re_pw').html('<label style="color:#f82a2aa3;font-size:12px;">영어 대.소문자 숫자 특수문자 1개이상 입력 해주셔야합니다(8-15자)</label>');
-	  	$("#userPw").focus(); 
+		alert('영어 대.소문자 숫자 특수문자 1개이상 입력 해주셔야합니다(8-15자)');
 		return true;
 	  	
 	}else{
@@ -128,7 +127,7 @@ function pwdCheck() {
 }
 $(function(){
 			
-	$('#userPw').keyup(function(){
+	$('#userPw').click(function(){
 		
 	if(pwdCheck()){
 		return;
@@ -138,15 +137,14 @@ $(function(){
 		
 	$('#re_pw').html('');});
 		
-	$('#userPwChk').keyup(function(){
+	$('#userPwChk').click(function(){
 			
         if($('#userPw').val() != $('#userPwChk').val()){
-        	
-          $('#re_ck').html('<label style="color:#f82a2aa3;font-size:12px;">비민번호 불일치!</label>');
-          
+        
+          alert('비민번호 불일치!');	          
         } else{
         	
-          $('#re_ck').html('<label style="color:#199894b3;font-size:12px;">비밀번호 일치!</label>');
+        	 alert('비민번호 일치!');
           
         }
 
