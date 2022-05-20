@@ -168,4 +168,14 @@
 		C_IDX = #{c_idx}
 		WHERE T_IDX = #{t_idx}
 	</update>
+	
+	<select id="conPart" parameterType="Integer" resultType="dsn.designer.model.DesignerDTO">
+		select * from 
+			(select rownum as rnum, a.* from
+			(select * from f_designer where c_idx=#{c_idx} order by d_idx desc)a)b
+		where
+			rnum <![CDATA[>=]]> #{start}
+		and
+			rnum <![CDATA[<=]]> #{end}
+	</select>
 </mapper>

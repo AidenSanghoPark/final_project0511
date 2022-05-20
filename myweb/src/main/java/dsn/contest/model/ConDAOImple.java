@@ -3,6 +3,7 @@ package dsn.contest.model;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -95,4 +96,11 @@ public class ConDAOImple implements ConDAO{
 		public void updateTrd(ConDTO dto) {
 			sqlMap.update("updateTrd", dto);
 		}
+		
+		@Override
+		public List conPart(Map map) {
+			List dlists=sqlMap.selectList("conPart", map);
+			return dlists;
+		}
+
 }

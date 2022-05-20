@@ -20,4 +20,5 @@ public interface ConService {
 	public int addNaming(ConDTO dto);
 	public int addNamingTrade(TrdDTO dto);
 	public void updateTrd(ConDTO dto);
+	public List conPart(int cp, int listSize, int c_idx);
 }
