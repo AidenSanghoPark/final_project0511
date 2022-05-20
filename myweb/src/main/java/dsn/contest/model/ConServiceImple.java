@@ -171,7 +171,6 @@ public class ConServiceImple implements ConService{
 		DesignerConDTO dto=conDao.contestContent(map);
 		return dto;
 	}
-	}
 
 	@Override
 	public List conPart(int cp, int listSize, int c_idx) {

@@ -76,7 +76,7 @@ h5{
 </c:if>
 	<section>
 		<hr>
-		<h5><a href="portfolio2.do?u_idx=${u_idx}">포트폴리오</a> <a href="review.do?u_idx=${u_idx}">리뷰</a></h5>
+		<h5><a href="portfolio2.do?u_idx?${u_idx}">포트폴리오</a> <a href="review.do?u_idx?${u_idx}">리뷰</a></h5>
 		<hr>
 	</section>
 <form name="portfoilos">
@@ -93,12 +93,8 @@ h5{
 				<tr>
 					<c:forEach var="dto" items="${lists}">
 						<td>
-							<c:url var="contentUrl" value="portfolioDetail.do">
-								<c:param name="u_idx">${dto.u_idx}</c:param>
-							</c:url>
-							<a href="${contentUrl}" rel="modal:open"><img src="img/${dto.d_img_1}"></a><br>
-							<a href="${contentUrl}" rel="modal:open"><label>${dto.d_name}</label></a>
-							
+							<img src="img/${dto.d_img_1}"><br>
+							<label>${dto.d_name}</label>
 							
 						</td>
 					</c:forEach>
@@ -110,10 +106,6 @@ h5{
 
 	</section>
 </form>
-<!-- jQuery Modal -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Launch demo modal

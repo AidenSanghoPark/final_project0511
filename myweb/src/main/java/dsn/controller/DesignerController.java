@@ -39,7 +39,7 @@ public class DesignerController {
 		int pageSize=5;
 		String pageStr=dsn.page.PageModule.paramPageMake("portfolio2.do", totalCnt, listSize, pageSize, cp, u_idx);
 				
-		List lists=designerService.portfolio(cp, listSize, u_idx);
+		List lists=designerService.portfolio2(cp, listSize, u_idx);
 		
 		ProfileDTO pdto=designerService.profileInfo(u_idx);
 		MemberDTO udto=designerService.userInfo(u_idx);
