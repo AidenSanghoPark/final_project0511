@@ -36,13 +36,9 @@ public class DesignerDTO {
 		this.c_cate = c_cate;
 	}
 
-
-
 	public int getC_idx() {
 		return c_idx;
 	}
-
-
 
 	public void setC_idx(int c_idx) {
 		this.c_idx = c_idx;
@@ -64,14 +60,6 @@ public class DesignerDTO {
 		this.u_idx = u_idx;
 	}
 
-	public int getC_idx() {
-	}
-
-	public void setC_idx(int c_idx) {
-		this.c_idx = c_idx;
-	}
-
-		return c_idx;
 	public String getD_name() {
 		return d_name;
 	}

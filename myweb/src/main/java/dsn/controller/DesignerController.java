@@ -33,14 +33,17 @@ public class DesignerController {
 	@RequestMapping("portfolio2.do")
 	public ModelAndView portfolio2(@RequestParam(value = "cp", defaultValue = "1") int cp, @RequestParam(value="u_idx") int u_idx) {
 		
+		
+		
 		int totalCnt=designerService.getDesignerCnt(u_idx);
 		System.out.println("totalCnt= "+totalCnt);
 		int listSize=5;
 		int pageSize=5;
 		String pageStr=dsn.page.PageModule.paramPageMake("portfolio2.do", totalCnt, listSize, pageSize, cp, u_idx);
 				
-		List lists=designerService.portfolio(cp, listSize, u_idx);
+		List lists=designerService.portfolio2(cp, listSize, u_idx);
 		
+		System.out.println("portlist"+lists);
 		ProfileDTO pdto=designerService.profileInfo(u_idx);
 		MemberDTO udto=designerService.userInfo(u_idx);
 		ModelAndView mav=new ModelAndView();
@@ -165,7 +168,7 @@ public class DesignerController {
 		mav.setViewName("designer/designer");
 		return mav;
 	}
-	
+
 	//@RequestMapping()
 	//public ModelAndView portfolioDetail(int d_idx) {
 	//	DesignerDTO ddto=designerSevice.portfolioDetail(d_idx);
