@@ -73,7 +73,7 @@ public class DesignerController {
 		int win=designerService.designerWin(u_idx);
 		ProfileDTO pdto=designerService.profileInfo(u_idx);
 		MemberDTO udto=designerService.userInfo(u_idx);
-		
+		System.out.println(udto.getU_nick());
 		ModelAndView mav=new ModelAndView();
 		
 		mav.addObject("lists", lists);
@@ -135,7 +135,6 @@ public class DesignerController {
 		dto.setP_img(dto.getUpload().getOriginalFilename());
 		int result=designerService.profileUpdate(dto);
 		
-		System.out.println(dto.getP_img());
 		
 		String msg=result>0?"ok":"no";
 		ModelAndView mav=new ModelAndView();
