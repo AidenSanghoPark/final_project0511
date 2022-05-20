@@ -40,7 +40,7 @@ public class ContestController {
 	private ConService conService;
 	
 	//콘테스트 초이스
-	@RequestMapping("/contestChoice.do")
+	@RequestMapping("/categoryChoice.do")
 	public ModelAndView contestHold() {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("contest/contestChoice");
