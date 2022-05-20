@@ -169,15 +169,12 @@
 		C_IDX = #{c_idx}
 		WHERE T_IDX = #{t_idx}
 	</update>
-	<update id="designerWin">
-   		UPDATE
-   			F_DESIGNER
-   		SET
-   			D_WIN = 1
-   		WHERE
-   			D_IDX = #{d_idx}
+	<update id="designerWin" parameterType="Integer">
+		update f_designer set
+                     d_win=1
+                      where d_idx = #{d_idx}
    </update>
-   <update id="contestEnd">
+   <update id="contestEnd" parameterType="Integer">
    		UPDATE
    			F_CLIENT
    		SET
@@ -202,19 +199,25 @@
   		AND
   			c_idx = #{c_idx}
   	</select>
-  	<insert id="payUpdate" >
+  	<insert id="payUpdate" parameterType="Map">
   		INSERT
 			INTO
 		F_ACCOUNT
 			VALUES(
-			F_ACCOUNT_A_IDX.NEXTVAL
-			, #{u_idx}
-			, "상금적립"
+			A_IDX.NEXTVAL
+			, '16'
+			, '입금'
 			, sysdate 
-			, #{c_subject}
-			, "상금적립"
-			, #{a_amount}
-			, a_balance+#{a_amount}
+			, '1232'
+			, '상금적립'
+			, 50000
+			, (SELECT 
+            a_balance 
+        FROM 
+            f_account 
+        WHERE a_idx = (SELECT max(a_idx) FROM f_account)
+        
+        and u_idx = 16)+50000
 			)
   	</insert>
 </mapper>

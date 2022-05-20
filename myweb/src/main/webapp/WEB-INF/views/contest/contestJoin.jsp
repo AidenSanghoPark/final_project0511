@@ -404,7 +404,7 @@ a{
 	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>콘테스트 참가 작성</b></h5>
 	<div>
 		
-		<form name="contestJoin" action="contestJoinSubmit.do" method="post" enctype = "multipart/form-data">
+		
 		<input type="hidden" name="c_idx" value="${condto.c_idx }">
 		<input type="hidden" name="c_cate" value="${condto.c_cate }">
 		<input type="hidden" name="u_idx" value="${mdto.u_idx }">
@@ -434,7 +434,6 @@ a{
 		<div>
 			<input type="submit" id="btn_submit" value="콘테스트 참여">
 		</div>
-		</form>
 	</div>
 </div>
 <script type="text/javascript">
@@ -444,15 +443,10 @@ a{
 		alert('디자이너 회원만 참여 가능합니다.');
 		history.back(-1);
 	}
-	/* var block =${login.u_type};
-	console.log(type);
-	if(type != 'y') {
-		alert('참여 가능합니다.');
-		history.back(-1);
-	} */
-    //이미지 미리보기
-    /* var sel_file;
-    var maxSize = 5 * 1024 * 1024; // 5MB
+	
+	
+    var sel_file;
+    var maxSize = 10 * 1024 * 1024; // 5MB
 
 	var fileSize = $("#uploadfile1")[0].files[0].size;
 	
@@ -473,7 +467,7 @@ a{
                 $("#uploadfile1").val("");
                 return;
             }else if(fileSize > maxSize){
-        		alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.");
+        		alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.");
         		$("#uploadfile1").val("");
         		return false;
         	}
@@ -489,9 +483,10 @@ a{
     }
     
     var sel_file2;
+    var fileSize = $("#uploadfile2")[0].files[0].size;
     
     $(document).ready(function() {
-        $("#uploadfile2").on("change", handleImgFileSelect);
+        $("#uploadfile2").on("change", handleImgFileSelect2);
     });
  
     function handleImgFileSelect2(e) {
@@ -514,7 +509,7 @@ a{
             }
             reader.readAsDataURL(f);
         });
-    } */
+    }  
 </script>
     
 <script>
