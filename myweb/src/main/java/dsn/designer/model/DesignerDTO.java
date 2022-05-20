@@ -19,8 +19,6 @@ public class DesignerDTO {
 	public DesignerDTO() {
 		super();
 	}
-	
-	
 
 	public DesignerDTO(int d_idx, int u_idx, int c_idx, String d_name, String d_content, String d_img_1, String d_img_2,
 			Date d_date, int d_win, char d_block, String c_cate) {
@@ -49,8 +47,6 @@ public class DesignerDTO {
 	public void setC_idx(int c_idx) {
 		this.c_idx = c_idx;
 	}
-
-
 
 	public int getD_idx() {
 		return d_idx;
@@ -131,6 +127,7 @@ public class DesignerDTO {
 	public void setC_cate(String c_cate) {
 		this.c_cate = c_cate;
 	}
+	
 	
 	
 }

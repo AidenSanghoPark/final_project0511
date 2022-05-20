@@ -288,15 +288,18 @@ public class ContestController {
 		mav.setViewName("dsnDown");
 		return mav;
 	}
-	@RequestMapping("/contestChoice.do")
+	@RequestMapping("/contestEndChoice.do")
 	public ModelAndView contestChoice() {
+		
+		System.out.println("초이스작동");
 		ModelAndView mav=new ModelAndView();
-		conService.contestEnd(0);
-		conService.designerWin(0);
-		conService.payUpdate(0, 0);
+		conService.contestEnd(7);
+		conService.designerWin(40);
+		int pay=50000;
+		conService.payUpdate(16,"제목",5000,16,5000);
 		mav.addObject("gopage", "conList.do");
 		mav.addObject("msg", "당선작 선정 완료");
-		mav.setViewName("/contest/contestMsg");
+		mav.setViewName("index");
 		return mav;
 	}
 	@RequestMapping("/contestContent.do")

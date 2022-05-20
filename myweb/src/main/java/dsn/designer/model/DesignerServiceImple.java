@@ -30,6 +30,7 @@ public class DesignerServiceImple implements DesignerService {
 	public List portfolio2(int cp, int listSize, int u_idx) {
 		int start=((cp-1)*listSize)+1;
 		int end=cp*listSize;
+		
 		Map map=new HashedMap();
 		map.put("start", start);
 		map.put("end", end);
@@ -122,7 +123,6 @@ public class DesignerServiceImple implements DesignerService {
 	@Override
 	public List designPhotos(Object u_idx) {
 		
-		System.out.println("service="+u_idx);
 		Map map=new HashedMap();
 		map.put("u_idx", u_idx);
 		

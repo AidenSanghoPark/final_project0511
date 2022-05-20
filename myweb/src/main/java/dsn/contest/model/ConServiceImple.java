@@ -128,9 +128,6 @@ public class ConServiceImple implements ConService{
 
 	@Override
 	public int addNaming(ConDTO dto) {
-		System.out.println("service="+dto.getC_cate());
-		System.out.println("service="+dto.getUpload().getOriginalFilename());
-		//���ε尡 null �ƴҶ��� �������� ���ϳ��� �����ϱ�
 		if(dto.getUpload() != null) {
 			dto.setC_file(dto.getUpload().getOriginalFilename());
 		}
@@ -150,19 +147,15 @@ public class ConServiceImple implements ConService{
 	}	
 	@Override
 	public void contestEnd(int c_idx) {
+		System.out.println("contestEnd="+c_idx);
 		conDao.contestEnd(c_idx);
 		
 	}@Override
 	public void designerWin(int d_idx) {
+		System.out.println("designerWin="+d_idx);
 		conDao.designerWin(d_idx);
-		
-	}@Override
-	public void payUpdate(int a_balance, int u_idx) {
-		Map map=new HashedMap();
-		map.put("a_balance", a_balance);
-		map.put("u_idx", u_idx);
-		conDao.payUpdate(map);
-	}
+	}	
+	
 	@Override
 	public DesignerConDTO contestContent(int d_idx, int c_idx) {
 		Map map=new HashedMap();
@@ -170,6 +163,19 @@ public class ConServiceImple implements ConService{
 		map.put("c_idx", c_idx);
 		DesignerConDTO dto=conDao.contestContent(map);
 		return dto;
+	}
+	@Override
+	public void payUpdate(int u_idx, String c_subject, int a_account,int uidx,int account) {
+		System.out.println("payUpdate="+u_idx);
+		System.out.println("payUpdate="+c_subject);
+		System.out.println("payUpdate="+a_account);
+		Map map=new HashedMap();
+		map.put("u_idx", u_idx);
+		map.put("c_subject", c_subject);
+		map.put("a_account",a_account);
+		map.put("idx",uidx);
+		map.put("account", account);
+		
 	}
 
 	@Override

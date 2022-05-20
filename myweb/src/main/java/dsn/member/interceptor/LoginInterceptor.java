@@ -17,17 +17,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 	 private static final String LOGIN = "login";
 	
 	
-	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
-		HttpSession session = request.getSession();
-		
-		if(session.getAttribute(LOGIN) != null) {
-			System.out.println("인터셉터가 세션에 남아있 던 세션을 제거했습니다.");
-			session.removeAttribute(LOGIN);
-		}
-		return true;
-	}
+	
 	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
