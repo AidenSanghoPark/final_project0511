@@ -40,13 +40,14 @@ public class DesignerController {
 				
 		List lists=designerService.portfolio2(cp, listSize, u_idx);
 		
+		int win=designerService.desigerTotalWin(u_idx);
 		ProfileDTO pdto=designerService.profileInfo(u_idx);
 		MemberDTO udto=designerService.userInfo(u_idx);
 		ModelAndView mav=new ModelAndView();
 		
 		mav.addObject("lists", lists);
 		mav.addObject("pageStr", pageStr);
-		
+		mav.addObject("win", win);
 		mav.addObject("pdto", pdto);
 		mav.addObject("udto", udto);
 		mav.addObject("u_idx", u_idx);
@@ -63,7 +64,7 @@ public class DesignerController {
 		int pageSize=5;
 		String pageStr=dsn.page.PageModule.pageMake("review.do", totalCnt, listSize, pageSize, cp);
 		
-		
+		int win=designerService.desigerTotalWin(u_idx);
 		ProfileDTO pdto=designerService.profileInfo(u_idx);
 		MemberDTO udto=designerService.userInfo(u_idx);
 		
@@ -74,7 +75,7 @@ public class DesignerController {
 		mav.addObject("lists", lists);
 		mav.addObject("pageStr", pageStr);
 		
-	
+		mav.addObject("win", win);
 		mav.addObject("pdto", pdto);
 		mav.addObject("udto", udto);
 		mav.addObject("u_idx", u_idx);

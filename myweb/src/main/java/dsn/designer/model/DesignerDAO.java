@@ -24,4 +24,5 @@ public interface DesignerDAO {
 	public List designPhotos(Map map);
 	public List designerAllList();
 	public int getDesignerCnt(int u_idx);
+	public int desigerTotalWin(int u_idx);
 }

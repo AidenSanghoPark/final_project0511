@@ -125,8 +125,7 @@ h5{
 				<tr>
 					<c:forEach var="dto" items="${lists}">
 						<td>
-							<a class="btn-open-popup">
-							<img src="img/${dto.d_img_1}"></a><br>
+							<a class="btn-open-popup"><img src="img/${dto.d_img_1}"></a><br>
 							<label><a class="btn-open-popup">${dto.d_name}</a></label>
 							
 							<!-- 모달 -->		    
@@ -135,16 +134,23 @@ h5{
 						      	
 						      	<div style="width: 30%; height:100%; background-color:#EFEFF6; float: right; border-radius: 5px;
 						      	  position: sticky; top: 0;">
-						      		<h4>${dto.d_name }</h4>
-						      		<h4>디자이너 이름</h4>
-						      		<br>
-						      		<p style="text-align: left; padding-left: 20px;">참여작 내용</p>
-						      		<br>
-						      		<button class="button" style="width: 230px; height: 50px; border-radius: 3px; ">당선하기<br></button>
+						      		<h2>${dto.d_name}</h2>
+						      		<h4>${udto.u_nick}</h4>
+						      		<label>
+							      		<c:if test="${dto.c_cate == 'logo'}">로고</c:if>
+							      		<c:if test="${dto.c_cate == 'character'}">캐릭터</c:if>
+							      		<c:if test="${dto.c_cate == 'naming'}">네이밍</c:if>
+							      		<c:if test="${dto.c_cate == 'print'}">인쇄</c:if>
+						      		</label><br>
+						      		<h6>
+						      			<c:if test="${dto.d_win == 1}">우승</c:if>
+						      		</h6>
+						      		<br><hr>
+						      		<p style="text-align: left; padding-left: 20px;">${dto.d_content}</p>
+						      		<br><hr>
+						      		<button class="button" style="width: 230px; height: 50px; border-radius: 3px; " >해당 콘테스트 보기<br></button>
 						      	</div>
-						      	
 						      	<div style="float: left;">
-						      		<img style="width: 70%; height: 100%; float: left;" src="img/${dto.d_img_2}">
 						      		<img style="width: 70%; height: 100%; float: left;" src="img/${dto.d_img_2}">
 						      	</div>
 						      	
@@ -188,47 +194,6 @@ h5{
     	    $('head').append('<style type="text/css">.modal .modal-body {max-height: ' + ($('body').height() * .8) + 'px;overflow-y: auto;}.modal-open .modal{overflow-y: hidden !important;}</style>');
     	});
     </script>
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal --> 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
-        <div class="modal-dialog" style="float: left; padding-left: 500px;"> 
-                <div class="modal-content" style="width: 85%;">
-                        <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">디자인명, 카테고리, 우승여부</h4>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> 
-                        </div> 
-                        <div class="modal-body"> 
-                                <p><img src="img/portfolioDetail.PNG" class="img-responsive" style="width: 100%;"></p> 
-                                <p>상세내용</p>
-                                <p><input type="button" value="해당 콘테스트" id="#" onclick="#"></p>
-                        </div> 
-                </div> 
-        </div> 
-</div>
 <%@include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

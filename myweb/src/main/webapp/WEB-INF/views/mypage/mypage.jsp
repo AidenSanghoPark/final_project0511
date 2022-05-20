@@ -56,7 +56,7 @@ ul{
 	<c:choose>
 		<c:when test="${userinfo.u_type!='1' }">
 	<section class="profile">
-      	<img class="photo" src="profileimg/pi.jpg">
+      	<img class="photo" src="profileimg/${pdto.p_img}">
         <h5><a href="profile.do">${userinfo.u_name } 님</a></h5>
         <p>${userinfo.u_email }</p>
         <p><a class="btn btn-secondary" href="portfolio2.do?u_idx=${userinfo.u_idx}">포트폴리오 관리</a></p><br>

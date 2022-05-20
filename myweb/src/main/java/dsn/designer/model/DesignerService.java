@@ -24,4 +24,5 @@ public interface DesignerService {
 	public int designerListTotalCnt();
 	public DesignerDTO portfolioDetail(int d_idx);
 	public int getDesignerCnt(int u_idx);
+	public int desigerTotalWin(int u_idx);
 }

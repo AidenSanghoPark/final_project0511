@@ -153,5 +153,12 @@ public class DesignerServiceImple implements DesignerService {
 		return cnt;
 	}
 	
+	@Override
+	public int desigerTotalWin(int u_idx) {
+		int cnt=DesignerDao.desigerTotalWin(u_idx);
+		cnt=cnt==0?1:cnt;
+		return cnt;
+	}
+	
 
 }
