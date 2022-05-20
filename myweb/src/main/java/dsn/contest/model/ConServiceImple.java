@@ -177,7 +177,7 @@ public class ConServiceImple implements ConService{
 		map.put("account", account);
 		
 	}
-	}
+
 
 	@Override
 	public List conPart(int cp, int listSize, int c_idx) {
