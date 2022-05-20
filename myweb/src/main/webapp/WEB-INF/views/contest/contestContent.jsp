@@ -336,6 +336,7 @@ a{
 	text-decoration: none;
 }
 .button {
+	text-align:center;
   background-color: #000000;
   border: none;
   color: white;
@@ -393,77 +394,143 @@ a{
 
 			</div>
 			<br>
-		<div style="width: 40%; margin: 0 auto; padding-left: 10px;">
+		<div style="width: 40%; margin: 0 auto; padding-left: 10px; justify-content: center;">
 			<button class="button">참여작 보기</button>
-			<button class="button">브리핑 보기</button>
-			<a href="contestJoin.do?c_idx=${dto.c_idx }&c_type=${dto.c_cate}"><button class="button">콘테스트 참여</button></a>
+			<a href="conContent.do?c_idx=${condto.c_idx }"><button class="button">브리핑 보기</button></a>
+			<button class="button">콘테스트 참여</button>
 		</div>
 		
 <div style="padding-left: 30px; padding-top: 10px; background-color: #ffffff; width: 60%; margin: 0 auto;">
-	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>콘테스트 의뢰내용 보기</b></h5>
-
-	<fieldset style="border: solid 1px #a4a4a4; width: 800px; height: 100%; padding: 10px;
-	line-height: 30px;">
-		<table style="width: 100%; height: 100%;">
-			<tr>
-			<td style="width: 100px; font-weight: bold;"><i class="fa-solid fa-angle-right"></i>&nbsp;&nbsp;제목</td>
-			<td>${dto.c_subject }</td>
-			</tr>
-			<tr>
-			<td style="width: 100px; font-weight: bold;"><i class="fa-solid fa-angle-right"></i>&nbsp;&nbsp;회사명</td>
-			<td>${dto.c_company }</td>
-			</tr>
-			<tr>
-			<td style="width: 100px; font-weight: bold;"><i class="fa-solid fa-angle-right"></i>&nbsp;&nbsp;서비스설명</td>
-			<td>${dto.c_deas }</td>
-			</tr>
-		</table>
-	</fieldset>
-	<form>
-	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-gem"></i><b>&nbsp;무엇을 디자인 해드릴까요?</b></h5>
-	<fieldset style="border: solid 1px #a4a4a4; width: 800px; height: 100%; padding: 10px;
-	line-height: 30px;">
-		${dto.c_idea }
-	</fieldset>
-	
-	<c:if test="${dto.c_cate=='logo'}">
-		<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-heart"></i><b>&nbsp;선호하는 로고 스타일을 골라주세요.</b></h5>
-		<fieldset style="border: solid 1px #a4a4a4; width: 800px; height: 100%; padding: 10px;
-	line-height: 30px;">
-			<c:forTokens var="filename" items="${dto.c_logo}" delims="," varStatus="st">
-			<img src="logo/${filename}.jpg" style="width: 10%;">
-				<c:if test="${!st.last}">
-				</c:if>
-			</c:forTokens>
-				<c:if test="${!st.last}">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				</c:if>
-		</fieldset>
-	</c:if>
-	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-circle-down"></i><b>&nbsp;디자이너가 참고할 자료가 있으신가요?</b></h5>
-	<fieldset style="border: solid 1px #a4a4a4; width: 800px; height: 100%; padding: 10px;
-	line-height: 30px;">
-		<c:if test="${empty dto.c_file }"> <!-- 선조건) 파일이 없으면 등록된 파일이 없다고 하기 -->
-			<li>등록된 파일이 없습니다.</li>
-		</c:if>
-		<c:forEach var="temp" items="${dto.c_file}"> <!-- temp에 저장되는거: 파일 위치 -->
-			<c:url var="downUrl" value="fileDown.do">
-				<c:param name="filename">${dto.c_file}</c:param>
-			</c:url><!-- 파라미터 여러개 넘길 때 유용 -->
-			<a href="${downUrl }">${dto.c_file}</a><!-- 목록 출력 -->
-		</c:forEach>
-	</fieldset>
-	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-solid fa-fill-drip"></i><b>&nbsp;원하는 색상</b></h5>
-	<fieldset style="border: solid 1px #a4a4a4; width: 800px; height: 100%; padding: 10px;
-	line-height: 30px;">
-		${dto.c_color }
-	</fieldset>
-	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-solid fa-arrow-down-short-wide"></i><b>&nbsp;디자인 상세내용</b></h5>
-	<fieldset style="border: solid 1px #a4a4a4; width: 800px; height: 100%; padding: 10px;
-	line-height: 30px;">
-		${dto.c_details }
-	</fieldset>
-	</form>
+	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>디자이너 닉네임</b></h5>
+	<div>
+		
+		<div>
+			<button class="button">당선작 선정</button>
+		</div>
+		<div>
+			<p>${ddto.d_name }</p>
+		</div>
+		
+		<div>
+           <img src="img/${ddto.d_img_1 }" />
+       </div>
+       <div>
+		<img src="img/${ddto.d_img_2 }" />
+       </div>
+		<div>
+			<p>${ddto.d_content }</p>
+		</div>
+		<div>
+			<input type="checkbox" name="check">
+		</div>
+	</div>
 </div>
+
+
+<script type="text/javascript">
+	/* var block =${login.u_type};
+	console.log(type);
+	if(type != 'y') {
+		alert('참여 가능합니다.');
+		history.back(-1);
+	} */
+    //이미지 미리보기
+    /* var sel_file;
+    var maxSize = 5 * 1024 * 1024; // 5MB
+
+	var fileSize = $("#uploadfile1")[0].files[0].size;
+	
+ 
+    $(document).ready(function() {
+        $("#uploadfile1").on("change", handleImgFileSelect);
+    });
+ 
+    function handleImgFileSelect(e) {
+        var files = e.target.files;
+        var filesArr = Array.prototype.slice.call(files);
+ 
+        var reg = /(.*?)\/(jpg|jpeg|png|bmp)$/;
+ 
+        filesArr.forEach(function(f) {
+            if (!f.type.match(reg)) {
+                alert("이미지 파일만 업로드 가능합니다.");
+                $("#uploadfile1").val("");
+                return;
+            }else if(fileSize > maxSize){
+        		alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.");
+        		$("#uploadfile1").val("");
+        		return false;
+        	}
+ 
+            sel_file = f;
+ 
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $("#img1").attr("src", e.target.result);
+            }
+            reader.readAsDataURL(f);
+        });
+    }
+    
+    var sel_file2;
+    
+    $(document).ready(function() {
+        $("#uploadfile2").on("change", handleImgFileSelect);
+    });
+ 
+    function handleImgFileSelect2(e) {
+        var files = e.target.files;
+        var filesArr = Array.prototype.slice.call(files);
+ 
+        var reg = /(.*?)\/(jpg|jpeg|png|bmp)$/;
+ 
+        filesArr.forEach(function(f) {
+            if (!f.type.match(reg)) {
+                alert("이미지 파일만 업로드 가능합니다.");
+                return;
+            }
+ 
+            sel_file2 = f;
+ 
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $("#img2").attr("src", e.target.result);
+            }
+            reader.readAsDataURL(f);
+        });
+    } */
+</script>
+    
+<script>
+//파일 업로드
+
+
+/* function fn_submit(){
+        
+        var form = new FormData();
+        form.append( "d_name", $("#d_name")[0].files[0] );
+        form.append( "d_content", $("#d_content")[0].files[0] );
+        form.append( "uploadfile1", $("#uploadfile1")[0].files[0] );
+        form.append( "uploadfile2", $("#uploadfile2")[0].files[0] );
+         jQuery.ajax({
+             url : "/myweb/contestJoinSubmit.do"
+           , enctype : "multipart/form-data"
+           , type : "POST"
+           , processData : false
+           , contentType : false
+           , data : form
+           , success:function(response) {
+               alert("콘테스트 참여 완료");
+               console.log(response);
+           }
+           ,error: function (jqXHR) 
+           { 
+               alert(jqXHR.responseText); 
+           }
+       });
+} */
+
+
+</script>
 </body>
 </html>

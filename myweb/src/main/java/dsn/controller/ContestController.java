@@ -24,8 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dsn.member.model.MemberDTO;
 import dsn.member.model.MemberService;
-import dsn.contest.model.ConDTO;
-import dsn.contest.model.ConService;
+
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import dsn.contest.model.*;
@@ -39,14 +38,14 @@ public class ContestController {
 	@Autowired
 	private ConService conService;
 	
-	//���׽�Ʈ Ÿ��
+	
 	@RequestMapping("/contestChoice.do")
 	public ModelAndView contestHold() {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("contest/contestChoice");
 		return mav;
 	}
-	//���̹� ��
+	
 	@RequestMapping(value = "/namingHold.do", method = RequestMethod.GET)
 	public ModelAndView namingHoldView(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
 		
@@ -55,14 +54,14 @@ public class ContestController {
 		mav.setViewName("contest/namingHold");
 		return mav;
 	}
-	//üũ �ڽ�
+	
 	@RequestMapping(value = "/arrcheck.do", method = RequestMethod.POST)
 	@ResponseBody
 	public void arrCheck(@RequestParam(value = "valueArr[]")
 						List<String> valueArr) {
 	   		System.out.println(valueArr);
 	}
-	//���̹� form
+
 	@RequestMapping(value = "/namingHold_add.do", method = RequestMethod.POST)
 	public ModelAndView namingHoldForm(MultipartHttpServletRequest request, ConDTO dto, HttpSession session) {	
 		
@@ -158,7 +157,8 @@ public class ContestController {
 		return mav;
 	}
 	@RequestMapping(value = "contestJoinSubmit.do", method = RequestMethod.POST)
-	public ModelAndView contestJoinForm(MultipartHttpServletRequest request ,DesingerDTO dto) {
+	public ModelAndView contestJoinForm(MultipartHttpServletRequest request ,DesignerConDTO dto) {
+		
 		ModelAndView mav=new ModelAndView();
 		FileUploadModule file=new FileUploadModule();
 		String path=request.getSession().getServletContext().getRealPath("img/");
@@ -182,6 +182,7 @@ public class ContestController {
 			PageModule.setSearchType(searchType);
 			PageModule.setKeyword(keyword);
 
+			System.out.println(cp);
 		    int totalCnt=conService.ContestCnt();
 			int listSize=3;
 			int pageSize=3;
@@ -284,6 +285,30 @@ public class ContestController {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("downloadFile",f);
 		mav.setViewName("dsnDown");
+		return mav;
+	}
+	@RequestMapping("/contestChoice.do")
+	public ModelAndView contestChoice() {
+		ModelAndView mav=new ModelAndView();
+		conService.contestEnd(0);
+		conService.designerWin(0);
+		conService.payUpdate(0, 0);
+		mav.addObject("gopage", "conList.do");
+		mav.addObject("msg", "당선작 선정 완료");
+		mav.setViewName("/contest/contestMsg");
+		return mav;
+	}
+	@RequestMapping("/contestContent.do")
+	public ModelAndView contestContent(
+			@RequestParam int d_idx,
+			@RequestParam int c_idx) {
+		
+		System.out.println("content d_idx="+d_idx);
+		System.out.println("content c_idx="+c_idx);
+		ModelAndView mav=new ModelAndView();
+		DesignerConDTO dto=conService.contestContent(d_idx,c_idx);
+		mav.addObject("ddto", dto);
+		mav.setViewName("/contest/contestContent");
 		return mav;
 	}
 	

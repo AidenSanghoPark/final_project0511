@@ -38,8 +38,9 @@ public class PageModule {
 			sb.append("?cp=");
 			int temp = (userGroup-1)*pageSize+pageSize;
 			sb.append(temp);
-			sb.append("'>&lt;&lt;</a>"); 
-			sb.append("'</li>");
+			sb.append("'>&lt;&lt;</a>"); //왼쪽 화살표 문자표시
+			sb.append("</li>");
+			//<a href="pageTest.jsp?cp=<%=(userGroup-1)*pageSize+pageSize%>">&lt;&lt;</a>
 		}
 		
 		
@@ -64,8 +65,7 @@ public class PageModule {
 			sb.append("?cp=");
 			int temp=(userGroup+1)*pageSize+1;
 			sb.append(temp);
-			sb.append("'>&gt;&gt;</a>");
-			sb.append("'</li>");
+			sb.append("'>&gt;&gt;</a>"); //오른쪽 화살표 문자표
 		
 		}
 		

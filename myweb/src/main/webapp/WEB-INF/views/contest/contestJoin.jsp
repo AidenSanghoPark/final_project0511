@@ -3,13 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.88.1">
-<title>디자인 콘테스트 보기 | DSN</title>
+<title>디자인 콘테스트 참여 | DSN</title>
 </head>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
 <style>
@@ -89,12 +91,7 @@ body{margin-top:20px;
 .member-entry:after {
   clear: both;
 }
-.member-entry:hover {
-  background: rgba(235, 235, 235, 0.3);
-  -moz-box-shadow: 1px 1px 1px rgba(0, 1, 1, 0.06);
-  -webkit-box-shadow: 1px 1px 1px rgba(0, 1, 1, 0.06);
-  box-shadow: 1px 1px 1px rgba(0, 1, 1, 0.06);
-}
+
 .member-entry .member-img,
 .member-entry .member-details {
   float: left;
@@ -336,48 +333,81 @@ main {
 .lh-tight { line-height: 1.25; }
   
 a{
-   text-decoration: none;
+	text-decoration: none;
 }
+.button {
+	text-align:center;
+  background-color: #000000;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button:hover {opacity: 1}
 </style>
 
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-
+<script type="text/javascript"
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="https://kit.fontawesome.com/180c933499.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<body>
 <%@ include file="/WEB-INF/views/header.jsp" %>
 
-	<div class="member-entry" style="width:900px;"> 
-		<a href="#" class="member-img">
-			<img src="https://ifh.cc/g/vAq0AJ.png" class="circle-img" style="padding-top: 10px;">
-		</a>
-		<div class="member-details" style="width:750px;">
-			<div class="col-sm-4" style="float:left;">
-				<c:url var="contentUrl" value="conList.do">
-					<c:param name="idx">${condto.c_idx }</c:param>
+<head>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
+		<script src="//code.jquery.com/jquery.js"></script>
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>    
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+</head>
+<hr>
+<body style="background-color: #eeeeee;">	
+			<div class="member-entry" style="width:900px; padding-left: 20px; margin: 0 auto;"> 
+			    <a href="#" class="member-img"> 
+			        <img src="https://ifh.cc/g/vAq0AJ.png" class="circle-img" style="padding-top: 10px;"> 
+			    </a> 
+			    <div class="member-details" style="width:750px;"> 
+			        <div class="col-sm-4" style="float:left;"> 
+			        <c:url var="contentUrl" value="conListContent.do">
+					<c:param name="idx">${dto.c_idx }</c:param>
 				</c:url>
-				<h4><a href="#" style="text-decoration: none; color: #2E2E2E; font-weight: bold; font-size: 17px;">${condto.c_subject }</a></h4>
-				<div style="padding: 10px; padding-left: 10px; width: 500px; height:70px; background-color:#EFEFFB; margin-left: 20px; color: #424242;">
-					${condto.c_deas }<br><br>
-				</div>
+							<!-- 콘테스트 제목 -->
+			                <h4> <a href="${contentUrl}" style="text-decoration: none; color: #2E2E2E; font-weight: bold; font-size: 17px;">${dto.c_subject }</a> </h4> 
+			                <div style="padding: 10px; padding-left: 10px; width: 500px; height:70px; background-color:#EFEFFB; margin-left: 20px; color: #424242;">
+			                	${dto.c_deas }<br><br>
+			                </div>
+			            </div>
+			        <div class="row info-list" style="float:right; text-align: left; width:200px; font-size: 10px; padding-top: 20px;"> 
+			            <h3 style="font-size: 20px; font-weight: bold; color: #424242;">상금&nbsp;&nbsp;&nbsp;&nbsp;${dto.c_pay } 만원</h3> 
+			            <h4 style="padding-right: 45px; text-align: right; font-size: 15px; color: gray;"><label style="font-weight: bold;">참여인원</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${dto.u_idx }명</h4> 
+			            <h4 style="padding-right: 45px; text-align: right; font-size: 15px; color: gray;"><label style="font-weight: bold;">남은기간</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D${dto.c_datediff }</h4> 
+			        </div>    
+			    </div> 
+
 			</div>
-			<div class="row info-list" style="float:right; text-align: left; width:200px; font-size: 10px; padding-top: 20px;">
-				<h3 style="font-size: 20px; font-weight: bold; color: #424242;">상금&nbsp;&nbsp;&nbsp;&nbsp;${condto.c_pay } 만원</h3>
-				<h4 style="padding-right: 45px; text-align: right; font-size: 15px; color: gray;"><label style="font-weight: bold;">참여인원</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${condto.u_idx }명</h4>
-				<h4 style="padding-right: 45px; text-align: right; font-size: 15px; color: gray;"><label style="font-weight: bold;">남은기간</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${condto.c_datediff}</h4>
-			</div>
+			<br>
+		<div style="width: 40%; margin: 0 auto; padding-left: 10px; justify-content: center;">
+			<button class="button">참여작 보기</button>
+			<a href="conContent.do?c_idx=${condto.c_idx }"><button class="button">브리핑 보기</button></a>
+			<button class="button">콘테스트 참여</button>
 		</div>
-	</div>
+		
+<div style="padding-left: 30px; padding-top: 10px; background-color: #ffffff; width: 60%; margin: 0 auto;">
+	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>콘테스트 참가 작성</b></h5>
 	<div>
-		<div>
-			<a>참여작</a>|<a>브리핑</a>|<a>아이디어 작성</a>
-		</div>
-		<div>
-			디자이너 닉네임
-		</div>
-		<form name="hidden" action="contestJoinSubmit.do" method="post" enctype = "multipart/form-data">
-		<input type="text" name="u_idx" value="${mdto.u_idx }">
+		
+		<form name="contestJoin" action="contestJoinSubmit.do" method="post" enctype = "multipart/form-data">
+		<input type="hidden" name="c_idx" value="${condto.c_idx }">
+		<input type="hidden" name="c_cate" value="${condto.c_cate }">
+		<input type="hidden" name="u_idx" value="${mdto.u_idx }">
 		<div>
 			작품 제목 <input type="text" name="d_name">
 		</div>
@@ -402,10 +432,11 @@ a{
 			<input type="checkbox" name="check">
 		</div>
 		<div>
-			<input type="submit" id="btn_submit" value="콘테스트 참여" onclick="javascript:fn_submit()">
+			<input type="submit" id="btn_submit" value="콘테스트 참여">
 		</div>
 		</form>
 	</div>
+</div>
 <script type="text/javascript">
 	var type = ${login.u_type};
 	console.log(type);
@@ -517,6 +548,5 @@ a{
 
 
 </script>
-<%@ include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

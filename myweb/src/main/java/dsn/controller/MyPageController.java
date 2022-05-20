@@ -12,7 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dsn.member.model.MemberDTO;
 import dsn.mypage.model.MyPageService;
+import dsn.virtualwallet.model.WalletDTO;
 import dsn.withdraw.model.WithDrawDTO;
+
+import dsn.review.model.ReviewDTO;
+
 
 @Controller
 public class MyPageController {
@@ -26,13 +30,17 @@ public class MyPageController {
 		String msg="";
 		Object obj=session.getAttribute("login");
 		MemberDTO mdto = (MemberDTO) obj;
-		int vo=mdto.getU_idx();
+		
+		
 		ModelAndView mav=new ModelAndView();
 		if(obj==null) {
 			msg="로그인 후 이용해주세요";
 			mav.addObject("msg", msg);
 			mav.addObject("gopage","index.do");
+			mav.setViewName("memberMsg");
 		}else {
+		int vo=mdto.getU_idx();
+		System.out.println(vo);
 		int totalCnt=myPageService.getTotalCnt(vo);
 		int dtotalCnt=myPageService.getDesignerCnt(vo);
 		int listSize=5;

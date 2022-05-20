@@ -11,7 +11,8 @@
   			#{w_name},
   			#{w_number},
   			#{w_price},
-  			sysdate
+  			sysdate,
+  			0
   		)
   	</insert>
   </mapper>

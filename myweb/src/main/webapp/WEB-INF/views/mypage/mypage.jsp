@@ -56,7 +56,6 @@ ul{
 	<c:choose>
 		<c:when test="${userinfo.u_type!='1' }">
 	<section class="profile">
-		<input type="hidden" value="${userinfo.u_type }" name="type">
       	<img class="photo" src="profileimg/pi.jpg">
         <h5><a href="profile.do">${userinfo.u_name } 님</a></h5>
         <p>${userinfo.u_email }</p>
@@ -87,11 +86,10 @@ ul{
     	</c:when>
     	<c:otherwise>
     	<section class="profile">
-		<input type="hidden" value="${userinfo.u_type }" name="type">
       	<img class="photo" src="profileimg/pi.jpg">
         <h5><a href="profileConfig.do">${userinfo.u_name } 님</a></h5>
         <p>${userinfo.u_email }</p>
-        <p class="btn btn-secondary"><a href="portfolio.do">포트폴리오 관리</a></p><br>
+        <p><a class="btn btn-secondary" href="portfolio.do">포트폴리오 관리</a></p><br>
    			 	<h3 style="color:grey">개최한 콘테스트</h3><br>
         <h3>1:1 의뢰 관리</h3><br>		
    			 	<h3><a href="showPayInfo.do">거래내역</a></h3><br>

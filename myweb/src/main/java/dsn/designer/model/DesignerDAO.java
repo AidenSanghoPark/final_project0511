@@ -2,8 +2,9 @@ package dsn.designer.model;
 
 import java.util.*;
 
+
 import dsn.member.model.MemberDTO;
-import dsn.profile.model.ProfileDTO;
+import dsn.profile.model.*;
 
 public interface DesignerDAO {
 	

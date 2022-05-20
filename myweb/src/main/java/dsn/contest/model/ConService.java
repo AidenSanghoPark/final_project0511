@@ -1,8 +1,10 @@
 package dsn.contest.model;
 
 import java.util.List;
+
 import java.util.Map;
 
+import dsn.contest.model.*;
 import dsn.trade.model.TrdDTO;
 
 
@@ -16,8 +18,12 @@ public interface ConService {
 	public ConDTO conContent(int c_idx);
 	public int conCount(int c_readnum, int c_idx);
 	public ConDTO conInfo(int c_idx);
-	public int contestJoin(DesingerDTO dto);
+	public int contestJoin(DesignerConDTO dto);
 	public int addNaming(ConDTO dto);
 	public int addNamingTrade(TrdDTO dto);
 	public void updateTrd(ConDTO dto);
+	public void designerWin(int d_idx);
+	public void contestEnd(int c_idx);
+	public void payUpdate(int a_balance, int u_idx);
+	public DesignerConDTO contestContent(int d_idx, int c_idx);
 }

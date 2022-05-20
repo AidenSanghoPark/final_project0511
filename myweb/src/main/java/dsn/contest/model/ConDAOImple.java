@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import dsn.contest.model.*;
 import dsn.trade.model.TrdDTO;
 
 
@@ -76,7 +77,7 @@ public class ConDAOImple implements ConDAO{
 			return sqlMap.selectOne("conInfo",c_idx);
 		}
 		@Override
-		public int contestJoin(DesingerDTO dto) {
+		public int contestJoin(DesignerConDTO dto) {
 			int cnt=sqlMap.insert("contestJoin", dto);
 			return cnt;
 		}
@@ -94,5 +95,24 @@ public class ConDAOImple implements ConDAO{
 		@Override
 		public void updateTrd(ConDTO dto) {
 			sqlMap.update("updateTrd", dto);
+		}
+		@Override
+		public void contestEnd(int c_idx) {
+			sqlMap.update("contestEnd",c_idx);
+		
+		}
+		@Override
+		public void designerWin(int d_idx) {
+			sqlMap.update("designerWin", d_idx);
+		}
+		@Override
+		public void payUpdate(Map map) {
+			sqlMap.update("payUpdate",map);
+		
+		}
+		@Override
+		public DesignerConDTO contestContent(Map map) {
+			DesignerConDTO dto=sqlMap.selectOne("contestContent", map);
+			return dto;
 		}
 }
