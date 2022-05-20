@@ -8,7 +8,7 @@ import dsn.profile.model.*;
 
 public interface DesignerDAO {
 	
-	public List portfolio(Map map);
+	public List portfolio2(Map map);
 	public List review(Map map);
 	public int designerWin(int u_idx);
 	public ProfileDTO profileInfo(int u_idx);

@@ -3,10 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dsn.designer">
-	<select id="portfolio" parameterType="Map" resultType="dsn.designer.model.DesignerDTO">
+	<select id="portfolio2" parameterType="Map" resultType="Integer">
 		select * from 
 			(select rownum as rnum, a.* from
-			(select * from f_designer order by d_idx desc)a)b
+			(select * from f_designer order by c_idx desc)a)b
 		where
 			rnum <![CDATA[>=]]> #{start}
 		and
@@ -17,7 +17,7 @@
 	<select id="review" parameterType="Map" resultType="dsn.review.model.ReviewDTO">
   		select * from 
 			(select rownum as rnum, a.* from
-			(select * from f_review order by u_idx desc)a)b
+			(select * from f_review order by rv_idx desc)a)b
 		where
 			rnum <![CDATA[>=]]> #{start}
 		and
@@ -25,9 +25,6 @@
   	</select>
 	<select id="portfolioTotalCnt" resultType="Integer">
 		select count(*) from f_designer
-	</select>
-	<select id="reviewTotalCnt" resultType="Integer">
-		select count(*) from f_review
 	</select>
 	<select id="designerTotalCnt" resultType="Integer">
 		select count(*) from f_user
@@ -72,17 +69,18 @@
   		)
   	</insert>
 	<select id="designerListTotalCnt" resultType="Integer">
-      select count(u_type) from f_user
-      where u_type = 2
+      select count(u_type) 
+		from f_user u, f_profile p
+		where u_type = 2
+		and u.u_idx = p.u_idx
    </select>
    
    <select id="designerList" resultType="dsn.designer.model.ListDTO">
       select * from
           (select rownum as rnum, a.*from
           (SELECT p.p_img, p.p_info, u.u_nick, u.u_email, u.u_idx
-         from f_profile p, f_user u, f_designer d
+         from f_profile p, f_user u
          where p.u_idx = u.u_idx
-         and u.u_idx = d.u_idx
          and u.u_type = 2 )a)b
       where
          rnum <![CDATA[>=]]> #{start}
