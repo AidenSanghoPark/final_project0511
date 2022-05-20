@@ -473,6 +473,7 @@ public class adminController {
 		return mav;
 	}
 	
+	//출금요청 내역 표시
 	@RequestMapping("adminWithdraw.do")
 	public ModelAndView withdraw(@RequestParam(value = "cp", defaultValue = "1") int cp) {
 		int totalCnt = WithdrawManageService.getTotalCnt();
@@ -491,6 +492,7 @@ public class adminController {
 		return mav;
 	}
 	
+	//출금상태 업데이트 
 	@RequestMapping("adminWithdrawStatusUpdate.do")
 	public ModelAndView withdrawStatusUpdate(WithDrawDTO dto) {
 

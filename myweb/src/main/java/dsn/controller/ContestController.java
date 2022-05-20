@@ -70,7 +70,7 @@ public class ContestController {
 			String path = request.getSession().getServletContext().getRealPath("img/");
 			copyInto(dto.getUpload(), path); 
 		}
-		mav.setViewName("contest/logoHold"); //�엫�떆諛⑺렪 jsp 寃쎈줈 諛붽퓭�빞�븿
+		mav.setViewName("contest/logoHold");
 		return mav;
 	}
 	//로고 트레이드 form
