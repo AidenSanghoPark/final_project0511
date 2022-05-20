@@ -414,8 +414,8 @@ a{
 <body style="background-color: #eeeeee;">	
 
 			<div class="member-entry" style="width:900px; padding-left: 20px; margin: 0 auto;"> 
-			    <a href="#" class="member-img"> 
-			        <img src="https://ifh.cc/g/vAq0AJ.png" class="circle-img" style="padding-top: 10px;"> 
+			    <a class="member-img"> 
+			         <img src="menuimg/${dto.c_cate }.png" class="circle-img" style="padding-top: 10px;">
 			    </a> 
 			    <div class="member-details" style="width:750px;"> 
 			        <div class="col-sm-4" style="float:left;"> 
@@ -437,11 +437,12 @@ a{
 			</div>
 
 			<br>
-		<div style="width: 40%; margin: 0 auto; padding-left: 10px;">
+		<div style="margin: 0 auto; padding-left: 300px; float: left;">
 			<button class="button">참여작 보기</button>
 			<a href="conContent.do?c_idx=${c_idx }"><button class="button">브리핑 보기</button></a>
 			<a href="contestJoin.do?c_idx=${c_idx }"><button class="button">콘테스트 참여</button></a>
 		</div>
+		<br><br><br>
 		
 <div style="padding-left: 30px; padding-top: 10px; background-color: #ffffff; width: 60%; margin: 0 auto;">
 	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>콘테스트 참여작 보기</b></h5>
