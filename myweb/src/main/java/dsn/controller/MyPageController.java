@@ -25,16 +25,12 @@ public class MyPageController {
 	@Autowired
 	private MyPageService myPageService;
 	
-	@Autowired
-	private DesignerService dservice;
-	
 	@RequestMapping("myPage.do")
 	public ModelAndView myPage(@RequestParam(value = "cp",defaultValue = "1") int cp,HttpSession session){
 		
 		String msg="";
 		Object obj=session.getAttribute("login");
 		MemberDTO mdto = (MemberDTO) obj;
-		
 		
 		ModelAndView mav=new ModelAndView();
 		if(obj==null) {
