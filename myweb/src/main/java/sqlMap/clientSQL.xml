@@ -195,9 +195,8 @@
    </update>
 	<select id="myPageList" parameterType="Map" resultType="dsn.contest.model.ConDTO">
 			select * from
-			(select * from
 			(select rownum as rnum,a.* from
-			(select * from f_client order by c_idx desc)a)b
-			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end})where u_idx=#{u_idx}
+			(select * from f_client where u_idx=#{u_idx} order by c_idx desc)a)b
+			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
   	</select>
 </mapper>

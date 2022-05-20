@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import dsn.member.model.MemberDTO;
+import dsn.profile.model.ProfileDTO;
 import dsn.review.model.ReviewDTO;
 import dsn.trade.model.TradeDTO;
 import dsn.withdraw.model.WithDrawDTO;
@@ -25,4 +26,5 @@ public interface MyPageDAO {
 	public int getTradeCnt(int u_idx);
 	public List myPageListByDesigner(Map map);
 	public int getDesignerCnt(int u_idx);
+	public ProfileDTO getProfileWalletInfo(int u_idx);
 }

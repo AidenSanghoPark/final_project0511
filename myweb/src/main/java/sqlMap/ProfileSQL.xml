@@ -32,4 +32,7 @@
       where
          u_idx=#{u_idx}
    </select>
+   <select id="getProfileWalletInfo" parameterType="Integer" resultType="dsn.profile.model.ProfileDTO">
+  	 	select * from f_profile where u_idx=#{u_idx}
+   </select>
 </mapper>

@@ -10,12 +10,13 @@ public class ProfileDTO {
 	private String p_info;
 	private String u_wallet;
 	private MultipartFile upload;
+	private String u_bank;
 	
 	public ProfileDTO() {
 		super();
 	}
-	
-	public ProfileDTO(int p_idx, int u_idx, String p_img, String p_info, String u_wallet, MultipartFile upload) {
+	public ProfileDTO(int p_idx, int u_idx, String p_img, String p_info, String u_wallet, MultipartFile upload,
+			String u_bank) {
 		super();
 		this.p_idx = p_idx;
 		this.u_idx = u_idx;
@@ -23,15 +24,8 @@ public class ProfileDTO {
 		this.p_info = p_info;
 		this.u_wallet = u_wallet;
 		this.upload = upload;
+		this.u_bank = u_bank;
 	}
-	public MultipartFile getUpload() {
-		return upload;
-	}
-
-	public void setUpload(MultipartFile upload) {
-		this.upload = upload;
-	}
-
 	public int getP_idx() {
 		return p_idx;
 	}
@@ -62,6 +56,16 @@ public class ProfileDTO {
 	public void setU_wallet(String u_wallet) {
 		this.u_wallet = u_wallet;
 	}
-	
-	
+	public MultipartFile getUpload() {
+		return upload;
+	}
+	public void setUpload(MultipartFile upload) {
+		this.upload = upload;
+	}
+	public String getU_bank() {
+		return u_bank;
+	}
+	public void setU_bank(String u_bank) {
+		this.u_bank = u_bank;
+	}
 }

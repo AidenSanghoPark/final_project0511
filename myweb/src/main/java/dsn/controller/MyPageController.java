@@ -1,8 +1,10 @@
 package dsn.controller;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import dsn.designer.model.DesignerService;
 import dsn.member.model.MemberDTO;
 import dsn.mypage.model.MyPageService;
+import dsn.profile.model.ProfileDTO;
 import dsn.virtualwallet.model.WalletDTO;
 import dsn.withdraw.model.WithDrawDTO;
 
@@ -20,6 +24,9 @@ public class MyPageController {
 	
 	@Autowired
 	private MyPageService myPageService;
+	
+	@Autowired
+	private DesignerService dservice;
 	
 	@RequestMapping("myPage.do")
 	public ModelAndView myPage(@RequestParam(value = "cp",defaultValue = "1") int cp,HttpSession session){
@@ -46,7 +53,7 @@ public class MyPageController {
 		String pageStr=dsn.page.PageModule.pageMake("myPage.do", totalCnt, listSize, pageSize, cp);
 		List lists=myPageService.myPageList(cp, listSize, vo);
 		List userinfo=myPageService.userInfoFind(vo);
-		List dlists=myPageService.myPageListByDesigner(cp, listSize, pageSize);
+		List dlists=myPageService.myPageListByDesigner(cp, listSize, vo);
 		
 		mav.addObject("dpageStr", dpageStr);
 		mav.addObject("dlists", dlists);
@@ -71,14 +78,32 @@ public class MyPageController {
 	}
 	@RequestMapping("myPageUpdate.do")
 	public ModelAndView userUpdate(MemberDTO dto) {
-		
 		int result=myPageService.userUpdate(dto);
-		String msg=result>0?"정보수정 완료":"정보수정 실패";
+		String pa1="^[가-힣a-zA-Z0-9]{2,10}$";
+		String pa2="^01[0179][0-9]{7,8}$";
+		String pa3="^[A-Za-z0-9_\\.\\-]+@[A-Za-z0-9\\-]+\\.[A-Za-z0-9\\-]+";
 		ModelAndView mav=new ModelAndView();
-		
-		mav.addObject("msg", msg);
-		mav.addObject("gopage", "myPage.do");
-		mav.setViewName("mypage/mypagemsg");
+		if(!Pattern.matches(pa1, dto.getU_nick())) {
+			String msg="영어 대,소문자 숫자만 사용가능합니다.";
+			mav.addObject("msg", msg);
+			mav.addObject("gopage", "accountConfig.do");
+			mav.setViewName("mypage/mypagemsg");
+		}else if(!Pattern.matches(pa2, dto.getU_tel())) {
+			String msg="전화번호는 숫자만 사용가능합니다 ex)01011112222";
+			mav.addObject("msg", msg);
+			mav.addObject("gopage", "accountConfig.do");
+			mav.setViewName("mypage/mypagemsg");
+		}else if(!Pattern.matches(pa3, dto.getU_email())){
+			String msg="영어 대.소문자 숫자만 @ 만 사용가능합니다.";
+			mav.addObject("msg", msg);
+			mav.addObject("gopage", "accountConfig.do");
+			mav.setViewName("mypage/mypagemsg");
+		}else {
+			String msg=result>0?"정보수정 완료":"정보수정 실패";
+			mav.addObject("msg", msg);
+			mav.addObject("gopage", "myPage.do");
+			mav.setViewName("mypage/mypagemsg");
+		}
 		return mav;
 	}
 	@RequestMapping("passwordConfig.do")
@@ -92,20 +117,23 @@ public class MyPageController {
 		Object obj=session.getAttribute("login");
 		MemberDTO mdto = (MemberDTO) obj;
 		int vo=mdto.getU_idx();
+		String pattern="^.*(?=^.{8,15}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$";
 		String u_pwd=mdto.getU_pwd();
 		ModelAndView mav=new ModelAndView();
 		String msg="";
-		if(checkpwd.equals(pwdconfirm)) {
-			int result=myPageService.pwdUpdate(pwdconfirm,vo);
-			msg=result>0?"비밀번호 변경 완료":"비밀번호 변경 실패";
-			mav.addObject("gopage", "myPage.do");
-			if(!lastpwd.equals(u_pwd)) {
-				msg="비밀번호 불일치";
-				mav.addObject("gopage", "passwordConfig.do");
-			}
+		if(!Pattern.matches(pattern, pwdconfirm)) {
+			msg="대소문자 및 특수문자가 포함된 8~15 길이 이상의 비밀번호를 입력해주세요.";
+			mav.addObject("gopage", "passwordConfig.do");
 		}else if(!checkpwd.equals(pwdconfirm)){
 			msg="확인 비밀번호 불일치";
 			mav.addObject("gopage", "passwordConfig.do");
+		}else if(!lastpwd.equals(u_pwd)){
+			msg="비밀번호 불일치";
+			mav.addObject("gopage", "passwordConfig.do");
+		}else if(checkpwd.equals(pwdconfirm)) {
+			int result=myPageService.pwdUpdate(pwdconfirm,vo);
+			msg=result>0?"비밀번호 변경 완료":"비밀번호 변경 실패";
+			mav.addObject("gopage", "myPage.do");
 		}else {
 			msg="관리자 문의";
 			mav.addObject("gopage", "passwordConfig.do");
@@ -142,10 +170,11 @@ public class MyPageController {
 	}
 	@RequestMapping("payout.do")
 	public ModelAndView payOut(HttpSession session) {
+		ModelAndView mav=new ModelAndView();
 		Object obj=session.getAttribute("login");
 		MemberDTO mdto = (MemberDTO) obj;
 		int vo=mdto.getU_idx();
-		ModelAndView mav=new ModelAndView();
+
 		mav.addObject("u_idx", vo);
 		mav.setViewName("mypage/payoutpopup");
 		return mav;
@@ -156,7 +185,6 @@ public class MyPageController {
 		String msg="";
 		int price=Integer.parseInt(dto.getW_price());
 		int blc=myPageService.getLastBalance(dto.getU_idx());
-		
 		if(price>blc) {
 			msg="잔액이 부족합니다";
 			mav.addObject("msg", msg);
@@ -165,6 +193,7 @@ public class MyPageController {
 		}else {
 		int result=myPageService.payout(dto);
 		msg=result>0?"출금신청 완료":"출금신청 실패";
+		
 		mav.addObject("msg", msg);
 		mav.setViewName("mypage/popupclose");
 		}

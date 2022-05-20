@@ -30,7 +30,7 @@
    <select id="designerListByIdx" parameterType="Map" resultType="dsn.designer.model.DesignerDTO">
       select * from 
          (select rownum as rnum, a.* from
-         (select * from f_user where u_idx=#{u_idx} order by u_idx desc)a)b
+         (select * from f_designer where u_idx=#{u_idx} order by u_idx desc)a)b
       where
          rnum <![CDATA[>=]]> #{start}
       and
