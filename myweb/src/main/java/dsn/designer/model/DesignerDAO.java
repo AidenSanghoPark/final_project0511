@@ -15,7 +15,7 @@ public interface DesignerDAO {
 	public MemberDTO userInfo(int u_idx);
 	public int profileInsert(ProfileDTO dto);
 	public int profileUpdate(ProfileDTO dto);
-	public int portfolioTotalCnt();
+	public int portfolioTotalCnt(int u_idx);
 	public int reviewTotalCnt(int u_idx);
 	public int designerTotalCnt();
 	public int designerListTotalCnt();

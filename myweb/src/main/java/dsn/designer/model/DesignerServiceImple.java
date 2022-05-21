@@ -27,13 +27,8 @@ public class DesignerServiceImple implements DesignerService {
 	}
 	
 	@Override
-	public List portfolio2(int cp, int listSize, int u_idx) {
-		int start=((cp-1)*listSize)+1;
-		int end=cp*listSize;
-		
+	public List portfolio2(int u_idx) {
 		Map map=new HashedMap();
-		map.put("start", start);
-		map.put("end", end);
 		map.put("u_idx", u_idx);
 		
 		List lists=DesignerDao.portfolio2(map);
@@ -76,8 +71,8 @@ public class DesignerServiceImple implements DesignerService {
 	}
 
 	@Override
-	public int portfolioTotalCnt() {
-		int cnt=DesignerDao.portfolioTotalCnt();
+	public int portfolioTotalCnt(int u_idx) {
+		int cnt=DesignerDao.portfolioTotalCnt(u_idx);
 		cnt=cnt==0?1:cnt;
 		return cnt;
 	}

@@ -31,28 +31,21 @@ public class DesignerController {
 	
 	
 	@RequestMapping("portfolio2.do")
-	public ModelAndView portfolio2(@RequestParam(value = "cp", defaultValue = "1") int cp, @RequestParam(value="u_idx") int u_idx) {
-		
-		int totalCnt=designerService.getDesignerCnt(u_idx);
-		int listSize=5;
-		int pageSize=5;
-		String pageStr=dsn.page.PageModule.paramPageMake("portfolio2.do", totalCnt, listSize, pageSize, cp, u_idx);
+	public ModelAndView portfolio2(@RequestParam(value="u_idx") int u_idx) {
 				
-		List lists=designerService.portfolio2(cp, listSize, u_idx);
-		
+		List lists=designerService.portfolio2( u_idx);
 		int win=designerService.desigerTotalWin(u_idx);
 		ProfileDTO pdto=designerService.profileInfo(u_idx);
 		MemberDTO udto=designerService.userInfo(u_idx);
 		ModelAndView mav=new ModelAndView();
 		
 		mav.addObject("lists", lists);
-		mav.addObject("pageStr", pageStr);
 		mav.addObject("win", win);
 		mav.addObject("pdto", pdto);
 		mav.addObject("udto", udto);
 		mav.addObject("u_idx", u_idx);
 		
-		mav.setViewName("designer/portfolio");
+		mav.setViewName("designer/portfolio2");
 		return mav;
 	}
 	
@@ -62,7 +55,7 @@ public class DesignerController {
 		int totalCnt=designerService.reviewTotalCnt(u_idx);
 		int listSize=5;
 		int pageSize=5;
-		String pageStr=dsn.page.PageModule.pageMake("review.do", totalCnt, listSize, pageSize, cp);
+		String pageStr=dsn.page.PageModule.paramPageMake("review.do", totalCnt, listSize, pageSize, cp, u_idx);
 		
 		int win=designerService.desigerTotalWin(u_idx);
 		ProfileDTO pdto=designerService.profileInfo(u_idx);
@@ -162,7 +155,7 @@ public class DesignerController {
 		mav.addObject("lists", lists);
 		mav.addObject("pageStr", pageStr); 
 		
-		mav.setViewName("designer/designer");
+		mav.setViewName("designer/designer2");
 		return mav;
 	}
 	

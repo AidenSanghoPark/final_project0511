@@ -5,14 +5,11 @@
 <mapper namespace="dsn.designer">
 	<select id="portfolio2" parameterType="Map" resultType="dsn.designer.model.DesignerDTO">
 		select * from 
-			(select rownum as rnum, a.* from
-			(select * from f_designer order by c_idx desc)a)b
+			f_designer 
 		where
-			rnum <![CDATA[>=]]> #{start}
-		and
-			rnum <![CDATA[<=]]> #{end}
-		and
 			u_idx = #{u_idx}
+		order by 
+			c_idx desc
 	</select>
 	<select id="review" parameterType="Map" resultType="dsn.review.model.ReviewDTO">
   		select * from 
@@ -25,8 +22,8 @@
 		and
 			u_idx = #{u_idx}
   	</select>
-	<select id="portfolioTotalCnt" resultType="Integer">
-		select count(*) from f_designer
+	<select id="portfolioTotalCnt" parameterType="Integer" resultType="Integer">
+		select count(*) from f_designer where u_idx=#{u_idx}
 	</select>
 	<select id="designerTotalCnt" resultType="Integer">
 		select count(*) from f_user

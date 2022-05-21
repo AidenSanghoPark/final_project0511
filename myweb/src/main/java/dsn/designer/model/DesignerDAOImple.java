@@ -44,8 +44,8 @@ public class DesignerDAOImple implements DesignerDAO {
 	}
 
 	@Override
-	public int portfolioTotalCnt() {
-		int cnt=sqlMap.selectOne("portfolioTotalCnt");
+	public int portfolioTotalCnt(int u_idx) {
+		int cnt=sqlMap.selectOne("portfolioTotalCnt", u_idx);
 		return cnt;
 	}
 	

@@ -8,14 +8,14 @@ import dsn.member.model.MemberDTO;
 import dsn.profile.model.ProfileDTO;
 
 public interface DesignerService {
-	public List portfolio2(int cp, int listSize, int u_idx);
+	public List portfolio2(int u_idx);
 	public List review(int cp, int listSize, int u_idx);
 	public int designerWin(int u_idx);
 	public ProfileDTO profileInfo(int u_idx);
 	public MemberDTO userInfo(int u_idx);
 	public int profileInsert(ProfileDTO dto);
 	public int profileUpdate(ProfileDTO dto);
-	public int portfolioTotalCnt();
+	public int portfolioTotalCnt(int u_idx);
 	public int reviewTotalCnt(int u_idx);
 	public int designerTotalCnt();
 	public List designPhotos(Object u_idx);
