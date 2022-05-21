@@ -27,7 +27,7 @@
             <a class="nav-link active" aria-current="page" href="conList.do">콘테스트</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="contestChoice.do">콘테스트 개최</a>
+            <a class="nav-link" href="categoryChoice.do">콘테스트 개최</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="designer.do">디자이너</a>
