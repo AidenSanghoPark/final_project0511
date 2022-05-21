@@ -159,7 +159,7 @@ public class MyPageController {
 	public ModelAndView payOutConfirm(WithDrawDTO dto) throws Exception{
 		ModelAndView mav=new ModelAndView();
 		String msg="";
-		int price=Integer.parseInt(dto.getW_price());
+		int price=Integer.parseInt(dto.getW_balance());
 		int blc=myPageService.getLastBalance(dto.getU_idx());
 		
 		if(price>blc) {

@@ -20,8 +20,8 @@ public class DesignerDTO {
 		super();
 	}
 
-	public DesignerDTO(int d_idx, int u_idx, String d_name, String d_content, String d_img_1, String d_img_2,
-			Date d_date, int d_win, char d_block, String c_cate, int c_idx) {
+	public DesignerDTO(int d_idx, int u_idx, int c_idx, String d_name, String d_content, String d_img_1, String d_img_2,
+			Date d_date, int d_win, char d_block, String c_cate) {
 		super();
 		this.d_idx = d_idx;
 		this.u_idx = u_idx;

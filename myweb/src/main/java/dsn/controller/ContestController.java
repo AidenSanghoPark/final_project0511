@@ -40,7 +40,7 @@ public class ContestController {
 	private ConService conService;
 	
 	//콘테스트 초이스
-	@RequestMapping("/contestChoice.do")
+	@RequestMapping("/categoryChoice.do")
 	public ModelAndView contestHold() {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("contest/contestChoice");
@@ -71,7 +71,7 @@ public class ContestController {
 			String path = request.getSession().getServletContext().getRealPath("img/");
 			copyInto(dto.getUpload(), path); 
 		}
-		mav.setViewName("contest/logoHold"); //�엫�떆諛⑺렪 jsp 寃쎈줈 諛붽퓭�빞�븿
+		mav.setViewName("contest/logoHold");
 		return mav;
 	}
 	//로고 트레이드 form
@@ -231,12 +231,154 @@ public class ContestController {
 		file.copyInto(path,dto.getUploadfile1());
 		file.copyInto(path,dto.getUploadfile2());
 		int result=conService.contestJoin(dto);
-		String msg=result>0?"肄섑뀒�뒪�듃 李몄뿬 �셿猷�":"肄섑뀒�뒪�듃 李몄뿬 �떎�뙣";
+		String msg=result>0?"콘테스트 참여 완료":"콘테스트 참여 실패";
+		String msg=result>0?"콘테스트 참여 완료":"콘테스트 참여 실패";
 		mav.addObject("msg",msg);
 		mav.addObject("gopage", "index.do");
 		mav.setViewName("/contest/contestMsg");
 		return mav;
 	}
+	
+	@RequestMapping(value = "/conList.do")
+	   public ModelAndView conList(
+			   @RequestParam(value="cp",defaultValue = "1") int cp,
+			   @RequestParam(required = false, defaultValue = "전체") String c_cate,
+			   @RequestParam(required = false, defaultValue = "") String searchType,
+			   @RequestParam(required = false, defaultValue = "") String keyword) throws Exception {
+			PageModule PageModule = new PageModule();
+			PageModule.setSearchType(searchType);
+			PageModule.setKeyword(keyword);
+
+			System.out.println(cp);
+		    int totalCnt=conService.ContestCnt();
+			int listSize=3;
+			int pageSize=3;
+			
+			List lists = null;
+			String p_command = "";
+			if(c_cate.equals("전체")) {
+				lists=conService.conList(cp,listSize,searchType,keyword);
+			}else {
+				lists = conService.cateList(cp, listSize, c_cate);
+			}
+			
+			String pageStr="";
+			if(searchType=="") {
+				pageStr=dsn.page.PageModule.pageMake(p_command, totalCnt, listSize, pageSize, cp);
+			}else {
+				pageStr=dsn.page.PageModule.searchPageMake(p_command,
+					totalCnt, listSize, pageSize, cp, searchType, keyword);
+			}
+			
+			int dateUp=conService.dateUp();
+			
+	      //페이징 처리 끝
+	      
+	      ModelAndView mav=new ModelAndView();
+	      mav.addObject("dateUp",dateUp);
+	      mav.addObject("c_cate",c_cate);
+		  mav.addObject("pageStr",pageStr);
+		  mav.addObject("lists",lists);
+		  mav.setViewName("contest/conList");
+	      
+	      return mav; 
+	   } 
+
+	
+	@RequestMapping(value = "/conEnd.do")
+	   public ModelAndView conEnd(
+			   @RequestParam(value="cp",defaultValue = "1") int cp,
+			   @RequestParam(required = false, defaultValue = "전체") String c_cate,
+			   @RequestParam(required = false, defaultValue = "") String searchType,
+			   @RequestParam(required = false, defaultValue = "") String keyword) throws Exception {
+	      System.out.println(keyword);
+			PageModule PageModule = new PageModule();
+			PageModule.setSearchType(searchType);
+			PageModule.setKeyword(keyword);
+
+		    int totalCnt=conService.ContestCnt();
+			int listSize=3;
+			int pageSize=3;
+			
+			List lists = null;
+			String p_command = "";
+			if(c_cate.equals("전체")) {
+				lists=conService.conEnd(cp,listSize,searchType,keyword);
+			}else {
+				lists = conService.cateEnd(cp, listSize, c_cate);
+			}
+			
+			String pageStr="";
+			if(searchType=="") {
+				pageStr=dsn.page.PageModule.pageMake(p_command, totalCnt, listSize, pageSize, cp);
+			}else {
+				pageStr=dsn.page.PageModule.searchPageMake(p_command,
+					totalCnt, listSize, pageSize, cp, searchType, keyword);
+			}
+			
+			int dateUp=conService.dateUp();
+			
+	      //페이징 처리 끝
+	      
+	      ModelAndView mav=new ModelAndView();
+	      mav.addObject("dateUp",dateUp);
+	      mav.addObject("c_cate",c_cate);
+		  mav.addObject("pageStr",pageStr);
+		  mav.addObject("lists",lists);
+		  mav.setViewName("contest/conEnd");
+	      
+	      return mav; 
+	   } 
+	
+	@RequestMapping(value = "/conContent.do")
+	public ModelAndView conContent(
+			@RequestParam(value="c_idx", defaultValue = "0") int c_idx){
+		ConDTO dto=conService.conContent(c_idx);
+		ModelAndView mav=new ModelAndView();
+		if(dto==null) {
+			mav.addObject("msg", "잘못된 접근 또는 삭제된 콘테스트입니다.");
+			mav.addObject("gopage","conList.do");
+			mav.setViewName("contest/conMsg");
+		}else {
+			mav.addObject("dto",dto);
+			mav.setViewName("contest/conContent");
+		}
+		return mav;
+	}
+
+	@RequestMapping("/fileDown.do")
+	public ModelAndView fileDown(@RequestParam("filename")String filename) {
+		File f=new File("C:/Users/user/Desktop/이젠/jspstudy4/myweb/src/main/webapp/upload/"+filename);
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("downloadFile",f);
+		mav.setViewName("dsnDown");
+		return mav;
+	}
+	@RequestMapping("/contestChoice.do")
+	public ModelAndView contestChoice() {
+		ModelAndView mav=new ModelAndView();
+		conService.contestEnd(0);
+		conService.designerWin(0);
+		conService.payUpdate(0, 0);
+		mav.addObject("gopage", "conList.do");
+		mav.addObject("msg", "당선작 선정 완료");
+		mav.setViewName("/contest/contestMsg");
+		return mav;
+	}
+	@RequestMapping("/contestContent.do")
+	public ModelAndView contestContent(
+			@RequestParam int d_idx,
+			@RequestParam int c_idx) {
+		
+		System.out.println("content d_idx="+d_idx);
+		System.out.println("content c_idx="+c_idx);
+		ModelAndView mav=new ModelAndView();
+		DesignerConDTO dto=conService.contestContent(d_idx,c_idx);
+		mav.addObject("ddto", dto);
+		mav.setViewName("/contest/contestContent");
+		return mav;
+	}
+	
 	//체크 박스
 	@RequestMapping(value = "/arrcheck.do", method = RequestMethod.POST)
 	@ResponseBody

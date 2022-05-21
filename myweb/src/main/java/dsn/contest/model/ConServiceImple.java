@@ -140,6 +140,7 @@ public class ConServiceImple implements ConService{
 		int count = conDao.addLogo(dto);
 		return count;
 	}
+
 	@Override
 	public void updateTrd(ConDTO dto) {
 		conDao.updateTrd(dto);

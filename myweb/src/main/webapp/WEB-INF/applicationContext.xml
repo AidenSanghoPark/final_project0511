@@ -91,4 +91,10 @@
 		</constructor-arg>
 	</bean>
 	
+	<bean id="withdrawManageDao" class="dsn.withdrawManage.model.WithdrawManageDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"/>
+		</constructor-arg>
+	</bean>
+	
 </beans>

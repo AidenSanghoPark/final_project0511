@@ -24,7 +24,12 @@ public interface ConService {
 	public List conPart(int cp, int listSize, int c_idx);
 	public int contestJoin(DesignerConDTO dto);
 	public ConDTO conInfo(int c_idx);
+	public int contestJoin(DesignerConDTO dto);
 	public void updateTrd(ConDTO dto);
+	public void designerWin(int d_idx);
+	public void contestEnd(int c_idx);
+	public void payUpdate(int a_balance, int u_idx);
+	public DesignerConDTO contestContent(int d_idx, int c_idx);
 	
 	//logo
 	public int addLogo(ConDTO dto);	
