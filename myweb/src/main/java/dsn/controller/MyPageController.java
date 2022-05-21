@@ -28,6 +28,9 @@ public class MyPageController {
 	@Autowired
 	private MyPageService myPageService;
 	
+	@Autowired
+	private DesignerService designerService;
+	
 	@RequestMapping("myPage.do")
 	public ModelAndView myPage(@RequestParam(value = "cp",defaultValue = "1") int cp,HttpSession session){
 		
@@ -52,9 +55,8 @@ public class MyPageController {
 		String pageStr=dsn.page.PageModule.pageMake("myPage.do", totalCnt, listSize, pageSize, cp);
 		List lists=myPageService.myPageList(cp, listSize, vo);
 		List userinfo=myPageService.userInfoFind(vo);
-		List dlists=myPageService.myPageListByDesigner(cp, listSize, vo);
-		
-		System.out.println("userinfo"+userinfo);
+		List dlists=myPageService.myPageListByDesigner(cp, listSize, pageSize);
+		ProfileDTO pdto=designerService.profileInfo(vo);
 		
 		mav.addObject("dpageStr", dpageStr);
 		mav.addObject("dlists", dlists);
@@ -62,6 +64,7 @@ public class MyPageController {
 		mav.addObject("pageStr", pageStr);
 		mav.addObject("u_idx", vo);
 		mav.addObject("userinfo", userinfo);
+		mav.addObject("pdto", pdto);
 		mav.setViewName("mypage/mypage");
 		}
 		return mav;

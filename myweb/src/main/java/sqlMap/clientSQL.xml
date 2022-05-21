@@ -342,6 +342,7 @@
 		and
 			rnum <![CDATA[<=]]> #{end}
 	</select>
+	
 	<update id="designerWin" parameterType="Integer">
 		update f_designer set
                      d_win=1
@@ -392,6 +393,7 @@
         and #{uidx} = 16),0)+#{amount}
 			)
   	</insert>
+  	
   	<select id="designerUser" resultType="Integer">
   		select u_idx from f_designer where d_idx = #{d_idx}
   	</select>

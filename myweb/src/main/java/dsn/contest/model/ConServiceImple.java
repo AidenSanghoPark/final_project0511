@@ -188,6 +188,7 @@ public class ConServiceImple implements ConService{
 	}
 
 
+
 	@Override
 	public int addLogoTrade(TrdDTO dto) {
 		int count = conDao.addLogoTrade(dto);

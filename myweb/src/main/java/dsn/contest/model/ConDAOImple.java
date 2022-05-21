@@ -174,6 +174,5 @@ public class ConDAOImple implements ConDAO{
 			List dlists=sqlMap.selectList("conPart", map);
 			return dlists;
 		}
-		
 
 }
