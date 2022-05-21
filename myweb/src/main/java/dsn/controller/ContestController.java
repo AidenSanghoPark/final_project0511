@@ -86,9 +86,9 @@ public class ContestController {
 		int result = conService.addLogoTrade(dto);
 		return dto.getT_idx()+"";
 	}
-	//占싸곤옙 占쏙옙占쏙옙
-	@RequestMapping(value = "/logoHold.do", method = RequestMethod.GET)
-	public ModelAndView rogoHold(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
+	//네이밍 뷰
+	@RequestMapping(value = "/namingHold.do", method = RequestMethod.GET)
+	public ModelAndView namingHold(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("c_cate", c_cate);
 		mav.setViewName("contest/namingHold");
@@ -225,7 +225,8 @@ public class ContestController {
 		file.copyInto(path,dto.getUploadfile1());
 		file.copyInto(path,dto.getUploadfile2());
 		int result=conService.contestJoin(dto);
-		String msg=result>0?"肄섑뀒�뒪�듃 李몄뿬 �셿猷�":"肄섑뀒�뒪�듃 李몄뿬 �떎�뙣";
+		String msg=result>0?"콘테스트 참여 완료":"콘테스트 참여 실패";
+		String msg=result>0?"콘테스트 참여 완료":"콘테스트 참여 실패";
 		mav.addObject("msg",msg);
 		mav.addObject("gopage", "index.do");
 		mav.setViewName("/contest/contestMsg");
@@ -235,7 +236,7 @@ public class ContestController {
 	@RequestMapping(value = "/conList.do")
 	   public ModelAndView conList(
 			   @RequestParam(value="cp",defaultValue = "1") int cp,
-			   @RequestParam(required = false, defaultValue = "�쟾泥�") String c_cate,
+			   @RequestParam(required = false, defaultValue = "전체") String c_cate,
 			   @RequestParam(required = false, defaultValue = "") String searchType,
 			   @RequestParam(required = false, defaultValue = "") String keyword) throws Exception {
 			PageModule PageModule = new PageModule();
@@ -248,7 +249,7 @@ public class ContestController {
 			
 			List lists = null;
 			String p_command = "";
-			if(c_cate.equals("�쟾泥�")) {
+			if(c_cate.equals("전체")) {
 				lists=conService.conList(cp,listSize,searchType,keyword);
 			}else {
 				lists = conService.cateList(cp, listSize, c_cate);
@@ -264,6 +265,7 @@ public class ContestController {
 			
 			int dateUp=conService.dateUp();
 			
+	      //페이징 처리 끝
 	      
 	      ModelAndView mav=new ModelAndView();
 	      mav.addObject("dateUp",dateUp);
@@ -279,7 +281,7 @@ public class ContestController {
 	@RequestMapping(value = "/conEnd.do")
 	   public ModelAndView conEnd(
 			   @RequestParam(value="cp",defaultValue = "1") int cp,
-			   @RequestParam(required = false, defaultValue = "�쟾泥�") String c_cate,
+			   @RequestParam(required = false, defaultValue = "전체") String c_cate,
 			   @RequestParam(required = false, defaultValue = "") String searchType,
 			   @RequestParam(required = false, defaultValue = "") String keyword) throws Exception {
 			PageModule PageModule = new PageModule();
@@ -292,7 +294,7 @@ public class ContestController {
 			
 			List lists = null;
 			String p_command = "";
-			if(c_cate.equals("�쟾泥�")) {
+			if(c_cate.equals("전체")) {
 				lists=conService.conEnd(cp,listSize,searchType,keyword);
 			}else {
 				lists = conService.cateEnd(cp, listSize, c_cate);
@@ -308,7 +310,7 @@ public class ContestController {
 			
 			int dateUp=conService.dateUp();
 			
-	      //�럹�씠吏� 泥섎━ �걹
+	      //페이징 처리 끝
 	      
 	      ModelAndView mav=new ModelAndView();
 	      mav.addObject("dateUp",dateUp);
@@ -326,7 +328,7 @@ public class ContestController {
 		ConDTO dto=conService.conContent(c_idx);
 		ModelAndView mav=new ModelAndView();
 		if(dto==null) {
-			mav.addObject("msg", "d");
+			mav.addObject("msg", "잘못된 접근 또는 삭제된 콘테스트입니다.");
 			mav.addObject("gopage","conList.do");
 			mav.setViewName("contest/conMsg");
 		}else {
@@ -338,7 +340,7 @@ public class ContestController {
 
 	@RequestMapping("/fileDown.do")
 	public ModelAndView fileDown(@RequestParam("filename")String filename) {
-		File f=new File("C:/Users/user/Desktop/�씠�젨/jspstudy4/myweb/src/main/webapp/upload/"+filename);
+		File f=new File("C:/Users/user/Desktop/이젠/jspstudy4/myweb/src/main/webapp/upload/"+filename);
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("downloadFile",f);
 		mav.setViewName("dsnDown");
@@ -359,7 +361,7 @@ public class ContestController {
 		conService.payUpdate(getuser, conpay,getuser,conpay);
 		mav.addObject("gopage", "conList.do");
 		mav.addObject("msg", "당선작 선정 완료");
-		mav.setViewName("index");
+		mav.setViewName("/contest/contestMsg");
 		return mav;
 	}
 	@RequestMapping("/contestContent.do")
