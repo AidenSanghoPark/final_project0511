@@ -58,9 +58,11 @@ ul{
 	<section class="profile">
       	<img class="photo" src="profileimg/pi.jpg">
         <h5><a href="profile.do">${userinfo.u_name } 님</a></h5>
+        		<fieldset style="border-radius:3px;  background-color:skyblue; width:50px;height:13px; margin: auto">
+        		<h6 style="color:#ffffff;align:center;font-size: 11px;">디자이너</h6>
+        		</fieldset>
         <p>${userinfo.u_email }</p>
-        <p><a class="btn btn-secondary" href="portfolio2.do?u_idx=${userinfo.u_idx}">포트폴리오 관리</a></p><br>
-   			 	<h3 style="color:grey">콘테스트 참가작</h3><br>
+        <p><a class="btn btn-secondary" href="portfolio.do">포트폴리오 관리</a></p><br>
         <h3>1:1 의뢰 관리</h3><br>		
    			 	<h3><a href="wallet.do">가상계좌</a></h3><br>
         <h3><a href="accountConfig.do">계정설정</a></h3><br>
@@ -88,9 +90,10 @@ ul{
     	<section class="profile">
       	<img class="photo" src="profileimg/pi.jpg">
         <h5><a href="profileConfig.do">${userinfo.u_name } 님</a></h5>
+       		<fieldset style="border-radius:3px;  background-color:skyblue; width:50px;height:13px; margin: auto">
+        	<h6 style="color:#ffffff;align:center;font-size: 11px;">의뢰자</h6>
+        	</fieldset>
         <p>${userinfo.u_email }</p>
-        <p><a class="btn btn-secondary" href="portfolio.do">포트폴리오 관리</a></p><br>
-   			 	<h3 style="color:grey">개최한 콘테스트</h3><br>
         <h3>1:1 의뢰 관리</h3><br>		
    			 	<h3><a href="showPayInfo.do">거래내역</a></h3><br>
         <h3><a href="accountConfig.do">계정설정</a></h3><br>

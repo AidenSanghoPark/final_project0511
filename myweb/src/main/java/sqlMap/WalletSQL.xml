@@ -5,10 +5,9 @@
   <mapper namespace="dsn.virtualwallet">
 	<select id="virtualWallet" parameterType="Map" resultType="dsn.virtualwallet.model.WalletDTO">
 			select * from
-			(select * from
 			(select rownum as rnum,a.* from
-			(select * from f_account order by a_idx desc)a)b
-			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end})where u_idx=#{u_idx}
+			(select * from f_account where u_idx=#{u_idx} order by a_idx desc)a)b
+			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
   	</select>
   	<select id="walletCnt" parameterType="Integer" resultType="Integer">
   	SELECT COUNT(*) FROM F_ACCOUNT WHERE U_IDX=#{u_idx}

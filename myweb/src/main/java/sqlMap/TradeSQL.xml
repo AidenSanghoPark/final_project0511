@@ -6,7 +6,7 @@
   	<select id="tradeFind" parameterType="Map" resultType="dsn.trade.model.TradeDTO">
   		select * from
 			(select rownum as rnum,a.* from
-			(select * from f_trade where u_idx=1 order by t_idx desc)a)b
+			(select * from f_trade where u_idx=#{u_idx} order by t_idx desc)a)b
 			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
   	</select>
   	<select id="getTradeCnt" parameterType="Integer" resultType="Integer">

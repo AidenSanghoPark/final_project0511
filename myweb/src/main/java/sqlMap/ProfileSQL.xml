@@ -11,8 +11,7 @@
          #{u_idx},
          #{p_img},
          #{p_info},
-         #{u_wallet},
-         #{u_bank}
+         #{u_wallet}
       )
    </insert>
    <update id="profileUpdate" parameterType="dsn.profile.model.ProfileDTO">
@@ -21,8 +20,7 @@
       set
          p_img=#{p_img},
          p_info=#{p_info},
-         u_wallet=#{u_wallet},
-         u_bank=#{u_bank}
+         u_wallet=#{u_wallet}
       where
          u_idx=#{u_idx}
    </update>
@@ -33,5 +31,8 @@
          f_profile
       where
          u_idx=#{u_idx}
+   </select>
+   <select id="getProfileWalletInfo" parameterType="Integer" resultType="dsn.profile.model.ProfileDTO">
+  	 	select * from f_profile where u_idx=#{u_idx}
    </select>
 </mapper>
