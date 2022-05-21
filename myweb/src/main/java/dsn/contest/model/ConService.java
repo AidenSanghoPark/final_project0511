@@ -22,9 +22,10 @@ public interface ConService {
 	public void updateTrd(ConDTO dto);
 	public void designerWin(int d_idx);
 	public void contestEnd(int c_idx);
-	public void payUpdate(int u_idx,String c_subject,int a_account,int uidx,int account);
+	public void payUpdate(int u_idx,int a_amount,int uidx,int amount);
 	public DesignerConDTO contestContent(int d_idx, int c_idx);
-	
+	public int designerUser(int d_idx);
+	public int contestPay(int c_idx);
 	//logo
 	public int addLogo(ConDTO dto);	
 	public int addLogoTrade(TrdDTO dto);

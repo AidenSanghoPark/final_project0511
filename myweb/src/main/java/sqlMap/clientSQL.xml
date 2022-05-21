@@ -340,7 +340,7 @@
    		UPDATE
    			F_CLIENT
    		SET
-   			C_DATEDIFF = 0
+   			C_DATEDIFF = 1
    		WHERE
    			C_IDX = #{c_idx}
    </update>
@@ -367,19 +367,25 @@
 		F_ACCOUNT
 			VALUES(
 			A_IDX.NEXTVAL
-			, '16'
+			, #{u_idx}
 			, '입금'
 			, sysdate 
 			, '1232'
 			, '상금적립'
-			, 50000
-			, (SELECT 
+			, #{a_amount}
+			, NVL((SELECT 
             a_balance 
         FROM 
             f_account 
         WHERE a_idx = (SELECT max(a_idx) FROM f_account)
         
-        and u_idx = 16)+50000
+        and #{uidx} = 16),0)+#{amount}
 			)
   	</insert>
+  	<select id="designerUser" resultType="Integer">
+  		select u_idx from f_designer where d_idx = #{d_idx}
+  	</select>
+  	<select id="contestPay" resultType="Integer">
+  		select c_pay from f_client where c_idx = #{c_idx}
+  	</select>
 </mapper>
