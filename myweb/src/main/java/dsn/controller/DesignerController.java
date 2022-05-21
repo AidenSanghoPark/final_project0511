@@ -45,7 +45,7 @@ public class DesignerController {
 		mav.addObject("udto", udto);
 		mav.addObject("u_idx", u_idx);
 		
-		mav.setViewName("designer/portfolio2");
+		mav.setViewName("designer/portfolio");
 		return mav;
 	}
 	
@@ -155,7 +155,7 @@ public class DesignerController {
 		mav.addObject("lists", lists);
 		mav.addObject("pageStr", pageStr); 
 		
-		mav.setViewName("designer/designer2");
+		mav.setViewName("designer/designer");
 		return mav;
 	}
 	

@@ -1,132 +1,236 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>디자이너 목록</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
+    <link rel="stylesheet" href="cards-gallery.css">
 <style>
-.icons i {
-  color: #b5b3b3;
-  border: 1px solid #b5b3b3;
-  padding: 6px;
-  margin-left: 4px;
-  border-radius: 5px;
-  cursor: pointer;
+.member-entry {
+  border: 1px solid #ebebeb;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 30px;
+  -moz-box-shadow:  0 1.5rem 4rem rgba(22, 28, 45, 0.1);
+  -webkit-box-shadow:  0 1.5rem 4rem rgba(22, 28, 45, 0.1);
+  box-shadow: 1 0 1.5rem 4rem rgba(22, 28, 45, 0.1);
+  -moz-transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+  -webkit-border-radius: 3px;
+  -webkit-background-clip: padding-box;
+  -moz-border-radius: 3px;
+  -moz-background-clip: padding;
+  border-radius: 3px;
+  background-clip: padding-box;
+  background:#fff;
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2),0 6px 10px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2),0 6px 10px 0 rgba(0,0,0,0.3);
 }
-
-.activity-done {
-  font-weight: 600;
+.member-entry:before,
+.member-entry:after {
+  content: " ";
+  display: table;
 }
-
-.list-group li {
-  margin-bottom: 12px;
+.member-entry:after {
+  clear: both;
 }
-
-.list-group-item {
+.member-entry:hover {
+  background: rgba(235, 235, 235, 0.3);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 1, 1, 0.06);
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 1, 1, 0.06);
+  box-shadow: 1px 1px 1px rgba(0, 1, 1, 0.06);
 }
-
-.list li {
-  list-style: none;
-  padding: 10px;
-  border: 1px solid #e3dada;
-  margin-top: 12px;
-  border-radius: 5px;
-  background: #fff;
+.member-entry .member-img,
+.member-entry .member-details {
+  float: left;
 }
-
-.checkicon {
-  color: green;
-  font-size: 19px;
+.member-entry .member-img {
+  position: relative;
+  display: block;
+  width: 10%;
 }
-
-.date-time {
-  font-size: 12px;
+.member-entry .member-img img {
+  width: 100%;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 50%;
 }
-
-.profile-image img {
-  margin-left: 1px;
+.member-entry .member-img i {
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 50%;
+  margin-top: -12.5px;
+  margin-left: -12.5px;
+  color: #FFF;
+  font-size: 25px;
+  zoom: 1;
+  -webkit-opacity: 0;
+  -moz-opacity: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -moz-transform: scale(0.5);
+  -webkit-transform: scale(0.5);
+  -ms-transform: scale(0.5);
+  -o-transform: scale(0.5);
+  transform: scale(0.5);
+  -moz-transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
 }
-.designer{
-	float: center;
+.member-entry .member-img:hover i {
+  -moz-transform: scale(1);
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+  zoom: 1;
+  -webkit-opacity: 1;
+  -moz-opacity: 1;
+  opacity: 1;
+  filter: alpha(opacity=100);
 }
-.designerName{
-	float: right;
+.member-entry .member-details {
+  width: 89.9%;
 }
-img {
- 	max-width: 100%;
- 	max-height: 100%;
+.member-entry .member-details h4 {
+  font-size: 18px;
+  margin-left: 20px;
+}
+.member-entry .member-details h4 a {
+  -moz-transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+.member-entry .member-details .info-list {
+  margin-left: 5px;
+}
+.member-entry .member-details .info-list > div {
+  margin-top: 5px;
+  font-size: 13px;
+}
+.member-entry .member-details .info-list > div a {
+  -moz-transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+.member-entry .member-details .info-list > div i {
+  -moz-transition: all 300ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+.member-entry .member-details .info-list > div:hover i {
+  color: #4f5259;
+}
+@media screen and (max-width: 768px) {
+  .member-entry .member-img {
+    width: 18%;
+  }
+  .member-entry .member-details {
+    width: 81.9%;
+  }
+  .member-entry .member-details h4 {
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 480px) {
+  .member-entry .member-img {
+    width: 100%;
+    float: none;
+    text-align: center;
+    position: relative;
+    background: #f8f8f8;
+    margin-bottom: 15px;
+    -webkit-border-radius: 3px;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 3px;
+    -moz-background-clip: padding;
+    border-radius: 3px;
+    background-clip: padding-box;
+  }
+  .member-entry .member-img img {
+    width: auto;
+    display: inline-block;
+    -webkit-border-radius: 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 0;
+    -moz-background-clip: padding;
+    border-radius: 50%;
+    background-clip: padding-box;
+  }
+  .member-entry .member-details {
+    width: 100%;
+    float: none;
+  }
+  .member-entry .member-details h4,
+  .member-entry .member-details .info-list {
+    margin-left: 0;
+  }
+  .member-entry .member-details h4 > div,
+  .member-entry .member-details .info-list > div {
+    padding: 0;
+  }
+  .member-entry .member-details .info-list > div {
+    margin-top: 10px;
+  }
 }
 </style>
 </head>
 <body>
 <%@include file="/WEB-INF/views/header.jsp" %>
-<form name="designers">
-	<h2>&nbsp;&nbsp;&nbsp;디자이너</h2><br>
-	<br>
-	<div class="container mt-5">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="d-flex justify-content-between align-items-center activity">
-                    <div><span class="activity-done"></span></div>
-                    <div class="icons"><input type="text" name="designerName"><input type="submit" value="검색" class="fa fa-search"></div>
-                </div>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade active show" id="home" role="tabpanel">
-                        <div class="table-responsive" >
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" style="width: 130px;">프로필</th>
-                                        <th scope="col">소개</th>
-                                        <th class="text-center" scope="col">ㅤ</th>
-                                    </tr>
-                                </thead>
-                                
-                                <tbody>
-                                <c:forEach var="dto" items="${lists}">
-                                    <tr class="inner-box">
-                                        <td>
-                                            <div class="event-img">
-                                                <img src="profileimg/${dto.p_img}" alt="" />
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="event-wrap">
-                                                <h3><a href="#">${dto.u_nick}</a></h3>
-                                                <div class="meta">
-                                                    <div class="categories">${dto.u_email}
-                                                    </div>
-                                                    <div class="time">
-                                                        <span>${dto.p_info}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="primary-btn">
-                                            	<c:url var="contentUrl" value="portfolio2.do">
-													<c:param name="u_idx">${dto.u_idx}</c:param>
-												</c:url>
-                                                <a href="${contentUrl}"><input type="button" value="포트폴리오"></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </c:forEach>
-                                   </tbody>
-                                   
-                                  </table>
-                                 </div>
-                                </div>
-                               </div>
-                <div id="page">${pageStr}</div>
-            </div>
-        </div>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+<div class="row bootstrap snippets bootdeys"> 
+    <div class="col-md-9 col-sm-7"> 
+        <h2>이달의 TOP 디자이너가 궁금하신가요?</h2> 
     </div>
-</form>
+</div>
+<c:forEach var="dto" items="${lists}"> 
+<div class="member-entry"> 
+    <a class="member-img"> 
+        <img src="profileimg/${dto.p_img}" class="img-rounded"> 
+    </a> 
+    <div class="member-details"> 
+        <h4>${dto.u_nick}</h4> 
+        <div class="row info-list"> 
+            <div class="col-sm-4">
+            <i class="fa fa-envelope"></i>
+                ${dto.u_email}
+            </div> 
+            <div class="col-sm-4">
+                ${dto.p_info}
+            </div> 
+            <div class="col-sm-4"> 
+            <c:url var="contentUrl" value="portfolio2.do">
+					<c:param name="u_idx">${dto.u_idx}</c:param>
+			</c:url>
+            <a href="${contentUrl}"><input type="button" value="포트폴리오" class="btn btn-primary pull-right"></a>
+            </div> 
+            <div class="clear"></div> 
+            <div class="col-sm-4">
+            	총 우승 ${dto.total_win}회
+            </div> 
+            <div class="col-sm-4">
+            </div> 
+            <div class="col-sm-4">
+            </div> 
+        </div> 
+    </div> 
+</div>
+</c:forEach>
+<div id="page">${pageStr}</div>
 <%@include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>
