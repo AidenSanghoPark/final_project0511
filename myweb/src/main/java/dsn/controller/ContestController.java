@@ -44,7 +44,7 @@ public class ContestController {
 	@RequestMapping("/categoryChoice.do")
 	public ModelAndView contestHold() {
 		ModelAndView mav=new ModelAndView();
-		mav.setViewName("contest/contestChoice");
+		mav.setViewName("contest/categoryChoice");
 		return mav;
 	}
 	//로고 뷰

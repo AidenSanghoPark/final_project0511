@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
  <!-- SimpleLightbox plugin CSS-->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
 <style>
@@ -70,21 +67,32 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', e
   float: left;
 }
 </style>
-</head>
-<body>
 <header>
 <div id="mainNavigation">
   <nav role="navigation">
     <div class="py-3 text-center border-bottom">
  	 <img src="bimg/maintitle.png" style="width: 100px; height: 50px;">
     	<div>
-			<ul class="navbar-nav mx-auto">
-			    <li class="nav-item" style="text-align: right;" id="headerli">	          	
-			       <span class="nav-link active" aria-current="page" style="width: 20%; float: right; padding-right: 50px;">
-			          <a href="login.do" style="text-decoration: none;">로그인</a>&nbsp;&nbsp; 
-			          <a href="joinChoice.do" style="text-decoration: none;">회원가입</a></span>
-			      </li>
-			 </ul>
+    	<c:choose>
+    		<c:when test="${empty login}">  
+			      <ul class="navbar-nav mx-auto">
+			      	<li class="nav-item" style="text-align: right;" id="headerli">	          	
+			          	<span class="nav-link active" aria-current="page" style="width: 20%; float: right; padding-right: 50px;">
+			          	<a href="login.do" style="text-decoration: none;">로그인</a>&nbsp;&nbsp; 
+			          	<a href="joinChoice.do" style="text-decoration: none;">회원가입</a></span>
+			        </li>
+			      </ul>
+			</c:when>
+			<c:otherwise>
+					<ul class="navbar-nav mx-auto">
+			      	<li class="nav-item" style="text-align: right;" id="headerli">	          	
+			          	<span class="nav-link active" aria-current="page" style="width: 20%; float: right; padding-right: 50px;">
+			          	<b><a href="myPage.do" style="text-decoration: none;">${login.u_name}</a></b>&nbsp;&nbsp;
+			          	<a href="logout.do" style="text-decoration: none;">로그아웃</a></span>
+			        </li>
+			      </ul>
+			</c:otherwise>      
+		</c:choose>      
 	    </div>	  	       
     </div>
   </nav>  
@@ -116,6 +124,3 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', e
 </div>
 <!-- Navigation-->
 </header>
-
-</body>
-</html>

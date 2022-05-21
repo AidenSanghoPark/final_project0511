@@ -9,7 +9,7 @@
 <style>
 #img{
 	width: 200px;
-	height: 300px;
+	height: 200px;
 }
 section{
 	padding-left: 600px;
@@ -22,14 +22,13 @@ section{
 </head>
 <body>
 <%@include file="/WEB-INF/views/header.jsp" %>
-	<br>
-	<br>
-	<h1 style="text-align: center; color: gray;">콘테스트 개최 타입 선택</h1>
+<br>
+<br>
 	<section>
 		<table id="td1">
 			<tr>
 				<td>
-					<a href="namingHold.do?c_cate=naming"><img src="img/contype1.png" id="img"></a>
+					<a href="namingHold.do?c_cate=naming"><img src="img/contype3.png" id="img"></a>
 				</td>
 				<td>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -44,7 +43,7 @@ section{
 		<table id="td2">
 			<tr>
 				<td>
-					<a href="characterHold.do?c_cate=character"><img src="img/contype3.png" id="img"></a>
+					<a href="characterHold.do?c_cate=character"><img src="img/contype1.png" id="img"></a>
 				</td>
 				<td>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
