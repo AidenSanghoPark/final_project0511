@@ -67,22 +67,33 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', e
   float: left;
 }
 </style>
-</head>
-<body>
 <header>
 <div id="mainNavigation">
   <nav role="navigation">
     <div class="py-3 text-center border-bottom">
- 	 <img src="bimg/maintitle.png" style="width: 100px; height: 50px;">
-    	<div>
-			<ul class="navbar-nav mx-auto">
-			    <li class="nav-item" style="text-align: right;" id="headerli">	          	
-			       <span class="nav-link active" aria-current="page" style="width: 20%; float: right; padding-right: 50px;">
-			          <a href="login.do" style="text-decoration: none;">로그인</a>&nbsp;&nbsp; 
-			          <a href="joinChoice.do" style="text-decoration: none;">회원가입</a></span>
-			      </li>
-			 </ul>
-	    </div>	  	       
+     <img src="bimg/maintitle.png" style="width: 100px; height: 50px;">
+       <div>
+       <c:choose>
+          <c:when test="${empty login}">  
+               <ul class="navbar-nav mx-auto">
+                  <li class="nav-item" style="text-align: right;" id="headerli">                
+                      <span class="nav-link active" aria-current="page" style="width: 20%; float: right; padding-right: 50px;">
+                      <a href="login.do" style="text-decoration: none;">로그인</a>&nbsp;&nbsp; 
+                      <a href="joinChoice.do" style="text-decoration: none;">회원가입</a></span>
+                 </li>
+               </ul>
+         </c:when>
+         <c:otherwise>
+               <ul class="navbar-nav mx-auto">
+                  <li class="nav-item" style="text-align: right;" id="headerli">                
+                      <span class="nav-link active" aria-current="page" style="width: 20%; float: right; padding-right: 50px;">
+                      <b><a href="myPage.do" style="text-decoration: none;">${login.u_name}</a></b>&nbsp;&nbsp;
+                      <a href="logout.do" style="text-decoration: none;">로그아웃</a></span>
+                 </li>
+               </ul>
+         </c:otherwise>      
+      </c:choose>      
+       </div>               
     </div>
   </nav>  
 <div>
@@ -107,12 +118,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', e
         <li class="nav-item">
           <a class="nav-link" href="designer.do" style="font-size: 20px;">디자이너</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contestJoin.do" style="font-size: 20px;">콘테스트 참가</a>
+        </li>
       </ul>
     </div>
   </div>
 </div>
 <!-- Navigation-->
 </header>
-
-</body>
-</html>
