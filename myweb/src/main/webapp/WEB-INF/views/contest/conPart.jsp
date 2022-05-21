@@ -457,9 +457,9 @@ a{
 			</c:if>
 			<tbody>
 				<tr>
-					<c:forEach var="dto" items="${dlists}" varStatus="vs">
+					<c:forEach var="dto" items="${dlists}">
 					
-					<td><a class="btn-open-popup"><img style="width: 300px;" src="img/${dto.d_img_1}">
+					<td><a class="btn-open-popup" onclick="document.getElementById('${c_idx}').style.display='block'"><img style="width: 300px;" src="img/${dto.d_img_1}">
 					<p>${dto.d_name }</p></a></td>
 					
 					<!-- 모달 -->		    
@@ -467,7 +467,7 @@ a{
 					      <div class="modal_body">
 					      	
 					      	<div style="width: 30%; height:100%; background-color:#EFEFF6; float: right; border-radius: 5px;
-					      	  position: sticky; top: 0;">
+					      	  position: sticky; top: 0;" id="${c_idx}" class="w3-modal">
 					      		<h4>${dto.d_name }</h4>
 					      		<h4>디자이너 이름</h4>
 					      		<br>

@@ -184,7 +184,7 @@ public class ContestController {
 			PageModule.setKeyword(keyword);
 
 		    int totalCnt=conService.ContestCnt();
-			int listSize=3;
+			int listSize=4;
 			int pageSize=3;
 			
 			List lists = null;
@@ -230,7 +230,7 @@ public class ContestController {
 			PageModule.setKeyword(keyword);
 
 		    int totalCnt=conService.ContestCnt();
-			int listSize=3;
+			int listSize=4;
 			int pageSize=3;
 			
 			List lists = null;

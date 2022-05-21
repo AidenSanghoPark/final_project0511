@@ -13,8 +13,19 @@
 		and c_datediff<![CDATA[>=]]>0
 	</select>
 	
+	<select id="listSizeCnt" resultType="Integer">
+		select count(*) from f_client where (select rownum as rnum,a.* from
+		(select * from f_client order by c_idx desc)a)b
+		where rnum<![CDATA[>=]]>#{start}
+		and rnum<![CDATA[<=]]>#{end}
+	</select>
+	
 	<select id="ContestCnt" resultType="Integer">
-		select count(*) from f_client
+		select count(*) from f_client where c_datediff<![CDATA[>=]]>0
+	</select>
+	
+	<select id="ContestCntEnd" resultType="Integer">
+		select count(*) from f_client where c_datediff<![CDATA[<=]]>0
 	</select>
 	
 	<update id="conCount" parameterType="Map">
