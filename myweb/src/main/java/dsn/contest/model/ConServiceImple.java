@@ -124,18 +124,9 @@ public class ConServiceImple implements ConService{
 		}
 		return conDao.contestJoin(dto);
 	}
-
-
-	//logo
 	@Override
 	public int addLogo(ConDTO dto) {
-		System.out.println("service="+dto.getC_cate());
-	    System.out.println("service="+dto.getUpload().getOriginalFilename());
-		//���ε尡 null �ƴҶ��� �������� ���ϳ��� �����ϱ�
-		if(dto.getUpload() != null) {
-			dto.setC_file(dto.getUpload().getOriginalFilename());
-		}
-		int count = conDao.addLogo(dto);
+		int count=conDao.addLogo(dto);
 		return count;
 	}
 
@@ -145,19 +136,15 @@ public class ConServiceImple implements ConService{
 	}	
 	@Override
 	public void contestEnd(int c_idx) {
+		System.out.println("contestEnd="+c_idx);
 		conDao.contestEnd(c_idx);
 		
 	}@Override
 	public void designerWin(int d_idx) {
+		System.out.println("designerWin="+d_idx);
 		conDao.designerWin(d_idx);
-		
-	}@Override
-	public void payUpdate(int a_balance, int u_idx) {
-		Map map=new HashedMap();
-		map.put("a_balance", a_balance);
-		map.put("u_idx", u_idx);
-		conDao.payUpdate(map);
-	}
+	}	
+	
 	@Override
 	public DesignerConDTO contestContent(int d_idx, int c_idx) {
 		Map map=new HashedMap();
@@ -166,6 +153,40 @@ public class ConServiceImple implements ConService{
 		DesignerConDTO dto=conDao.contestContent(map);
 		return dto;
 	}
+	@Override
+	public void payUpdate(int u_idx,int a_amount,int uidx,int amount) {
+		Map map=new HashedMap();
+		map.put("u_idx", u_idx);
+		map.put("a_amount", a_amount);
+		map.put("uidx", uidx);
+		map.put("amount", amount);
+		conDao.payUpdate(map);
+		
+	}
+	@Override
+	public int designerUser(int d_idx) {
+		return conDao.designerUser(d_idx);
+	}
+	
+	@Override
+	public int contestPay(int c_idx) {
+		return conDao.contestPay(c_idx);
+	}
+
+
+	@Override
+	public List conPart(int cp, int listSize, int c_idx) {
+		int start=((cp-1)*listSize)+1;
+		int end=cp*listSize;
+		Map map=new HashedMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("c_idx", c_idx);
+		
+		List dlists=conDao.conPart(map);
+		return dlists;
+	}
+
 
 	@Override
 	public int addLogoTrade(TrdDTO dto) {
@@ -175,8 +196,6 @@ public class ConServiceImple implements ConService{
 	//naming
 	@Override
 	public int addNaming(ConDTO dto) {
-		System.out.println("service="+dto.getC_cate());
-		System.out.println("service="+dto.getUpload().getOriginalFilename());
 		if(dto.getUpload() != null) {
 			dto.setC_file(dto.getUpload().getOriginalFilename());
 		}
@@ -191,8 +210,6 @@ public class ConServiceImple implements ConService{
 	//char
 	@Override
 	public int addChar(ConDTO dto) {
-		System.out.println("service="+dto.getC_cate());
-		System.out.println("service="+dto.getUpload().getOriginalFilename());
 		if(dto.getUpload() != null) {
 			dto.setC_file(dto.getUpload().getOriginalFilename());
 		}
@@ -207,8 +224,6 @@ public class ConServiceImple implements ConService{
 	//print
 	@Override
 	public int addPrint(ConDTO dto) {
-		System.out.println("service="+dto.getC_cate());
-		System.out.println("service="+dto.getUpload().getOriginalFilename());
 		if(dto.getUpload() != null) {
 			dto.setC_file(dto.getUpload().getOriginalFilename());
 		}

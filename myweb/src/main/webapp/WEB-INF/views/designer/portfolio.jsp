@@ -57,8 +57,7 @@ h5{
 <c:if test="${pdto == null}">
 	<form name="designerInfo">
 		<section class="profile">
-				<img class="photo" src="profileimg/profile.PNG">
-				<a class="btn btn-secondary" href="#">1:1의뢰하기</a><br>
+				<img class="photo" src="profileimg/profile.PNG"><br>
 				<h4>${udto.u_nick}</h4><br>
 				우승 ${win}회
 		</section>
@@ -68,8 +67,7 @@ h5{
 <form name="designerInfo">
 	<section class="profile">
 		<fieldset>
-			<img class="photo" src="profileimg/${pdto.p_img}">
-			<a class="btn btn-secondary" href="#">1:1의뢰하기</a><br>
+			<img class="photo" src="profileimg/${pdto.p_img}"><br>
 			<h4>${udto.u_nick}</h4><br>
 			우승 ${win}회
 		</fieldset>
@@ -78,7 +76,7 @@ h5{
 </c:if>
 	<section>
 		<hr>
-		<h5><a href="portfolio.do">포트폴리오</a> <a href="review.do">리뷰</a></h5>
+		<h5><a href="portfolio2.do?u_idx=${u_idx}">포트폴리오</a> <a href="review.do?u_idx=${u_idx}">리뷰</a></h5>
 		<hr>
 	</section>
 <form name="portfoilos">
@@ -95,8 +93,12 @@ h5{
 				<tr>
 					<c:forEach var="dto" items="${lists}">
 						<td>
-							<a data-bs-toggle="modal" data-bs-target="#exampleModal" data-test="${dto.d_idx}"><img src="img/${dto.d_img_1}"></a><br>
-							<label><a data-bs-toggle="modal" data-bs-target="#myModal" data-test="${dto.d_idx}">${dto.d_name}</a></label>
+							<c:url var="contentUrl" value="portfolioDetail.do">
+								<c:param name="u_idx">${dto.u_idx}</c:param>
+							</c:url>
+							<a href="${contentUrl}" rel="modal:open"><img src="img/${dto.d_img_1}"></a><br>
+							<a href="${contentUrl}" rel="modal:open"><label>${dto.d_name}</label></a>
+							
 							
 						</td>
 					</c:forEach>
@@ -108,6 +110,10 @@ h5{
 
 	</section>
 </form>
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Launch demo modal

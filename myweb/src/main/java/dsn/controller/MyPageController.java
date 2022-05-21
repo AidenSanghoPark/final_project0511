@@ -51,6 +51,8 @@ public class MyPageController {
 		List userinfo=myPageService.userInfoFind(vo);
 		List dlists=myPageService.myPageListByDesigner(cp, listSize, pageSize);
 		
+		System.out.println("userinfo"+userinfo);
+		
 		mav.addObject("dpageStr", dpageStr);
 		mav.addObject("dlists", dlists);
 		mav.addObject("lists", lists);

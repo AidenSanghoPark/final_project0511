@@ -25,21 +25,18 @@ public class DesignerServiceImple implements DesignerService {
 	public void setDesignerDao(DesignerDAO designerDao) {
 		this.DesignerDao = designerDao;
 	}
-
+	
 	@Override
-	public List portfolio(int cp, int listSize, int u_idx) {
+	public List portfolio2(int cp, int listSize, int u_idx) {
 		int start=((cp-1)*listSize)+1;
 		int end=cp*listSize;
 		
-		System.out.println("start="+start);
-		System.out.println("end"+end);
-		System.out.println(u_idx);
 		Map map=new HashedMap();
 		map.put("start", start);
 		map.put("end", end);
 		map.put("u_idx", u_idx);
 		
-		List lists=DesignerDao.portfolio(map);
+		List lists=DesignerDao.portfolio2(map);
 		return lists;
 	}
 	
@@ -126,7 +123,6 @@ public class DesignerServiceImple implements DesignerService {
 	@Override
 	public List designPhotos(Object u_idx) {
 		
-		System.out.println("service="+u_idx);
 		Map map=new HashedMap();
 		map.put("u_idx", u_idx);
 		
@@ -149,10 +145,13 @@ public class DesignerServiceImple implements DesignerService {
 		DesignerDTO dto=DesignerDao.portfolioDetail(d_idx);
 		return dto;
 	}
+	
 	@Override
 	public int getDesignerCnt(int u_idx) {
-		int count=DesignerDao.getDesignerCnt(u_idx);
-		return count;
+		int cnt=DesignerDao.getDesignerCnt(u_idx);
+		cnt=cnt==0?1:cnt;
+		return cnt;
 	}
+	
 
 }

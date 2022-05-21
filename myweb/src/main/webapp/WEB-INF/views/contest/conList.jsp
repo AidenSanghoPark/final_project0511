@@ -416,8 +416,8 @@ a{
 		</c:if>
 		<c:forEach var="dto" items="${lists }">
 			<div class="member-entry" style="width:900px;"> 
-			    <a href="#" class="member-img"> 
-			        <img src="https://ifh.cc/g/vAq0AJ.png" class="circle-img" style="padding-top: 10px;"> 
+			    <a class="member-img"> 
+			         <img src="menuimg/${dto.c_cate }.png" class="circle-img" style="padding-top: 10px;padding-left: 10px;">
 			    </a> 
 			    <div class="member-details" style="width:750px;"> 
 			        <div class="col-sm-4" style="float:left;"> 

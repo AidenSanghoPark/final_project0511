@@ -321,19 +321,26 @@
 		C_IDX = #{c_idx}
 		WHERE T_IDX = #{t_idx}
 	</update>
-	<update id="designerWin">
-   		UPDATE
-   			F_DESIGNER
-   		SET
-   			D_WIN = 1
-   		WHERE
-   			D_IDX = #{d_idx}
+	
+	<select id="conPart" parameterType="Integer" resultType="dsn.designer.model.DesignerDTO">
+		select * from 
+			(select rownum as rnum, a.* from
+			(select * from f_designer where c_idx=#{c_idx} order by d_idx desc)a)b
+		where
+			rnum <![CDATA[>=]]> #{start}
+		and
+			rnum <![CDATA[<=]]> #{end}
+	</select>
+	<update id="designerWin" parameterType="Integer">
+		update f_designer set
+                     d_win=1
+                      where d_idx = #{d_idx}
    </update>
-   <update id="contestEnd">
+   <update id="contestEnd" parameterType="Integer">
    		UPDATE
    			F_CLIENT
    		SET
-   			C_DATEDIFF = 0
+   			C_DATEDIFF = 1
    		WHERE
    			C_IDX = #{c_idx}
    </update>
@@ -354,19 +361,31 @@
   		AND
   			c_idx = #{c_idx}
   	</select>
-  	<insert id="payUpdate" >
+  	<insert id="payUpdate" parameterType="Map">
   		INSERT
 			INTO
 		F_ACCOUNT
 			VALUES(
-			F_ACCOUNT_A_IDX.NEXTVAL
+			A_IDX.NEXTVAL
 			, #{u_idx}
-			, "상금적립"
+			, '입금'
 			, sysdate 
-			, #{c_subject}
-			, "상금적립"
+			, '1232'
+			, '상금적립'
 			, #{a_amount}
-			, a_balance+#{a_amount}
+			, NVL((SELECT 
+            a_balance 
+        FROM 
+            f_account 
+        WHERE a_idx = (SELECT max(a_idx) FROM f_account)
+        
+        and #{uidx} = 16),0)+#{amount}
 			)
   	</insert>
+  	<select id="designerUser" resultType="Integer">
+  		select u_idx from f_designer where d_idx = #{d_idx}
+  	</select>
+  	<select id="contestPay" resultType="Integer">
+  		select c_pay from f_client where c_idx = #{c_idx}
+  	</select>
 </mapper>
