@@ -457,10 +457,10 @@ a{
 			</c:if>
 			<tbody>
 				<tr>
-					<c:forEach var="dto" items="${dlists}" varStatus="vs">
+					<c:forEach var="dtos" items="${dlists}" varStatus="vs">
 					
-					<td><a class="btn-open-popup"><img style="width: 300px;" src="img/${dto.d_img_1}">
-					<p>${dto.d_name }</p></a></td>
+					<td><a class="btn-open-popup"><img style="width: 300px;" src="img/${dtos.d_img_1}">
+					<p>${dtos.d_name }</p></a></td>
 					<!-- 모달 -->		    
 					<div class="modal">
 						<form id="choiceForm" enctype="multipart/form-data" method="post">
@@ -468,19 +468,20 @@ a{
 					      	
 					      	<div style="width: 30%; height:100%; background-color:#EFEFF6; float: right; border-radius: 5px;
 					      	  position: sticky; top: 0;">
-					      		<h4>${dto.d_name }</h4>
+					      		<h4>${dtos.d_name }</h4>
 					      		<h4>디자이너 이름</h4>
 					      		<input type="hidden" name="c_idx" value="${c_idx}">
-					      		<input type="hidden" name="d_idx" value="${dto.d_idx }">
+					      		<input type="hidden" name="d_idx" value="${dtos.d_idx }">
 					      		<br>
 					      		<p style="text-align: left; padding-left: 20px;">참여작 내용</p>
 					      		<br>
+					      		<c:if test="${dto.u_idx == login.u_idx}">
 					      		<button class="button" style="width: 230px; height: 50px; border-radius: 3px;" id="choice">당선하기<br></button>
+					      		</c:if>
 					      	</div>
-					      	
 					      	<div style="float: left;">
-					      		<img style="width: 70%; height: 100%; float: left;" src="img/${dto.d_img_2}">
-					      		<img style="width: 70%; height: 100%; float: left;" src="img/${dto.d_img_2}">
+					      		<img style="width: 70%; height: 100%; float: left;" src="img/${dtos.d_img_2}">
+					      		<img style="width: 70%; height: 100%; float: left;" src="img/${dtos.d_img_2}">
 					      	</div>
 					      </div>
 					     </form>

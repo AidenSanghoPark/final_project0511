@@ -113,7 +113,7 @@
               <div class="col">
               <div class="counter" style="background-color: white;">
       <i class="fa fa-handshake-o fa-2x"></i>
-      <h2 class="timer count-title count-number" style="font-weight: bold;" data-to="10254" data-speed="1500"></h2><br>
+      <h2 class="timer count-title count-number" style="font-weight: bold;" data-to="${login.u_idx }" data-speed="1500"></h2><br>
       <p style="text-align: center; color: #808080; font-size: 20px; font-weight: bold;">완료된 콘테스트</p>
       <!-- <p class="count-text ">완료된 콘테스트</p> -->
     </div></div>
