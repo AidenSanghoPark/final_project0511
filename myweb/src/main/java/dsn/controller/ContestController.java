@@ -60,6 +60,7 @@ public class ContestController {
 	@RequestMapping(value = "/logoHold_add.do", method = RequestMethod.POST)
 	public ModelAndView logoHoldForm(MultipartHttpServletRequest request, ConDTO dto, HttpSession session) {	
 		
+		
 		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
 		
 		dto.setU_idx(mdto.getU_idx());
@@ -357,7 +358,7 @@ public class ContestController {
 		ModelAndView mav=new ModelAndView();
 		conService.contestEnd(c_idx);
 		conService.designerWin(d_idx);
-		conService.payUpdate(getuser, conpay,getuser,conpay);
+		conService.payUpdate(getuser,conpay,getuser,conpay);
 		mav.addObject("gopage", "conList.do");
 		mav.addObject("msg", "당선작 선정 완료");
 		mav.setViewName("index");
@@ -377,8 +378,9 @@ public class ContestController {
 	@RequestMapping("conPart.do")
 	public ModelAndView conPart(@RequestParam(value = "cp", defaultValue = "1") int cp,
 			@RequestParam(value="c_idx", defaultValue="0") int c_idx) {
-		
+		System.out.println(c_idx);
 		ConDTO dto=conService.conContent(c_idx);
+		System.out.println("conpart="+dto.getU_idx());
 		int totalCnt=conService.ContestCnt();
 		int listSize=5;
 		int pageSize=5;
