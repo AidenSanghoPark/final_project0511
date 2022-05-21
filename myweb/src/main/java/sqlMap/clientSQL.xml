@@ -400,4 +400,8 @@
   	<select id="contestPay" resultType="Integer">
   		select c_pay from f_client where c_idx = #{c_idx}
   	</select>
+  	
+  	<select id="conPartContent" parameterType="Integer" resultType="dsn.designer.model.DesignerDTO">
+			select * from f_designer where d_idx=#{d_idx}
+	</select>
 </mapper>

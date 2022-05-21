@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dsn.contest.model.*;
+import dsn.designer.model.DesignerDTO;
 import dsn.trade.model.TrdDTO;
 
 @Service
@@ -240,6 +241,12 @@ public class ConServiceImple implements ConService{
 	public int addPrintTrade(TrdDTO dto) {
 		int count = conDao.addPrintTrade(dto);
 		return count;
+	}
+
+	@Override
+	public DesignerDTO conPartContent(int d_idx) {
+		DesignerDTO dto = conDao.conPartContent(d_idx);
+		return dto;
 	}
 
 

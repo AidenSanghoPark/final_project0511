@@ -175,4 +175,11 @@ public class ConDAOImple implements ConDAO{
 			return dlists;
 		}
 
+
+		@Override
+		public DesignerDTO conPartContent(int d_idx) {
+			DesignerDTO dto = sqlMap.selectOne("conPartContent", d_idx);
+			return dto;
+		}
+
 }

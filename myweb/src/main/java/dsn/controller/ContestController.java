@@ -28,6 +28,7 @@ import dsn.member.model.MemberService;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import dsn.contest.model.*;
+import dsn.designer.model.DesignerDTO;
 import dsn.module.*;
 import dsn.noticeManage.model.NoticeManageDTO;
 import dsn.page.PageModule;
@@ -394,6 +395,19 @@ public class ContestController {
 		return mav;
 		
 	}
+	
+	@RequestMapping("conPartContent.do")
+	public ModelAndView conPartContent(@RequestParam(value="d_idx", defaultValue="0") int d_idx) {
+		
+		DesignerDTO dto=conService.conPartContent(d_idx);
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("dto",dto);
+		
+		mav.setViewName("contest/conPartContent");
+		return mav;
+		
+	}
+	
 	//체크 박스
 	@RequestMapping(value = "/arrcheck.do", method = RequestMethod.POST)
 	@ResponseBody
