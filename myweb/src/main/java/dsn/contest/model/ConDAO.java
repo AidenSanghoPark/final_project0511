@@ -50,5 +50,7 @@ public interface ConDAO {
 	
 	public DesignerConDTO contestContent(Map map);
 	public List conPart(Map map);
+
+
 	
 }

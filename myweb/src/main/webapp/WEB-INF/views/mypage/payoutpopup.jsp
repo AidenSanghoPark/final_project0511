@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,6 @@
 <body>
 <section>
 <form name="payout" action="payoutaction.do">
-<input type="hidden" value="${u_idx}" name="u_idx">
 	<table class="payout">
 		<tr>
 			<th>출금신청금액</th>
@@ -48,7 +48,7 @@
 			</select>
 			</td>
 		</tr>
-		<tr>
+			<tr>
 			<th>예금주</th>
 			<td><input type="text" name="w_name"></td>
 		</tr>

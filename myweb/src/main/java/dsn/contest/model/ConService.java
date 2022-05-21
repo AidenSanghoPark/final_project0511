@@ -44,4 +44,3 @@ public interface ConService {
 	public int addPrintTrade(TrdDTO dto);
 
 }
-

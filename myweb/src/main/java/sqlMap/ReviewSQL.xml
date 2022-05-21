@@ -13,6 +13,6 @@
         )
      </insert>
      <select id="reviewTotalCnt" resultType="Integer">
-      select count(*) from f_review
+      select count(*) from f_review where u_idx = #{u_idx}
    </select>
 </mapper>

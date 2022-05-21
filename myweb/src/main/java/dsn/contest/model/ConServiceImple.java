@@ -1,7 +1,6 @@
 package dsn.contest.model;
 
 import java.util.HashMap;
-
 import java.util.List;
 import java.util.Map;
 
@@ -113,8 +112,6 @@ public class ConServiceImple implements ConService{
 		return count;
 		
 	}
-	
-	
 	@Override
 	public ConDTO conInfo(int c_idx) {
 		return conDao.conInfo(c_idx);
@@ -194,6 +191,7 @@ public class ConServiceImple implements ConService{
 		List dlists=conDao.conPart(map);
 		return dlists;
 	}
+
 
 
 	@Override

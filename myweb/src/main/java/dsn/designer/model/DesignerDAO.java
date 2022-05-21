@@ -15,8 +15,8 @@ public interface DesignerDAO {
 	public MemberDTO userInfo(int u_idx);
 	public int profileInsert(ProfileDTO dto);
 	public int profileUpdate(ProfileDTO dto);
-	public int portfolioTotalCnt();
-	public int reviewTotalCnt();
+	public int portfolioTotalCnt(int u_idx);
+	public int reviewTotalCnt(int u_idx);
 	public int designerTotalCnt();
 	public int designerListTotalCnt();
 	public List designerList(Map map);
@@ -24,4 +24,5 @@ public interface DesignerDAO {
 	public List designPhotos(Map map);
 	public List designerAllList();
 	public int getDesignerCnt(int u_idx);
+	public int desigerTotalWin(int u_idx);
 }

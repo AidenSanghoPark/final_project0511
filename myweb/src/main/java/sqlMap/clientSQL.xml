@@ -13,8 +13,19 @@
 		and c_datediff<![CDATA[>=]]>0
 	</select>
 	
+	<select id="listSizeCnt" resultType="Integer">
+		select count(*) from f_client where (select rownum as rnum,a.* from
+		(select * from f_client order by c_idx desc)a)b
+		where rnum<![CDATA[>=]]>#{start}
+		and rnum<![CDATA[<=]]>#{end}
+	</select>
+	
 	<select id="ContestCnt" resultType="Integer">
-		select count(*) from f_client
+		select count(*) from f_client where c_datediff<![CDATA[>=]]>0
+	</select>
+	
+	<select id="ContestCntEnd" resultType="Integer">
+		select count(*) from f_client where c_datediff<![CDATA[<=]]>0
 	</select>
 	
 	<update id="conCount" parameterType="Map">
@@ -331,6 +342,7 @@
 		and
 			rnum <![CDATA[<=]]> #{end}
 	</select>
+	
 	<update id="designerWin" parameterType="Integer">
 		update f_designer set
                      d_win=1
@@ -346,10 +358,9 @@
    </update>
 	<select id="myPageList" parameterType="Map" resultType="dsn.contest.model.ConDTO">
 			select * from
-			(select * from
 			(select rownum as rnum,a.* from
-			(select * from f_client order by c_idx desc)a)b
-			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end})where u_idx=#{u_idx}
+			(select * from f_client where u_idx=#{u_idx} order by c_idx desc)a)b
+			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
   	</select>
   	<select id="contestContent" parameterType="Map" resultType="dsn.contest.model.DesignerConDTO">
   		SELECT
@@ -382,6 +393,7 @@
         and #{uidx} = 16),0)+#{amount}
 			)
   	</insert>
+  	
   	<select id="designerUser" resultType="Integer">
   		select u_idx from f_designer where d_idx = #{d_idx}
   	</select>
