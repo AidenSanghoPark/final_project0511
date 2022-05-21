@@ -3,8 +3,6 @@ package dsn.contest.model;
 import java.util.List;
 import java.util.Map;
 
-import java.util.Map;
-
 import org.apache.commons.collections.map.HashedMap;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,6 +90,15 @@ public class ConDAOImple implements ConDAO{
 			sqlMap.update("updateTrd", dto);
 		}
 		
+		@Override
+		public int designerUser(int d_idx) {
+		return sqlMap.selectOne("designerUser", d_idx);
+		}
+		@Override
+		public int contestPay(int c_idx) {
+		return sqlMap.selectOne("contestPay", c_idx);
+		}
+		
 		//logo
 		@Override
 		public int addLogo(ConDTO dto) {
@@ -154,7 +161,7 @@ public class ConDAOImple implements ConDAO{
 		}
 		@Override
 		public void payUpdate(Map map) {
-			sqlMap.update("payUpdate",map);
+			sqlMap.insert("payUpdate",map);
 		
 		}
 		@Override
@@ -168,5 +175,6 @@ public class ConDAOImple implements ConDAO{
 			List dlists=sqlMap.selectList("conPart", map);
 			return dlists;
 		}
+		
 
 }

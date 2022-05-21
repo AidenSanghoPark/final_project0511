@@ -127,9 +127,6 @@ public class ConServiceImple implements ConService{
 		}
 		return conDao.contestJoin(dto);
 	}
-
-
-	//logo
 	@Override
 	public int addLogo(ConDTO dto) {
 		System.out.println("service="+dto.getC_cate());
@@ -165,18 +162,25 @@ public class ConServiceImple implements ConService{
 		return dto;
 	}
 	@Override
-	public void payUpdate(int u_idx, String c_subject, int a_account,int uidx,int account) {
-		System.out.println("payUpdate="+u_idx);
-		System.out.println("payUpdate="+c_subject);
-		System.out.println("payUpdate="+a_account);
+	public void payUpdate(int u_idx,int a_amount,int uidx,int amount) {
 		Map map=new HashedMap();
 		map.put("u_idx", u_idx);
-		map.put("c_subject", c_subject);
-		map.put("a_account",a_account);
-		map.put("idx",uidx);
-		map.put("account", account);
+		map.put("a_amount", a_amount);
+		map.put("uidx", uidx);
+		map.put("amount", amount);
+		conDao.payUpdate(map);
 		
 	}
+	@Override
+	public int designerUser(int d_idx) {
+		return conDao.designerUser(d_idx);
+	}
+	
+	@Override
+	public int contestPay(int c_idx) {
+		return conDao.contestPay(c_idx);
+	}
+
 
 	@Override
 	public List conPart(int cp, int listSize, int c_idx) {
@@ -200,8 +204,6 @@ public class ConServiceImple implements ConService{
 	//naming
 	@Override
 	public int addNaming(ConDTO dto) {
-		System.out.println("service="+dto.getC_cate());
-		System.out.println("service="+dto.getUpload().getOriginalFilename());
 		if(dto.getUpload() != null) {
 			dto.setC_file(dto.getUpload().getOriginalFilename());
 		}
@@ -216,8 +218,6 @@ public class ConServiceImple implements ConService{
 	//char
 	@Override
 	public int addChar(ConDTO dto) {
-		System.out.println("service="+dto.getC_cate());
-		System.out.println("service="+dto.getUpload().getOriginalFilename());
 		if(dto.getUpload() != null) {
 			dto.setC_file(dto.getUpload().getOriginalFilename());
 		}
@@ -232,8 +232,6 @@ public class ConServiceImple implements ConService{
 	//print
 	@Override
 	public int addPrint(ConDTO dto) {
-		System.out.println("service="+dto.getC_cate());
-		System.out.println("service="+dto.getUpload().getOriginalFilename());
 		if(dto.getUpload() != null) {
 			dto.setC_file(dto.getUpload().getOriginalFilename());
 		}

@@ -29,6 +29,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import dsn.contest.model.*;
 import dsn.module.*;
+import dsn.noticeManage.model.NoticeManageDTO;
 import dsn.page.PageModule;
 import dsn.profile.model.ProfileDTO;
 import dsn.trade.model.TrdDTO;
@@ -82,7 +83,6 @@ public class ContestController {
 		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
 		
 		dto.setU_idx(mdto.getU_idx());
-		System.out.println(mdto.getU_idx());
 		int result = conService.addLogoTrade(dto);
 		return dto.getT_idx()+"";
 	}
@@ -91,7 +91,6 @@ public class ContestController {
 	public ModelAndView namingHold(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("c_cate", c_cate);
-		System.out.println(c_cate);
 		mav.setViewName("contest/namingHold");
 		return mav;
 	}
@@ -122,7 +121,6 @@ public class ContestController {
 		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
 			
 		dto.setU_idx(mdto.getU_idx());
-		System.out.println(mdto.getU_idx());
 		int result = conService.addLogoTrade(dto);
 		return dto.getT_idx()+"";
 	}
@@ -132,7 +130,6 @@ public class ContestController {
 	public ModelAndView characterHold(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("c_cate", c_cate);
-		System.out.println(c_cate);
 		mav.setViewName("contest/characterHold");
 		return mav;
 	}
@@ -163,7 +160,6 @@ public class ContestController {
 		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
 				
 		dto.setU_idx(mdto.getU_idx());
-		System.out.println(mdto.getU_idx());
 		int result = conService.addCharTrade(dto);
 		return dto.getT_idx()+"";
 	}
@@ -172,7 +168,6 @@ public class ContestController {
 	public ModelAndView printHold(@RequestParam(value="c_cate", defaultValue="")String c_cate) {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("c_cate", c_cate);
-		System.out.println(c_cate);
 		mav.setViewName("contest/printHold");
 		return mav;
 	}
@@ -203,7 +198,6 @@ public class ContestController {
 		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
 					
 		dto.setU_idx(mdto.getU_idx());
-		System.out.println(mdto.getU_idx());
 		int result = conService.addPrintTrade(dto);
 		return dto.getT_idx()+"";
 	}
@@ -248,7 +242,6 @@ public class ContestController {
 			PageModule.setSearchType(searchType);
 			PageModule.setKeyword(keyword);
 
-			System.out.println(cp);
 		    int totalCnt=conService.ContestCnt();
 			int listSize=3;
 			int pageSize=3;
@@ -290,7 +283,6 @@ public class ContestController {
 			   @RequestParam(required = false, defaultValue = "전체") String c_cate,
 			   @RequestParam(required = false, defaultValue = "") String searchType,
 			   @RequestParam(required = false, defaultValue = "") String keyword) throws Exception {
-	      System.out.println(keyword);
 			PageModule PageModule = new PageModule();
 			PageModule.setSearchType(searchType);
 			PageModule.setKeyword(keyword);
@@ -353,10 +345,11 @@ public class ContestController {
 		mav.setViewName("dsnDown");
 		return mav;
 	}
+	
 	@RequestMapping(value = "contestEndChoice.do", method = RequestMethod.POST)
 	public ModelAndView contestEndChoice(
-		@RequestParam int c_idx,
-		@RequestParam int d_idx) {
+			@RequestParam int c_idx,
+			@RequestParam int d_idx) {
 		int getuser=conService.designerUser(d_idx);
 		System.out.println("desgineruser="+getuser);
 		int conpay=conService.contestPay(c_idx);
@@ -374,9 +367,6 @@ public class ContestController {
 	public ModelAndView contestContent(
 			@RequestParam int d_idx,
 			@RequestParam int c_idx) {
-		
-		System.out.println("content d_idx="+d_idx);
-		System.out.println("content c_idx="+c_idx);
 		ModelAndView mav=new ModelAndView();
 		DesignerConDTO dto=conService.contestContent(d_idx,c_idx);
 		mav.addObject("ddto", dto);
@@ -384,12 +374,31 @@ public class ContestController {
 		return mav;
 	}
 	
+	@RequestMapping("conPart.do")
+	public ModelAndView conPart(@RequestParam(value = "cp", defaultValue = "1") int cp,
+			@RequestParam(value="c_idx", defaultValue="0") int c_idx) {
+		
+		ConDTO dto=conService.conContent(c_idx);
+		int totalCnt=conService.ContestCnt();
+		int listSize=5;
+		int pageSize=5;
+		String pageStr=dsn.page.PageModule.pageMake("conPart.do", totalCnt, listSize, pageSize, cp);
+		List dlists=conService.conPart(cp, listSize, c_idx);
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("dlists", dlists);
+		mav.addObject("pageStr", pageStr);
+		mav.addObject("dto",dto);
+		mav.addObject("c_idx", c_idx);
+		
+		mav.setViewName("contest/conPart");
+		return mav;
+		
+	}
 	//체크 박스
 	@RequestMapping(value = "/arrcheck.do", method = RequestMethod.POST)
 	@ResponseBody
-	public void arrCheck(@RequestParam(value = "valueArr[]")
-	List<String> valueArr) {
-		System.out.println(valueArr);
+	public void arrCheck(@RequestParam(value = "valueArr[]")List<String> valueArr) {
+		
 	}
 	//파일 복사
 	public void copyInto(MultipartFile upload, String path) {
@@ -404,5 +413,14 @@ public class ContestController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
+	}
+	
+	@RequestMapping("/conContentModal.do")
+	public ModelAndView conContentModal() {
+		
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("contest/conModal/conContentModal");
+		return mav;
 	}
 }
