@@ -1,60 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
 <style>
 .mainimg{
-	width:90px;
-	height:50px;
+	width: 200px;
+	height: 200px;
 	padding-left: 15px;
 }
+.mainimg{
+	width: 100px;
+	height: 50px;
+}
+.nav-item a{
+  color:#dfdfdf;
+}
+.nav-item a:hover {
+  color:#fff
+}
+.nav-item{
+  min-width:12vw;
+}
 </style>
-<header>
-<nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
-    
-      <div style="float:left"><a href="index.do"><img src="img/main.jpg" class="mainimg"></a></div>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <nav style="float:left; padding-left:10px;">
-      <div class="collapse navbar-collapse" id="navbarsExample02">
-        <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="conList.do">콘테스트</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">콘테스트 개최</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="designer.do">디자이너</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contestJoin.do">콘테스트 참여</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="allReview.do">리뷰</a>
-          </li>
-           <li class="nav-item">
-            <a class="nav-link" href="contestEndChoice.do">콘테스트 끝</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contestContent.do?c_idx=58&d_idx=36">참여작 상세보기</a>
-          </li>
-        </ul>
-       </div>
-       </nav>
-        <div id="loginJoin">
-	       	<c:choose>
-				<c:when test="${empty login}">
-					<div><a href="login.do">로그인</a> | <a href="joinChoice.do">회원가입</a></div>
-				</c:when>
-				<c:otherwise>
-					<div><a style="color:yellow;">${login.u_name}님 로그인중</a> | <a href="logout.do">로그아웃</a></div>
-				</c:otherwise>
-			</c:choose>
-        </div>
-        <div id="loginJoin" style="text-align: right;">
-       	 	<a href="myPage.do"><label>임시 마이페이지</label></a>
-        </div>
-  </nav>
-</header>
+<body>
+<nav class="navbar navbar-expand navbar-dark fixed-top" aria-label="Second navbar example" style="background-color: black; height: 70px;"> 
+	<div style="margin: 0 auto;">
+      	<nav style="float:left;">
+      	<div class="text-center mt-3 collapse navbar-collapse" id="navbarNavDropdown">
+	      <ul class="navbar-nav mx-auto">
+	        <li class="nav-item">
+	          <a class="nav-link" href="index.do" style="font-size: 20px; text-decoration: none;">Home</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="conList.do" style="font-size: 20px; text-decoration: none;">콘테스트 리스트</a>
+	        </li>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<li class="nav-item">
+	          <a class="nav-link" href="categoryChoice.do" style="font-size: 20px; text-decoration: none;">콘테스트 개최</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="designer.do" style="font-size: 20px; text-decoration: none;">디자이너</a>
+	        </li>
+      	</ul>
+      	</div>
+ 	</nav>
+    </div>
+ </nav>
+</body>
+</html>

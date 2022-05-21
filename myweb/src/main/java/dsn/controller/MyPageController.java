@@ -1,8 +1,10 @@
 package dsn.controller;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,10 +38,9 @@ public class MyPageController {
 		Object obj=session.getAttribute("login");
 		MemberDTO mdto = (MemberDTO) obj;
 		
-		
 		ModelAndView mav=new ModelAndView();
 		if(obj==null) {
-			msg="濡쒓렇�씤 �썑 �씠�슜�빐二쇱꽭�슂";
+			msg="로그인 후 이용해주세요";
 			mav.addObject("msg", msg);
 			mav.addObject("gopage","index.do");
 			mav.setViewName("memberMsg");
@@ -81,14 +82,32 @@ public class MyPageController {
 	}
 	@RequestMapping("myPageUpdate.do")
 	public ModelAndView userUpdate(MemberDTO dto) {
-		
 		int result=myPageService.userUpdate(dto);
-		String msg=result>0?"�젙蹂댁닔�젙 �셿猷�":"�젙蹂댁닔�젙 �떎�뙣";
+		String pa1="^[가-힣a-zA-Z0-9]{2,10}$";
+		String pa2="^01[0179][0-9]{7,8}$";
+		String pa3="^[A-Za-z0-9_\\.\\-]+@[A-Za-z0-9\\-]+\\.[A-Za-z0-9\\-]+";
 		ModelAndView mav=new ModelAndView();
-		
-		mav.addObject("msg", msg);
-		mav.addObject("gopage", "myPage.do");
-		mav.setViewName("mypage/mypagemsg");
+		if(!Pattern.matches(pa1, dto.getU_nick())) {
+			String msg="영어 대,소문자 숫자만 사용가능합니다.";
+			mav.addObject("msg", msg);
+			mav.addObject("gopage", "accountConfig.do");
+			mav.setViewName("mypage/mypagemsg");
+		}else if(!Pattern.matches(pa2, dto.getU_tel())) {
+			String msg="전화번호는 숫자만 사용가능합니다 ex)01011112222";
+			mav.addObject("msg", msg);
+			mav.addObject("gopage", "accountConfig.do");
+			mav.setViewName("mypage/mypagemsg");
+		}else if(!Pattern.matches(pa3, dto.getU_email())){
+			String msg="영어 대.소문자 숫자만 @ 만 사용가능합니다.";
+			mav.addObject("msg", msg);
+			mav.addObject("gopage", "accountConfig.do");
+			mav.setViewName("mypage/mypagemsg");
+		}else {
+			String msg=result>0?"정보수정 완료":"정보수정 실패";
+			mav.addObject("msg", msg);
+			mav.addObject("gopage", "myPage.do");
+			mav.setViewName("mypage/mypagemsg");
+		}
 		return mav;
 	}
 	@RequestMapping("passwordConfig.do")
@@ -102,22 +121,25 @@ public class MyPageController {
 		Object obj=session.getAttribute("login");
 		MemberDTO mdto = (MemberDTO) obj;
 		int vo=mdto.getU_idx();
+		String pattern="^.*(?=^.{8,15}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$";
 		String u_pwd=mdto.getU_pwd();
 		ModelAndView mav=new ModelAndView();
 		String msg="";
-		if(checkpwd.equals(pwdconfirm)) {
-			int result=myPageService.pwdUpdate(pwdconfirm,vo);
-			msg=result>0?"鍮꾨�踰덊샇 蹂�寃� �셿猷�":"鍮꾨�踰덊샇 蹂�寃� �떎�뙣";
-			mav.addObject("gopage", "myPage.do");
-			if(!lastpwd.equals(u_pwd)) {
-				msg="鍮꾨�踰덊샇 遺덉씪移�";
-				mav.addObject("gopage", "passwordConfig.do");
-			}
-		}else if(!checkpwd.equals(pwdconfirm)){
-			msg="�솗�씤 鍮꾨�踰덊샇 遺덉씪移�";
+		if(!Pattern.matches(pattern, pwdconfirm)) {
+			msg="대소문자 및 특수문자가 포함된 8~15 길이 이상의 비밀번호를 입력해주세요.";
 			mav.addObject("gopage", "passwordConfig.do");
+		}else if(!checkpwd.equals(pwdconfirm)){
+			msg="확인 비밀번호 불일치";
+			mav.addObject("gopage", "passwordConfig.do");
+		}else if(!lastpwd.equals(u_pwd)){
+			msg="비밀번호 불일치";
+			mav.addObject("gopage", "passwordConfig.do");
+		}else if(checkpwd.equals(pwdconfirm)) {
+			int result=myPageService.pwdUpdate(pwdconfirm,vo);
+			msg=result>0?"비밀번호 변경 완료":"비밀번호 변경 실패";
+			mav.addObject("gopage", "myPage.do");
 		}else {
-			msg="愿�由ъ옄 臾몄쓽";
+			msg="관리자 문의";
 			mav.addObject("gopage", "passwordConfig.do");
 		}
 		mav.addObject("msg", msg);
@@ -152,10 +174,11 @@ public class MyPageController {
 	}
 	@RequestMapping("payout.do")
 	public ModelAndView payOut(HttpSession session) {
+		ModelAndView mav=new ModelAndView();
 		Object obj=session.getAttribute("login");
 		MemberDTO mdto = (MemberDTO) obj;
 		int vo=mdto.getU_idx();
-		ModelAndView mav=new ModelAndView();
+
 		mav.addObject("u_idx", vo);
 		mav.setViewName("mypage/payoutpopup");
 		return mav;
@@ -164,17 +187,17 @@ public class MyPageController {
 	public ModelAndView payOutConfirm(WithDrawDTO dto) throws Exception{
 		ModelAndView mav=new ModelAndView();
 		String msg="";
-		int price=Integer.parseInt(dto.getW_price());
+		int price=Integer.parseInt(dto.getW_balance());
 		int blc=myPageService.getLastBalance(dto.getU_idx());
-		
 		if(price>blc) {
-			msg="�옍�븸�씠 遺�議깊빀�땲�떎";
+			msg="잔액이 부족합니다";
 			mav.addObject("msg", msg);
 			mav.setViewName("mypage/popupclose");
 			
 		}else {
 		int result=myPageService.payout(dto);
-		msg=result>0?"異쒓툑�떊泥� �셿猷�":"異쒓툑�떊泥� �떎�뙣";
+		msg=result>0?"출금신청 완료":"출금신청 실패";
+		
 		mav.addObject("msg", msg);
 		mav.setViewName("mypage/popupclose");
 		}
@@ -188,7 +211,7 @@ public class MyPageController {
 		int vo=mdto.getU_idx();
 		ModelAndView mav=new ModelAndView();
 		int result=myPageService.writeReview(vo,rv_content);
-		String msg=result>0?"由щ럭�옉�꽦 �셿猷�":"由щ럭�옉�꽦 �떎�뙣";
+		String msg=result>0?"리뷰작성 완료":"리뷰작성 실패";
 		mav.addObject("msg", msg);
 		mav.addObject("gopage", "index.do");
 		mav.setViewName("mypage/mypagemsg");

@@ -19,7 +19,9 @@
 <li>제목:<input type="text" value="${dto.r_subject}" readonly="readonly"></li>
 <li>내용:<br><textarea rows="10" cols="50" readonly="readonly">${dto.r_content}</textarea></li>
 </ul>
-<a href="#" rel="modal:close"><button>닫기</button></a>
-
+<!-- <a href="#" rel="modal:close"><button>닫기</button></a> -->
+<div align="center">
+	<a href="#" rel="modal:close"><button class="btn btn-secondary" style="font-size:70%;">닫기</button></a>
+</div>
 </body>
 </html>

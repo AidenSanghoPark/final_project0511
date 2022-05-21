@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dsn.contest.model.*;
+import dsn.designer.model.DesignerDTO;
 import dsn.trade.model.TrdDTO;
 
 @Service
@@ -124,20 +125,14 @@ public class ConServiceImple implements ConService{
 		}
 		return conDao.contestJoin(dto);
 	}
-
-
 	@Override
-	public int addNaming(ConDTO dto) {
+	public int addLogo(ConDTO dto) {
+		System.out.println("service="+dto.getC_cate());
+		System.out.println("service="+dto.getUpload().getOriginalFilename());
 		if(dto.getUpload() != null) {
 			dto.setC_file(dto.getUpload().getOriginalFilename());
 		}
-		int count = conDao.addNaming(dto);
-		return count;
-	}
-
-	@Override
-	public int addNamingTrade(TrdDTO dto) {
-		int count = conDao.addNamingTrade(dto);
+		int count = conDao.addLogo(dto);
 		return count;
 	}
 
@@ -165,18 +160,25 @@ public class ConServiceImple implements ConService{
 		return dto;
 	}
 	@Override
-	public void payUpdate(int u_idx, String c_subject, int a_account,int uidx,int account) {
-		System.out.println("payUpdate="+u_idx);
-		System.out.println("payUpdate="+c_subject);
-		System.out.println("payUpdate="+a_account);
+	public void payUpdate(int u_idx,int a_amount,int uidx,int amount) {
 		Map map=new HashedMap();
 		map.put("u_idx", u_idx);
-		map.put("c_subject", c_subject);
-		map.put("a_account",a_account);
-		map.put("idx",uidx);
-		map.put("account", account);
+		map.put("a_amount", a_amount);
+		map.put("uidx", uidx);
+		map.put("amount", amount);
+		conDao.payUpdate(map);
 		
 	}
+	@Override
+	public int designerUser(int d_idx) {
+		return conDao.designerUser(d_idx);
+	}
+	
+	@Override
+	public int contestPay(int c_idx) {
+		return conDao.contestPay(c_idx);
+	}
+
 
 	@Override
 	public List conPart(int cp, int listSize, int c_idx) {
@@ -189,6 +191,62 @@ public class ConServiceImple implements ConService{
 		
 		List dlists=conDao.conPart(map);
 		return dlists;
+	}
+
+
+
+	@Override
+	public int addLogoTrade(TrdDTO dto) {
+		int count = conDao.addLogoTrade(dto);
+		return count;
+	}
+	//naming
+	@Override
+	public int addNaming(ConDTO dto) {
+		if(dto.getUpload() != null) {
+			dto.setC_file(dto.getUpload().getOriginalFilename());
+		}
+		int count = conDao.addNaming(dto);
+		return count;
+	}
+	@Override
+	public int addNamingTrade(TrdDTO dto) {
+		int count = conDao.addNamingTrade(dto);
+		return count;
+	}
+	//char
+	@Override
+	public int addChar(ConDTO dto) {
+		if(dto.getUpload() != null) {
+			dto.setC_file(dto.getUpload().getOriginalFilename());
+		}
+		int count = conDao.addChar(dto);
+		return count;
+	}
+	@Override
+	public int addCharTrade(TrdDTO dto) {
+		int count = conDao.addCharTrade(dto);
+		return count;
+	}
+	//print
+	@Override
+	public int addPrint(ConDTO dto) {
+		if(dto.getUpload() != null) {
+			dto.setC_file(dto.getUpload().getOriginalFilename());
+		}
+		int count = conDao.addPrint(dto);
+		return count;
+	}
+	@Override
+	public int addPrintTrade(TrdDTO dto) {
+		int count = conDao.addPrintTrade(dto);
+		return count;
+	}
+
+	@Override
+	public DesignerDTO conPartContent(int d_idx) {
+		DesignerDTO dto = conDao.conPartContent(d_idx);
+		return dto;
 	}
 
 

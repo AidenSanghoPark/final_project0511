@@ -395,7 +395,7 @@ a{
 			</div>
 			<br>
 		<div style="width: 40%; margin: 0 auto; padding-left: 10px; justify-content: center;">
-			<button class="button">참여작 보기</button>
+			<a href="conPart.do?c_idx=${condto.c_idx }"><button class="button">브리핑 보기</button></a>
 			<a href="conContent.do?c_idx=${condto.c_idx }"><button class="button">브리핑 보기</button></a>
 			<button class="button">콘테스트 참여</button>
 		</div>

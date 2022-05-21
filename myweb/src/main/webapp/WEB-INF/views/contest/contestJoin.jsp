@@ -395,16 +395,15 @@ a{
 			</div>
 			<br>
 		<div style="width: 40%; margin: 0 auto; padding-left: 10px; justify-content: center;">
-			<button class="button">참여작 보기</button>
+			<a href="conPart.do?c_idx=${condto.c_idx }"><button class="button">브리핑 보기</button></a>
 			<a href="conContent.do?c_idx=${condto.c_idx }"><button class="button">브리핑 보기</button></a>
 			<button class="button">콘테스트 참여</button>
 		</div>
 		
 <div style="padding-left: 30px; padding-top: 10px; background-color: #ffffff; width: 60%; margin: 0 auto;">
 	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>콘테스트 참가 작성</b></h5>
+	<form name="contestJoin" action="contestJoinSubmit.do" method="post" enctype ="multipart/form-data">
 	<div>
-		
-		
 		<input type="hidden" name="c_idx" value="${condto.c_idx }">
 		<input type="hidden" name="c_cate" value="${condto.c_cate }">
 		<input type="hidden" name="u_idx" value="${mdto.u_idx }">
@@ -435,6 +434,7 @@ a{
 			<input type="submit" id="btn_submit" value="콘테스트 참여">
 		</div>
 	</div>
+	</form>
 </div>
 <script type="text/javascript">
 	var type = ${login.u_type};

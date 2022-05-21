@@ -14,6 +14,10 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
 <style>
 .pagination {
   display: inline-block;
@@ -414,8 +418,8 @@ a{
 <body style="background-color: #eeeeee;">	
 
 			<div class="member-entry" style="width:900px; padding-left: 20px; margin: 0 auto;"> 
-			    <a href="#" class="member-img"> 
-			        <img src="https://ifh.cc/g/vAq0AJ.png" class="circle-img" style="padding-top: 10px;"> 
+			    <a class="member-img"> 
+			         <img src="menuimg/${dto.c_cate }.png" class="circle-img" style="padding-top: 10px;">
 			    </a> 
 			    <div class="member-details" style="width:750px;"> 
 			        <div class="col-sm-4" style="float:left;"> 
@@ -437,11 +441,12 @@ a{
 			</div>
 
 			<br>
-		<div style="width: 40%; margin: 0 auto; padding-left: 10px;">
+		<div style="margin: 0 auto; padding-left: 300px; float: left;">
 			<button class="button">참여작 보기</button>
 			<a href="conContent.do?c_idx=${c_idx }"><button class="button">브리핑 보기</button></a>
 			<a href="contestJoin.do?c_idx=${c_idx }"><button class="button">콘테스트 참여</button></a>
 		</div>
+		<br><br><br>
 		
 <div style="padding-left: 30px; padding-top: 10px; background-color: #ffffff; width: 60%; margin: 0 auto;">
 	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>콘테스트 참여작 보기</b></h5>
@@ -456,33 +461,16 @@ a{
 			</c:if>
 			<tbody>
 				<tr>
-					<c:forEach var="dto" items="${dlists}" varStatus="vs">
+					<c:forEach var="dto" items="${dlists}">
 					
-					<td><a class="btn-open-popup"><img style="width: 300px;" src="img/${dto.d_img_1}">
-					<p>${dto.d_name }</p></a></td>
-					
-					<!-- 모달 -->		    
-					<div class="modal">
-					      <div class="modal_body">
-					      	
-					      	<div style="width: 30%; height:100%; background-color:#EFEFF6; float: right; border-radius: 5px;
-					      	  position: sticky; top: 0;">
-					      		<h4>${dto.d_name }</h4>
-					      		<h4>디자이너 이름</h4>
-					      		<br>
-					      		<p style="text-align: left; padding-left: 20px;">참여작 내용</p>
-					      		<br>
-					      		<button class="button" style="width: 230px; height: 50px; border-radius: 3px; ">당선하기<br></button>
-					      	</div>
-					      	
-					      	<div style="float: left;">
-					      		<img style="width: 70%; height: 100%; float: left;" src="img/${dto.d_img_2}">
-					      		<img style="width: 70%; height: 100%; float: left;" src="img/${dto.d_img_2}">
-					      	</div>
-					      	
-					      </div>
-					</div>
-					
+					<c:url var="contentUrl" value="conPartContent.do">
+						<c:param name="d_idx">${dto.d_idx}</c:param>
+					</c:url>
+					<td>
+						<p>
+							<a href="${contentUrl}" rel="modal:open">${dto.d_name}</a><img style="width: 300px;" src="img/${dto.d_img_1}" />
+						</p>
+					</td>
 					</c:forEach>
 				</tr>
 			</tbody>
@@ -492,27 +480,27 @@ a{
 </div>
 </body>
     <script>
-      const body = document.querySelector('body');
-      const modal = document.querySelector('.modal');
-      const btnOpenPopup = document.querySelector('.btn-open-popup');
+//       const body = document.querySelector('body');
+//       const modal = document.querySelector('.modal');
+//       const btnOpenPopup = document.querySelector('.btn-open-popup');
 
-      btnOpenPopup.addEventListener('click', () => {
-        modal.classList.toggle('show');
+//       btnOpenPopup.addEventListener('click', () => {
+//         modal.classList.toggle('show');
 
-        if (modal.classList.contains('show')) {
-          body.style.overflow = 'hidden';
-        }
-      });
+//         if (modal.classList.contains('show')) {
+//           body.style.overflow = 'hidden';
+//         }
+//       });
 
-      modal.addEventListener('click', (event) => {
-        if (event.target === modal) {
-          modal.classList.toggle('show');
+//       modal.addEventListener('click', (event) => {
+//         if (event.target === modal) {
+//           modal.classList.toggle('show');
 
-          if (!modal.classList.contains('show')) {
-            body.style.overflow = 'auto';
-          }
-        }
-      });
+//           if (!modal.classList.contains('show')) {
+//             body.style.overflow = 'auto';
+//           }
+//         }
+//       });
       
       $(document).ready(function () {
     	    $('head').append('<style type="text/css">.modal .modal-body {max-height: ' + ($('body').height() * .8) + 'px;overflow-y: auto;}.modal-open .modal{overflow-y: hidden !important;}</style>');

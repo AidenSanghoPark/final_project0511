@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dsn.member.model.MemberDTO;
+import dsn.profile.model.ProfileDTO;
 import dsn.review.model.ReviewDTO;
 import dsn.trade.model.TradeDTO;
 import dsn.withdraw.model.WithDrawDTO;
@@ -145,5 +146,10 @@ public class MyPageServiceImple implements MyPageService {
 		int cnt=myPageDao.getDesignerCnt(u_idx);
 		cnt=cnt==0?1:cnt;
 		return cnt;
+	}
+	@Override
+	public ProfileDTO getProfileWalletInfo(int u_idx) {
+		ProfileDTO dto=myPageDao.getProfileWalletInfo(u_idx);
+		return dto;
 	}
 }

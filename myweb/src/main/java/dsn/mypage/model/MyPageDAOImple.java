@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import dsn.member.model.MemberDTO;
+import dsn.profile.model.ProfileDTO;
 import dsn.review.model.ReviewDTO;
 import dsn.trade.model.TradeDTO;
 import dsn.withdraw.model.WithDrawDTO;
@@ -93,5 +94,10 @@ public class MyPageDAOImple implements MyPageDAO {
 	public int getDesignerCnt(int u_idx) {
 		int cnt=sqlMap.selectOne("getDesignerCnt", u_idx);
 		return cnt;
+	}
+	@Override
+	public ProfileDTO getProfileWalletInfo(int u_idx) {
+		ProfileDTO dto=sqlMap.selectOne("getProfileWalletInfo", u_idx);
+		return dto;
 	}
 }

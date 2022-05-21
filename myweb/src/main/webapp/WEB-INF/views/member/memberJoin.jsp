@@ -122,7 +122,7 @@ ul {
        			<h5 id="re_email"></h5>       			
 			<br>	
 		<div class="d-grid gap-2" style="padding-right: 50px; padding-left: 45px;'">
-  			<button class="btn btn-dark" type="button" onclick="show()" style="width: 100%;">Sign up</button>
+  			<button class="btn btn-dark" type="button" id="joinSubmit" onclick="show()" style="width: 100%;">Sign up</button>
 		</div>
 			<br>
 		<div style="text-align: right;">
@@ -147,7 +147,7 @@ function idCheck() {
 		return false;
 	}
 }
-//아이디 유효성
+//아이디 중복 유효성
 $('#userId').keyup(function () {
       
 	if(idCheck()){
@@ -168,8 +168,10 @@ $('#userId').keyup(function () {
                 if (result == '0') {
                 	console.log(result == '0');
                     $('#re_id').html('<label style="color:#199894b3;font-size:12px;"> 멋진아이디네요!</label>');
+                    $('button#joinSubmit').removeAttr('disabled');
                 } else {
                     $('#re_id').html('<label style="color:#f82a2aa3;font-size:12px;"> 누군가 사용중이에요!</label>');
+                    $('button#joinSubmit').attr('disabled', 'true');
                 }
             },
             error: function(a, b, c) {
@@ -214,9 +216,11 @@ $('#userNick').keyup(function () {
         	dataType: 'json',
         	success: function(result2) {
            	 if (result2 == '0') {
-                	$('#re_nick').html('<label style="color:#199894b3;font-size:12px;"> 멋진 닉네임이네요!</label>');
+                $('#re_nick').html('<label style="color:#199894b3;font-size:12px;"> 멋진 닉네임이네요!</label>');
+                $('button#joinSubmit').removeAttr('disabled');               
            	 } else {
                	 $('#re_nick').html('<label style="color:#f82a2aa3;font-size:12px;"> 누군가 사용중이에요!</label>');
+               	 $('button#joinSubmit').attr('disabled', 'true');
            	 }
         	},
         	error: function(a, b, c) {
@@ -288,8 +292,10 @@ $('#userEmail').keyup(function () {
             success: function(result3) {
                 if (result3 == '0') {
                     $('#re_email').html('<label style="color:#199894b3;font-size:12px;">사용 가능한 이메일 입니다</label>');
+                    $('button#joinSubmit').removeAttr('disabled');
                 } else {
                     $('#re_email').html('<label style="color:#f82a2aa3;font-size:12px;">이메일은 중복될수 없습니다</label>');
+                    $('button#joinSubmit').attr('disabled', 'true');
                 }
             },
             error: function(a, b, c) {
@@ -396,8 +402,8 @@ function inputEmail3() {
 //submit 버튼
 function show() {
    
-   var frm = document.memberJoin;
-
+   var frm = document.memberJoin;		
+   
       if(idCheck() || $('#userId').val() == null || $('#userId').val() === ""){
      	alert("아이디를 유형에 맞게 입력해주세요.");
         return false;  

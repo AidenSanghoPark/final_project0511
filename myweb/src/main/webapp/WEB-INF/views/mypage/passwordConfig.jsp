@@ -106,10 +106,10 @@ ul{
     <div class="d-grid gap-2" style="padding-right: 50px; padding-left: 45px;'">
   			<input class="btn btn-dark" type="submit" style="width: 100%;" value="비밀번호 수정">
 		</div>	
-</section>
 <div style="padding-top:800px;">
 <%@include file="/WEB-INF/views/footer.jsp" %>
 </div>
+</section>
 </form>
 <script>
 //비밀번호 정규식
@@ -118,8 +118,7 @@ function pwdCheck() {
 	
 	if(!passCheck.test($('#userPw').val())){
 		
-	  	$('#re_pw').html('<label style="color:#f82a2aa3;font-size:12px;">영어 대.소문자 숫자 특수문자 1개이상 입력 해주셔야합니다(8-15자)</label>');
-	  	$("#userPw").focus(); 
+		alert('영어 대.소문자 숫자 특수문자 1개이상 입력 해주셔야합니다(8-15자)');
 		return true;
 	  	
 	}else{
@@ -128,7 +127,7 @@ function pwdCheck() {
 }
 $(function(){
 			
-	$('#userPw').keyup(function(){
+	$('#userPw').click(function(){
 		
 	if(pwdCheck()){
 		return;
@@ -138,15 +137,14 @@ $(function(){
 		
 	$('#re_pw').html('');});
 		
-	$('#userPwChk').keyup(function(){
+	$('#userPwChk').click(function(){
 			
         if($('#userPw').val() != $('#userPwChk').val()){
-        	
-          $('#re_ck').html('<label style="color:#f82a2aa3;font-size:12px;">비민번호 불일치!</label>');
-          
+        
+          alert('비민번호 불일치!');	          
         } else{
         	
-          $('#re_ck').html('<label style="color:#199894b3;font-size:12px;">비밀번호 일치!</label>');
+        	 alert('비민번호 일치!');
           
         }
 
