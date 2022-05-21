@@ -22,8 +22,7 @@ public interface ConService {
 	public void payUpdate(int u_idx,String c_subject,int a_account,int uidx,int account);
 	public DesignerConDTO contestContent(int d_idx, int c_idx);
 	public List conPart(int cp, int listSize, int c_idx);
-}
-	public int contestJoin(DesingerDTO dto);
+	public int contestJoin(DesignerConDTO dto);
 	public ConDTO conInfo(int c_idx);
 	public void updateTrd(ConDTO dto);
 	
@@ -43,4 +42,4 @@ public interface ConService {
 	public int addPrint(ConDTO dto);
 	public int addPrintTrade(TrdDTO dto);
 }
-}
+

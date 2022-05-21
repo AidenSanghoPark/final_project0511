@@ -25,7 +25,7 @@ public class ConDAOImple implements ConDAO{
 			return sqlMap.selectOne("conInfo",c_idx);
 		}
 		@Override
-		public int contestJoin(DesingerDTO dto) {
+		public int contestJoin(DesignerConDTO dto) {
 			int cnt=sqlMap.insert("contestJoin", dto);
 			return cnt;
 		}

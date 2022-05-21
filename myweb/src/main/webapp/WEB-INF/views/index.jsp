@@ -13,10 +13,6 @@
 .banner{
     text-align:center;
 }
-<style>
-.banner{
-    text-align:center;
-}
 
 .counter {
     background-color:#f5f5f5;
@@ -46,39 +42,51 @@
     display: table;
     color: #4ad1e5;
 }
+.carousel-inner > img {
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 700px;
+} 
+#main{
+	height: 600px;
+}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/180c933499.js" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
  </head>
  <body>
-<%@ include file="/WEB-INF/views/header.jsp" %>
+<%@ include file="/WEB-INF/views/mainheader.jsp" %>
 <main>
-  <!-- 캐러샐 -->
-  <section>
-   <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-    <div class="carousel-inner">
-       <div class="carousel-item active">
-          <img src="bimg/main.png" class="d-block w-100" alt="..." id="main">
-        </div>
-        <div class="carousel-item">
-          <img src="bimg/main2.png" class="d-block w-100" alt="..." id="main">
-        </div>
-        <div class="carousel-item">
-          <img src="bimg/main3.jpeg" class="d-block w-100" alt="..." id="main">
-        </div>
-     </div>
-     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-       <span class="visually-hidden">Previous</span>
-     </button>
-     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-       <span class="visually-hidden">Next</span>
-     </button>
-   </div>
-   </section>
+ <!-- 캐러샐 -->
+ <header class="masthead">
+ <section>
+	<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img src="bimg/main1.jpg" class="d-block w-100" id="main">
+				  </div>
+				    <div class="carousel-item">
+				        <img src="bimg/main2.jpg" class="d-block w-100" id="main">
+				    </div>
+				    <div class="carousel-item">
+				       <img src="bimg/main3.jpg" class="d-block w-100" id="main">
+				    </div>
+				 </div>
+		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+				 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+		</button>
+	</div>
+</section> 
+</header>
    <br>
    <br>
 <!-- 현황보기 -->  
@@ -132,10 +140,12 @@
 <hr>
 <br>
 <!-- 후기 샘플 -->
-<b style="padding-left: 200px; color: gray; font-size: 20px; font-family: Georgia;">콘테스트 이용 후기</b>
- <div class="album py-5"  style="background-color: white;">
+
+ <div class="album py-5"  style="background-color: white; margin: 0 auto;">'
+ <b style="padding-left: 540px; color: gray; font-size: 20px; font-family: Georgia;"><i class="fa-solid fa-file-pen"></i>&nbsp;콘테스트 이용 후기</b>
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+       <br>
         <div class="col">
           <div class="card shadow-sm">
             <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
@@ -188,12 +198,14 @@
 	<br>
 	<br>
 <!-- 베스트작품 -->
-	<div>
-	   <b style="padding-left: 200px; color: gray; font-size: 20px; font-family: Georgia;">베스트 작품</b>
-	</div>   
+  
 	   <br>
 	   <br>
-	   <section style="width: 1500px; padding-left: 200px;">
+	   <section style="width: 55%; margin: 0 auto;">
+	   	<div>
+	    <b style="color: gray; font-size: 20px; font-family: Georgia;"><i class="fa-solid fa-crown"></i>&nbsp;베스트 작품</b>
+		</div> 
+		<br>
 			    <div class="p-5 mb-4 bg-light rounded-3">
 			      <div class="container-fluid py-5">
 			        <h1 class="display-5 fw-bold">Custom jumbotron</h1>
@@ -223,14 +235,14 @@
 	   	<hr>	
 <!-- gif 이미지 -->	
 	<br>    
-	<section style="height: 500px;">
+	<section style="height: 500px; width: 70%; margin: 0 auto;">
 		 <div style="width: 50%; float: left; padding-left: 230px; padding-top: 150px;">	
 		 	<h3 style="color: gray;"><b>No.1 크리에이티브 플랫폼</b></h3><br>
 		 	<h1><b>디자인부터 네이밍, 아이디어까지</b></h1><br>
 			<h1><b>10만 명의 전문가에게 의뢰하세요.</b></h1>	
 		</div>
 		<div style="padding-right: 200px;">	    
-		    <img src="img/maingif.gif" style="width: 600px; height: 500px; float: right;">	    
+		    <img src="img/maingif.gif" style="width: 40%; height: 90%; float: right; padding-top: 10px;">	    
 		 </div>
 	</section>
 	 <br>

@@ -13,7 +13,7 @@ import dsn.contest.model.*;
 import dsn.trade.model.TrdDTO;
 
 public interface ConDAO {
-	public int contestJoin(DesingerDTO dto);
+	public int contestJoin(DesignerConDTO dto);
 	public ConDTO conInfo(int c_idx);
 	public void updateTrd(ConDTO dto);
 	

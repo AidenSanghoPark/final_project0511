@@ -15,7 +15,6 @@ public class DesignerDTO {
 	private int d_win;
 	private char d_block;
 	private String c_cate;
-	private int c_idx;
 	
 	public DesignerDTO() {
 		super();
@@ -125,14 +124,6 @@ public class DesignerDTO {
 		this.c_cate = c_cate;
 	}
 
-	public int getC_idx() {
-		return c_idx;
-	}
-
-	public void setC_idx(int c_idx) {
-		this.c_idx = c_idx;
-	}
-	
 	
 	
 }
