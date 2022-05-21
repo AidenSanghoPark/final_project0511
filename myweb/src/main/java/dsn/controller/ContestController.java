@@ -226,7 +226,6 @@ public class ContestController {
 		file.copyInto(path,dto.getUploadfile2());
 		int result=conService.contestJoin(dto);
 		String msg=result>0?"콘테스트 참여 완료":"콘테스트 참여 실패";
-		String msg=result>0?"콘테스트 참여 완료":"콘테스트 참여 실패";
 		mav.addObject("msg",msg);
 		mav.addObject("gopage", "index.do");
 		mav.setViewName("/contest/contestMsg");

@@ -46,19 +46,9 @@ public interface ConDAO {
 	//print
 	public int addPrint(ConDTO dto);
 	public int addPrintTrade(TrdDTO dto);
+	DesignerConDTO contestContent(Map map);
+	List conPart(Map map);
 
-	public List conList(Map map);
-	public List cateList(Map map);
-	public List conEnd(Map map);
-	public List cateEnd(Map map);
-	public int dateUp();
-	public int ContestCnt();
-	public ConDTO conContent(int c_idx);
-	public int conCount(Map map);
-	public void designerWin(int d_idx);
-	public void contestEnd(int c_idx);
-	public void payUpdate(Map map);
-	public DesignerConDTO contestContent(Map map);
-	public List conPart(Map map);
+
 	
 }

@@ -68,19 +68,19 @@ ul{
         <h3><a href="accountConfig.do">계정설정</a></h3><br>
     </section>
     <section class="coninfo">
-  	  <c:forEach var="userinfo" items="${userinfo }">
+  	  <c:forEach var="userinfo" items="${userinfo}">
 		<c:choose>
 			<c:when test="${userinfo.u_type!='1'}">
    			 	<h3 style="color:grey">참여한 콘테스트</h3><br>
    		 	</c:when>
    			<c:otherwise>
-   				<h3 style="color:grey">개최한 콘테스트</h3><br>
+   				<h3 style="color:gray;">개최한 콘테스트</h3><br>
    			</c:otherwise>
  	   </c:choose>
  	    </c:forEach>	    
     	<c:choose>
     		<c:when test="${empty dlists }">
-    					<h3 style="color:grey;padding-left:300px;padding-top:200px;">아직 콘테스트에 참여하지 않으셨습니다.</h3>
+    					<h3 style="color:gray;padding-left:300px;padding-top:200px;">아직 콘테스트에 참여하지 않으셨습니다.</h3>
     		</c:when>
     	<c:otherwise>
     	<c:forEach var="ddto" items="${dlists }">

@@ -60,5 +60,13 @@ section{
 	<br>
 <%@include file="/WEB-INF/views/footer.jsp" %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script>
+var type = ${login.u_type};
+console.log(type);
+if(type != 1) {
+	alert('의뢰인 회원만 개최 가능합니다.');
+	history.back();
+}
+</script>
 </body>
 </html>
