@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -186,41 +187,44 @@
     margin-top: 10px;
   }
 }
+.container{
+	width: 1000px;
+}
 </style>
 </head>
 <body>
 <%@include file="/WEB-INF/views/header.jsp" %>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-<div class="container">
-<div class="row bootstrap snippets bootdeys"> 
-    <div class="col-md-9 col-sm-7"> 
-        <h2>이달의 TOP 디자이너가 궁금하신가요?</h2> 
-    </div>
-</div>
+<div class="container"><br><br><br>
+<div class="row bootstrap snippets bootdeys"> <br><br><br><br>
+    <div class="col-md-9 col-sm-7"> <br><br><br><br>
+        <h2 style="color: gray; font-size: 25px; font-family: Georgia;"><i class="fa-solid fa-crown"></i>&nbsp;이달의 TOP 디자이너가 궁금하신가요?</h2> 
+    </div><br>
+</div><br>
 <c:forEach var="dto" items="${lists}"> 
 <div class="member-entry"> 
     <a class="member-img"> 
         <img src="profileimg/${dto.p_img}" class="img-rounded"> 
     </a> 
     <div class="member-details"> 
-        <h4>${dto.u_nick}</h4> 
+        <h4 style="font-size: 20px; font-family: Georgia;">${dto.u_nick}</h4> 
         <div class="row info-list"> 
             <div class="col-sm-4">
-            <i class="fa fa-envelope"></i>
-                ${dto.u_email}
+            		우승 ${dto.total_win}회
             </div> 
             <div class="col-sm-4">
-                ${dto.p_info}
+                <i class="fa fa-envelope"></i>
+                ${dto.u_email}
             </div> 
             <div class="col-sm-4"> 
             <c:url var="contentUrl" value="portfolio2.do">
 					<c:param name="u_idx">${dto.u_idx}</c:param>
 			</c:url>
-            <a href="${contentUrl}"><input type="button" value="포트폴리오" class="btn btn-primary pull-right"></a>
+            <a href="${contentUrl}"><input type="button" value="포트폴리오" class="btn btn-secondary"></a>
             </div> 
             <div class="clear"></div> 
             <div class="col-sm-4">
-            	총 우승 ${dto.total_win}회
+            	${dto.p_info}
             </div> 
             <div class="col-sm-4">
             </div> 
@@ -230,6 +234,7 @@
     </div> 
 </div>
 </c:forEach>
+</div>
 <div id="page">${pageStr}</div>
 <%@include file="/WEB-INF/views/footer.jsp" %>
 </body>

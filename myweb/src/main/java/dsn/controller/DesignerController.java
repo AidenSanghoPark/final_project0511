@@ -145,7 +145,7 @@ public class DesignerController {
 	public ModelAndView designer(@RequestParam(value = "cp", defaultValue = "1") int cp) {
 		
 		int totalCnt=designerService.designerListTotalCnt();
-		int listSize=10;
+		int listSize=5;
 		int pageSize=5;
 		String pageStr=dsn.page.PageModule.pageMake("designer.do", totalCnt, listSize, pageSize, cp);
 		

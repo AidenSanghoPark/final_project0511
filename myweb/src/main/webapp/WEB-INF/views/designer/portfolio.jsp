@@ -85,16 +85,17 @@
     <link rel="stylesheet" href="cards-gallery.css">
 </head>
 <body>
-
+<%@include file="/WEB-INF/views/header.jsp" %>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 <div class="container">
 
 
-   <section class="gallery-block cards-gallery">
-	    <div class="container">
-	        <div class="heading">
-	        <img src="profileimg/${pdto.p_img}" class="img-rounded">
+   <section class="gallery-block cards-gallery"><br>
+	    <div class="container"><br>
+	        <div class="heading"><br>
+	        <img src="profileimg/${pdto.p_img}" class="img-rounded"><br><br>
 	          <h2>${udto.u_nick}님의 포트폴리오</h2>
+	          <h6 style="color: gray; font-size: 12px;">우승 ${win}회</h6>
     
 	        </div>
 	        <div class="row">
@@ -145,5 +146,6 @@
     <script>
         baguetteBox.run('.cards-gallery', { animation: 'slideIn'});
     </script>
+   <%@include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>
