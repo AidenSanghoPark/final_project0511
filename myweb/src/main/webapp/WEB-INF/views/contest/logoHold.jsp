@@ -78,6 +78,7 @@ section.pricing {
 }
 input[type=text]{
 	width:30%;
+	height: 30px;
 	border:2px solid #aaa;
 	border-radius:4px;
 	margin: 8px 0;
@@ -96,13 +97,19 @@ input[type=text]:focus{
 <body>
 <%@include file="/WEB-INF/views/header.jsp" %>
 <form name="ftest" action="logoHold_add.do" method="post" id="ftest" enctype="multipart/form-data">
-<div class="container" id="menu_example" style="text-align: center;">
-   <ul class="tab_title" id="ul" style="list-style-type: none; text-align: center;">
-       <li class="on" style="float: left;">브리핑 작성</li>
-       <li>상금 결제</li>
-   </ul>
+<br>
+<br>
+<br>
+<br>
+<div class="container" id="menu_example"style="width: 60%; float:none; margin:0 auto" >
+	<div class="tabmenu">
+	   <ul class="tab_title" id="ul" style="list-style-type: none; text-align: center;">
+	       <li class="on" style="float: left;">브리핑 작성</li>
+	       <li>상금 결제</li>
+	   </ul>
+	</div>   
    <br>
-   <div class="tab_cont" style="background-color: #EFEFEF;">
+   <div class="tab_cont" >
       <section class="on">
             <input type="hidden" id="c_cate" name="c_cate" value="${c_cate}">
             <input type="hidden" id="c_logo" name="c_logo" value="${c_logo}">
@@ -110,118 +117,136 @@ input[type=text]:focus{
             <input type="hidden" id="c_pay" name="c_pay">
             <input type="hidden" id="selectType">
             <div style="text-align: left;">
-               		<h2>STEP2</h2>
-               		<h6>작업 내용을 상세히 설명해 주세요.</h6>
+               <h2>STEP2</h2>
+               <h6>작업 내용을 상세히 설명해 주세요.</h6>
                </div>
                <hr>
-               <div>
-               		<h5><b>1. 어떤 콘테스트를 개최하시나요?</b></h5>              
-               </div>
-               <br> 
-               <div>
-                  <b>콘테스트 제목</b>&nbsp;&nbsp;<input type="text" name="c_subject" id="subject" required>
-               </div>
                <br>
-               <div>
-                  <b>회사명</b>&nbsp;&nbsp;<input type="text" name="c_company" id="company" required>
+               <div style="text-align: left;">
+               		<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>어떤 콘테스트를 개최 하시나요?</b></h5>          
                </div>
+				<fieldset style="border: solid 0px #a4a4a4; width: 100%; height: 100%; padding: 10px;line-height: 30px;">
+			      <table style="width: 100%; height: 100%; text-align: left;">
+			         <tr>
+			         	 <th style="width: 50px;"><i class="fa-solid fa-angle-right"></i>&nbsp;제목</th>
+				         <td style="width: 100px; font-weight: bold;"><input type="text" name="c_subject" id="subject" required></td>				         
+			         </tr>
+			         <tr>
+			         	 <th style="width: 50px;"><i class="fa-solid fa-angle-right"></i>&nbsp;회사명</th>
+				         <td style="width: 100px; font-weight: bold;"><input type="text" name="c_company" id="company" required></td>				         
+			         </tr>
+			         <tr>
+			         	 <th style="width: 50px;"><i class="fa-solid fa-angle-right"></i>&nbsp;서비스설명</th>
+				         <td style="width: 100px; font-weight: bold;"><textarea cols="40" rows="4" name="c_deas" id="deas"></textarea></td>				        
+			         </tr>
+			      </table>
+			   </fieldset>
+			   <hr>
                <br>
-               <div>
-                  <b>서비스설명</b>&nbsp;&nbsp;<textarea cols="60" rows="10" name="c_deas" id="deas"></textarea>
+			   <div style="text-align: left;">
+               		<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-heart"></i>&nbsp;<b>어떤 종류의 로고를 원하시나요?</b></h5>          
                </div>
-               <hr>
-               <div class="text-lg-end">
-               <div style="text-align: center;">
-               		<h5><b>2. 어떤 종류의 로고를 원하시나요?</b></h5>              
-               </div>
-               <br>
-               <div style="text-align: center;">
-	              <b>원하는 로고타입 3가지선택</b>
+               <fieldset style="border: solid 0px #a4a4a4; width: 100%; height: 100%; padding: 10px;line-height: 30px;">
+               	<div>
+	              <b style="padding-right: 550px;"><i class="fa-solid fa-angle-right"></i>&nbsp;원하는 로고타입 3가지선택</b>
 	              <br>
 	              <br>
-	                 <img src="img/logotype1.jpg" style="width: 100px; height: 100px;">
-	                 	<input type="checkbox" name="logo" value="1" id="checkImg">
-	                 <img src="img/logotype2.jpg" style="width: 100px; height: 100px;">
-	                 	<input type="checkbox" name="logo" value="2" id="checkImg">
-	                 <img src="img/logotype3.jpg" style="width: 100px; height: 100px;">
-	                 	<input type="checkbox" name="logo" value="3" id="checkImg3">
-	              <br>
-	              <br>
-	              <br>     	                 
-	                 <img src="img/logotype4.jpg" style="width: 100px; height: 100px;">
-	                 	<input type="checkbox" name="logo" value="4" id="checkImg">
-	                 <img src="img/logotype5.jpg" style="width: 100px; height: 100px;">
-	                 	<input type="checkbox" name="logo" value="5" id="checkImg">
-	                 <img src="img/logotype6.jpg" style="width: 100px; height: 100px;">
-	                 	<input type="checkbox" name="logo" value="6" id="checkImg">
+	              	<table style="margin: 10px;">
+	              	<tr>
+	                 <td style="padding-right: 50px;"><img src="img/logotype1.jpg" style="width: 100px; height: 100px;"></td>
+	                 <td style="padding-right: 50px;"><img src="img/logotype2.jpg" style="width: 100px; height: 100px;"></td>
+	                 <td style="padding-right: 50px;"><img src="img/logotype3.jpg" style="width: 100px; height: 100px;"></td>
+	                </tr>
+	                <tr style="text-align: center;">
+	                 <td style="padding-right: 50px;"><input type="checkbox" name="logo" value="1" id="checkImg"></td>
+	                 <td style="padding-right: 50px;"><input type="checkbox" name="logo" value="2" id="checkImg"></td>
+	                 <td style="padding-right: 50px;"><input type="checkbox" name="logo" value="3" id="checkImg3"></td>
+	                </tr>
+	                <tr> 
+	                 <td style="padding-right: 50px;"><img src="img/logotype4.jpg" style="width: 100px; height: 100px;"></td>
+	                 <td style="padding-right: 50px;"><img src="img/logotype5.jpg" style="width: 100px; height: 100px;"></td>
+	                 <td style="padding-right: 50px;"><img src="img/logotype6.jpg" style="width: 100px; height: 100px;"></td>
+	                </tr> 
+	                <tr style="text-align: center;">
+	                 <td style="padding-right: 50px;"><input type="checkbox" name="logo" value="4" id="checkImg"></td>
+	                 <td style="padding-right: 50px;"><input type="checkbox" name="logo" value="5" id="checkImg"></td>
+	                 <td style="padding-right: 50px;"><input type="checkbox" name="logo" value="6" id="checkImg"></td>
+	                </tr> 	
+	                </table>
 	               <br>  	             	              
                </div>
-               <hr>
-               </div>
-               <div>
-               		<h5><b>3. 어떤 색상을 원하세요?</b></h5>              
-               </div>
-               <br>
-               <div>
-                  <b>원하는색상</b>&nbsp;&nbsp;<input type="text" name="c_color" id="color" required>
-               </div>
-               <hr>
-               <div>
-               		<h5><b>4. 디자이너가 참고할 자료?</b></h5>              
-               </div>
-               <br>
-               <div>
-                  <b></b>&nbsp;&nbsp;<input type="file" value="파일첨부" name="upload" id="fileUp">
-               </div>
-               <hr>
-               <div>
-               		<h5><b>5. 로고에 사용될 상호명</b></h5>              
-               </div>
-			   <br>
-               <div>
-                  <b>로고에 사용될 상호명</b>&nbsp;&nbsp;<input type="text" name="c_name" id="rogoName" required>
-               </div>
+               </fieldset >
                <hr>
                <br>
-                <div>
-               		<h5><b>6. 디자인 브리핑 상세내용</b></h5>              
+               <div style="text-align: left;">
+               		<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-solid fa-fill-drip"></i>&nbsp;<b>어떤 색상을 원하세요?</b></h5>          
                </div>
-               <br>
-               <div>
-                  <textarea cols="60" rows="10" name="c_details" id="details"></textarea>
-               </div>
+               <fieldset style="border: solid 0px #a4a4a4; width: 100%; height: 100%; padding: 10px;line-height: 30px;">
+	               <div style="text-align: left;">
+	                  <b><i class="fa-solid fa-angle-right"></i>&nbsp;원하는색상</b>&nbsp;&nbsp;<input type="text" name="c_color" id="color" required>
+	               </div>
+               </fieldset>
                <hr>
                <br>
-               <div>
-                  <input style="width: 300px;" type="button" class="btn btn btn-dark" value="다음으로" onclick="nextNaming()">
+               <div style="text-align: left;">
+               		<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-circle-down"></i>&nbsp;<b>디자이너가 참고할 자료?</b></h5>          
+               </div>
+               <fieldset style="border: solid 0px #a4a4a4; width: 100%; height: 100%; padding: 10px;line-height: 30px;">
+               		<div style="text-align: left;">
+                  		<b><i class="fa-solid fa-angle-right"></i>&nbsp;참고자료</b>&nbsp;&nbsp;<input type="file" value="파일첨부" name="upload" id="fileUp">
+               		</div>
+               </fieldset>
+			   <hr>
+               <br>
+			   		<div style="text-align: left;">
+	               		<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>로고에 사용될 상호명?</b></h5>          
+	                </div>
+				<fieldset style="border: solid 0px #a4a4a4; width: 100%; height: 100%; padding: 10px;line-height: 30px;">
+					<div style="text-align: left;">
+                  		<b><i class="fa-solid fa-angle-right"></i>&nbsp;상호명</b>&nbsp;&nbsp;<input type="text" name="c_name" id="rogoName" required>
+              		</div>
+				</fieldset>
+				<hr>
+                <br>
+				<div style="text-align: left;">
+	               <h5 style="font-size: 20px; line-height: 40px;"><i class="fa-solid fa-arrow-down-short-wide"></i>&nbsp;<b>디자인 상세내용?</b></h5>          
+	            </div>
+				<fieldset style="border: solid 0px #a4a4a4; width:100%; height: 100%; padding: 10px;line-height: 30px;">
+				<div style="text-align: left;">
+                  	<b><i class="fa-solid fa-angle-right" style="vertical-align: top;">&nbsp;상세내용</i></b>&nbsp;&nbsp;<textarea cols="40" rows="4" name="c_details" id="details"></textarea>
+               	</div>
+				</fieldset>
+				<hr>
+                <br>
+               <div style="margin: 0px auto; text-align: right;">
+                  <input style="width: 200px;" type="button" class="btn btn btn-dark" value="다음으로" onclick="nextNaming()">
                </div>
                <br>       
-               <br> 
 		      </section>
-		    <section style="display: none;">
+		 <section style="display: none;">
 		 <section class="pricing py-5">
 		  <div class="container">
-		    <div class="row">
+		    <div class="row" >
 		      <!-- 30만원 -->
 		      <div class="col-lg-4" style="width: 25%;">
 		        <div class="card mb-5 mb-lg-0">
 		          <div class="card-body">
-		            <img style="width:40px; height: 40px;" src="img/pay1.png"><h5 class="card-title text-muted text-uppercase text-center">저가형</h5>
-		            <h6 class="card-price text-center" style="font-size: 20px; color: #383838;">300,000원</h6>
+		            <img style="width:60px; height: 60px;" src="img/pay1.png"><h5 class="card-title text-muted text-uppercase text-center" style="font-size: 20px;">저가형</h5>
+		            <h6 class="card-price text-center" style="font-size: 25px; color: #383838;"><b>300,000원</b></h6>
 		            <hr>
-		            <b style="font-size: 14px; color: #112B3C;">평균 참여작 20-30건</b>
-		            <ul class="fa-ul" style="font-size: 8px;">
+		            <b style="font-size: 22px; color: #112B3C;">평균 참여작 20-30건</b>
+		            <ul class="fa-ul" style="font-size: 18px;">
 		              	<li><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
 		             	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span></li>
-		              	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>신진 디자이너 참여</li>
-		              	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>1차 통과작 선정 불가</li>
-		              	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>상금 환불 불가</li>
+		              	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span><b>신진 디자이너 참여</b></li>
+		              	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span><b>1차 통과작 선정 불가</b></li>
+		              	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span><b>상금 환불 불가</b></li>
 		              	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li> 
 		              	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>  
 		              	<li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
 		            </ul>
 		            <div class="d-grid">
-		              <input class="btn btn-primary text-uppercase"  value="선택" onclick="selectPrice('300000', '저가형')">
+		              <input class="btn btn-primary text-uppercase"  value="선택" readonly="readonly"   onclick="selectPrice('300000', '저가형')">
 		            </div>
 		          </div>
 		        </div>
@@ -230,21 +255,21 @@ input[type=text]:focus{
 		      <div class="col-lg-4" style="width: 25%;">
 		        <div class="card mb-5 mb-lg-0">
 		          <div class="card-body">
-		            <img style="width:40px; height: 40px;" src="img/pay2.png"><h5 class="card-title text-muted text-uppercase text-center">일반형</h5>
-		            <h6 class="card-price text-center" style="font-size: 20px; color: #383838;">500,000원</h6>
+		            <img style="width:60px; height: 60px;" src="img/pay2.png"><h5 class="card-title text-muted text-uppercase text-center" style="font-size: 20px;">일반형</h5>
+		            <h6 class="card-price text-center" style="font-size: 25px; color: #383838;"><b>500,000원</b></h6>
 		            <hr>
-		            <b style="font-size: 14px; color: #112B3C;">평균 참여작 40건 이상</b>
-		            <ul class="fa-ul" style="font-size: 8px; padding-right: 40px;"> 
+		            <b style="font-size: 22px; color: #112B3C;">평균 참여작 40건 이상</b>
+		            <ul class="fa-ul" style="font-size: 18px; padding-right: 40px;"> 
 		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
-		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>경력 디자이너 참여</li>
-		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>1차 통과작 선정 가능</li>
-		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>상금 환불 불가</li>
+		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span><b>경력 디자이너 참여</b></li>
+		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span><b>1차 통과작 선정 가능</b></li>
+		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span><b>상금 환불 불가</b></li>
 		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
 		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
 		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
 		            </ul>
 		            <div class="d-grid">
-		              <input class="btn btn-primary text-uppercase"  value="선택" onclick="selectPrice('500000', '일반형')">
+		              <input class="btn btn-primary text-uppercase"  value="선택"  readonly="readonly" onclick="selectPrice('500000', '일반형')">
 		            </div>
 		          </div>
 		        </div>
@@ -253,21 +278,21 @@ input[type=text]:focus{
 		      <div class="col-lg-4" style="width: 25%;">
 		        <div class="card">
 		          <div class="card-body">
-		            <img style="width:40px; height: 40px;" src="img/pay3.png"><h5 class="card-title text-muted text-uppercase text-center">고급형</h5>
-		            <h6 class="card-price text-center" style="font-size: 20px; color: #383838;">1,000,000원</h6>
+		            <img style="width:60px; height: 60px;" src="img/pay3.png"><h5 class="card-title text-muted text-uppercase text-center" style="font-size: 20px;" >고급형</h5>
+		            <h6 class="card-price text-center" style="font-size: 20px; color: #383838;"><b>1,000,000원</b></h6>
 		            <hr>
-		             <b style="font-size: 14px; color: #112B3C;">평균 참여작 60건 이상</b>
-		            <ul class="fa-ul" style="font-size: 8px; padding-right: 40px;">
+		             <b style="font-size: 22px; color: #112B3C;">평균 참여작 60건 이상</b>
+		            <ul class="fa-ul" style="font-size: 18px; padding-right: 40px;">
 		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
-		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>경력 디자이너 참여</li>
-		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>1차 통과작 선정 가능</li>
-		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>상금 50% 환불 가능</li>
-		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>리스트 상단 노출</li>
+		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span><b>경력 디자이너 참여</b></li>
+		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span><b>1차 통과작 선정 가능</b></li>
+		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span><b>상금 50% 환불 가능</b></li>
+		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span><b>리스트 상단 노출</b></li>
 		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
 		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
 			        </ul>
 		            <div class="d-grid">
-		              <input class="btn btn-primary text-uppercase"  value="선택" onclick="selectPrice('1000000','고급형')">
+		              <input class="btn btn-primary text-uppercase"  value="선택" readonly="readonly" onclick="selectPrice('1000000','고급형')">
 		            </div>
 		          </div>
 		        </div>
@@ -277,21 +302,21 @@ input[type=text]:focus{
 		        <div class="card mb-5 mb-lg-0">
 		          <div class="card-body">
 		             <input type="hidden" value="1500000" />
-		             <img style="width:40px; height: 40px;" src="img/pay4.png"><h5 class="card-title text-muted text-uppercase text-center">프리미엄형</h5>
-		            <h6 class="card-price text-center" style="font-size: 20px; color: #383838;">1,500,000원</h6>
+		             <img style="width:60px; height: 60px;" src="img/pay4.png"><h5 class="card-title text-muted text-uppercase text-center" style="font-size: 20px;">프리미엄형</h5>
+		            <h6 class="card-price text-center" style="font-size: 20px; color: #383838;"><b>1,500,000원</b></h6>
 		            <hr>
-		            <b style="font-size: 14px; color: #112B3C;">평균 참여작 100건 이상</b>
-		            <ul class="fa-ul" style="font-size: 8px; padding-right: 40px;">
+		            <b style="font-size: 22px; color: #112B3C;">평균 참여작 100건 이상</b>
+		            <ul class="fa-ul" style="font-size: 18px; padding-right: 40px;">
 		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
-		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>탑랭킹 디자이너 참여</li>
-		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>1차 통과작 선정 가능</li>
-		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>상금 50% 환불 가능</li>
-		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>최상단 노출 옵션 무료</li>
-		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>SNS 무료 컨텐츠 홍보</li>
+		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span><b>탑랭킹 디자이너 참여</b></li>
+		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span><b>1차 통과작 선정 가능</b></li>
+		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span><b>상금 50% 환불 가능</b></li>
+		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span><b>최상단 노출 옵션 무료</b></li>
+		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span><b>SNS 무료 컨텐츠 홍보</b></li>
 		              <li style="text-align: left;"><span class="fa-li"><i class="fas fa-check"></i></span>&nbsp;</li>
 		            </ul>
 		            <div class="d-grid">
-		           	  <input class="btn btn-primary text-uppercase"  value="선택" onclick="selectPrice('1500000','프리미엄형')">		    
+		           	  <input class="btn btn-primary text-uppercase"  value="선택" readonly="readonly" onclick="selectPrice('1500000','프리미엄형')">		    
 		            </div>
 		          </div>
 		        </div>
@@ -302,25 +327,119 @@ input[type=text]:focus{
 		      <br>
 		      <br>            
 		      </div>
-		         <!-- 총 상금 -->
-		         <div style="text-align: center;" id="price">   
-		         	<%-- <input type="hidden" id="c_cate" name="c_cate" value="${c_cate//저가형? 고가형?}"> --%>
-		            <p><span>총상금</span> : <input type="text" id="totalPrice" name="totalPrice" style="text-align: right; width: 100px; border:none;"/>원</p>
+		      <div class="row">
+		         
+				    <div class="col-md">
+				     
+				    </div>
+				   
+				    <div class="col-md">			    	
+				    	
+				    	<!-- <table border="1" style="align-content: center">
+				    	
+				    		<tr>
+				    			<td>총상금</td>
+				    			<td>총상금</td>
+				    			<td>총상금</td>
+				    		</tr>
+				    		<tr>
+				    			<td>총상금</td>
+				    			<td>총상금</td>
+				    			<td>총상금</td>
+				    		</tr>
+				    		
+				    	</table>   --> 		
+				    	
+				    	
+				    	<div style="text-align: center;" id="price">   
+		         			<table border="0" style="margin-left:auto; margin-right:auto; font-size: 20px; font-weight: bold;" >
+				    	
+				    		<tr>
+				    			<td>총상금</td>
+				    			<td><input type="text" id="totalPrice" name="totalPrice" style="text-align: right; width: 100px; border:none; font-weight: bold; color: blue;"/>원</td>
+				    			
+				    		</tr>
+				    		
+				    		<tr>
+				    			<td>수수료(10%)</td>
+				    			<td><input type="text" id="comm" name="comm" style="text-align: right; width: 100px; border:none;"/>원</td>		   
+				    		</tr>
+				    		
+				    		<tr>
+				    			<td>부가세</td>
+				    			<td><input type="text" id="vat" name="vat" style="text-align: right; width: 100px; border:none;"/>원</td>		   
+				    		</tr>
+				    		
+				    		<tr>
+				    			<td>합계</td>
+				    			<td><input type="text" id="t_pay" name="t_pay" style="text-align: right; width: 100px; border:none; font-weight: bold; color: red;"/>원</td>		   
+				    		</tr>
+				    		
+				    	</table>
+		         		
+		         		</div>
+		               
+  
+				    </div>
+				    
+				   
+				    <div class="col-md">
+				      
+				    </div>
+				    
+			  </div>
+			   
+			   
+			   
+			   <!-- 
+			          <div class="input-group-prepend">
+					    <span class="input-group-text" id="inputGroup-sizing-sm">총상금</span>
+					  </div>
+					  <input type="text" id="totalPrice" name="totalPrice" class="form-control" aria-label="총상금" aria-describedby="inputGroup-sizing-sm">원
+				  -->
+			   
+		      <!-- 	<div class="row">  -->
+		         <%-- <div style="text-align: center;" id="price">   
+		         	<input type="hidden" id="c_cate" name="c_cate" value="${c_cate}">
+		          <!--   <div class="col-sm-3"></div> -->
+		           <!--  <div class="col-sm-6" align="center" > --> <p><span>총상금</span>  : <input type="text" id="totalPrice" name="totalPrice" style="text-align: right; width: 100px; border:none;"/>원</p><!-- </div> -->
+				<!-- 	<div class="col-sm-3"></div> -->
+		           
 		            <p><span>수수료(10%)</span> : <input type="text" id="comm" name="comm" style="text-align: right; width: 100px; border:none;"/>원</p>  
 		            <p><span>부가세</span> : <input type="text" id="vat" name="vat" style="text-align: right; width: 100px; border:none;"/>원 </p>
 		           <!--  <hr style="width: 300px; padding-left: 500px;"> -->
 		            <p><b>합계</b> : <input type="text" id="t_pay" name="t_pay" style="text-align: right; width: 100px; border:none;"/>원</p>
-		         </div>
+		         </div> --%>
 		         <div>
 			      <br>
 			      <br>
-			      <br>            
-		         </div>
+			      <br>  
+			      </div>          
+		     <!--     </div>  -->
+		      
+		         
+		         <!-- <div class="container">
+			         <div class="row">
+			         	<div class="col-sm-2"></div>
+			         	
+				         	<div class="col-sm-4">			        
+						         <div class="d-grid gap-2 col-6 mx-auto">
+						           <button class="btn btn-primary" type="button" onclick="payKakao();">KAKAO PAY</button>
+						         </div>
+							</div>  
+							  	
+							<div class="col-sm-4">
+						         <div class="d-grid gap-2 col-6 mx-auto">
+						           <button class="btn btn-primary" type="button" onclick="payCard();"> 카 드 결 제 </button>
+					   			 </div>			    
+					        <div class="col-sm-2"></div>
+			         		
+			         	</div>
+			         </div>
+		         </div> -->
+		         
 		         <div class="d-grid gap-2 col-6 mx-auto">
-		           <button class="btn btn-primary" type="button" onclick="payKakao();">KAKAO PAY</button>
-		         </div>
-		         <div class="d-grid gap-2 col-6 mx-auto">
-		           <button class="btn btn-primary" type="button" onclick="payCard();">카드결제</button>
+		           <button class="btn btn-primary" type="button" onclick="payCard();"> 카 드 결 제 </button>
 		         </div>
 		         
 		    </div>

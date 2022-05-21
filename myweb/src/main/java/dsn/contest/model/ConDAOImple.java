@@ -14,6 +14,7 @@ import dsn.trade.model.TrdDTO;
 
 public class ConDAOImple implements ConDAO{
 
+		@Autowired
 		private SqlSessionTemplate sqlMap;
 		
 		public ConDAOImple(SqlSessionTemplate sqlMap) {

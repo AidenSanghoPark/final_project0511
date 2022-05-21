@@ -17,6 +17,7 @@ public interface ConService {
 	public int ContestCnt();
 	public ConDTO conContent(int c_idx);
 	public int conCount(int c_readnum, int c_idx);
+	public List conPart(int cp, int listSize, int c_idx);
 	public ConDTO conInfo(int c_idx);
 	public int contestJoin(DesignerConDTO dto);
 	public void updateTrd(ConDTO dto);
@@ -41,5 +42,6 @@ public interface ConService {
 	//print
 	public int addPrint(ConDTO dto);
 	public int addPrintTrade(TrdDTO dto);
-	public List conPart(int cp, int listSize, int c_idx);
+
 }
+

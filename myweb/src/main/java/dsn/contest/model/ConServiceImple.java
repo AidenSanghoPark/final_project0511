@@ -1,6 +1,7 @@
 package dsn.contest.model;
 
 import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -112,6 +113,8 @@ public class ConServiceImple implements ConService{
 		return count;
 		
 	}
+	
+	
 	@Override
 	public ConDTO conInfo(int c_idx) {
 		return conDao.conInfo(c_idx);
@@ -126,7 +129,12 @@ public class ConServiceImple implements ConService{
 	}
 	@Override
 	public int addLogo(ConDTO dto) {
-		int count=conDao.addLogo(dto);
+		System.out.println("service="+dto.getC_cate());
+		System.out.println("service="+dto.getUpload().getOriginalFilename());
+		if(dto.getUpload() != null) {
+			dto.setC_file(dto.getUpload().getOriginalFilename());
+		}
+		int count = conDao.addLogo(dto);
 		return count;
 	}
 
@@ -235,4 +243,6 @@ public class ConServiceImple implements ConService{
 		int count = conDao.addPrintTrade(dto);
 		return count;
 	}
+
+
 }

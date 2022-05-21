@@ -9,10 +9,10 @@
 <style>
 #img{
 	width: 200px;
-	height: 300px;
+	height: 200px;
 }
 section{
-	padding-left: 550px;
+	padding-left: 600px;
 	padding-top: 100px;
 }
 #tb1{
@@ -22,24 +22,34 @@ section{
 </head>
 <body>
 <%@include file="/WEB-INF/views/header.jsp" %>
+<br>
+<br>
 	<section>
 		<table id="td1">
 			<tr>
 				<td>
-					<a href="namingHold.do?c_cate=naming"><img src="img/type1.PNG" id="img"></a>
+					<a href="namingHold.do?c_cate=naming"><img src="img/contype3.png" id="img"></a>
 				</td>
 				<td>
-					<a href="logoHold.do?c_cate=logo"><img src="img/type2.PNG" id="img"></a>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</td>
+				<td>
+					<a href="logoHold.do?c_cate=logo"><img src="img/contype2.png" id="img"></a>
 				</td>
 			</tr>
 		</table>
+		<br>
+		<br>
 		<table id="td2">
 			<tr>
 				<td>
-					<a href="characterHold.do?c_cate=character"><img src="img/type3.PNG" id="img"></a>
+					<a href="characterHold.do?c_cate=character"><img src="img/contype1.png" id="img"></a>
 				</td>
 				<td>
-					<a href="printHold.do?c_cate=print"><img src="img/type5.PNG" id="img"></a>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				</td>
+				<td>
+					<a href="printHold.do?c_cate=print"><img src="img/contype4.png" id="img"></a>
 				</td>
 			</tr>
 		</table>	
