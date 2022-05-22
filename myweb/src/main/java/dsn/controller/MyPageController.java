@@ -19,17 +19,11 @@ import dsn.profile.model.ProfileDTO;
 import dsn.virtualwallet.model.WalletDTO;
 import dsn.withdraw.model.WithDrawDTO;
 
-import dsn.review.model.ReviewDTO;
-
-
 @Controller
 public class MyPageController {
 	
 	@Autowired
 	private MyPageService myPageService;
-	
-	@Autowired
-	private DesignerService designerService;
 	
 	@RequestMapping("myPage.do")
 	public ModelAndView myPage(@RequestParam(value = "cp",defaultValue = "1") int cp,HttpSession session){
@@ -43,7 +37,7 @@ public class MyPageController {
 			msg="로그인 후 이용해주세요";
 			mav.addObject("msg", msg);
 			mav.addObject("gopage","index.do");
-			mav.setViewName("mypage/mypagemsg");
+			mav.setViewName("memberMsg");
 		}else {
 		int vo=mdto.getU_idx();
 		System.out.println(vo);
@@ -55,9 +49,7 @@ public class MyPageController {
 		String pageStr=dsn.page.PageModule.pageMake("myPage.do", totalCnt, listSize, pageSize, cp);
 		List lists=myPageService.myPageList(cp, listSize, vo);
 		List userinfo=myPageService.userInfoFind(vo);
-		System.out.println(userinfo);
-		List dlists=myPageService.myPageListByDesigner(cp, listSize, pageSize);
-		ProfileDTO pdto=designerService.profileInfo(vo);
+		List dlists=myPageService.myPageListByDesigner(cp, listSize, vo);
 		
 		mav.addObject("dpageStr", dpageStr);
 		mav.addObject("dlists", dlists);
@@ -65,7 +57,6 @@ public class MyPageController {
 		mav.addObject("pageStr", pageStr);
 		mav.addObject("u_idx", vo);
 		mav.addObject("userinfo", userinfo);
-		mav.addObject("pdto", pdto);
 		mav.setViewName("mypage/mypage");
 		}
 		return mav;
@@ -169,7 +160,10 @@ public class MyPageController {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("lists",lists);
 		mav.addObject("pageStr", pageStr);
-		mav.addObject("blc", blc);
+		if(blc!=0){
+			mav.addObject("blc", blc);
+		}
+		
 		mav.setViewName("mypage/wallet");
 		return mav;
 	}
@@ -185,22 +179,32 @@ public class MyPageController {
 		return mav;
 	}
 	@RequestMapping("payoutaction.do")
-	public ModelAndView payOutConfirm(WithDrawDTO dto) throws Exception{
+	public ModelAndView payOutConfirm(WithDrawDTO dto,HttpSession session) throws Exception{
 		ModelAndView mav=new ModelAndView();
+		Object obj=session.getAttribute("login");
+		MemberDTO mdto = (MemberDTO) obj;
+		try {
 		String msg="";
 		int price=Integer.parseInt(dto.getW_balance());
-		int blc=myPageService.getLastBalance(dto.getU_idx());
+		int blc=myPageService.getLastBalance(mdto.getU_idx());
 		if(price>blc) {
-			msg="잔액이 부족합니다";
+			msg="잔액이 부족합니다.";
 			mav.addObject("msg", msg);
 			mav.setViewName("mypage/popupclose");
 			
+		}else if(dto.getW_balance().equals(null)&&dto.getW_bank().equals(null)&&dto.getW_number().equals(null)){
+			msg="출금정보를 정확히 기입해주세요.";
+			mav.addObject("msg", msg);
+			mav.setViewName("mypage/popupclose");
 		}else {
 		int result=myPageService.payout(dto);
 		msg=result>0?"출금신청 완료":"출금신청 실패";
 		
 		mav.addObject("msg", msg);
 		mav.setViewName("mypage/popupclose");
+		}
+		}catch(NumberFormatException e) {
+			
 		}
 		return mav;
 		
