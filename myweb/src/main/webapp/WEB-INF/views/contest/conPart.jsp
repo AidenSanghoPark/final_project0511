@@ -14,6 +14,10 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
 <style>
 .pagination {
   display: inline-block;
@@ -451,40 +455,22 @@ a{
 			<c:if test="${empty dlists}">
 				<tfoot>
 					<tr>
-						<td colspan="3">참여자가 없습니다 ㄱ-</td>
+						<td colspan="3">참여자가 없습니다 </td>
 					</tr>
 				</tfoot>
 			</c:if>
 			<tbody>
 				<tr>
-					<c:forEach var="dto" items="${dlists}" varStatus="vs">
+					<c:forEach var="dtos" items="${dlists}">
 					
-					<td><a class="btn-open-popup"><img style="width: 300px;" src="img/${dto.d_img_1}">
-					<p>${dto.d_name }</p></a></td>
-					<!-- 모달 -->		    
-					<div class="modal">
-						<form id="choiceForm" enctype="multipart/form-data" method="post">
-					      <div class="modal_body">
-					      	
-					      	<div style="width: 30%; height:100%; background-color:#EFEFF6; float: right; border-radius: 5px;
-					      	  position: sticky; top: 0;">
-					      		<h4>${dto.d_name }</h4>
-					      		<h4>디자이너 이름</h4>
-					      		<input type="hidden" name="c_idx" value="${c_idx}">
-					      		<input type="hidden" name="d_idx" value="${dto.d_idx }">
-					      		<br>
-					      		<p style="text-align: left; padding-left: 20px;">참여작 내용</p>
-					      		<br>
-					      		<button class="button" style="width: 230px; height: 50px; border-radius: 3px;" id="choice">당선하기<br></button>
-					      	</div>
-					      	
-					      	<div style="float: left;">
-					      		<img style="width: 70%; height: 100%; float: left;" src="img/${dto.d_img_2}">
-					      		<img style="width: 70%; height: 100%; float: left;" src="img/${dto.d_img_2}">
-					      	</div>
-					      </div>
-					     </form>
-					</div>
+					<c:url var="contentUrl" value="conPartContent.do?c_idx=${c_idx}">
+						<c:param name="d_idx">${dtos.d_idx}</c:param>
+					</c:url>
+					<td>
+						<p>
+							<a href="${contentUrl}" rel="modal:open">${dtos.d_name}</a><img style="width: 300px;" src="img/${dtos.d_img_1}" />
+						</p>
+					</td>
 					</c:forEach>
 				</tr>
 			</tbody>
@@ -494,65 +480,31 @@ a{
 </div>
 </body>
     <script>
-      const body = document.querySelector('body');
-      const modal = document.querySelector('.modal');
-      const btnOpenPopup = document.querySelector('.btn-open-popup');
+//       const body = document.querySelector('body');
+//       const modal = document.querySelector('.modal');
+//       const btnOpenPopup = document.querySelector('.btn-open-popup');
 
-      btnOpenPopup.addEventListener('click', () => {
-        modal.classList.toggle('show');
+//       btnOpenPopup.addEventListener('click', () => {
+//         modal.classList.toggle('show');
 
-        if (modal.classList.contains('show')) {
-          body.style.overflow = 'hidden';
-        }
-      });
+//         if (modal.classList.contains('show')) {
+//           body.style.overflow = 'hidden';
+//         }
+//       });
 
-      modal.addEventListener('click', (event) => {
-        if (event.target === modal) {
-          modal.classList.toggle('show');
+//       modal.addEventListener('click', (event) => {
+//         if (event.target === modal) {
+//           modal.classList.toggle('show');
 
-          if (!modal.classList.contains('show')) {
-            body.style.overflow = 'auto';
-          }
-        }
-      });
+//           if (!modal.classList.contains('show')) {
+//             body.style.overflow = 'auto';
+//           }
+//         }
+//       });
       
       $(document).ready(function () {
     	    $('head').append('<style type="text/css">.modal .modal-body {max-height: ' + ($('body').height() * .8) + 'px;overflow-y: auto;}.modal-open .modal{overflow-y: hidden !important;}</style>');
     	});
     </script>
-  <script>
-        
-    $("#choice").click(function(){
-    		
-            // json 형식으로 데이터 set
-            var form = $('#choiceForm')[0];
-
-			// Create an FormData object 
-			var data = new FormData(form);
-                
-            // ajax 통신
-            $.ajax({
-            	type: "POST",
-    			enctype: 'multipart/form-data',
-    			url: 'contestEndChoice.do',	// form을 전송할 실제 파일경로
-    			data: data,
-    			processData: false,
-    			contentType: false,
-    			cache: false,
-    			timeout: 600000,
-    			beforeSend : function() {
-    				// 전송 전 실행 코드
-    			},
-    			success: function (data) {
-    				// 전송 후 성공 시 실행 코드
-    				console.log(data);
-    			},
-    			error: function (e) {
-    				// 전송 후 에러 발생 시 실행 코드
-    				console.log("ERROR : ", e);
-    			}
-            });
-        });
-            
-</script>
+  
 </html>

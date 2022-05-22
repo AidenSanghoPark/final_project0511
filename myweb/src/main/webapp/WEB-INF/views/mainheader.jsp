@@ -6,18 +6,18 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
 <style>
 .mainimg{
-	width:150px;
-	height:100px;
-	padding-left: 15px;
+   width:150px;
+   height:100px;
+   padding-left: 15px;
 }
 #mypagept{
-   	width: 20px;
+      width: 20px;
     height: 20px; 
     border-radius: 70%;
 }
 .mainimg{
-	width: 100px;
-	height: 50px;
+   width: 100px;
+   height: 50px;
 }
 #mainNavigation a {
   font-family: 'Cabin', sans-serif;

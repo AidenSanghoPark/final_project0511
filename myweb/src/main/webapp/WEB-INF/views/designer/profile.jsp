@@ -52,7 +52,7 @@ h5{
 		<section class="picture">
 			<h5>프로필 사진</h5><hr>
 			<img class="photo" src="profileimg/profile.PNG"><br>
-			<input type="file" name="upload">
+			<input type="file" name="upload" accept="image/png, image/jpeg">
 		</section>
 		<section class="infoConfig">
 		<h4>로그인 정보</h4><hr>
@@ -63,7 +63,25 @@ h5{
 			</tr>
 			<tr>
 				<th>계좌번호</th>
-				<td><input type="text" name="u_wallet"></td>
+				<td>
+				<select name="u_bank">
+						<option>--선택--</option>
+						<option>카카오</option>
+						<option>KB국민</option>
+						<option>우리</option>
+						<option>신한</option>
+						<option>BC</option>
+						<option>하나</option>
+						<option>SC제일</option>
+						<option>한국TC</option>
+						<option>농협</option>
+						<option>삼성</option>
+						<option>롯데</option>
+						<option>케이</option>
+						<option>현대</option>	
+					</select>
+				<input type="text" value="${pdto.u_wallet}" name="u_wallet">
+				</td>
 			<tr>
 				<td><input type="submit" value="입력하기" id="insert"></td>
 				<td><input type="button" value="뒤로가기" onclick="location.href='myPage.do'"></td>
@@ -79,7 +97,7 @@ h5{
 		<section class="picture">
 			<h5>프로필 사진</h5><hr>
 			<img class="photo" src="/myweb/profileimg/${pdto.p_img}"><br>
-			<input type="file" name="upload" value="${pdto.p_img}">
+			<input type="file" name="upload" value="${pdto.p_img}" accept="image/png, image/jpeg">
 		</section>
 		<section class="infoConfig">
 		<h4>로그인 정보</h4><hr>
@@ -90,7 +108,6 @@ h5{
 			</tr>
 			<tr>
 				<th>계좌번호</th>
-				
 				<td>
 				<select name="u_bank">
 						<option>${pdto.u_bank}</option>
@@ -113,6 +130,7 @@ h5{
 			</tr>
 			<tr>
 				<td><input type="submit" value="수정하기" id="sujung"></td>
+				<td><input type="button" value="뒤로가기" onclick="location.href='myPage.do'"></td>
 			</tr>
 		</table>
 		</section>

@@ -5,14 +5,11 @@
 <mapper namespace="dsn.designer">
 	<select id="portfolio2" parameterType="Map" resultType="dsn.designer.model.DesignerDTO">
 		select * from 
-			(select rownum as rnum, a.* from
-			(select * from f_designer order by c_idx desc)a)b
+			f_designer 
 		where
-			rnum <![CDATA[>=]]> #{start}
-		and
-			rnum <![CDATA[<=]]> #{end}
-		and
 			u_idx = #{u_idx}
+		order by 
+			c_idx desc
 	</select>
 	<select id="review" parameterType="Map" resultType="dsn.review.model.ReviewDTO">
   		select * from 
@@ -22,24 +19,15 @@
 			rnum <![CDATA[>=]]> #{start}
 		and
 			rnum <![CDATA[<=]]> #{end}
+		and
+			u_idx = #{u_idx}
   	</select>
-	<select id="portfolioTotalCnt" resultType="Integer">
-		select count(*) from f_designer
+	<select id="portfolioTotalCnt" parameterType="Integer" resultType="Integer">
+		select count(*) from f_designer where u_idx=#{u_idx}
 	</select>
 	<select id="designerTotalCnt" resultType="Integer">
 		select count(*) from f_user
 	</select>
-	<insert id="profileInsert" parameterType="dsn.profile.model.ProfileDTO">
-		insert into
-			f_profile
-		values(
-			p_idx.nextval,
-			#{u_idx},
-			#{p_img},
-			#{p_info},
-			#{u_wallet}
-		)
-	</insert>
 	<select id="userInfo" parameterType="Integer" resultType="dsn.member.model.MemberDTO">
 		select
 			*
@@ -76,21 +64,33 @@
    </select>
    
    <select id="designerList" resultType="dsn.designer.model.ListDTO">
-      select * from
-          (select rownum as rnum, a.*from
-          (SELECT p.p_img, p.p_info, u.u_nick, u.u_email, u.u_idx
-         from f_profile p, f_user u
-         where p.u_idx = u.u_idx
-         and u.u_type = 2 )a)b
-      where
+      
+      SELECT * FROM
+      (SELECT ROWNUM AS rnum, a.* FROM
+            (SELECT
+                    p.p_img,
+                    p.p_info,
+                    u.u_nick,
+                    u.u_email,
+                    u.u_idx,
+                    NVL((SELECT SUM(D_WIN) FROM F_DESIGNER A WHERE u.u_idx = a.u_idx),0) AS total_win
+                FROM
+                    f_profile p,
+                    f_user    u
+                WHERE
+                        p.u_idx = u.u_idx
+                    AND u.u_type = 2 ) a) b
+	  where
          rnum <![CDATA[>=]]> #{start}
       and
          rnum <![CDATA[<=]]> #{end}
+	  order by total_win desc
+      
    </select>
    <select id="designerListByIdx" parameterType="Map" resultType="dsn.designer.model.DesignerDTO">
       select * from 
          (select rownum as rnum, a.* from
-         (select * from f_user where u_idx=#{u_idx} order by u_idx desc)a)b
+         (select * from f_designer where u_idx=#{u_idx} order by u_idx desc)a)b
       where
          rnum <![CDATA[>=]]> #{start}
       and
@@ -98,5 +98,8 @@
    </select>
    <select id="getDesignerCnt" parameterType="Integer" resultType="Integer">
       SELECT COUNT(*) FROM F_DESIGNER WHERE U_IDX=#{u_idx}
+   </select>
+   <select id="dsndesginerwinTotal" parameterType="Integer" resultType="Integer">
+   		select sum(d_win) from f_designer where u_idx=#{u_idx}
    </select>
 </mapper>

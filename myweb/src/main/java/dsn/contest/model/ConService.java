@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import dsn.contest.model.*;
+import dsn.designer.model.DesignerDTO;
 import dsn.trade.model.TrdDTO;
 
 
@@ -16,6 +17,7 @@ public interface ConService {
 	public int dateUp();
 	public int ContestCnt();
 	public ConDTO conContent(int c_idx);
+	public ConDTO conContent2(int c_idx);
 	public int conCount(int c_readnum, int c_idx);
 	public List conPart(int cp, int listSize, int c_idx);
 	public ConDTO conInfo(int c_idx);
@@ -27,6 +29,7 @@ public interface ConService {
 	public DesignerConDTO contestContent(int d_idx, int c_idx);
 	public int designerUser(int d_idx);
 	public int contestPay(int c_idx);
+	public int designInfo(int d_idx, int c_idx);
 	//logo
 	public int addLogo(ConDTO dto);	
 	public int addLogoTrade(TrdDTO dto);
@@ -42,6 +45,6 @@ public interface ConService {
 	//print
 	public int addPrint(ConDTO dto);
 	public int addPrintTrade(TrdDTO dto);
+	public DesignerDTO conPartContent(int d_idx);
 
 }
-

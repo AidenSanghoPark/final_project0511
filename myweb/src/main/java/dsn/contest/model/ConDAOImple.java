@@ -14,7 +14,6 @@ import dsn.trade.model.TrdDTO;
 
 public class ConDAOImple implements ConDAO{
 
-		@Autowired
 		private SqlSessionTemplate sqlMap;
 		
 		public ConDAOImple(SqlSessionTemplate sqlMap) {
@@ -66,6 +65,15 @@ public class ConDAOImple implements ConDAO{
 		public ConDTO conContent(int c_idx) {
 			ConDTO dto=sqlMap.selectOne("conContent", c_idx);
 			return dto;
+		}
+		@Override
+		public ConDTO conContent2(int c_idx) {
+			ConDTO dto=sqlMap.selectOne("conContent", c_idx);
+			return dto;
+		}
+		@Override
+		public int designInfo(Map map) {
+		return sqlMap.selectOne("designInfo", map);
 		}
 
 
@@ -175,6 +183,12 @@ public class ConDAOImple implements ConDAO{
 			List dlists=sqlMap.selectList("conPart", map);
 			return dlists;
 		}
-		
+
+
+		@Override
+		public DesignerDTO conPartContent(int d_idx) {
+			DesignerDTO dto = sqlMap.selectOne("conPartContent", d_idx);
+			return dto;
+		}
 
 }

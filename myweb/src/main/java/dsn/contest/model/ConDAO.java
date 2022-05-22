@@ -22,6 +22,7 @@ public interface ConDAO {
 	public int dateUp();
 	public int ContestCnt();
 	public ConDTO conContent(int c_idx);
+	public ConDTO conContent2(int c_idx);
 	public int conCount(Map map);
 	public int contestJoin(DesignerConDTO dto);
 	public void designerWin(int d_idx);
@@ -31,6 +32,7 @@ public interface ConDAO {
 	public void updateTrd(ConDTO dto);
 	public int designerUser(int d_idx);
 	public int contestPay(int c_idx);
+	public int designInfo(Map map);
 	//logo
 	public int addLogo(ConDTO dto);	
 	public int addLogoTrade(TrdDTO dto);
@@ -50,5 +52,7 @@ public interface ConDAO {
 	
 	public DesignerConDTO contestContent(Map map);
 	public List conPart(Map map);
+	public DesignerDTO conPartContent(int d_idx);
+
 	
 }

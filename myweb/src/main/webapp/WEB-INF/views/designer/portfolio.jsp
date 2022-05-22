@@ -4,156 +4,148 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<style>
-.profile{
-	float: center;
-	text-align: center
+<style type="text/css">
+.gallery-block{
+	padding-bottom: 60px;
+	padding-top: 60px;
 }
-.portfoilos{
-	float: center;
-	text-align: center;
+
+.gallery-block .heading{
+    margin-bottom: 50px;
+    text-align: center;
 }
-.page{
-	float: center;
+
+.gallery-block .heading h2{
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-transform: uppercase;
 }
-table {
-	float: center;
-	text-align: center;
+
+.gallery-block.cards-gallery h6 {
+  font-size: 17px;
+  font-weight: bold; 
 }
-h5{
-	text-align: center;
+
+.gallery-block.cards-gallery .card{
+  transition: 0.4s ease; 
 }
-.photo{
-	width: 150px;
-    height: 150px; 
-    border-radius: 70%;
+
+.gallery-block.cards-gallery .card img {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15); 
 }
-.modal {
-        text-align: center;
+
+.gallery-block.cards-gallery .card-body {
+  text-align: center; 
 }
- 
-@media screen and (min-width: 768px) { 
-        .modal:before {
-                display: inline-block;
-                vertical-align: middle;
-                content: " ";
-                height: 100%;
-        }
+
+.gallery-block.cards-gallery .card-body p {
+  font-size: 15px; 
 }
- 
-.modal-dialog {
-        display: inline-block;
-        text-align: left;
-        vertical-align: middle;
+
+.gallery-block.cards-gallery a {
+  color: #212529; 
 }
+
+.gallery-block.cards-gallery a:hover {
+  text-decoration: none; 
+}
+
+.gallery-block.cards-gallery .card {
+  margin-bottom: 30px; 
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 576px) {
+
+	.gallery-block .transform-on-hover:hover {
+	    transform: translateY(-10px) scale(1.02);
+	    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15) !important; 
+	}
+}
+
+.img-rounded {
+    width: auto;
+    display: inline-block;
+    -webkit-border-radius: 0;
+    -webkit-background-clip: padding-box;
+    -moz-border-radius: 0;
+    -moz-background-clip: padding;
+    border-radius: 50%;
+    background-clip: padding-box;
+    width: 130px;
+    height: 130px;
+
 </style>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${udto.u_nick}님의 포트폴리오</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
+    <link rel="stylesheet" href="cards-gallery.css">
 </head>
 <body>
 <%@include file="/WEB-INF/views/header.jsp" %>
-<c:if test="${pdto == null}">
-	<form name="designerInfo">
-		<section class="profile">
-				<img class="photo" src="profileimg/profile.PNG"><br>
-				<h4>${udto.u_nick}</h4><br>
-				우승 ${win}회
-		</section>
-	</form>
-</c:if>
-<c:if test="${pdto != null}">
-<form name="designerInfo">
-	<section class="profile">
-		<fieldset>
-			<img class="photo" src="profileimg/${pdto.p_img}"><br>
-			<h4>${udto.u_nick}</h4><br>
-			우승 ${win}회
-		</fieldset>
-	</section>
-</form>
-</c:if>
-	<section>
-		<hr>
-		<h5><a href="portfolio2.do?u_idx=${u_idx}">포트폴리오</a> <a href="review.do?u_idx=${u_idx}">리뷰</a></h5>
-		<hr>
-	</section>
-<form name="portfoilos">
-	<section>
-		<table>
-			<c:if test="${empty lists}">
-				<tfoot>
-					<tr>
-						<td colspan="3">참여한 콘테스트가 없습니다.</td>
-					</tr>
-				</tfoot>
-			</c:if>
-			<tbody>
-				<tr>
-					<c:forEach var="dto" items="${lists}">
-						<td>
-							<c:url var="contentUrl" value="portfolioDetail.do">
-								<c:param name="u_idx">${dto.u_idx}</c:param>
-							</c:url>
-							<a href="${contentUrl}" rel="modal:open"><img src="img/${dto.d_img_1}"></a><br>
-							<a href="${contentUrl}" rel="modal:open"><label>${dto.d_name}</label></a>
-							
-							
-						</td>
-					</c:forEach>
-				</tr>
-			</tbody>
-		</table>
-		<div id="page">${pageStr}</div>
-		<!-- modal 구동 버튼 (trigger) -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
 
-	</section>
-</form>
-<!-- jQuery Modal -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal --> 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
-        <div class="modal-dialog" style="float: left; padding-left: 500px;"> 
-                <div class="modal-content" style="width: 85%;">
-                        <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">디자인명, 카테고리, 우승여부</h4>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> 
-                        </div> 
-                        <div class="modal-body"> 
-                                <p><img src="img/portfolioDetail.PNG" class="img-responsive" style="width: 100%;"></p> 
-                                <p>상세내용</p>
-                                <p><input type="button" value="해당 콘테스트" id="#" onclick="#"></p>
-                        </div> 
-                </div> 
-        </div> 
-</div>
-<%@include file="/WEB-INF/views/footer.jsp" %>
+   <section class="gallery-block cards-gallery"><br>
+	    <div class="container"><br>
+	        <div class="heading"><br>
+	        <img src="profileimg/${pdto.p_img}" class="img-rounded"><br><br>
+	          <h2>${udto.u_nick}님의 포트폴리오</h2>
+	          <h6 style="color: gray; font-size: 12px;">우승 ${win}회</h6>
+    
+	        </div>
+	        <div class="row">
+	        <c:forEach var="dto" items="${lists}">
+	            <div class="col-md-6 col-lg-4">
+	                <div class="card border-0 transform-on-hover">
+	                	<a class="lightbox">
+	                		<img src="img/${dto.d_img_1}" alt="portfolioPhoto" class="card-img-top">
+	                	</a>
+	                    <div class="card-body">
+	                        <h6>${dto.d_name}</h6>
+	                    </div>
+	                </div>
+	            </div>
+	           </c:forEach>
+	        </div>
+	        
+	        <!-- 모달 -->		    
+							  <div class="modal" id="${dto.c_idx}">
+						      <div class="modal_body" id="${dto.c_idx}">
+						      	
+						      	<div style="width: 30%; height:100%; background-color:#EFEFF6; float: right; border-radius: 5px;
+						      	  position: sticky; top: 0;">
+						      	  	<h6>
+						      			<c:if test="${dto.d_win == 1}">우승</c:if>
+						      		</h6>
+						      		<h2>${dto.d_name}</h2>
+						      		<label>
+							      		<c:if test="${dto.c_cate == 'logo'}">로고</c:if>
+							      		<c:if test="${dto.c_cate == 'character'}">캐릭터</c:if>
+							      		<c:if test="${dto.c_cate == 'naming'}">네이밍</c:if>
+							      		<c:if test="${dto.c_cate == 'print'}">인쇄</c:if>
+						      		</label><hr>
+						      		<p style="text-align: left; padding-left: 20px;">${dto.d_content}</p>
+						      		<br><hr>
+						      		<button class="button" style="width: 230px; height: 50px; border-radius: 3px; " >해당 콘테스트 보기<br></button>
+						      	</div>
+						      	<div style="float: left;">
+						      		<img style="width: 70%; height: 100%; float: left;" src="img/${dto.d_img_2}">
+						      	</div>
+						      	
+						      </div>
+							</div>
+	        
+	    </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script>
+        baguetteBox.run('.cards-gallery', { animation: 'slideIn'});
+    </script>
+   <%@include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

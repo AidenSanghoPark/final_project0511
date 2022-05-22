@@ -1,6 +1,7 @@
 package dsn.controller;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -31,26 +32,16 @@ public class DesignerController {
 	
 	
 	@RequestMapping("portfolio2.do")
-	public ModelAndView portfolio2(@RequestParam(value = "cp", defaultValue = "1") int cp, @RequestParam(value="u_idx") int u_idx) {
-		
-		
-		
-		int totalCnt=designerService.getDesignerCnt(u_idx);
-		System.out.println("totalCnt= "+totalCnt);
-		int listSize=5;
-		int pageSize=5;
-		String pageStr=dsn.page.PageModule.paramPageMake("portfolio2.do", totalCnt, listSize, pageSize, cp, u_idx);
+	public ModelAndView portfolio2(@RequestParam(value="u_idx") int u_idx) {
 				
-		List lists=designerService.portfolio2(cp, listSize, u_idx);
-		
-		System.out.println("portlist"+lists);
+		List lists=designerService.portfolio2( u_idx);
+		int win=designerService.desigerTotalWin(u_idx);
 		ProfileDTO pdto=designerService.profileInfo(u_idx);
 		MemberDTO udto=designerService.userInfo(u_idx);
 		ModelAndView mav=new ModelAndView();
 		
 		mav.addObject("lists", lists);
-		mav.addObject("pageStr", pageStr);
-		
+		mav.addObject("win", win);
 		mav.addObject("pdto", pdto);
 		mav.addObject("udto", udto);
 		mav.addObject("u_idx", u_idx);
@@ -62,12 +53,12 @@ public class DesignerController {
 	@RequestMapping("review.do")
 	public ModelAndView review(@RequestParam(value = "cp", defaultValue = "1") int cp, @RequestParam(value="u_idx") int u_idx) {
 		
-		int totalCnt=designerService.reviewTotalCnt();
+		int totalCnt=designerService.reviewTotalCnt(u_idx);
 		int listSize=5;
 		int pageSize=5;
-		String pageStr=dsn.page.PageModule.pageMake("review.do", totalCnt, listSize, pageSize, cp);
+		String pageStr=dsn.page.PageModule.paramPageMake("review.do", totalCnt, listSize, pageSize, cp, u_idx);
 		
-		
+		int win=designerService.desigerTotalWin(u_idx);
 		ProfileDTO pdto=designerService.profileInfo(u_idx);
 		MemberDTO udto=designerService.userInfo(u_idx);
 		
@@ -78,7 +69,7 @@ public class DesignerController {
 		mav.addObject("lists", lists);
 		mav.addObject("pageStr", pageStr);
 		
-	
+		mav.addObject("win", win);
 		mav.addObject("pdto", pdto);
 		mav.addObject("udto", udto);
 		mav.addObject("u_idx", u_idx);
@@ -154,7 +145,7 @@ public class DesignerController {
 	public ModelAndView designer(@RequestParam(value = "cp", defaultValue = "1") int cp) {
 		
 		int totalCnt=designerService.designerListTotalCnt();
-		int listSize=10;
+		int listSize=5;
 		int pageSize=5;
 		String pageStr=dsn.page.PageModule.pageMake("designer.do", totalCnt, listSize, pageSize, cp);
 		
@@ -187,14 +178,14 @@ public class DesignerController {
 //		int pageSize=5;
 //		String pageStr=dsn.page.PageModule.pageMake("designer.do", totalCnt, listSize, pageSize, cp);
 //		
-////		List userlist=designerSevice.designerAllList();
-////		for(int i=0;i<userlist.size();i++) {
-////			
-////			List photos=designerSevice.designPhotos((int) userlist.get(i));
-////			mav.addObject("photos", photos);
-////		}
+//		List userlist=designerSevice.designerAllList();
+//		for(int i=0;i<userlist.size();i++) {
+//			
+//			List photos=designerSevice.designPhotos((int) userlist.get(i));
+//			mav.addObject("photos", photos);
+//		}
 //		List lists=designerSevice.designerList(cp, listSize);
-////		ProfileDTO pdto=designerSevice.profileInfo(1);
+//		ProfileDTO pdto=designerSevice.profileInfo(1);
 //		
 //		System.out.println("lists="+lists);
 //
@@ -202,10 +193,11 @@ public class DesignerController {
 //		
 //		mav.addObject("lists", lists);
 //		mav.addObject("pageStr", pageStr);
-////		mav.addObject("pdto", pdto);
+//		mav.addObject("pdto", pdto);
 //		
 //
 //		mav.setViewName("designer/designer");
 //		return mav;
 //	}
+//}
 }

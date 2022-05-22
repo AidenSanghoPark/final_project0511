@@ -1,7 +1,6 @@
 package dsn.contest.model;
 
 import java.util.HashMap;
-
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dsn.contest.model.*;
+import dsn.designer.model.DesignerDTO;
 import dsn.trade.model.TrdDTO;
 
 @Service
@@ -102,6 +102,11 @@ public class ConServiceImple implements ConService{
 		conCount(readnum,dto.getC_idx());
 		return dto;
 	}
+	@Override
+	public ConDTO conContent2(int c_idx) {
+		ConDTO dto=conDao.conContent(c_idx);
+		return dto;
+	}
 
 	@Override
 	public int conCount(int c_readnum, int c_idx) {
@@ -113,7 +118,6 @@ public class ConServiceImple implements ConService{
 		return count;
 		
 	}
-	
 	
 	@Override
 	public ConDTO conInfo(int c_idx) {
@@ -194,6 +198,16 @@ public class ConServiceImple implements ConService{
 		List dlists=conDao.conPart(map);
 		return dlists;
 	}
+	
+	@Override
+	public int designInfo(int d_idx, int c_idx) {
+		Map map=new HashedMap();
+		map.put("d_idx", d_idx);
+		map.put("c_idx", c_idx);
+		int count=conDao.designInfo(map);
+		return count;
+	}
+
 
 
 	@Override
@@ -242,6 +256,12 @@ public class ConServiceImple implements ConService{
 	public int addPrintTrade(TrdDTO dto) {
 		int count = conDao.addPrintTrade(dto);
 		return count;
+	}
+
+	@Override
+	public DesignerDTO conPartContent(int d_idx) {
+		DesignerDTO dto = conDao.conPartContent(d_idx);
+		return dto;
 	}
 
 
