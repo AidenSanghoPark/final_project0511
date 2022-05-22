@@ -50,24 +50,113 @@
 #btn:hover:after{
 	left: calc(100% + 50px); opacity: 1;
 }
+/*---------------*/
+/***** Layla *****/
+/*---------------*/
+
+figure.effect-layla {
+   background: #000000;
+}
+
+
+figure.effect-layla figcaption {
+   padding: 30px;
+}
+
+figure.effect-layla figcaption::before,
+figure.effect-layla figcaption::after {
+   content: '';
+   opacity: 0;
+}
+
+figure.effect-layla figcaption::before {
+   top: 50px;
+   right: 30px;
+   bottom: 50px;
+   left: 30px;
+   border-top: 1px solid #fff;
+   border-bottom: 1px solid #fff;
+   -webkit-transform: scale(0,1);
+   transform: scale(0,1);
+   -webkit-transform-origin: 0 0;
+   transform-origin: 0 0;
+}
+
+figure.effect-layla figcaption::after {
+   border-right: 1px solid #fff;
+   border-left: 1px solid #fff;
+   -webkit-transform: scale(1,0);
+   transform: scale(1,0);
+   -webkit-transform-origin: 100% 0;
+   transform-origin: 100% 0;
+}
+
+figure.effect-layla h2 {
+   padding-top: 26%;
+   -webkit-transition: -webkit-transform 0.35s;
+   transition: transform 0.35s;
+}
+
+figure.effect-layla p {
+   padding: 0.5em 2em;
+   text-transform: none;
+   opacity: 0;
+   -webkit-transform: translate3d(0,-10px,0);
+   transform: translate3d(0,-10px,0);
+}
+
+figure.effect-layla img,
+figure.effect-layla h2 {
+   -webkit-transform: translate3d(0,-30px,0);
+   transform: translate3d(0,-30px,0);
+}
+
+figure.effect-layla img,
+figure.effect-layla figcaption::before,
+figure.effect-layla figcaption::after,
+figure.effect-layla p {
+   -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+   transition: opacity 0.35s, transform 0.35s;
+}
+
+figure.effect-layla:hover img {
+   opacity: 0.7;
+   -webkit-transform: translate3d(0,0,0);
+   transform: translate3d(0,0,0);
+}
+
+figure.effect-layla:hover figcaption::before,
+figure.effect-layla:hover figcaption::after {
+   opacity: 1;
+   -webkit-transform: scale(1);
+   transform: scale(1);
+}
+
+figure.effect-layla:hover h2,
+figure.effect-layla:hover p {
+   opacity: 1;
+   -webkit-transform: translate3d(0,0,0);
+   transform: translate3d(0,0,0);
+}
+
+figure.effect-layla:hover figcaption::after,
+figure.effect-layla:hover h2,
+figure.effect-layla:hover p,
+figure.effect-layla:hover img {
+   -webkit-transition-delay: 0.15s;
+   transition-delay: 0.15s;
+}
+
 </style>
 </head>
-<body>
-	<section id="designer">
-		<div class="d-grid gap-2">
-			<img src="img/designer.png" style="width: 800px; height: 700px;"> 
-		</div>
-		<div style="padding-left: 230px;">
-  			<button class="btn btn-dark" type="button" style="width: 300px;" id="btn" onclick="window.open('memberJoin.do?u_type=2')">디자이너 가입</button>
-  		</div>	  
-	</section>
-	<section id="client">
-		<div class="d-grid gap-2">
-			<img src="img/designer.png" style="width: 800px; height: 700px;"> 
-		</div>
-		<div style="padding-left: 230px;">
-  			<button class="btn btn-dark" type="button" style="width: 300px;"  id="btn" onclick="window.open('memberJoin.do?u_type=1')">의뢰인 가입</button>  
-  		</div>	
-	</section>
+<body style="background-color: black;">
+	<div class="grid" style="sheight: 30%; padding-top: 100px;">
+		<figure class="effect-layla" style="float: left; padding-left: 200px;">
+			<a href="memberJoin.do?u_type=2"><img src="img/designer1.png"/></a>       
+		</figure>
+		<figure class="effect-layla" style="float: right; padding-right: 200px;">
+			<a href="memberJoin.do?u_type=1"><img src="img/client.png"/></a>       
+		</figure>
+	</div>
 </body>
 </html>

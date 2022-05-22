@@ -441,7 +441,7 @@ a{
 			</div>
 
 			<br>
-		<div style="margin: 0 auto; padding-left: 300px; float: left;">
+		<div style="margin: 0 auto; padding-left: 315px; float: left;">
 			<button class="button">참여작 보기</button>
 			<a href="conContent.do?c_idx=${c_idx }"><button class="button">브리핑 보기</button></a>
 			<a href="contestJoin.do?c_idx=${c_idx }"><button class="button">콘테스트 참여</button></a>
