@@ -159,18 +159,18 @@
 						      	  	<h6 style="padding-top: 10px;">
 						      			<c:if test="${dto.d_win == 1}"><i class="fa-solid fa-crown"></i>&nbsp;우승</c:if>
 						      		</h6>
-						      		<h2 style="font-weight: bold;">${dto.d_name}</h2>
-						      		<label style="border-radius:3px;  background-color: #a9a9a9; width:50px; height:19px; margin: auto; color:#ffffff; font-style: 8px">
+						      		<h3 style="font-weight: bold;">${dto.d_name}</h3>
+						      		<label style="border-radius:3px;  background-color: #a9a9a9; width:50px; height:19px; margin: auto; color:#ffffff; font-size: 13px;">
 							      		<c:if test="${dto.c_cate == 'logo'}">로고</c:if>
 							      		<c:if test="${dto.c_cate == 'character'}">캐릭터</c:if>
 							      		<c:if test="${dto.c_cate == 'naming'}">네이밍</c:if>
 							      		<c:if test="${dto.c_cate == 'print'}">인쇄</c:if>
 						      		</label><hr>
-						      		<p style="text-align: left; padding-left: 20px;">${dto.d_content}</p><hr>
+						      		<label style="text-align: left; padding-left: 10px; size: 10px;">${dto.d_content}</label><hr>
 						      		<br><hr>
 						      	</div>
 						      	<div>
-						      		<img style="width: 70%; height: 100%; float: left;" src="img/${dto.d_img_2}">
+						      		<img style="width: 70%; height: 100%; float: left; padding-right: 40px;" src="img/${dto.d_img_2}">
 						      	</div>
 						      	
 						      </div>

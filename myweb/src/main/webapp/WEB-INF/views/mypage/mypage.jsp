@@ -85,7 +85,7 @@ ul{
 			    	<c:forEach var="ddto" items="${dlists }">
 				    	<fieldset>
 				    		<img src="mypageimg/cateimg.jpg">
-				    		<label style="color:blue;">참여일:${ddto.d_date }</label>|<label>${ddto.d_name }</label>
+				    		<label style="color:blue;">참여일:${ddto.d_date }</label> | <label>${ddto.d_name }</label>
 				    	</fieldset><br>
 			    	</c:forEach>
 		    		<div id="page">${dpageStr }</div>

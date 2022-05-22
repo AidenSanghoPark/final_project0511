@@ -188,7 +188,7 @@ public class ContestController {
 		mav.addObject("result", result);
 		//mav.addObject("upload", dto.getUpload());
 		if(null != dto.getUpload()){
-			String path = request.getSession().getServletContext().getRealPath("img/");
+			String path = request.getSession().getServletContext().getRealPath("/img/");
 			copyInto(dto.getUpload(), path); 
 		}
 		mav.setViewName("contest/printHold");
