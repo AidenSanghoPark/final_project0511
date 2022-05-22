@@ -227,7 +227,7 @@
 <div class="container"><br><br><br>
 <div class="row bootstrap snippets bootdeys"> <br><br><br><br>
     <div class="col-md-9 col-sm-7"> <br><br><br><br>
-        <h2 style="color: dark gray; font-size: 25px; font-family: Georgia; font-weight: bold;"><i class="fa-solid fa-crown"></i>&nbsp;이달의 TOP 디자이너가 궁금하신가요?</h2> 
+        <h2 style="color: dark gray; font-size: 25px; font-family: Georgia; font-weight: bold;"><i class="fa-solid fa-crown"></i>&nbsp;&nbsp;이달의 TOP 디자이너가 궁금하신가요?</h2> 
     </div><br>
 </div><br>
 <c:forEach var="dto" items="${lists}"> 
@@ -236,9 +236,9 @@
         <img src="profileimg/${dto.p_img}" class="img-rounded" style="margin: 10px;"> 
     </a> 
     <div class="member-details" style="padding-left: 20px;"> 
-        <h4 style="font-size: 20px; font-family: Georgia; font-weight: bold;">${dto.u_nick}</h4> 
+        <h4 style="font-size: 20px; font-family: Georgia; font-weight: bold; padding-top: 10px;">${dto.u_nick}</h4> 
         <div class="row info-list"> 
-            <div class="col-sm-4" style="font-weight: bold; font-size: 15px; color: gray;">
+            <div class="col-sm-4" style="font-weight: bold; font-size: 14px; color: gray;">
             	<i class="fa-solid fa-crown"></i>
             		우승 ${dto.total_win}회
             </div> 
@@ -250,7 +250,7 @@
             <c:url var="contentUrl" value="portfolio2.do">
 					<c:param name="u_idx">${dto.u_idx}</c:param>
 			</c:url>
-            <a href="${contentUrl}"><input type="button" value="포트폴리오" class="btn btn-secondary" style="padding-left: 30px; padding-right: 30px;"></a>
+            <a href="${contentUrl}"><input type="button" value="포트폴리오" class="btn btn-secondary" style="padding-left: 40px; padding-right: 40px;"></a>
             </div> 
             <div class="clear"></div> 
             <div class="col-sm-4" style="padding-left: 30px;">
