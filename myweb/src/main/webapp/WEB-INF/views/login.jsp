@@ -92,10 +92,12 @@ div{
                 </p>    
                 	<h5 id="re_check"></h5>
 				<input type="hidden" name="_autologin" value="on">
-				<input type="checkbox" name="useCookie" id="autologin">로그인유지
+				<div style="text-align: right; padding-right: 50px;">		
+					<input type="checkbox" name="useCookie" id="autologin">로그인유지
+				</div>		
 				<br>
 				<br>
-				<button class="btn btn-dark" type="submit" onclick="logincheck()"  style="width: 100%;">LOGIN</button>
+				<button class="btn btn-dark" type="submit" onclick="logincheck()" style="width: 80%;">LOGIN</button>
 			</form>
 		</section>
 </div>

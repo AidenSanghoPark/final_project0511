@@ -27,7 +27,7 @@
 }
 </style>
 <body>
-<nav class="navbar navbar-expand navbar-dark fixed-top" aria-label="Second navbar example" style="background-color: black; height: 70px;"> 
+<nav class="navbar navbar-expand navbar-dark fixed-top" aria-label="Second navbar example" style="background-color: black; height: 80px;"> 
 	<div style="margin: 0 auto;">
       	<nav style="float:left;">
       	<div class="text-center mt-3 collapse navbar-collapse" id="navbarNavDropdown">
