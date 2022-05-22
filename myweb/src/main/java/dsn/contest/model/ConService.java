@@ -31,6 +31,7 @@ public interface ConService {
 	public int contestPay(int c_idx);
 	public int designInfo(int d_idx, int c_idx);
 	public int joinSum(int c_idx);
+	public DesignerDTO nickname(int u_idx);
 	//logo
 	public int addLogo(ConDTO dto);	
 	public int addLogoTrade(TrdDTO dto);

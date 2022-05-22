@@ -195,4 +195,11 @@ public class ConDAOImple implements ConDAO{
 			return dto;
 		}
 
+
+		@Override
+		public DesignerDTO nickname(int u_idx) {
+			DesignerDTO mdto = sqlMap.selectOne("nickname", u_idx);
+			return mdto;
+		}
+
 }

@@ -436,4 +436,7 @@
   		WHERE
   			a.c_idx = #{c_idx}
   	</select>
+  	<select id="nickname" parameterType="Integer" resultType="dsn.designer.model.DesignerDTO">
+  		SELECT U_NICK FROM F_USER WHERE U_IDX=#{U_IDX}
+  	</select>
 </mapper>

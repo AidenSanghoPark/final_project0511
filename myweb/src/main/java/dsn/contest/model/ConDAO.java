@@ -54,6 +54,7 @@ public interface ConDAO {
 	public DesignerConDTO contestContent(Map map);
 	public List conPart(Map map);
 	public DesignerDTO conPartContent(int d_idx);
+	public DesignerDTO nickname(int u_idx);
 
 	
 }
