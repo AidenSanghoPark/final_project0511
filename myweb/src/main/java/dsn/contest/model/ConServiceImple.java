@@ -94,6 +94,13 @@ public class ConServiceImple implements ConService{
 	}
 	
 	@Override
+	public int ContestCntEnd() {
+		int cnt=conDao.ContestCntEnd();
+		cnt=cnt==0?1:cnt;
+		return cnt;
+	}
+	
+	@Override
 	public ConDTO conContent(int c_idx) {
 		ConDTO dto=conDao.conContent(c_idx);
 		int readnum=dto.getC_readnum();
