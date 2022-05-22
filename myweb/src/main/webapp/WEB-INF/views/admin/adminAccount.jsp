@@ -19,7 +19,18 @@ a:link{
 a:hover {
   color : black;
 }
+#tbwidth {
 
+	width: 40%;
+	text-align: center;
+	margin: 0 auto;
+	position: absolute; left: 610px;
+}
+#content {
+	
+	margin: auto;
+
+}
 </style>
 <!-- jQUERY INCLUDE -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
@@ -30,7 +41,9 @@ a:hover {
 
 </head>
 <body>
-<table class="table table-striped">
+<br>
+
+<table class="table table-striped" id="tbwidth">
 	<thead>
 	<tr>
 		<th>번호</th>
@@ -46,7 +59,7 @@ a:hover {
 	<tbody>
 		<c:if test="${empty lists}">
 			<tr>
-				<td colspan="5" align="center">
+				<td colspan="7" align="center">
 					출금요청 사항이 없습니다.
 				</td>
 			</tr>
@@ -80,11 +93,12 @@ a:hover {
 	</tbody>
 	<tfoot>
 		<tr>
-			<td colspan="5" align="center">
+			<td colspan="7" align="center">
 				${pageStr}
 			</td>
 		</tr>
 	</tfoot>
 </table>
+
 </body>
 </html>
