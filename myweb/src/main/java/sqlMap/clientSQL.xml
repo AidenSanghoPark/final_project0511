@@ -146,12 +146,14 @@
 			  , C_NAME
 			  , C_DETAILS
 			  , C_IDEA
+			  , C_READNUM
 			  , C_PAY
 			  , C_OPENDATE
 			  , C_ENDDATE
 			  , U_IDX
 			  , C_BLOCK
-			  , C_LOGO)
+			  , C_LOGO
+			  )
 		VALUES(
 			#{c_idx},
 			#{c_subject},
@@ -162,6 +164,7 @@
 			#{c_file},
 			#{c_name},
 			#{c_details},
+			0,
 			'idea',
 			#{c_pay},
 			sysdate,

@@ -53,7 +53,7 @@
 		<div>
 			<c:if test="${cdto.u_idx == login.u_idx}">
 				<button class="button" style="width: 230px; height: 50px; border-radius: 3px;" id="choice">당선하기<br></button>
-			</c:if>
+				</c:if>
 		</div>
 		<div align="center">
 			<a href="#" rel="modal:close"><button class="btn btn-secondary" style="font-size:70%;">닫기</button></a>

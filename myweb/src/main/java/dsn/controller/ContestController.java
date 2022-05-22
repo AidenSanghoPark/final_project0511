@@ -76,7 +76,7 @@ public class ContestController {
 			String path = request.getSession().getServletContext().getRealPath("img/");
 			copyInto(dto.getUpload(), path); 
 		}
-		mav.setViewName("contest/logoHold");
+		mav.setViewName("contest/index");
 		return mav;
 	}
 	//로고 트레이드 form
