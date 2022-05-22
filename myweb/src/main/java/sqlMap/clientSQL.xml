@@ -17,11 +17,11 @@
 		select count(*) from f_client where (select rownum as rnum,a.* from
 		(select * from f_client order by c_idx desc)a)b
 		where rnum<![CDATA[>=]]>#{start}
-		and rnum<![CDATA[<=]]>#{end}
+		and rnum<![CDATA[<]]>#{end}
 	</select>
 	
 	<select id="ContestCnt" resultType="Integer">
-		select count(*) from f_client where c_datediff<![CDATA[>=]]>0
+		select count(*) from f_client where c_datediff<![CDATA[>]]>0
 	</select>
 	
 	<select id="ContestCntEnd" resultType="Integer">
@@ -41,7 +41,7 @@
 			(select * from f_client where c_cate=#{c_cate} order by c_idx desc)a)b
 			where rnum<![CDATA[>=]]>#{start}
 			and rnum<![CDATA[<=]]>#{end} 
-			and c_datediff<![CDATA[<=]]>0
+			and c_datediff<![CDATA[<]]>0
    	</select>
    
    	<select id="cateEnd" parameterType="Map" resultType="dsn.contest.model.ConDTO">
@@ -60,8 +60,9 @@
       where
          c_idx=#{c_idx}
    </select>
-    <update id="dateUp">
-    UPDATE F_CLIENT SET C_DATEDIFF=TRUNC(SYSDATE-C_ENDDATE)
+   
+ 	<update id="dateUp">
+    UPDATE F_CLIENT SET C_DATEDIFF=TRUNC(SYSDATE-C_ENDDATE) WHERE C_DATEDIFF != 0
     </update>
    
 	
@@ -86,7 +87,13 @@
 			RNUM <![CDATA[>=]]> #{start}
 		AND
 			RNUM <![CDATA[<=]]> #{end}
-		AND C_DATEDIFF <![CDATA[<=]]> 0
+		AND C_DATEDIFF <![CDATA[<]]> 0
+		
+			and <if test="searchType == 'title'">c_subject like '%'||#{keyword}||'%'</if>
+			<if test="searchType == 'content'">c_deas like '%'||#{keyword}||'%'</if>
+			<if test="searchType == 'titlecontent'">c_subject like '%'||#{keyword}||'%'
+											 OR c_deas like '%'||#{keyword}||'%'</if>
+			<if test="searchType == null or searchType ==''">1=1</if>
 		
 	</select>
 	<select id="conInfo" parameterType="Integer" resultType="dsn.contest.model.ConDTO">
