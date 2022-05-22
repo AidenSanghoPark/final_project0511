@@ -7,10 +7,9 @@
 	<select id="conEnd" parameterType="Map" resultType="dsn.contest.model.ConDTO">
 		select * from
 		(select rownum as rnum,a.* from
-		(select * from f_client order by c_idx desc)a)b
+		(select * from f_client where c_datediff<![CDATA[>=]]>0 order by c_idx desc)a)b
 		where rnum<![CDATA[>=]]>#{start}
 		and rnum<![CDATA[<=]]>#{end} 
-		and c_datediff<![CDATA[>=]]>0
 	</select>
 	
 	<select id="listSizeCnt" resultType="Integer">
@@ -47,10 +46,9 @@
    	<select id="cateEnd" parameterType="Map" resultType="dsn.contest.model.ConDTO">
 	    select * from
 			(select rownum as rnum,a.* from
-			(select * from f_client where c_cate=#{c_cate} order by c_idx desc)a)b
+			(select * from f_client where c_cate=#{c_cate} and c_datediff<![CDATA[>=]]>0 order by c_idx desc)a)b
 			where rnum<![CDATA[>=]]>#{start}
 			and rnum<![CDATA[<=]]>#{end} 
-			and c_datediff<![CDATA[>=]]>0
    	</select>
    	 <select id="conContent" parameterType="Integer" resultType="dsn.contest.model.ConDTO">
       select

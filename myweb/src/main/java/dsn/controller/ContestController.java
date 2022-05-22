@@ -352,7 +352,7 @@ public class ContestController {
 	}
 	
 	@RequestMapping(value = "contestEndChoice.do", method = RequestMethod.POST)
-	public ModelAndView contestEndChoice(
+	 public @ResponseBody ModelAndView contestEndChoice(
 			@RequestParam int c_idx,
 			@RequestParam int d_idx) {
 		System.out.println(c_idx);
