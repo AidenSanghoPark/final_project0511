@@ -16,6 +16,7 @@ public interface ConService {
 	public List cateEnd(int cp, int listSize, String c_cate);
 	public int dateUp();
 	public int ContestCnt();
+	public int ContestCntEnd();
 	public ConDTO conContent(int c_idx);
 	public ConDTO conContent2(int c_idx);
 	public int conCount(int c_readnum, int c_idx);
@@ -25,11 +26,12 @@ public interface ConService {
 	public void updateTrd(ConDTO dto);
 	public void designerWin(int d_idx);
 	public void contestEnd(int c_idx);
-	public void payUpdate(int u_idx,int a_amount,int uidx,int amount);
+	public void payUpdate(int u_idx,int a_amount,String c_subject,int uidx,int amount);
 	public DesignerConDTO contestContent(int d_idx, int c_idx);
 	public int designerUser(int d_idx);
 	public int contestPay(int c_idx);
 	public int designInfo(int d_idx, int c_idx);
+	public int joinSum(int c_idx);
 	//logo
 	public int addLogo(ConDTO dto);	
 	public int addLogoTrade(TrdDTO dto);

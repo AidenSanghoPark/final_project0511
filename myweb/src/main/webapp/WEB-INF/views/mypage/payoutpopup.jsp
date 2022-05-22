@@ -23,6 +23,7 @@
 <body>
 <section>
 <form name="payout" action="payoutaction.do">
+<input type="hidden" name="u_idx" value="${u_idx}">
 	<table class="payout">
 		<tr>
 			<th>출금신청금액</th>

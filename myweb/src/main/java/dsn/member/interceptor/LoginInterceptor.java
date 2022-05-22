@@ -40,19 +40,19 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
             Object destination = httpSession.getAttribute("destination");
             Object URL = httpSession.getAttribute("logUrl");
             String logUrl= (String) URL;
-            System.out.println(URL);
-            
-//            if(logUrl.contains("logout.do")) {
-//            	response.sendRedirect(destination != null ? (String) destination : "index.do");
-//            }else {
+//            System.out.println(logUrl.contains("logout.do"));
+//            System.out.println(logUrl.contains("loginPost.do"));
+            if(logUrl.contains("logout.do")||logUrl.contains("loginPost.do")) {
+            	response.sendRedirect(destination != null ? (String) destination : "index.do");
+            }else {
             	response.sendRedirect(destination != null ? (String) destination : (String) URL);
-          //  }
+            }
             
             
         }else {
         	
-        	modelAndView.addObject("msg", "로그인 실패");
-        	modelAndView.addObject("gopage", "index.do");
+        	modelAndView.addObject("msg", "아이디 혹은 비밀번호가 일치하지 않습니다.");
+        	modelAndView.addObject("gopage", "login.do");
         	modelAndView.setViewName("/member/loginMsg");
 //        	response.setContentType("text/html; charset=UTF-8");
 //

@@ -59,6 +59,12 @@ public class ConDAOImple implements ConDAO{
 			int cnt=sqlMap.selectOne("ContestCnt");
 			return cnt;
 		}
+		
+		@Override
+		public int ContestCntEnd() {
+			int cnt=sqlMap.selectOne("ContestCntEnd");
+			return cnt;
+		}
 
 
 		@Override
@@ -86,6 +92,10 @@ public class ConDAOImple implements ConDAO{
 		@Override
 		public ConDTO conInfo(int c_idx) {
 			return sqlMap.selectOne("conInfo",c_idx);
+		}
+		@Override
+		public int joinSum(int c_idx) {
+		return sqlMap.selectOne("joinSum", c_idx);
 		}
 		@Override
 		public int contestJoin(DesignerConDTO dto) {
