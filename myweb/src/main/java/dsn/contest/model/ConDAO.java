@@ -31,6 +31,7 @@ public interface ConDAO {
 	public void updateTrd(ConDTO dto);
 	public int designerUser(int d_idx);
 	public int contestPay(int c_idx);
+	public int designInfo(Map map);
 	//logo
 	public int addLogo(ConDTO dto);	
 	public int addLogoTrade(TrdDTO dto);

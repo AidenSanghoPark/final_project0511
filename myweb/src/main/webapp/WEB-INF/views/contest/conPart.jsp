@@ -475,7 +475,7 @@ a{
 					      		<br>
 					      		<p style="text-align: left; padding-left: 20px;">참여작 내용</p>
 					      		<br>
-					      		<c:if test="${dto.u_idx == login.u_idx}">
+					      		<c:if test="${dto.u_idx == login.u_idx && dto.c_datediff<0}">
 					      		<button class="button" style="width: 230px; height: 50px; border-radius: 3px;" id="choice">당선하기<br></button>
 					      		</c:if>
 					      	</div>

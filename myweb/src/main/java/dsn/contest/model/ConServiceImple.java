@@ -191,6 +191,15 @@ public class ConServiceImple implements ConService{
 		List dlists=conDao.conPart(map);
 		return dlists;
 	}
+	
+	@Override
+	public int designInfo(int d_idx, int c_idx) {
+		Map map=new HashedMap();
+		map.put("d_idx", d_idx);
+		map.put("c_idx", c_idx);
+		int count=conDao.designInfo(map);
+		return count;
+	}
 
 
 

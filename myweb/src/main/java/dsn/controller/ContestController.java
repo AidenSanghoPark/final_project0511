@@ -42,7 +42,9 @@ public class ContestController {
 	
 	//콘테스트 초이스
 	@RequestMapping("/categoryChoice.do")
-	public ModelAndView contestHold() {
+	public ModelAndView contestHold(HttpServletRequest request) {
+//		String url=request.getHeader("REFERER");
+//    	request.getSession().setAttribute("logUrl", url);
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("contest/categoryChoice");
 		return mav;
@@ -208,6 +210,7 @@ public class ContestController {
 		
 		Object obj=session.getAttribute("login");
 		MemberDTO mdto = (MemberDTO) obj;
+		
 //		String url=request.getHeader("REFERER");
 //    	request.getSession().setAttribute("conUrl", url);
 		ModelAndView mav=new ModelAndView();

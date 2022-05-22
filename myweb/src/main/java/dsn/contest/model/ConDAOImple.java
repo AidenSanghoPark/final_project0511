@@ -66,6 +66,11 @@ public class ConDAOImple implements ConDAO{
 			ConDTO dto=sqlMap.selectOne("conContent", c_idx);
 			return dto;
 		}
+		
+		@Override
+		public int designInfo(Map map) {
+		return sqlMap.selectOne("designInfo", map);
+		}
 
 
 		@Override

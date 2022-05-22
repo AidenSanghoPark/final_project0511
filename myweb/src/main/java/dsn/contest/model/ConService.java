@@ -27,6 +27,7 @@ public interface ConService {
 	public DesignerConDTO contestContent(int d_idx, int c_idx);
 	public int designerUser(int d_idx);
 	public int contestPay(int c_idx);
+	public int designInfo(int d_idx, int c_idx);
 	//logo
 	public int addLogo(ConDTO dto);	
 	public int addLogoTrade(TrdDTO dto);

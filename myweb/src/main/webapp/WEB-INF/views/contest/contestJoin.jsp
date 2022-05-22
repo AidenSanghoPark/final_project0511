@@ -408,24 +408,24 @@ a{
 		<input type="hidden" name="c_cate" value="${condto.c_cate }">
 		<input type="hidden" name="u_idx" value="${mdto.u_idx }">
 		<div>
-			작품 제목 <input type="text" name="d_name">
+			작품 제목 <input type="text" name="d_name" required>
 		</div>
 		<div>
 		</div>
 		<div>
-			<input type="file" name="uploadfile1" id="uploadfile1" >
+			<input type="file" name="uploadfile1" id="uploadfile1" accept="image/gif, image/jpeg, image/jpg, image/png" required>
 		</div>
 		<div class="img_wrap">
            <img id="img1" />
        </div>
 		<div>
-			<input type="file" name="uploadfile2" id="uploadfile2" >
+			<input type="file" name="uploadfile2" id="uploadfile2" accept="image/gif, image/jpeg, image/jpg, image/png" required>
 		</div>
 		<div class="img_wrap">
            <img id="img2" />
        </div>
 		<div>
-			<textarea rows="50" cols="100" name="d_content"></textarea>
+			<textarea rows="50" cols="100" name="d_content" required></textarea>
 		</div>
 		<div>
 			<input type="checkbox" name="check">
@@ -437,12 +437,6 @@ a{
 	</form>
 </div>
 <script type="text/javascript">
-	var type = ${login.u_type};
-	console.log(type);
-	if(type != 2) {
-		alert('디자이너 회원만 참여 가능합니다.');
-		history.back(-1);
-	}
 	
 	
     var sel_file;

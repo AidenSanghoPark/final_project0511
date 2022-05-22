@@ -118,9 +118,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', e
         <li class="nav-item">
           <a class="nav-link" href="designer.do" style="font-size: 20px;">디자이너</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="contestJoin.do" style="font-size: 20px;">콘테스트 참가</a>
-        </li>
       </ul>
     </div>
   </div>

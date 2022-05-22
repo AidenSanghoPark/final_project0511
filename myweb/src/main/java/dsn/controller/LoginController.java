@@ -40,7 +40,8 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/loginPost.do" , method= RequestMethod.POST)
-	public void loginPost(LoginDTO ldto, Model model, HttpSession session)throws Exception{
+	public void loginPost(LoginDTO ldto, Model model, HttpSession session, HttpServletRequest request)throws Exception{
+		
 		
 		MemberDTO memberVO = memberService.login(ldto);
 		

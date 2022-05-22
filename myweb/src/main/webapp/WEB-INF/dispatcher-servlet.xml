@@ -110,7 +110,8 @@
 			<mvc:mapping path="/printHold.do"/>
 			<mvc:mapping path="/myPage.do"/>
 			<mvc:mapping path="/logoHold.do"/>
-			<mvc:mapping path="/ask.do"/>			
+			<mvc:mapping path="/ask.do"/>
+			<mvc:mapping path="/categoryChoice.do"/>		
 			<ref bean="authInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
