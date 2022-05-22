@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://kit.fontawesome.com/180c933499.js" crossorigin="anonymous"></script>
 <style>
 .picture{
 	float:left;
@@ -22,8 +23,8 @@
 	float:left;
 }
 textarea{
-	width:1070px;
-	height:300px;
+	width:900px;
+	height:170px;
 }
 .profile{
 	float: center;
@@ -41,21 +42,26 @@ h5{
     height: 150px; 
     border-radius: 70%;
 }
+.trright{
+	float: right;
+
+}
 </style>
 </head>
 <body>
+
 <%@include file="/WEB-INF/views/header.jsp" %>
 <c:if test="${pdto == null}">
 	<form name="profileInsert" action="profileInsert.do" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="u_idx" value="${u_idx}">
-	<h1><br>&nbsp;&nbsp;&nbsp;프로필 입력하기</h1>
+	<input type="hidden" name="u_idx" value="${u_idx}"><br><br><br><br>
+	<h2 style="font-weight: bold;"><br>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-regular fa-circle-user fa-lg"></i>&nbsp;&nbsp;프로필 입력하기</h2>
 		<section class="picture">
-			<h5>프로필 사진</h5><hr>
-			<img class="photo" src="profileimg/profile.PNG"><br>
-			<input type="file" name="upload" accept="image/png, image/jpeg">
+			<h5 style="font-weight: bold;">프로필 사진</h5><hr>
+			<img class="photo" src="/myweb/profileimg/profile.PNG" style="margin-left: 70px;"><br><br>
+			<input type="file" name="upload" value="${pdto.p_img}" accept="image/png, image/jpeg" style="margin-left: 30px;">
 		</section>
 		<section class="infoConfig">
-		<h4>로그인 정보</h4><hr>
+		<h4 style="font-weight: bold;">&nbsp;로그인 정보</h4><hr>
 		<table>
 			<tr>
 				<th>소개글</th>
@@ -80,27 +86,27 @@ h5{
 						<option>케이</option>
 						<option>현대</option>	
 					</select>
-				<input type="text" value="${pdto.u_wallet}" name="u_wallet">
-				</td>
-			<tr>
-				<td><input type="submit" value="입력하기" id="insert"></td>
-				<td><input type="button" value="뒤로가기" onclick="location.href='myPage.do'"></td>
-			</tr>
+				<input type="text"name="u_wallet"></td>
+				</tr>
 		</table>
+		<br><br><br>
+		<div style="padding-right: 100px;">
+				<input type="submit" value="입력하기" class="btn btn-secondary" style="float: right; font-size: 20px; text-align: right;">
+		</div>
 		</section>
 	</form>
 </c:if>
 <c:if test="${pdto != null}">
 	<form name="profileUpdate" action="profileUpdate.do" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="u_idx" value="${u_idx}">
-	<h1><br>&nbsp;&nbsp;&nbsp;프로필 수정하기</h1>
+	<input type="hidden" name="u_idx" value="${u_idx}"><br><br><br><br>
+	<h2 style="font-weight: bold;"><br>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-regular fa-circle-user fa-lg"></i>&nbsp;&nbsp;프로필 수정하기</h2>
 		<section class="picture">
-			<h5>프로필 사진</h5><hr>
-			<img class="photo" src="/myweb/profileimg/${pdto.p_img}"><br>
-			<input type="file" name="upload" value="${pdto.p_img}" accept="image/png, image/jpeg">
+			<h5 style="font-weight: bold;">프로필 사진</h5><hr>
+			<img class="photo" src="/myweb/profileimg/${pdto.p_img}" style="margin-left: 70px;"><br><br>
+			<input type="file" name="upload" value="${pdto.p_img}" accept="image/png, image/jpeg" style="margin-left: 30px;">
 		</section>
 		<section class="infoConfig">
-		<h4>로그인 정보</h4><hr>
+		<h4 style="font-weight: bold;">&nbsp;로그인 정보</h4><hr>
 		<table>
 			<tr>
 				<th>소개글</th>
@@ -125,18 +131,17 @@ h5{
 						<option>케이</option>
 						<option>현대</option>	
 					</select>
-				<input type="text" value="${pdto.u_wallet}" name="u_wallet">
-				</td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="수정하기" id="sujung"></td>
-				<td><input type="button" value="뒤로가기" onclick="location.href='myPage.do'"></td>
-			</tr>
+				<input type="text" value="${pdto.u_wallet}" name="u_wallet"></td>
+				</tr>
 		</table>
+		<br><br><br>
+		<div style="padding-right: 100px;">
+				<input type="submit" value="수정하기" class="btn btn-secondary" style="float: right; font-size: 20px; text-align: right;">
+		</div>
 		</section>
 	</form>
 </c:if>
-<div style="padding-top:1200px;">
+<div style="padding-top:600px;">
 <%@include file="/WEB-INF/views/footer.jsp" %>
 </div>
 </body>
