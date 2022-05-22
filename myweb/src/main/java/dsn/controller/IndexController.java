@@ -35,7 +35,6 @@ public class IndexController {
 		
 		ModelAndView mav=new ModelAndView();
 		int designer=indexDao.indexDesigner();
-		System.out.println(designer);
 		int coning=indexDao.indexContestIng();
 		int conend=indexDao.indexContestEnd();
 		int consum=indexDao.indexContestSum();

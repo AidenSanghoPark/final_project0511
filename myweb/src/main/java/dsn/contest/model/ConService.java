@@ -17,6 +17,7 @@ public interface ConService {
 	public int dateUp();
 	public int ContestCnt();
 	public ConDTO conContent(int c_idx);
+	public ConDTO conContent2(int c_idx);
 	public int conCount(int c_readnum, int c_idx);
 	public List conPart(int cp, int listSize, int c_idx);
 	public ConDTO conInfo(int c_idx);

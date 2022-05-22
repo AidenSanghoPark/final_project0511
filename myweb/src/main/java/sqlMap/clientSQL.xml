@@ -61,6 +61,15 @@
          c_idx=#{c_idx}
    </select>
    
+   <select id="conContent2" parameterType="Integer" resultType="dsn.contest.model.ConDTO">
+      select
+         *
+      from
+         f_client
+      where
+         c_idx=#{c_idx}
+   </select>
+   
  	<update id="dateUp">
     UPDATE F_CLIENT SET C_DATEDIFF=TRUNC(SYSDATE-C_ENDDATE) WHERE C_DATEDIFF != 0
     </update>

@@ -22,6 +22,7 @@ public interface ConDAO {
 	public int dateUp();
 	public int ContestCnt();
 	public ConDTO conContent(int c_idx);
+	public ConDTO conContent2(int c_idx);
 	public int conCount(Map map);
 	public int contestJoin(DesignerConDTO dto);
 	public void designerWin(int d_idx);

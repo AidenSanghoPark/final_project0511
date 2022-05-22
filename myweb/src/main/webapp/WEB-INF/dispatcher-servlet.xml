@@ -129,16 +129,13 @@
 	</mvc:interceptors>
 	<mvc:interceptors>	
 		<mvc:interceptor>
-			<mvc:mapping path="/contest.do"/>
+			<mvc:mapping path="/null.do"/>
 			<ref bean="desingerInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
 	<mvc:interceptors>	
 		<mvc:interceptor>
-			<mvc:mapping path="/loginHold.do"/>
-			<mvc:mapping path="/namingHold.do"/>
-			<mvc:mapping path="/characterHold.do"/>
-			<mvc:mapping path="/printHold.do"/>
+			<mvc:mapping path="/null.do"/>
 			<ref bean="clientInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>

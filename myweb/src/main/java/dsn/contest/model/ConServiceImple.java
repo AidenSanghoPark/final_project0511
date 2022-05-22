@@ -102,6 +102,11 @@ public class ConServiceImple implements ConService{
 		conCount(readnum,dto.getC_idx());
 		return dto;
 	}
+	@Override
+	public ConDTO conContent2(int c_idx) {
+		ConDTO dto=conDao.conContent(c_idx);
+		return dto;
+	}
 
 	@Override
 	public int conCount(int c_readnum, int c_idx) {
@@ -113,6 +118,7 @@ public class ConServiceImple implements ConService{
 		return count;
 		
 	}
+	
 	@Override
 	public ConDTO conInfo(int c_idx) {
 		return conDao.conInfo(c_idx);

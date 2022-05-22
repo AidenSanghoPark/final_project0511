@@ -29,28 +29,26 @@
 </head>
 <body>
 <form id="choiceForm" enctype="multipart/form-data" method="post">
-<input type="hidden" name="d_idx" value="${dto.d_idx}" />
+<input type="hidden" name="d_idx" value="${ddto.d_idx}" />
+<input type="hidden" name="c_idx" value="${c_idx}">
 <blockquote class="blockquote text-center">내용</blockquote>
-
-	
 		<!-- 모달 -->		    
 		<div class="modal-dialog">
 			<div class="mb-3">
 		      	<div style="width: 80%; height:100%; background-color:#EFEFF6; float: right; border-radius: 5px;
 		      	  position: sticky; top: 0;" id="${c_idx}" class="w3-modal">
-		      		<h4>${dto.d_name }</h4>
+		      		<h4>작품명 : ${ddto.d_name }</h4>
 		      		<h4>디자이너 이름</h4>
-		      		<input type="hidden" name="c_idx" value="${c_idx}">
 		      		<br>
 		      		<p style="text-align: left; padding-left: 20px;">참여작 내용</p>
 		      		<br>
-		      		<c:if test="${dto.u_idx == login.u_idx}">
+		      		<c:if test="${cdto.u_idx == login.u_idx}">
 		      		<button class="button" style="width: 230px; height: 50px; border-radius: 3px;" id="choice">당선하기<br></button>
 		      		</c:if>
 		      	</div>
 		      	<div style="float: left;">
-		      		<img style="width: 70%; height: 100%; float: left;" src="img/${dto.d_img_1}">
-		      		<img style="width: 70%; height: 100%; float: left;" src="img/${dto.d_img_2}">
+		      		<img style="width: 70%; height: 100%; float: left;" src="img/${ddto.d_img_1}">
+		      		<img style="width: 70%; height: 100%; float: left;" src="img/${ddto.d_img_2}">
 		      	</div>
 		      </div>
 		</div>

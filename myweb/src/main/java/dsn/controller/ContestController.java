@@ -382,9 +382,7 @@ public class ContestController {
 	@RequestMapping("conPart.do")
 	public ModelAndView conPart(@RequestParam(value = "cp", defaultValue = "1") int cp,
 			@RequestParam(value="c_idx", defaultValue="0") int c_idx) {
-		System.out.println(c_idx);
 		ConDTO dto=conService.conContent(c_idx);
-		System.out.println("conpart="+dto.getU_idx());
 		int totalCnt=conService.ContestCnt();
 		int listSize=5;
 		int pageSize=5;
@@ -402,11 +400,17 @@ public class ContestController {
 	}
 	
 	@RequestMapping("conPartContent.do")
-	public ModelAndView conPartContent(@RequestParam(value="d_idx", defaultValue="0") int d_idx) {
-		
-		DesignerDTO dto=conService.conPartContent(d_idx);
+	public ModelAndView conPartContent(
+			@RequestParam(value="d_idx", defaultValue="0") int d_idx,
+			@RequestParam(value="c_idx", defaultValue="0") int c_idx) {
+		System.out.println(c_idx);
+		ConDTO cdto=conService.conContent2(c_idx);
+		System.out.println(cdto.getU_idx());
+		System.out.println(cdto.getC_datediff());
+		DesignerDTO ddto=conService.conPartContent(d_idx);
 		ModelAndView mav=new ModelAndView();
-		mav.addObject("dto",dto);
+		mav.addObject("ddto",ddto);
+		mav.addObject("cdto", cdto);
 		
 		mav.setViewName("contest/conPartContent");
 		return mav;
