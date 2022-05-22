@@ -96,15 +96,14 @@ input[type=text]:focus{
 <body>
 <%@include file="/WEB-INF/views/header.jsp" %>
 <form name="ftest" action="namingHold_add.do" method="post" id="ftest" enctype="multipart/form-data">
+<br><br><br><br>
 <div class="container" id="menu_example"style="width: 60%; float:none; margin:0 auto" >
 	<div class="tabmenu">
-	   
-	   <br><br><br><br>
-	   <ul class="tab_title" id="ul" style="list-style-type: none; text-align: center;">
-	       <li class="on" style="float: left;">브리핑 작성</li>
-	       <li>상금 결제</li>
+	   <ul class="tab_title" id="ul" style="list-style-type: none; text-align: center; font-weight: bold;">
+	       <li class="on" style="float: left; padding-left: 130px;">브리핑 작성</li>
+	       <li style="padding-left: 300px;">상금 결제</li>
 	   </ul>
-	</div>   
+	</div> 
    <br><br>
    <div class="tab_cont" >
       <section class="on">
@@ -441,6 +440,47 @@ function nextNaming(){
     // section1을 trigger로 click해줘서 제이쿼리 click이 돌게함.
 }
 
+/*function pay(){
+//     var totalPrice = $("#totalPrice").val();
+    // IMP.request_pay(param, callback) 결제창 호출
+    IMP.request_pay({ // param
+        pg: "kakaopay",
+        pay_method: "kakaopay",
+        merchant_uid: randomNum(),
+        name: $("#selectType").val(), 
+        amount: $("#t_pay").val()
+    }, function (rsp) { // callback
+        if (rsp.success) {
+            // ajax 거래내역 insert 추가 필요
+            
+            var dataForm = {
+            "t_pay" : $("#t_pay").val()
+            //, "u_idx" : u_idx
+            //, "c_idx" : c_idx
+            //, "t_type" : t_type
+            };
+            
+            $.ajax({
+               url: 'namingHoldTrade_add.do', 
+               type: 'post',               
+               dataType: 'json',
+               data: dataForm,
+               success : function(result){
+                  
+                  if(!result == '0'){
+                     alert("결제성공");
+                     $("#t_idx").val(result);
+                     namingAdd();
+                  }
+               }
+            });
+            
+        } else {
+            alert("결제취소");
+            // 결제 실패 시 로직,
+        }
+    });
+}*/
 function payCard(){
 	IMP.request_pay({
 	    pg : 'html5_inicis',
@@ -480,7 +520,6 @@ function payCard(){
         }
 	});
 }
-
    $(document).ready(function(){
       $(".tab_title li").click(function() {
           var idx = $(this).index();

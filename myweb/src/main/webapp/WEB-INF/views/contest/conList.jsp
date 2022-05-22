@@ -354,12 +354,8 @@ a{
 		<script src="//code.jquery.com/jquery.js"></script>
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>    
         <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
-
-
 </head>
-
-
-<hr>
+<br><br>
 <body>
   <div class="flex-shrink-0 p-3 bg-white" style="width: 20%; float: left;">
     <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">

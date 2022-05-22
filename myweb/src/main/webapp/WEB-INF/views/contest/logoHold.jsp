@@ -97,10 +97,7 @@ input[type=text]:focus{
 <body>
 <%@include file="/WEB-INF/views/header.jsp" %>
 <form name="ftest" action="logoHold_add.do" method="post" id="ftest" enctype="multipart/form-data">
-<br>
-<br>
-<br>
-<br>
+<br><br><br><br>
 <div class="container" id="menu_example"style="width: 60%; float:none; margin:0 auto" >
 	<div class="tabmenu">
 	   <ul class="tab_title" id="ul" style="list-style-type: none; text-align: center; font-weight: bold;">

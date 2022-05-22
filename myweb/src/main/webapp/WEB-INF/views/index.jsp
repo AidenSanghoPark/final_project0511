@@ -257,7 +257,7 @@
 		 	<h1><b>디자인부터 네이밍, 아이디어까지</b></h1><br>
 			<h1><b>10만 명의 전문가에게 의뢰하세요.</b></h1>	
 		</div>
-		<div style="padding-right: 150px; padding-top: 70px;">	    
+		<div style="padding-right: 120px; padding-top: 70px;">	    
 		    <img src="img/maingif.gif" style="width: 40%; height: 90%; float: right;">	    
 		 </div>
 	</section>
