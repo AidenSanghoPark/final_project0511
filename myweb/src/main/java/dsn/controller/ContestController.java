@@ -355,6 +355,7 @@ public class ContestController {
 	public ModelAndView contestEndChoice(
 			@RequestParam int c_idx,
 			@RequestParam int d_idx) {
+		System.out.println(c_idx);
 		int getuser=conService.designerUser(d_idx);
 		System.out.println("desgineruser="+getuser);
 		int conpay=conService.contestPay(c_idx);
@@ -403,10 +404,7 @@ public class ContestController {
 	public ModelAndView conPartContent(
 			@RequestParam(value="d_idx", defaultValue="0") int d_idx,
 			@RequestParam(value="c_idx", defaultValue="0") int c_idx) {
-		System.out.println(c_idx);
 		ConDTO cdto=conService.conContent2(c_idx);
-		System.out.println(cdto.getU_idx());
-		System.out.println(cdto.getC_datediff());
 		DesignerDTO ddto=conService.conPartContent(d_idx);
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("ddto",ddto);

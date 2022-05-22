@@ -42,15 +42,18 @@
 		      		<br>
 		      		<p style="text-align: left; padding-left: 20px;">참여작 내용</p>
 		      		<br>
-		      		<c:if test="${cdto.u_idx == login.u_idx}">
-		      		<button class="button" style="width: 230px; height: 50px; border-radius: 3px;" id="choice">당선하기<br></button>
-		      		</c:if>
+		      		
 		      	</div>
 		      	<div style="float: left;">
 		      		<img style="width: 70%; height: 100%; float: left;" src="img/${ddto.d_img_1}">
 		      		<img style="width: 70%; height: 100%; float: left;" src="img/${ddto.d_img_2}">
 		      	</div>
 		      </div>
+		</div>
+		<div>
+			<c:if test="${cdto.u_idx == login.u_idx}">
+				<button class="button" style="width: 230px; height: 50px; border-radius: 3px;" id="choice">당선하기<br></button>
+			</c:if>
 		</div>
 		<div align="center">
 			<a href="#" rel="modal:close"><button class="btn btn-secondary" style="font-size:70%;">닫기</button></a>
