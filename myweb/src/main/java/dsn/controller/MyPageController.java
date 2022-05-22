@@ -185,14 +185,14 @@ public class MyPageController {
 		MemberDTO mdto = (MemberDTO) obj;
 		try {
 		String msg="";
-		int price=Integer.parseInt(dto.getW_price());
+		int price=Integer.parseInt(dto.getW_balance());
 		int blc=myPageService.getLastBalance(mdto.getU_idx());
 		if(price>blc) {
 			msg="잔액이 부족합니다.";
 			mav.addObject("msg", msg);
 			mav.setViewName("mypage/popupclose");
 			
-		}else if(dto.getW_price().equals(null)&&dto.getW_bank().equals(null)&&dto.getW_number().equals(null)){
+		}else if(dto.getW_balance().equals(null)&&dto.getW_bank().equals(null)&&dto.getW_number().equals(null)){
 			msg="출금정보를 정확히 기입해주세요.";
 			mav.addObject("msg", msg);
 			mav.setViewName("mypage/popupclose");

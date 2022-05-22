@@ -10,7 +10,7 @@
   			#{w_bank},
   			#{w_name},
   			#{w_number},
-  			#{w_price},
+  			#{w_balance},
   			sysdate,
   			0
   		)

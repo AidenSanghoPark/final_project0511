@@ -12,8 +12,8 @@
 .profile{
  text-align:center;
  float:left;
- padding-left:100px;
- padding-top:60px;
+ padding-left:180px;
+ padding-top:100px;
 }
 .profile h3{
 	text-decoration: none;
@@ -21,8 +21,8 @@
 }
 .coninfo{
 	float:left;
-	padding-left:120px;
- 	padding-top:90px;
+	padding-left:200px;
+ 	padding-top:120px;
 }
 .coninfo fieldset{
 	border:1px groove;
@@ -66,7 +66,7 @@ ul{
 					<c:param name="u_idx">${userinfo.u_idx}</c:param>
 				</c:url>
 		        <p><a class="btn btn-secondary" href="${contentUrl}">포트폴리오 관리</a></p><br>
-		        <h3>1:1 의뢰 관리</h3><br>		
+		        <h3><a href="profile.do">프로필 관리</a></h3><br>		
    			 	<h3><a href="wallet.do">가상계좌</a></h3><br>
 		        <h3><a href="accountConfig.do">계정설정</a></h3><br>
 		    </section>
@@ -96,8 +96,7 @@ ul{
 		       		<fieldset style="border-radius:3px;  background-color:skyblue; width:50px;height:13px; margin: auto">
 		        	<h6 style="color:#ffffff;align:center;font-size: 11px;">의뢰자</h6>
 		        	</fieldset>
-		        <p>${userinfo.u_email }</p>
-		        <h3>1:1 의뢰 관리</h3><br>		
+		        <p>${userinfo.u_email }</p>		
 		   			 	<h3><a href="showPayInfo.do">거래내역</a></h3><br>
 		        <h3><a href="accountConfig.do">계정설정</a></h3><br>
 		    </section>
