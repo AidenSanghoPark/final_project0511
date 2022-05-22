@@ -61,6 +61,15 @@
          c_idx=#{c_idx}
    </select>
    
+   <select id="conContent2" parameterType="Integer" resultType="dsn.contest.model.ConDTO">
+      select
+         *
+      from
+         f_client
+      where
+         c_idx=#{c_idx}
+   </select>
+   
  	<update id="dateUp">
     UPDATE F_CLIENT SET C_DATEDIFF=TRUNC(SYSDATE-C_ENDDATE) WHERE C_DATEDIFF != 0
     </update>
@@ -157,7 +166,7 @@
 			#{c_pay},
 			sysdate,
 			sysdate+7,
-			'0',
+			#{u_idx},
 			'N',
 			#{c_logo}
 		)	
@@ -359,7 +368,7 @@
    		UPDATE
    			F_CLIENT
    		SET
-   			C_DATEDIFF = 1
+   			C_DATEDIFF = 0
    		WHERE
    			C_IDX = #{c_idx}
    </update>
@@ -397,7 +406,7 @@
             f_account 
         WHERE a_idx = (SELECT max(a_idx) FROM f_account)
         
-        and #{uidx} = 16),0)+#{amount}
+        and u_idx = #{uidx}),0)+#{amount}
 			)
   	</insert>
   	
@@ -411,4 +420,7 @@
   	<select id="conPartContent" parameterType="Integer" resultType="dsn.designer.model.DesignerDTO">
 			select * from f_designer where d_idx=#{d_idx}
 	</select>
+  	<select id="designInfo" resultType="Map">
+  		select * from f_designer where d_idx = #{d_idx} and c_idx = #{c_idx}
+  	</select>
 </mapper>

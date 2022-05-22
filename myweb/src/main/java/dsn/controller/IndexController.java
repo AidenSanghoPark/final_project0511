@@ -12,6 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dsn.askManage.model.AskManageDTO;
 import dsn.askManage.model.AskManageService;
+import dsn.index.model.IndexDAO;
+import dsn.member.model.MemberDAO;
 import dsn.member.model.MemberDTO;
 import dsn.noticeManage.model.NoticeManageDTO;
 import dsn.noticeManage.model.NoticeManageService;
@@ -24,12 +26,22 @@ public class IndexController {
 	
 	@Autowired
 	private AskManageService AskManageService;
+	
+	@Autowired
+	private IndexDAO indexDao;
 
 	@RequestMapping("/index.do")
 	public ModelAndView index() {
 		
 		ModelAndView mav=new ModelAndView();
-		
+		int designer=indexDao.indexDesigner();
+		int coning=indexDao.indexContestIng();
+		int conend=indexDao.indexContestEnd();
+		int consum=indexDao.indexContestSum();
+		mav.addObject("des",designer);
+		mav.addObject("coning", coning);
+		mav.addObject("conend", conend);
+		mav.addObject("consum", consum);
 		mav.setViewName("/index");
 		return mav;
 	}

@@ -174,14 +174,14 @@ public class DesignerController {
 //		int pageSize=5;
 //		String pageStr=dsn.page.PageModule.pageMake("designer.do", totalCnt, listSize, pageSize, cp);
 //		
-////		List userlist=designerSevice.designerAllList();
-////		for(int i=0;i<userlist.size();i++) {
-////			
-////			List photos=designerSevice.designPhotos((int) userlist.get(i));
-////			mav.addObject("photos", photos);
-////		}
+//		List userlist=designerSevice.designerAllList();
+//		for(int i=0;i<userlist.size();i++) {
+//			
+//			List photos=designerSevice.designPhotos((int) userlist.get(i));
+//			mav.addObject("photos", photos);
+//		}
 //		List lists=designerSevice.designerList(cp, listSize);
-////		ProfileDTO pdto=designerSevice.profileInfo(1);
+//		ProfileDTO pdto=designerSevice.profileInfo(1);
 //		
 //		System.out.println("lists="+lists);
 //
@@ -189,10 +189,11 @@ public class DesignerController {
 //		
 //		mav.addObject("lists", lists);
 //		mav.addObject("pageStr", pageStr);
-////		mav.addObject("pdto", pdto);
+//		mav.addObject("pdto", pdto);
 //		
 //
 //		mav.setViewName("designer/designer");
 //		return mav;
 //	}
+//}
 }
