@@ -76,7 +76,7 @@ public class ContestController {
 			String path = request.getSession().getServletContext().getRealPath("img/");
 			copyInto(dto.getUpload(), path); 
 		}
-		mav.setViewName("contest/index");
+		mav.setViewName("contest/conlist");
 		return mav;
 	}
 	//로고 트레이드 form
@@ -114,7 +114,7 @@ public class ContestController {
 			String path = request.getSession().getServletContext().getRealPath("img/");
 			copyInto(dto.getUpload(), path); 
 		}
-		mav.setViewName("contest/namingHold");
+		mav.setViewName("contest/conlist");
 		return mav;
 	}
 	//네이밍 트레이드
@@ -153,7 +153,7 @@ public class ContestController {
 			String path = request.getSession().getServletContext().getRealPath("img/");
 			copyInto(dto.getUpload(), path); 
 		}
-		mav.setViewName("contest/characterHold");
+		mav.setViewName("contest/conlist");
 		return mav;
 	}
 	//캐릭터 트레이드
@@ -292,7 +292,7 @@ public class ContestController {
 			PageModule.setSearchType(searchType);
 			PageModule.setKeyword(keyword);
 
-		    int totalCnt=conService.ContestCnt();
+		    int totalCnt=conService.ContestCntEnd();
 			int listSize=4;
 			int pageSize=3;
 			
@@ -344,7 +344,7 @@ public class ContestController {
 
 	@RequestMapping("/fileDown.do")
 	public ModelAndView fileDown(@RequestParam("filename")String filename) {
-		File f=new File("C:/Users/user/Desktop/이젠/jspstudy4/myweb/src/main/webapp/upload/"+filename);
+		File f=new File("D:\\박상호\\final_project0511\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\myweb\\img\\"+filename);
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("downloadFile",f);
 		mav.setViewName("dsnDown");
