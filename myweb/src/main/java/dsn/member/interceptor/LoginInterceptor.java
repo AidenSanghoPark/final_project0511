@@ -17,22 +17,11 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 	 private static final String LOGIN = "login";
 	
 	
-	@Override
-	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
-			throws Exception {
-		HttpSession session = request.getSession();
-		
-		if(session.getAttribute(LOGIN) != null) {
-			System.out.println("인터셉터가 세션에 남아있 던 세션을 제거했습니다.");
-			session.removeAttribute(LOGIN);
-		}
-		return true;
-	}
+	
 	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		System.out.println("로그인 인터셉터 포스트 핸들 작동");
 		
         HttpSession httpSession = request.getSession();
         ModelMap modelMap = modelAndView.getModelMap();
@@ -51,7 +40,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
             Object destination = httpSession.getAttribute("destination");
             Object URL = httpSession.getAttribute("logUrl");
             String logUrl= (String) URL;
-            System.out.println("logUrl="+URL);
             
             if(logUrl.contains("logout.do")) {
             	response.sendRedirect(destination != null ? (String) destination : "index.do");

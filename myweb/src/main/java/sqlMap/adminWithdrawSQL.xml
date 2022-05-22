@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dsn.adminWithdraw">
+
+	<select id="dsn.adminWithdraw.totalCnt" resultType="Integer">
+		SELECT COUNT(*) FROM F_WITHDRAW
+	</select>
+	
+	<select id="dsn.adminWithdraw.withdrawList" parameterType="Map" resultType="dsn.withdraw.model.WithDrawDTO">
+			
+	SELECT * FROM
+	(SELECT ROWNUM AS RNUM,A.*FROM
+	(SELECT 
+			F_WITHDRAW.W_IDX
+			,F_WITHDRAW.U_IDX
+			,F_WITHDRAW.W_BANK
+			,F_WITHDRAW.W_NAME
+			,F_WITHDRAW.W_NUMBER
+			,F_WITHDRAW.W_BALANCE
+			,F_WITHDRAW.W_DATE
+			,F_WITHDRAW.W_STATUS
+			,F_USER.U_ID
+	 FROM F_WITHDRAW, F_USER
+	 WHERE F_WITHDRAW.U_IDX = F_USER.U_IDX
+	 ORDER BY F_WITHDRAW.W_IDX ASC)A)B
+	WHERE RNUM <![CDATA[>=]]>#{start} AND 
+	RNUM<![CDATA[<=]]>#{end}
+		
+	</select>
+	
+	<update id="dsn.adminWithdraw.withdrawStatusUpdate" parameterType="dsn.withdraw.model.WithDrawDTO">
+		UPDATE F_WITHDRAW
+		SET
+		W_STATUS = 1
+		WHERE W_IDX = #{w_idx}
+	</update>
+	
+	<insert id="dsn.adminWithdraw.accountInsert" parameterType="dsn.withdraw.model.WithDrawDTO">
+		<selectKey order="BEFORE" resultType="Integer" keyProperty="balance">
+			SELECT (A_BALANCE-#{w_balance}) AS balance FROM F_ACCOUNT
+            WHERE A_IDX = (
+                SELECT MAX(A_IDX) FROM F_ACCOUNT
+                WHERE U_IDX = #{u_idx}
+            )
+		</selectKey>
+		INSERT INTO F_ACCOUNT
+		(
+			A_IDX
+			,U_IDX
+			,A_TYPE
+			,A_DATE
+			,C_SUBJECT
+			,A_CONTENT
+			,A_AMOUNT
+			,A_BALANCE
+		)
+		VALUES
+		(
+			A_IDX.NEXTVAL
+			,#{u_idx}
+			,'출금'
+			,SYSDATE
+			,'-'
+			,'-'
+			,#{w_balance}
+			,#{balance}
+		)
+	</insert>
+</mapper>

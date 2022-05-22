@@ -351,6 +351,21 @@ a{
 }
 
 .button:hover {opacity: 1}
+
+.nbutton {
+  background-color: #000000;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
 </style>
 
 <script type="text/javascript"
@@ -370,8 +385,8 @@ a{
 <hr>
 <body style="background-color: #eeeeee;">	
 			<div class="member-entry" style="width:900px; padding-left: 20px; margin: 0 auto;"> 
-			    <a href="#" class="member-img"> 
-			        <img src="https://ifh.cc/g/vAq0AJ.png" class="circle-img" style="padding-top: 10px;"> 
+			    <a class="member-img"> 
+			        <img src="menuimg/${dto.c_cate }.png" class="circle-img" style="padding-top: 10px;"> 
 			    </a> 
 			    <div class="member-details" style="width:750px;"> 
 			        <div class="col-sm-4" style="float:left;"> 
@@ -393,11 +408,13 @@ a{
 
 			</div>
 			<br>
-		<div style="width: 40%; margin: 0 auto; padding-left: 10px;">
-			<button class="button">참여작 보기</button>
-			<button class="button">브리핑 보기</button>
-			<a href="contestJoin.do?c_idx=${dto.c_idx }&c_type=${dto.c_cate}"><button class="button">콘테스트 참여</button></a>
+		<div style="margin: 0 auto; padding-left: 300px; float: left;">
+			<a href="conPart.do?c_idx=${dto.c_idx }"><button class="button">참여작 보기</button></a>
+			<button class="nbutton">브리핑 보기</button>
+			<a href="contestJoin.do?c_idx=${dto.c_idx }"><button class="button">콘테스트 참여</button></a>
+			<input type="hidden" value="${dto.c_idx }" name="c_idx">
 		</div>
+		<br><br><br>
 		
 <div style="padding-left: 30px; padding-top: 10px; background-color: #ffffff; width: 60%; margin: 0 auto;">
 	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>콘테스트 의뢰내용 보기</b></h5>

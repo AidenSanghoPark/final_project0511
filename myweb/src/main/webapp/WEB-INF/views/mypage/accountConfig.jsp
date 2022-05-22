@@ -89,109 +89,36 @@ a{
 <%@include file="/WEB-INF/views/footer.jsp" %>
 </div>
 <script>
-//아이디 정규식
-function idCheck() {
-   var userIdCheck = RegExp(/^[A-Za-z0-9]{4,20}$/);
-      
-	if(!userIdCheck.test($('#userId').val())){
-	 	console.log(!userIdCheck.test($('#userId').val()));
-	  	$('#re_id').html('<label style="color:#f82a2aa3;font-size:12px;">영어 대.소문자 숫자만 사용가능합니다(4-20자)</label>');
-		$("#userId").focus(); 
-	 	return true;
-	}else{
-		return false;
-	}
-}
-//생년월일 유효성
-function birthCheck() {
-	var birthCheck = RegExp(/^(19|20)[0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/);
-	 
-	if(!birthCheck.test($('#userBirth').val())){
-        $('#re_birth').html('<label style="color:#f82a2aa3;font-size:12px;">숫자만 사용가능합니다 ex)19930425</label>');       
-        $('#userBirth').focus();
-        return true;
-	}else{
-		return false;
-	}   
-}
-$('#userBirth').keyup(function(){
-	
-	if(birthCheck()){
-		return;
-    }else{    	 
-    	$('#re_birth').html('');
-    }
-	
-})
-//아이디 유효성
-$('#userId').keyup(function () {
-      
-	if(idCheck()){
-		return;
-	}else{
-   	 $('#re_id').html('');
-    }
-	  //ajax
-      if ($('#userId').val() != '') {
-      
-        $.ajax({
-                  
-            type: 'GET',
-            url: '/myweb/idCheck.do',
-            data: 'u_id=' + $('#userId').val(),
-            dataType: 'json',
-            success: function(result) {
-                if (result == '0') {
-                	console.log(result == '0');
-                    $('#re_id').html('<label style="color:#199894b3;font-size:12px;"> 멋진아이디네요!</label>');
-                } else {
-                    $('#re_id').html('<label style="color:#f82a2aa3;font-size:12px;"> 누군가 사용중이에요!</label>');
-                }
-            },
-            error: function(a, b, c) {
-                console.log(a, b, c);
-            }
-    
-        });
-               
-    }
-      
-});
 function nickCheck() {
 	
 	var nickNameCheck = RegExp(/^[가-힣a-zA-Z0-9]{2,10}$/);
 	
 	if(!nickNameCheck.test($('#userNick').val())){
-			
-	   $('#re_nick').html('<label style="color:#f82a2aa3;font-size:12px;">영어 대.소문자 숫자만 사용가능합니다(2-10자)</label>');
-	   $("#userNick").focus(); 
+		
+	   	alert('영어 대.소문자 숫자만 사용가능합니다(2-10자)');
+	   
 	   return true;
 	}else{
 		return false;
 	}
 }
-$('#userNick').keyup(function () {
+$('#userNick').click(function () {
 	
 	if(nickCheck()){
 		return;
-	}else{
-		$('#re_nick').html('');
-	}	
-	
+	}
 	//ajax
 	if ($('#userNick').val() != '') {
 
     	$.ajax({
 					
         	type: 'GET',
-        	url: '/myweb/nickCheck.do',
+        	url: '/myweb/member/nickCheck.do',
         	data: 'u_nick=' + $('#userNick').val(),
         	dataType: 'json',
         	success: function(result2) {
-           	 if (result2 == '0') {
-                	$('#re_nick').html('<label style="color:#199894b3;font-size:12px;"> 멋진 닉네임이네요!</label>');
-           	 } else {
-               	 $('#re_nick').html('<label style="color:#f82a2aa3;font-size:12px;"> 누군가 사용중이에요!</label>');
+           	 if (!result2 == '0') {
+           			alert('누군가 사용중인 닉네임 입니다.');
            	 }
         	},
         	error: function(a, b, c) {
@@ -274,59 +201,7 @@ $("#userTel").keyup(function(){
     }
 	
 })
-function show() {
-	   
-	   var frm = document.memberJoin;
 
-	      if(telCheck() || $('#userTel').val() == null || $('#userTel').val() === ""){
-	       	alert("휴대폰번호를 유형에 맞게 입력해주세요.");
-	       	return false;
-	       	
-	   	  }else if(nickCheck() || $('#userNick').val() == null || $('#userNick').val() === ""){
-	   		alert("닉네임을 유형에 맞게 입력해주세요.");
-	       	return false;  
-	       	
-	   	  }else if(emailCheck() || $('#userEmail').val() == null || $('#userEmail').val() === ""){
-	   		alert("이메일을 유형에 맞게 입력해주세요.");
-	       	return false;
-	   	  }
-	      frm.submit();
-	}
-//submit 버튼
-function show() {
-   
-   var frm = document.memberJoin;
-
-      if(idCheck() || $('#userId').val() == null || $('#userId').val() === ""){
-     	alert("아이디를 유형에 맞게 입력해주세요.");
-        return false;  
-    
-      }else if(nameCheck() || $('#userName').val() == null || $('#userName').val() === ""){
-        alert("이름을 유형에 맞게 입력해주세요.");
-        return false;
-   
-      }else if(telCheck() || $('#userTel').val() == null || $('#userTel').val() === ""){
-       	alert("휴대폰번호를 유형에 맞게 입력해주세요.");
-       	return false;
-       	
-   	  }else if(nickCheck() || $('#userNick').val() == null || $('#userNick').val() === ""){
-   		alert("닉네임을 유형에 맞게 입력해주세요.");
-       	return false;  
-       	
-   	  }else if(emailCheck() || $('#userEmail').val() == null || $('#userEmail').val() === ""){
-   		alert("이메일을 유형에 맞게 입력해주세요.");
-       	return false;
-       	
-   	  }else if(pwdCheck() || $('#userPw').val() == null || $('#userPw').val() === ""){
-   		alert("비밀번호를 유형에 맞게 입력해주세요.");
-       	return false;
-       	
-   	  }else if(birthCheck() || $('#userBirth').val() == null || $('#userBirth').val() === ""){
-   		alert("생년월일을 유형에 맞게 입력해주세요.");
-       	return false; 
-   	  }
-      frm.submit();
-}
 </script>
 </body>
 </html>

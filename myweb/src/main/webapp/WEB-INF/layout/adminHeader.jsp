@@ -110,6 +110,7 @@ body {
 		  <ul class="dropdown-menu">
 		    <li><a class="dropdown-item" href="memberManage.do">회원목록</a></li>
 		    <li><a class="dropdown-item" href="askManage.do">문의관리</a></li>
+		    <li><a class="dropdown-item" href="adminWithdraw.do">출금관리</a></li>
 		    <!-- <li><a class="dropdown-item" href="#">Something else here</a></li>
 		    <li><hr class="dropdown-divider"></li>
 		    <li><a class="dropdown-item" href="#">Separated link</a></li> -->

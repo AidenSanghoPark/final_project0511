@@ -28,8 +28,7 @@ h5{
 <c:if test="${pdto == null}">
 	<form name="designerInfo">
 		<section class="profile">
-				<img class="photo" src="profileimg/profile.PNG">
-				<a class="btn btn-secondary" href="#">1:1의뢰하기</a><br>
+				<img class="photo" src="profileimg/profile.PNG"><br>
 				<h4>${udto.u_nick}</h4><br>
 				우승 ${win}회
 		</section>
@@ -39,8 +38,7 @@ h5{
 <form name="designerInfo">
 	<section class="profile">
 		<fieldset>
-			<img class="photo" src="profileimg/${pdto.p_img}">
-			<a class="btn btn-secondary" href="#">1:1의뢰하기</a><br>
+			<img class="photo" src="profileimg/${pdto.p_img}"><br>
 			<h4>${udto.u_nick}</h4><br>
 			우승 ${win}회
 		</fieldset>
@@ -49,7 +47,7 @@ h5{
 </c:if>
 	<section>
 		<hr>
-		<h5><a href="portfolio.do">포트폴리오</a> <a href="review.do">리뷰</a></h5>
+		<h5><a href="portfolio2.do?u_idx=${u_idx}">포트폴리오</a> <a href="review.do?u_idx=${u_idx}">리뷰</a></h5>
 		<hr>
 	</section>
 <form name="portfoilos">
@@ -67,7 +65,6 @@ h5{
 					<c:forEach var="dto" items="${lists}">
 							<td>
 								<textarea rows="5" cols="30">${dto.rv_content}</textarea>
-								<h5>${dto.rv_date}</h5>
 							</td>
 					</c:forEach>
 				</tr>

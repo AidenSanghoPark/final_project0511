@@ -9,6 +9,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import dsn.contest.model.*;
+import dsn.designer.model.DesignerDTO;
 import dsn.trade.model.TrdDTO;
 
 @Service
@@ -116,30 +118,21 @@ public class ConServiceImple implements ConService{
 		return conDao.conInfo(c_idx);
 	}
 	@Override
-	public int contestJoin(DesignerDTO dto) {
+	public int contestJoin(DesignerConDTO dto) {
 		if(dto.getUploadfile1() != null|| dto.getUploadfile2() != null) {
 			dto.setD_img_1(dto.getUploadfile1().getOriginalFilename());
 			dto.setD_img_2(dto.getUploadfile2().getOriginalFilename());
 		}
 		return conDao.contestJoin(dto);
 	}
-
-
 	@Override
-	public int addNaming(ConDTO dto) {
+	public int addLogo(ConDTO dto) {
 		System.out.println("service="+dto.getC_cate());
 		System.out.println("service="+dto.getUpload().getOriginalFilename());
-		//���ε尡 null �ƴҶ��� �������� ���ϳ��� �����ϱ�
 		if(dto.getUpload() != null) {
 			dto.setC_file(dto.getUpload().getOriginalFilename());
 		}
-		int count = conDao.addNaming(dto);
-		return count;
-	}
-
-	@Override
-	public int addNamingTrade(TrdDTO dto) {
-		int count = conDao.addNamingTrade(dto);
+		int count = conDao.addLogo(dto);
 		return count;
 	}
 
@@ -149,18 +142,112 @@ public class ConServiceImple implements ConService{
 	}	
 	@Override
 	public void contestEnd(int c_idx) {
+		System.out.println("contestEnd="+c_idx);
 		conDao.contestEnd(c_idx);
 		
 	}@Override
 	public void designerWin(int d_idx) {
+		System.out.println("designerWin="+d_idx);
 		conDao.designerWin(d_idx);
-		
-	}@Override
-	public void payUpdate(int a_balance, int u_idx) {
+	}	
+	
+	@Override
+	public DesignerConDTO contestContent(int d_idx, int c_idx) {
 		Map map=new HashedMap();
-		map.put("a_balance", a_balance);
-		map.put("u_idx", u_idx);
-		conDao.payUpdate(map);
+		map.put("d_idx", d_idx);
+		map.put("c_idx", c_idx);
+		DesignerConDTO dto=conDao.contestContent(map);
+		return dto;
 	}
+	@Override
+	public void payUpdate(int u_idx,int a_amount,int uidx,int amount) {
+		Map map=new HashedMap();
+		map.put("u_idx", u_idx);
+		map.put("a_amount", a_amount);
+		map.put("uidx", uidx);
+		map.put("amount", amount);
+		conDao.payUpdate(map);
+		
+	}
+	@Override
+	public int designerUser(int d_idx) {
+		return conDao.designerUser(d_idx);
+	}
+	
+	@Override
+	public int contestPay(int c_idx) {
+		return conDao.contestPay(c_idx);
+	}
+
+
+	@Override
+	public List conPart(int cp, int listSize, int c_idx) {
+		int start=((cp-1)*listSize)+1;
+		int end=cp*listSize;
+		Map map=new HashedMap();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("c_idx", c_idx);
+		
+		List dlists=conDao.conPart(map);
+		return dlists;
+	}
+
+
+
+	@Override
+	public int addLogoTrade(TrdDTO dto) {
+		int count = conDao.addLogoTrade(dto);
+		return count;
+	}
+	//naming
+	@Override
+	public int addNaming(ConDTO dto) {
+		if(dto.getUpload() != null) {
+			dto.setC_file(dto.getUpload().getOriginalFilename());
+		}
+		int count = conDao.addNaming(dto);
+		return count;
+	}
+	@Override
+	public int addNamingTrade(TrdDTO dto) {
+		int count = conDao.addNamingTrade(dto);
+		return count;
+	}
+	//char
+	@Override
+	public int addChar(ConDTO dto) {
+		if(dto.getUpload() != null) {
+			dto.setC_file(dto.getUpload().getOriginalFilename());
+		}
+		int count = conDao.addChar(dto);
+		return count;
+	}
+	@Override
+	public int addCharTrade(TrdDTO dto) {
+		int count = conDao.addCharTrade(dto);
+		return count;
+	}
+	//print
+	@Override
+	public int addPrint(ConDTO dto) {
+		if(dto.getUpload() != null) {
+			dto.setC_file(dto.getUpload().getOriginalFilename());
+		}
+		int count = conDao.addPrint(dto);
+		return count;
+	}
+	@Override
+	public int addPrintTrade(TrdDTO dto) {
+		int count = conDao.addPrintTrade(dto);
+		return count;
+	}
+
+	@Override
+	public DesignerDTO conPartContent(int d_idx) {
+		DesignerDTO dto = conDao.conPartContent(d_idx);
+		return dto;
+	}
+
 
 }

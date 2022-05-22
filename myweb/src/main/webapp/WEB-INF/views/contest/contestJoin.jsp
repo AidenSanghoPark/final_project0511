@@ -395,16 +395,15 @@ a{
 			</div>
 			<br>
 		<div style="width: 40%; margin: 0 auto; padding-left: 10px; justify-content: center;">
-			<button class="button">참여작 보기</button>
+			<a href="conPart.do?c_idx=${condto.c_idx }"><button class="button">브리핑 보기</button></a>
 			<a href="conContent.do?c_idx=${condto.c_idx }"><button class="button">브리핑 보기</button></a>
 			<button class="button">콘테스트 참여</button>
 		</div>
 		
 <div style="padding-left: 30px; padding-top: 10px; background-color: #ffffff; width: 60%; margin: 0 auto;">
 	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>콘테스트 참가 작성</b></h5>
+	<form name="contestJoin" action="contestJoinSubmit.do" method="post" enctype ="multipart/form-data">
 	<div>
-		
-		<form name="contestJoin" action="contestJoinSubmit.do" method="post" enctype = "multipart/form-data">
 		<input type="hidden" name="c_idx" value="${condto.c_idx }">
 		<input type="hidden" name="c_cate" value="${condto.c_cate }">
 		<input type="hidden" name="u_idx" value="${mdto.u_idx }">
@@ -432,10 +431,10 @@ a{
 			<input type="checkbox" name="check">
 		</div>
 		<div>
-			<input type="submit" id="btn_submit" value="콘테스트 참여" onclick="javascript:fn_submit()">
+			<input type="submit" id="btn_submit" value="콘테스트 참여">
 		</div>
-		</form>
 	</div>
+	</form>
 </div>
 <script type="text/javascript">
 	var type = ${login.u_type};
@@ -444,15 +443,10 @@ a{
 		alert('디자이너 회원만 참여 가능합니다.');
 		history.back(-1);
 	}
-	/* var block =${login.u_type};
-	console.log(type);
-	if(type != 'y') {
-		alert('참여 가능합니다.');
-		history.back(-1);
-	} */
-    //이미지 미리보기
-    /* var sel_file;
-    var maxSize = 5 * 1024 * 1024; // 5MB
+	
+	
+    var sel_file;
+    var maxSize = 10 * 1024 * 1024; // 5MB
 
 	var fileSize = $("#uploadfile1")[0].files[0].size;
 	
@@ -473,7 +467,7 @@ a{
                 $("#uploadfile1").val("");
                 return;
             }else if(fileSize > maxSize){
-        		alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.");
+        		alert("첨부파일 사이즈는 10MB 이내로 등록 가능합니다.");
         		$("#uploadfile1").val("");
         		return false;
         	}
@@ -489,9 +483,10 @@ a{
     }
     
     var sel_file2;
+    var fileSize = $("#uploadfile2")[0].files[0].size;
     
     $(document).ready(function() {
-        $("#uploadfile2").on("change", handleImgFileSelect);
+        $("#uploadfile2").on("change", handleImgFileSelect2);
     });
  
     function handleImgFileSelect2(e) {
@@ -514,7 +509,7 @@ a{
             }
             reader.readAsDataURL(f);
         });
-    } */
+    }  
 </script>
     
 <script>

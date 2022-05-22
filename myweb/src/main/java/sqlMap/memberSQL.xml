@@ -20,7 +20,7 @@
          sysdate,
          sysdate,
          '0',
-         'n'
+         'N'
       )      
    </insert>
     <select id="idCheck" parameterType="String" resultType="Integer">
@@ -110,13 +110,4 @@
      <select id="userInfoFind" parameterType="Map" resultType="dsn.member.model.MemberDTO">
         select * from f_user where u_idx=#{u_idx}
      </select>
-     <select id="userInfo" parameterType="Integer" resultType="dsn.member.model.MemberDTO">
-      select
-         *
-      from
-         f_user
-      where
-         u_idx=#{u_idx}
-   </select>
-   
 </mapper>   

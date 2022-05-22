@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import dsn.contest.model.ConService;
 import dsn.member.model.MemberDTO;
 import dsn.profile.model.ProfileDTO;
 
@@ -24,17 +25,13 @@ public class DesignerServiceImple implements DesignerService {
 	public void setDesignerDao(DesignerDAO designerDao) {
 		this.DesignerDao = designerDao;
 	}
-
+	
 	@Override
-	public List portfolio(int cp, int listSize, int u_idx) {
-		int start=((cp-1)*listSize)+1;
-		int end=cp*listSize;
+	public List portfolio2(int u_idx) {
 		Map map=new HashedMap();
-		map.put("start", start);
-		map.put("end", end);
 		map.put("u_idx", u_idx);
 		
-		List lists=DesignerDao.portfolio(map);
+		List lists=DesignerDao.portfolio2(map);
 		return lists;
 	}
 	
@@ -74,15 +71,15 @@ public class DesignerServiceImple implements DesignerService {
 	}
 
 	@Override
-	public int portfolioTotalCnt() {
-		int cnt=DesignerDao.portfolioTotalCnt();
+	public int portfolioTotalCnt(int u_idx) {
+		int cnt=DesignerDao.portfolioTotalCnt(u_idx);
 		cnt=cnt==0?1:cnt;
 		return cnt;
 	}
 	
 	@Override
-	public int reviewTotalCnt() {
-		int cnt=DesignerDao.reviewTotalCnt();
+	public int reviewTotalCnt(int u_idx) {
+		int cnt=DesignerDao.reviewTotalCnt(u_idx);
 		cnt=cnt==0?1:cnt;
 		return cnt;
 	}
@@ -121,7 +118,6 @@ public class DesignerServiceImple implements DesignerService {
 	@Override
 	public List designPhotos(Object u_idx) {
 		
-		System.out.println("service="+u_idx);
 		Map map=new HashedMap();
 		map.put("u_idx", u_idx);
 		
@@ -145,6 +141,19 @@ public class DesignerServiceImple implements DesignerService {
 		return dto;
 	}
 	
+	@Override
+	public int getDesignerCnt(int u_idx) {
+		int cnt=DesignerDao.getDesignerCnt(u_idx);
+		cnt=cnt==0?1:cnt;
+		return cnt;
+	}
+	
+	@Override
+	public int desigerTotalWin(int u_idx) {
+		int cnt=DesignerDao.desigerTotalWin(u_idx);
+		cnt=cnt==0?1:cnt;
+		return cnt;
+	}
 	
 
 }

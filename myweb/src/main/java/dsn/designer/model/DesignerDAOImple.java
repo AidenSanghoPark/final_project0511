@@ -18,9 +18,10 @@ public class DesignerDAOImple implements DesignerDAO {
 		this.sqlMap = sqlMap;
 	}
 	
+	
 	@Override
-	public List portfolio(Map map) {
-		List lists=sqlMap.selectList("portfolio", map);
+	public List portfolio2(Map map) {
+		List lists=sqlMap.selectList("portfolio2", map);
 		return lists;
 	}
 	
@@ -43,14 +44,14 @@ public class DesignerDAOImple implements DesignerDAO {
 	}
 
 	@Override
-	public int portfolioTotalCnt() {
-		int cnt=sqlMap.selectOne("portfolioTotalCnt");
+	public int portfolioTotalCnt(int u_idx) {
+		int cnt=sqlMap.selectOne("portfolioTotalCnt", u_idx);
 		return cnt;
 	}
 	
 	@Override
-	public int reviewTotalCnt() {
-		int cnt=sqlMap.selectOne("reviewTotalCnt");
+	public int reviewTotalCnt(int u_idx) {
+		int cnt=sqlMap.selectOne("reviewTotalCnt", u_idx);
 		return cnt;
 	}
 	
@@ -104,6 +105,17 @@ public class DesignerDAOImple implements DesignerDAO {
 	public DesignerDTO portfolioDetail(int d_idx) {
 		DesignerDTO dto=sqlMap.selectOne("portfolioDetail", d_idx);
 		return dto;
+	}
+	@Override
+	public int getDesignerCnt(int u_idx) {
+		int count=sqlMap.selectOne("getDesignerCnt", u_idx);
+		return count;
+	}
+	
+	@Override
+	public int desigerTotalWin(int u_idx) {
+		int count=sqlMap.selectOne("dsndesginerwinTotal", u_idx);
+		return count;
 	}
 	
 

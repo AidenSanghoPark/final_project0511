@@ -26,46 +26,57 @@ import java.io.*;
 public class DesignerController {
 	
 	@Autowired
-	private DesignerService designerSevice;
+	private DesignerService designerService;
 	
 	@Autowired ServletContext servletContext;
 	
-	@RequestMapping("portfolio.do")
-	public ModelAndView portfolio(@RequestParam(value = "cp", defaultValue = "1") int cp, HttpSession session) {
+	
+	@RequestMapping("portfolio2.do")
+	public ModelAndView portfolio2(@RequestParam(value="u_idx") int u_idx) {
+				
+		List lists=designerService.portfolio2( u_idx);
+		int win=designerService.desigerTotalWin(u_idx);
+		ProfileDTO pdto=designerService.profileInfo(u_idx);
+		MemberDTO udto=designerService.userInfo(u_idx);
+		ModelAndView mav=new ModelAndView();
 		
-		Object obj=session.getAttribute("login");
-		MemberDTO mdto = (MemberDTO) obj;
-		int u_idx=mdto.getU_idx();
+		mav.addObject("lists", lists);
+		mav.addObject("win", win);
+		mav.addObject("pdto", pdto);
+		mav.addObject("udto", udto);
+		mav.addObject("u_idx", u_idx);
 		
-		int totalCnt=designerSevice.portfolioTotalCnt();
+		mav.setViewName("designer/portfolio2");
+		return mav;
+	}
+	
+	@RequestMapping("review.do")
+	public ModelAndView review(@RequestParam(value = "cp", defaultValue = "1") int cp, @RequestParam(value="u_idx") int u_idx) {
+		
+		int totalCnt=designerService.reviewTotalCnt(u_idx);
 		int listSize=5;
 		int pageSize=5;
-		String pageStr=dsn.page.PageModule.pageMake("portfolio.do", totalCnt, listSize, pageSize, cp);
+		String pageStr=dsn.page.PageModule.paramPageMake("review.do", totalCnt, listSize, pageSize, cp, u_idx);
 		
-		List lists=designerSevice.portfolio(cp, listSize, u_idx);
+		int win=designerService.desigerTotalWin(u_idx);
+		ProfileDTO pdto=designerService.profileInfo(u_idx);
+		MemberDTO udto=designerService.userInfo(u_idx);
 		
-		ProfileDTO pdto=designerSevice.profileInfo(u_idx);
-		MemberDTO udto=designerSevice.userInfo(u_idx);
+		List lists=designerService.review(cp, listSize, u_idx);
 		
 		ModelAndView mav=new ModelAndView();
 		
 		mav.addObject("lists", lists);
 		mav.addObject("pageStr", pageStr);
 		
+		mav.addObject("win", win);
 		mav.addObject("pdto", pdto);
 		mav.addObject("udto", udto);
 		mav.addObject("u_idx", u_idx);
 		
-		mav.setViewName("designer/portfolio");
+		mav.setViewName("designer/review");
 		return mav;
 	}
-	
-//	@RequestMapping("profile.do")
-//	public ModelAndView profile() {
-//		ModelAndView mav=new ModelAndView();
-//		mav.setViewName("designer/profile");
-//		return mav;
-//	}
 	
 	@RequestMapping(value = "profile.do", method = RequestMethod.GET)
 	public ModelAndView profileContent(HttpSession session) {
@@ -77,11 +88,10 @@ public class DesignerController {
 		MemberDTO mdto = (MemberDTO) obj;
 		int u_idx=mdto.getU_idx();
 		
-		int win=designerSevice.designerWin(u_idx);
-		ProfileDTO pdto=designerSevice.profileInfo(u_idx);
-		MemberDTO udto=designerSevice.userInfo(u_idx);
+		
+		ProfileDTO pdto=designerService.profileInfo(u_idx);
+		MemberDTO udto=designerService.userInfo(u_idx);
 		ModelAndView mav=new ModelAndView();
-		mav.addObject("win", win);
 		mav.addObject("pdto", pdto);
 		mav.addObject("udto", udto);
 		mav.addObject("u_idx", u_idx);
@@ -93,8 +103,8 @@ public class DesignerController {
 	public ModelAndView profileInsert(MultipartHttpServletRequest request, ProfileDTO dto) {
 		String path=request.getSession().getServletContext().getRealPath("/profileimg/");
 		capyInto(path, dto.getUpload());
-		int result=designerSevice.profileInsert(dto);
-		String msg=result>0?"ÇÁ·ÎÇÊ »çÁø ¾÷·Îµå ¿Ï·á":"ÇÁ·ÎÇÊ »çÁø ¾÷·Îµå ½ÇÆÐ";
+		int result=designerService.profileInsert(dto);
+		String msg=result>0?"ok":"no";
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg", msg);
 		mav.addObject("gopage", "profile.do");
@@ -107,11 +117,10 @@ public class DesignerController {
 		String path=request.getSession().getServletContext().getRealPath("/profileimg/");
 		capyInto(path, dto.getUpload());
 		dto.setP_img(dto.getUpload().getOriginalFilename());
-		int result=designerSevice.profileUpdate(dto);
+		int result=designerService.profileUpdate(dto);
 		
-		System.out.println(dto.getP_img());
 		
-		String msg=result>0?"ÇÁ·ÎÇÊ »çÁø ¼öÁ¤ ¿Ï·á":"ÇÁ·ÎÇÊ »çÁø ¼öÁ¤ ½ÇÆÐ";
+		String msg=result>0?"ok":"no";
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg", msg);
 		mav.addObject("gopage", "profile.do");
@@ -131,56 +140,26 @@ public class DesignerController {
 		}
 	}
 	
-	@RequestMapping("review.do")
-	public ModelAndView review(@RequestParam(value = "cp", defaultValue = "1") int cp, HttpSession session) {
-		
-		Object obj=session.getAttribute("login");
-		MemberDTO mdto = (MemberDTO) obj;
-		int u_idx=mdto.getU_idx();
-		
-		int totalCnt=designerSevice.reviewTotalCnt();
-		int listSize=5;
-		int pageSize=5;
-		String pageStr=dsn.page.PageModule.pageMake("review.do", totalCnt, listSize, pageSize, cp);
-		
-		int win=designerSevice.designerWin(u_idx);
-		ProfileDTO pdto=designerSevice.profileInfo(u_idx);
-		MemberDTO udto=designerSevice.userInfo(u_idx);
-		
-		List lists=designerSevice.review(cp, listSize, u_idx);
-		
-		ModelAndView mav=new ModelAndView();
-		
-		mav.addObject("lists", lists);
-		mav.addObject("pageStr", pageStr);
-		
-		mav.addObject("win", win);
-		mav.addObject("pdto", pdto);
-		mav.addObject("udto", udto);
-		mav.addObject("u_idx", u_idx);
-		
-		mav.setViewName("designer/review");
-		return mav;
-	}
+	
 	@RequestMapping(value = "designer.do", method = RequestMethod.GET)
 	public ModelAndView designer(@RequestParam(value = "cp", defaultValue = "1") int cp) {
 		
-		int totalCnt=designerSevice.designerListTotalCnt();
+		int totalCnt=designerService.designerListTotalCnt();
 		int listSize=10;
 		int pageSize=5;
 		String pageStr=dsn.page.PageModule.pageMake("designer.do", totalCnt, listSize, pageSize, cp);
 		
-		List lists=designerSevice.designerList(cp, listSize);
+		List lists=designerService.designerList(cp, listSize);
 
 		ModelAndView mav=new ModelAndView();
 		
 		mav.addObject("lists", lists);
 		mav.addObject("pageStr", pageStr); 
 		
-		mav.setViewName("designer/designer");
+		mav.setViewName("designer/designer2");
 		return mav;
 	}
-	
+
 	//@RequestMapping()
 	//public ModelAndView portfolioDetail(int d_idx) {
 	//	DesignerDTO ddto=designerSevice.portfolioDetail(d_idx);

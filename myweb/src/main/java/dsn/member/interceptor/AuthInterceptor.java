@@ -33,7 +33,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
-		System.out.println("어스인터셉터 작동");
 		HttpSession session = request.getSession();
     	if(session.getAttribute(LOGIN) == null) {
     		saveDestination(request);

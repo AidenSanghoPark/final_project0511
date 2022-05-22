@@ -36,7 +36,7 @@ a:hover {
 		if(u_block == "Y"){
 			if(confirm(u_name+"("+u_id+")님을 제한 해제 하시겠습니까?")){
 				location.href="memberBlockUpdate.do?u_idx="+u_idx+"&u_block=N";
-			}
+			}님을 이용 제한 하시겠습니까?
 		}else{
 			if(confirm(u_name+"("+u_id+")님을 이용 제한 하시겠습니까?")){
 				location.href="memberBlockUpdate.do?u_idx="+u_idx+"&u_block=Y";

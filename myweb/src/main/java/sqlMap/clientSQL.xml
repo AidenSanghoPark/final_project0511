@@ -13,8 +13,19 @@
 		and c_datediff<![CDATA[>=]]>0
 	</select>
 	
+	<select id="listSizeCnt" resultType="Integer">
+		select count(*) from f_client where (select rownum as rnum,a.* from
+		(select * from f_client order by c_idx desc)a)b
+		where rnum<![CDATA[>=]]>#{start}
+		and rnum<![CDATA[<]]>#{end}
+	</select>
+	
 	<select id="ContestCnt" resultType="Integer">
-		select count(*) from f_client
+		select count(*) from f_client where c_datediff<![CDATA[>]]>0
+	</select>
+	
+	<select id="ContestCntEnd" resultType="Integer">
+		select count(*) from f_client where c_datediff<![CDATA[<=]]>0
 	</select>
 	
 	<update id="conCount" parameterType="Map">
@@ -30,7 +41,7 @@
 			(select * from f_client where c_cate=#{c_cate} order by c_idx desc)a)b
 			where rnum<![CDATA[>=]]>#{start}
 			and rnum<![CDATA[<=]]>#{end} 
-			and c_datediff<![CDATA[<=]]>0
+			and c_datediff<![CDATA[<]]>0
    	</select>
    
    	<select id="cateEnd" parameterType="Map" resultType="dsn.contest.model.ConDTO">
@@ -49,8 +60,9 @@
       where
          c_idx=#{c_idx}
    </select>
-    <update id="dateUp">
-    UPDATE F_CLIENT SET C_DATEDIFF=TRUNC(SYSDATE-C_ENDDATE)
+   
+ 	<update id="dateUp">
+    UPDATE F_CLIENT SET C_DATEDIFF=TRUNC(SYSDATE-C_ENDDATE) WHERE C_DATEDIFF != 0
     </update>
    
 	
@@ -75,7 +87,13 @@
 			RNUM <![CDATA[>=]]> #{start}
 		AND
 			RNUM <![CDATA[<=]]> #{end}
-		AND C_DATEDIFF <![CDATA[<=]]> 0
+		AND C_DATEDIFF <![CDATA[<]]> 0
+		
+			and <if test="searchType == 'title'">c_subject like '%'||#{keyword}||'%'</if>
+			<if test="searchType == 'content'">c_deas like '%'||#{keyword}||'%'</if>
+			<if test="searchType == 'titlecontent'">c_subject like '%'||#{keyword}||'%'
+											 OR c_deas like '%'||#{keyword}||'%'</if>
+			<if test="searchType == null or searchType ==''">1=1</if>
 		
 	</select>
 	<select id="conInfo" parameterType="Integer" resultType="dsn.contest.model.ConDTO">
@@ -86,7 +104,7 @@
 		WHERE
 			C_IDX = #{c_idx}
 	</select>
-	<insert id="contestJoin" parameterType="dsn.contest.model.DesignerDTO">
+	<insert id="contestJoin" parameterType="dsn.contest.model.DesignerConDTO">
 		INSERT
 			INTO
 		F_DESIGNER
@@ -104,8 +122,7 @@
 			, #{c_idx}
 			)
 	</insert>
-
-	<insert id="addNaming" parameterType="dsn.contest.model.ConDTO">
+	<insert id="addLogo" parameterType="dsn.contest.model.ConDTO">
 		<selectKey keyProperty="c_idx" resultType="Integer" order="BEFORE">
 			SELECT F_CLIENT_C_IDX.NEXTVAL AS C_IDX FROM DUAL
 		</selectKey>
@@ -144,8 +161,58 @@
 			'N',
 			#{c_logo}
 		)	
+	</insert>	
+	<insert id="addLogoTrade" parameterType="dsn.trade.model.TrdDTO">
+	<selectKey order="BEFORE" keyProperty="t_idx" resultType="Integer">
+		SELECT T_IDX.NEXTVAL AS T_IDX FROM DUAL
+	</selectKey>
+		INSERT INTO F_TRADE
+		VALUES(
+			#{t_idx},
+			#{u_idx},
+			#{c_idx},
+			#{t_pay},
+			#{t_type},
+			SYSDATE
+		)
 	</insert>
-	
+	<insert id="addNaming" parameterType="dsn.contest.model.ConDTO">
+		<selectKey keyProperty="c_idx" resultType="Integer" order="BEFORE">
+			SELECT F_CLIENT_C_IDX.NEXTVAL AS C_IDX FROM DUAL
+		</selectKey>
+		INSERT INTO 
+			F_CLIENT
+		(
+			C_IDX
+			,C_SUBJECT
+			,C_DEAS
+			,C_COMPANY
+			,C_CATE
+			,C_FILE
+			,C_DETAILS
+			,C_IDEA
+			,C_PAY
+			,C_OPENDATE
+			,C_ENDDATE
+			,U_IDX
+			,C_BLOCK
+		)
+		VALUES(
+			#{c_idx},
+			#{c_subject},
+			#{c_deas},
+			#{c_company},
+			#{c_cate},
+			#{c_file},
+			#{c_details},
+			#{c_idea},
+			#{c_pay},
+			sysdate,
+			sysdate+7,
+			#{u_idx},
+			'N'
+		)	
+	</insert>
 	<insert id="addNamingTrade" parameterType="dsn.trade.model.TrdDTO">
 	
 	<selectKey order="BEFORE" keyProperty="t_idx" resultType="Integer">
@@ -162,36 +229,139 @@
 			SYSDATE
 		)
 	</insert>
-	
+	<insert id="addChar" parameterType="dsn.contest.model.ConDTO">
+		<selectKey keyProperty="c_idx" resultType="Integer" order="BEFORE">
+			SELECT F_CLIENT_C_IDX.NEXTVAL AS C_IDX FROM DUAL
+		</selectKey>
+		INSERT INTO 
+			F_CLIENT
+		(
+			C_IDX
+			,C_SUBJECT
+			,C_DEAS
+			,C_COMPANY
+			,C_CATE
+			,C_FILE
+			,C_DETAILS
+			,C_IDEA
+			,C_PAY
+			,C_OPENDATE
+			,C_ENDDATE
+			,U_IDX
+			,C_BLOCK
+		)
+		VALUES(
+			#{c_idx},
+			#{c_subject},
+			#{c_deas},
+			#{c_company},
+			#{c_cate},
+			#{c_file},
+			#{c_details},
+			#{c_idea},
+			#{c_pay},
+			sysdate,
+			sysdate+7,
+			#{u_idx},
+			'N'
+		)	
+	</insert>
+	<insert id="addCharTrade" parameterType="dsn.trade.model.TrdDTO">
+	<selectKey order="BEFORE" keyProperty="t_idx" resultType="Integer">
+		SELECT T_IDX.NEXTVAL AS T_IDX FROM DUAL
+	</selectKey>
+		INSERT INTO F_TRADE
+		VALUES
+		(
+			#{t_idx},
+			#{u_idx},
+			#{c_idx},
+			#{t_pay},
+			#{t_type},
+			SYSDATE
+		)
+	</insert>
+	<insert id="addPrint" parameterType="dsn.contest.model.ConDTO">
+		<selectKey keyProperty="c_idx" resultType="Integer" order="BEFORE">
+			SELECT F_CLIENT_C_IDX.NEXTVAL AS C_IDX FROM DUAL
+		</selectKey>
+		INSERT INTO 
+			F_CLIENT
+		(
+			C_IDX
+			,C_SUBJECT
+			,C_DEAS
+			,C_COMPANY
+			,C_CATE
+			,C_FILE
+			,C_DETAILS
+			,C_IDEA
+			,C_PAY
+			,C_OPENDATE
+			,C_ENDDATE
+			,U_IDX
+			,C_BLOCK
+		)
+		VALUES(
+			#{c_idx},
+			#{c_subject},
+			#{c_deas},
+			#{c_company},
+			#{c_cate},
+			#{c_file},
+			#{c_details},
+			#{c_idea},
+			#{c_pay},
+			sysdate,
+			sysdate+7,
+			#{u_idx},
+			'N'
+		)	
+	</insert>
+	<insert id="addPrintTrade" parameterType="dsn.trade.model.TrdDTO">
+	<selectKey order="BEFORE" keyProperty="t_idx" resultType="Integer">
+		SELECT T_IDX.NEXTVAL AS T_IDX FROM DUAL
+	</selectKey>
+		INSERT INTO F_TRADE
+		VALUES
+		(
+			#{t_idx},
+			#{u_idx},
+			#{c_idx},
+			#{t_pay},
+			#{t_type},
+			SYSDATE
+		)
+	</insert>	
 	<update id="updateTrd" parameterType="dsn.contest.model.ConDTO">
 		UPDATE F_TRADE
 		SET
 		C_IDX = #{c_idx}
 		WHERE T_IDX = #{t_idx}
 	</update>
-	<update id="designerWin">
-   		UPDATE
-   			F_DESIGNER
-   		SET
-   			D_WIN = 1
-   		WHERE
-   			D_IDX = #{d_idx}
+	
+	<select id="conPart" parameterType="Integer" resultType="dsn.designer.model.DesignerDTO">
+		select * from 
+			(select rownum as rnum, a.* from
+			(select * from f_designer where c_idx=#{c_idx} order by d_idx desc)a)b
+		where
+			rnum <![CDATA[>=]]> #{start}
+		and
+			rnum <![CDATA[<=]]> #{end}
+	</select>
+	
+	<update id="designerWin" parameterType="Integer">
+		update f_designer set
+                     d_win=1
+                      where d_idx = #{d_idx}
    </update>
-   <update id="contestEnd">
+   <update id="contestEnd" parameterType="Integer">
    		UPDATE
    			F_CLIENT
    		SET
-   			C_DATEDIFF = 0
+   			C_DATEDIFF = 1
    		WHERE
    			C_IDX = #{c_idx}
-   </update>
-   <update id="payUpdate">
-   		UPDATE
-   			F_ACCOUNT
-   		SET
-   			A_BALANCE = #{a_balance}
-   		WHERE
-   			U_IDX = U_IDX + #{u_idx} 
    </update>
 	<select id="myPageList" parameterType="Map" resultType="dsn.contest.model.ConDTO">
 			select * from
@@ -199,4 +369,46 @@
 			(select * from f_client where u_idx=#{u_idx} order by c_idx desc)a)b
 			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
   	</select>
+  	<select id="contestContent" parameterType="Map" resultType="dsn.contest.model.DesignerConDTO">
+  		SELECT
+  			*
+  		FROM
+  			F_DESIGNER
+  		WHERE
+  			D_IDX = #{d_idx}
+  		AND
+  			c_idx = #{c_idx}
+  	</select>
+  	<insert id="payUpdate" parameterType="Map">
+  		INSERT
+			INTO
+		F_ACCOUNT
+			VALUES(
+			A_IDX.NEXTVAL
+			, #{u_idx}
+			, '입금'
+			, sysdate 
+			, '1232'
+			, '상금적립'
+			, #{a_amount}
+			, NVL((SELECT 
+            a_balance 
+        FROM 
+            f_account 
+        WHERE a_idx = (SELECT max(a_idx) FROM f_account)
+        
+        and #{uidx} = 16),0)+#{amount}
+			)
+  	</insert>
+  	
+  	<select id="designerUser" resultType="Integer">
+  		select u_idx from f_designer where d_idx = #{d_idx}
+  	</select>
+  	<select id="contestPay" resultType="Integer">
+  		select c_pay from f_client where c_idx = #{c_idx}
+  	</select>
+  	
+  	<select id="conPartContent" parameterType="Integer" resultType="dsn.designer.model.DesignerDTO">
+			select * from f_designer where d_idx=#{d_idx}
+	</select>
 </mapper>
