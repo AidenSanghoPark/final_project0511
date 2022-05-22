@@ -387,32 +387,32 @@ a{
 <body style="background-color: #eeeeee;">	
 			<div class="member-entry" style="width:900px; padding-left: 20px; margin: 0 auto;"> 
 			    <a class="member-img"> 
-			        <img src="menuimg/${dto.c_cate }.png" class="circle-img" style="padding-top: 10px;"> 
+			        <img src="menuimg/${cdto.c_cate }.png" class="circle-img" style="padding-top: 10px;"> 
 			    </a> 
 			    <div class="member-details" style="width:750px;"> 
 			        <div class="col-sm-4" style="float:left;"> 
 			        <c:url var="contentUrl" value="conListContent.do">
-					<c:param name="idx">${dto.c_idx }</c:param>
+					<c:param name="idx">${cdto.c_idx }</c:param>
 				</c:url>
 							<!-- 콘테스트 제목 -->
-			                <h4> <a href="${contentUrl}" style="text-decoration: none; color: #2E2E2E; font-weight: bold; font-size: 17px;">${dto.c_subject }</a> </h4> 
+			                <h4> <a href="${contentUrl}" style="text-decoration: none; color: #2E2E2E; font-weight: bold; font-size: 17px;">${cdto.c_subject }</a> </h4> 
 			                <div style="padding: 10px; padding-left: 10px; width: 500px; height:70px; background-color:#EFEFFB; margin-left: 20px; color: #424242;">
-			                	${dto.c_deas }<br><br>
+			                	${cdto.c_deas }<br><br>
 			                </div>
 			            </div>
 			        <div class="row info-list" style="float:right; text-align: left; width:200px; font-size: 10px; padding-top: 20px;"> 
-			            <h3 style="font-size: 20px; font-weight: bold; color: #424242;">상금&nbsp;&nbsp;&nbsp;&nbsp;${dto.c_pay } 만원</h3> 
-			            <h4 style="padding-right: 45px; text-align: right; font-size: 15px; color: gray;"><label style="font-weight: bold;">참여인원</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${dto.u_idx }명</h4> 
-			            <h4 style="padding-right: 45px; text-align: right; font-size: 15px; color: gray;"><label style="font-weight: bold;">남은기간</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D${dto.c_datediff }</h4> 
+			            <h3 style="font-size: 20px; font-weight: bold; color: #424242;">상금&nbsp;&nbsp;&nbsp;&nbsp;${cdto.c_pay } 만원</h3> 
+			            <h4 style="padding-right: 45px; text-align: right; font-size: 15px; color: gray;"><label style="font-weight: bold;">참여인원</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${jsum}명</h4> 
+			            <h4 style="padding-right: 45px; text-align: right; font-size: 15px; color: gray;"><label style="font-weight: bold;">남은기간</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D${cdto.c_datediff}</h4> 
 			        </div>    
 			    </div> 
 
 			</div>
 			<br>
 		<div style="margin: 0 auto; padding-left: 315px; float: left;">
-			<a href="conPart.do?c_idx=${dto.c_idx }"><button class="button">참여작 보기</button></a>
-			<button class="nbutton">브리핑 보기</button>
-			<a href="contestJoin.do?c_idx=${dto.c_idx }"><button class="button">콘테스트 참여</button></a>
+			<a href="conPart.do?c_idx=${cdto.c_idx }"><button class="button">참여작 보기</button>
+			<a href="conContent.do?c_idx=${cdto.c_idx }"><button class="nbutton">브리핑 보기</button></a>
+			<a href="#"><button class="button">콘테스트 참여</button></a>
 			<input type="hidden" value="${dto.c_idx }" name="c_idx">
 		</div>
 		<br><br><br>
@@ -428,7 +428,7 @@ a{
 		<input type="hidden" name="u_idx" value="${mdto.u_idx }">
 		<fieldset style="border: solid 1px #a4a4a4; width:60%; height: 100%; padding: 10px;line-height: 30px;">
 			<div>
-				<b>작품 제목</b>&nbsp;&nbsp;&nbsp;<input type="text" name="d_name">
+				<b>작품 제목</b>&nbsp;&nbsp;&nbsp;<input type="text" name="d_name" required>
 			</div>
 		</fieldset>
 		<br>
@@ -437,13 +437,13 @@ a{
 		</div>
 		<fieldset style="border: solid 1px #a4a4a4; width:60%; height: 100%; padding: 10px; line-height: 30px; float: left; padding-left: 10px;">	
 			<div style="margin: 0px auto;">
-				<input type="file" name="uploadfile1" id="uploadfile1" >
+				<input type="file" name="uploadfile1" id="uploadfile1" accept="image/gif, image/jpeg, image/jpg, image/png" required>
 			</div>
 			<div class="img_wrap">
 	           <img id="img1" />
 	       </div>
 			<div>
-				<input type="file" name="uploadfile2" id="uploadfile2" >
+				<input type="file" name="uploadfile2" id="uploadfile2" accept="image/gif, image/jpeg, image/jpg, image/png" required>
 			</div>
 			<div class="img_wrap">
 	           <img id="img2" />
@@ -455,7 +455,7 @@ a{
 			<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>&nbsp;&nbsp;디자인 상세설명</b></h5>
 		</div>
 		<div>
-			<textarea rows="8" cols="80" name="d_content"></textarea>
+			<textarea rows="8" cols="80" name="d_content" required></textarea>
 		</div>
 		<br>
 		<div>

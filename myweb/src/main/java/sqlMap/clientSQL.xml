@@ -146,12 +146,15 @@
 			  , C_NAME
 			  , C_DETAILS
 			  , C_IDEA
+			  , C_READNUM
 			  , C_PAY
 			  , C_OPENDATE
 			  , C_ENDDATE
 			  , U_IDX
 			  , C_BLOCK
-			  , C_LOGO)
+			  , C_LOGO
+			  , C_DATEDIFF
+			  )
 		VALUES(
 			#{c_idx},
 			#{c_subject},
@@ -163,12 +166,14 @@
 			#{c_name},
 			#{c_details},
 			'idea',
+			0,
 			#{c_pay},
 			sysdate,
 			sysdate+7,
 			#{u_idx},
 			'N',
-			#{c_logo}
+			#{c_logo},
+			-1
 		)	
 	</insert>	
 	<insert id="addLogoTrade" parameterType="dsn.trade.model.TrdDTO">
@@ -397,7 +402,7 @@
 			, #{u_idx}
 			, '입금'
 			, sysdate 
-			, '1232'
+			, #{c_subject}
 			, '상금적립'
 			, #{a_amount}
 			, NVL((SELECT 
@@ -422,5 +427,13 @@
 	</select>
   	<select id="designInfo" resultType="Map">
   		select * from f_designer where d_idx = #{d_idx} and c_idx = #{c_idx}
+  	</select>
+  	<select id="joinSum" resultType="Integer">
+  		SELECT
+  			count(b.d_idx)
+  		FROM
+  			f_client a, f_designer b
+  		WHERE
+  			a.c_idx = #{c_idx}
   	</select>
 </mapper>

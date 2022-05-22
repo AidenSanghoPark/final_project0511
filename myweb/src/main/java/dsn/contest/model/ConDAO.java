@@ -33,6 +33,7 @@ public interface ConDAO {
 	public int designerUser(int d_idx);
 	public int contestPay(int c_idx);
 	public int designInfo(Map map);
+	public int joinSum(int c_idx);
 	//logo
 	public int addLogo(ConDTO dto);	
 	public int addLogoTrade(TrdDTO dto);

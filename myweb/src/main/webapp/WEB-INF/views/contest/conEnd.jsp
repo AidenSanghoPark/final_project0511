@@ -423,7 +423,7 @@ a{
 			    </a> 
 			    <div class="member-details" style="width:750px;"> 
 			        <div class="col-sm-4" style="float:left;"> 
-			        <c:url var="contentUrl" value="conEndContent.do">
+			        <c:url var="contentUrl" value="conContent.do?c_idx=${dto.c_idx }">
 					<c:param name="idx">${dto.c_idx }</c:param>
 				</c:url>
 			                <h4> <a href="${contentUrl }" style="text-decoration: none; color: #2E2E2E; font-weight: bold; font-size: 17px;">${dto.c_subject }</a> </h4> 

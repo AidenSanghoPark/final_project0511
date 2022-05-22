@@ -64,7 +64,7 @@
 			,'출금'
 			,SYSDATE
 			,'-'
-			,'-'
+			,'출금요청'
 			,#{w_balance}
 			,#{balance}
 		)

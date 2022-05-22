@@ -415,7 +415,7 @@ a{
         <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 </head>
 <hr>
-<body style="background-color: #eeeeee; height: 1500px;">	
+<body style="background-color: #eeeeee;">	
 
 			<div class="member-entry" style="width:900px; padding-left: 20px; margin: 0 auto;"> 
 			    <a class="member-img"> 
@@ -433,9 +433,9 @@ a{
 			                </div>
 			            </div>
 			        <div class="row info-list" style="float:right; text-align: left; width:200px; font-size: 10px; padding-top: 20px;"> 
-			            <h3 style="font-size: 20px; font-weight: bold; color: #424242;">상금&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${dto.c_pay } 만원</h3> 
-			            <h4 style="padding-right: 45px; text-align: right; font-size: 15px; color: gray;"><label style="font-weight: bold;">참여인원</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${dto.u_idx }명</h4> 
-			            <h4 style="padding-right: 45px; text-align: right; font-size: 15px; color: gray;"><label style="font-weight: bold;">남은기간</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D${dto.c_datediff }</h4> 
+			            <h3 style="font-size: 20px; font-weight: bold; color: #424242;">상금&nbsp;&nbsp;&nbsp;&nbsp; ${dto.c_pay } 만원</h3> 
+			            <h4 style="padding-right: 45px; text-align: right; font-size: 15px; color: gray;"><label style="font-weight: bold;">참여인원</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${jsum}명</h4> 
+			            <h4 style="padding-right: 45px; text-align: right; font-size: 15px; color: gray;"><label style="font-weight: bold;">남은기간</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D${dto.c_datediff}</h4> 
 			        </div>    
 			    </div> 
 			</div>
@@ -448,7 +448,7 @@ a{
 		</div>
 		<br><br><br>
 		
-<div style="padding-left: 30px; padding-top: 10px; background-color: #ffffff; width: 60%; margin: 0 auto; height: 800px;">
+<div style="padding-left: 30px; padding-top: 10px; background-color: #ffffff; width: 60%; margin: 0 auto;">
 	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>콘테스트 참여작 보기</b></h5>
 	<section>
 		<table>
@@ -468,10 +468,7 @@ a{
 					</c:url>
 					<td>
 						<p>
-							<a href="${contentUrl}" rel="modal:open">
-								<img style="width: 300px;" src="img/${dtos.d_img_1}" />
-								${dtos.d_name}
-							</a>
+							<a href="${contentUrl}" rel="modal:open">${dtos.d_name}</a><img style="width: 300px;" src="img/${dtos.d_img_1}" />
 						</p>
 					</td>
 					</c:forEach>

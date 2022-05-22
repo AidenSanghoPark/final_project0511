@@ -39,10 +39,9 @@ public class MyPageController {
 			msg="로그인 후 이용해주세요";
 			mav.addObject("msg", msg);
 			mav.addObject("gopage","index.do");
-			mav.setViewName("mypage/mypagemsg");
+			mav.setViewName("memberMsg");
 		}else {
 		int vo=mdto.getU_idx();
-		System.out.println(vo);
 		int totalCnt=myPageService.getTotalCnt(vo);
 		int dtotalCnt=myPageService.getDesignerCnt(vo);
 		int listSize=5;
@@ -51,7 +50,7 @@ public class MyPageController {
 		String pageStr=dsn.page.PageModule.pageMake("myPage.do", totalCnt, listSize, pageSize, cp);
 		List lists=myPageService.myPageList(cp, listSize, vo);
 		List userinfo=myPageService.userInfoFind(vo);
-		List dlists=myPageService.myPageListByDesigner(cp, listSize, pageSize);
+		List dlists=myPageService.myPageListByDesigner(cp, listSize, vo);
 		ProfileDTO pdto=designerService.profileInfo(vo);
 		
 		mav.addObject("dpageStr", dpageStr);
@@ -177,7 +176,6 @@ public class MyPageController {
 		Object obj=session.getAttribute("login");
 		MemberDTO mdto = (MemberDTO) obj;
 		int vo=mdto.getU_idx();
-
 		mav.addObject("u_idx", vo);
 		mav.setViewName("mypage/payoutpopup");
 		return mav;
@@ -187,31 +185,47 @@ public class MyPageController {
 		ModelAndView mav=new ModelAndView();
 		Object obj=session.getAttribute("login");
 		MemberDTO mdto = (MemberDTO) obj;
-		try {
+		String pa1="^[가-힣]{2,4}$";
+		String pa2="^[0-9]*$";
+		String pa3="^[0-9]*$";
+	
 		String msg="";
-		int price=Integer.parseInt(dto.getW_balance());
-		int blc=myPageService.getLastBalance(mdto.getU_idx());
-		if(price>blc) {
-			msg="잔액이 부족합니다.";
+	try {
+			int price=Integer.parseInt(dto.getW_balance());
+			int blc=myPageService.getLastBalance(mdto.getU_idx());
+			if(price>blc) {
+				msg="잔액이 부족합니다.";
+				mav.addObject("msg", msg);
+				mav.setViewName("mypage/popupclose");	// TODO: handle exception
+		
+		}if(!Pattern.matches(pa1, dto.getW_name())){
+			msg="이름을 정확히 기입해주세요.";
 			mav.addObject("msg", msg);
 			mav.setViewName("mypage/popupclose");
-			
-		}else if(dto.getW_balance().equals(null)&&dto.getW_bank().equals(null)&&dto.getW_number().equals(null)){
-			msg="출금정보를 정확히 기입해주세요.";
+		}else if(!Pattern.matches(pa2, dto.getW_balance())||0==Integer.parseInt(dto.getW_number())){
+			msg="금액을 정확히 기입해주세요.";
+			mav.addObject("msg", msg);
+			mav.setViewName("mypage/popupclose");
+		}else if(!Pattern.matches(pa3, dto.getW_number())||0==Integer.parseInt(dto.getW_number())) {
+			msg="계좌번호를 정확히 기입해주세요.";
 			mav.addObject("msg", msg);
 			mav.setViewName("mypage/popupclose");
 		}else {
+		
 		int result=myPageService.payout(dto);
+		
 		msg=result>0?"출금신청 완료":"출금신청 실패";
 		
 		mav.addObject("msg", msg);
 		mav.setViewName("mypage/popupclose");
-		}
-		}catch(NumberFormatException e) {
-			
-		}
-		return mav;
 		
+		}
+	}catch(NumberFormatException e) {
+		msg="금액과 계좌를 입력하여 주십시오";
+		mav.addObject("msg", msg);
+		mav.setViewName("mypage/popupclose");
+	}
+		return mav;
 	}
 	@RequestMapping("writeReview.do")
 	public ModelAndView writeReview(String rv_content,HttpSession session) {

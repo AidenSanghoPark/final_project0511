@@ -20,9 +20,9 @@
 	color:gray;
 }
 .coninfo{
-   float:left;
-   padding-left:120px;
-    padding-top:90px;
+	float:left;
+	padding-left:200px;
+ 	padding-top:120px;
 }
 .coninfo fieldset{
    border:1px groove;
