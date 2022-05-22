@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import dsn.contest.model.*;
+import dsn.designer.model.DesignerDTO;
 import dsn.trade.model.TrdDTO;
 
 
@@ -43,5 +44,6 @@ public interface ConService {
 	//print
 	public int addPrint(ConDTO dto);
 	public int addPrintTrade(TrdDTO dto);
+	public DesignerDTO conPartContent(int d_idx);
 
 }
