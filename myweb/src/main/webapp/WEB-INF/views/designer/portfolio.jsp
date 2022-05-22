@@ -135,7 +135,7 @@
 	          <h2 style="font-weight: bold; font-size: 22px;">${udto.u_nick}님 포트폴리오</h2>
 	          <label style="color: #696969;">${pdto.p_info}</label>
 	        </div>
-	        <div class="row">
+	        <div class="row" style="font-size: 20px; text-align: center; font-weight: bold; padding-left: 30px;">
 	        <c:if test="${empty lists}">
 				<div>참여한 콘테스트가 없습니다.</div>
 			</c:if>

@@ -509,6 +509,46 @@ function pay(){
        
        /* $("h5").text(selectPrice); */
    }
+   
+   function payCard(){
+		IMP.request_pay({
+		    pg : 'html5_inicis',
+		    pay_method : 'card',
+		    merchant_uid: randomNum(), // 상점에서 관리하는 주문 번호를 전달
+		    name: $("#selectType").val(), 
+	        amount: $("#t_pay").val()
+		}, function(rsp) { // callback 로직
+			if (rsp.success) {
+	            // ajax 거래내역 insert 추가 필요
+	            
+	            var dataForm = {
+	            "t_pay" : $("#t_pay").val()
+	            //, "u_idx" : u_idx
+	            //, "c_idx" : c_idx
+	            //, "t_type" : t_type
+	            };
+	            
+	            $.ajax({
+	               url: 'logoHoldTrade_add.do', 
+	               type: 'post',               
+	               dataType: 'json',
+	               data: dataForm,
+	               success : function(result){
+	                  
+	                  if(!result == '0'){
+	                     alert("결제성공");
+	                     $("#t_idx").val(result);
+	                     namingAdd();
+	                  }
+	               }
+	            });
+	            
+	        } else {
+	            alert("결제취소");
+	            // 결제 실패 시 로직,
+	        }
+		});
+	}
 </script>      
 <%@include file="/WEB-INF/views/footer.jsp" %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>   
