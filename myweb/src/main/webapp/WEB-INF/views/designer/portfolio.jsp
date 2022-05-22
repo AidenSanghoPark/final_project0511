@@ -102,7 +102,7 @@
 	            <div class="col-md-6 col-lg-4">
 	                <div class="card border-0 transform-on-hover">
 	                	<a class="lightbox">
-	                		<img src="img/${dto.d_img_1}" alt="portfolioPhoto" class="card-img-top">
+	                		<img src="img/design8.png" alt="portfolioPhoto" class="card-img-top">
 	                	</a>
 	                    <div class="card-body">
 	                        <h6>${dto.d_name}</h6>
@@ -112,7 +112,7 @@
 	           </c:forEach>
 	        </div>
 	        
-	        <!-- 모달 -->		    
+	        <!-- 모달 -->	
 							  <div class="modal" id="${dto.c_idx}">
 						      <div class="modal_body" id="${dto.c_idx}">
 						      	

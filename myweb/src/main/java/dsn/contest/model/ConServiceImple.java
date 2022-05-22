@@ -123,6 +123,12 @@ public class ConServiceImple implements ConService{
 	public ConDTO conInfo(int c_idx) {
 		return conDao.conInfo(c_idx);
 	}
+	
+	@Override
+	public int joinSum(int c_idx) {
+		return conDao.joinSum(c_idx);
+	}
+	
 	@Override
 	public int contestJoin(DesignerConDTO dto) {
 		if(dto.getUploadfile1() != null|| dto.getUploadfile2() != null) {

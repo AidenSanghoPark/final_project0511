@@ -76,7 +76,7 @@ public class ContestController {
 			String path = request.getSession().getServletContext().getRealPath("img/");
 			copyInto(dto.getUpload(), path); 
 		}
-		mav.setViewName("contest/index");
+		mav.setViewName("contest/conlist");
 		return mav;
 	}
 	//로고 트레이드 form
@@ -207,15 +207,18 @@ public class ContestController {
 	}
 	
 	@RequestMapping(value = "contestJoin.do", method = RequestMethod.GET)
-	public ModelAndView contestJoin(ConDTO dto, HttpServletRequest request, HttpSession session) {
+	public ModelAndView contestJoin(ConDTO dto,int c_idx, HttpServletRequest request, HttpSession session) {
 		
 		Object obj=session.getAttribute("login");
 		MemberDTO mdto = (MemberDTO) obj;
-		
+		ConDTO cdto=conService.conContent2(c_idx);
+		int jsum=conService.joinSum(c_idx);
 //		String url=request.getHeader("REFERER");
 //    	request.getSession().setAttribute("conUrl", url);
 		ModelAndView mav=new ModelAndView();
 		ConDTO con=conService.conInfo(dto.getC_idx());
+		mav.addObject("cdto", cdto);
+		mav.addObject("jsum", jsum);
 		mav.addObject("mdto",mdto);
 		mav.addObject("condto", con);
 		mav.setViewName("contest/contestJoin");
@@ -330,12 +333,14 @@ public class ContestController {
 	public ModelAndView conContent(
 			@RequestParam(value="c_idx", defaultValue = "0") int c_idx){
 		ConDTO dto=conService.conContent(c_idx);
+		int jsum=conService.joinSum(c_idx);
 		ModelAndView mav=new ModelAndView();
 		if(dto==null) {
 			mav.addObject("msg", "잘못된 접근 또는 삭제된 콘테스트입니다.");
 			mav.addObject("gopage","conList.do");
 			mav.setViewName("contest/conMsg");
 		}else {
+			mav.addObject("jsum", jsum);
 			mav.addObject("dto",dto);
 			mav.setViewName("contest/conContent");
 		}
@@ -388,9 +393,11 @@ public class ContestController {
 		int totalCnt=conService.ContestCnt();
 		int listSize=5;
 		int pageSize=5;
+		int jsum=conService.joinSum(c_idx);
 		String pageStr=dsn.page.PageModule.pageMake("conPart.do", totalCnt, listSize, pageSize, cp);
 		List dlists=conService.conPart(cp, listSize, c_idx);
 		ModelAndView mav=new ModelAndView();
+		mav.addObject("jsum", jsum);
 		mav.addObject("dlists", dlists);
 		mav.addObject("pageStr", pageStr);
 		mav.addObject("dto",dto);
