@@ -25,23 +25,23 @@
  	padding-top:120px;
 }
 .coninfo fieldset{
-   border:1px groove;
-   width:900px;
-   height:100px;
-   padding-left:8px;
+	border:1px groove;
+	width:900px;
+	height:100px;
+	padding-left:8px;
 }
 .coninfo fieldset label{
-   padding-top:35px;
+	padding-top:35px;
 }
 #page{
-   text-align:center;
+	text-align:center;
 }
 a {
 	text-decoration: none;
 	color:gray;
 }
 ul{
-   list-style:none;
+	list-style:none;
 }
 .photo{
    width: 150px;
