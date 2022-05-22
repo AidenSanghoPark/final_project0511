@@ -65,7 +65,7 @@ ul{
 		        <c:url var="contentUrl" value="portfolio2.do">
 					<c:param name="u_idx">${userinfo.u_idx}</c:param>
 				</c:url>
-		        <p><a class="btn btn-secondary" href="${contentUrl}">포트폴리오 관리</a></p><br>
+		        <p><a class="btn btn-secondary" href="${contentUrl}">포트폴리오</a></p><br>
 		        <h3>1:1 의뢰 관리</h3><br>		
    			 	<h3><a href="wallet.do">가상계좌</a></h3><br>
 		        <h3><a href="accountConfig.do">계정설정</a></h3><br>
