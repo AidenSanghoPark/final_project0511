@@ -415,7 +415,7 @@ a{
         <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 </head>
 <hr>
-<body style="background-color: #eeeeee;">	
+<body style="background-color: #eeeeee; height: 1500px;">	
 
 			<div class="member-entry" style="width:900px; padding-left: 20px; margin: 0 auto;"> 
 			    <a class="member-img"> 
@@ -448,7 +448,7 @@ a{
 		</div>
 		<br><br><br>
 		
-<div style="padding-left: 30px; padding-top: 10px; background-color: #ffffff; width: 60%; margin: 0 auto;">
+<div style="padding-left: 30px; padding-top: 10px; background-color: #ffffff; width: 60%; margin: 0 auto; height: 800px;">
 	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>콘테스트 참여작 보기</b></h5>
 	<section>
 		<table>
@@ -468,7 +468,10 @@ a{
 					</c:url>
 					<td>
 						<p>
-							<a href="${contentUrl}" rel="modal:open">${dtos.d_name}</a><img style="width: 300px;" src="img/${dtos.d_img_1}" />
+							<a href="${contentUrl}" rel="modal:open">
+								<img style="width: 300px;" src="img/${dtos.d_img_1}" />
+								${dtos.d_name}
+							</a>
 						</p>
 					</td>
 					</c:forEach>

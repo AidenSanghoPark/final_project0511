@@ -143,7 +143,8 @@
 	            <div class="col-md-6 col-lg-4">
 	                <div class="card border-0 transform-on-hover">
 	                	<a class="btn-open-popup">
-	                		<img src="img/${dto.d_img_1}" alt="portfolioPhoto" class="card-img-top">
+	                		<img src="img/design3.png" class="card-img-top">
+	                		<h6>${dto.d_img_1}</h6>
 	                	</a>
 	                    <div class="card-body">
 	                        <h6>${dto.d_name}</h6>
