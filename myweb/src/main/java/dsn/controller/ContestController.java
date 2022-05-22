@@ -333,6 +333,7 @@ public class ContestController {
 	public ModelAndView conContent(
 			@RequestParam(value="c_idx", defaultValue = "0") int c_idx){
 		ConDTO dto=conService.conContent(c_idx);
+		System.out.println(dto.getC_block());
 		int jsum=conService.joinSum(c_idx);
 		ModelAndView mav=new ModelAndView();
 		if(dto==null) {

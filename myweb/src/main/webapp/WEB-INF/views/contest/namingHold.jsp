@@ -92,6 +92,14 @@ input[type=text]:focus{
 	box-shadow:0 0 8px 0 dodgetBlue;
 }
 </style>
+<script>
+var type = ${login.u_type};
+console.log(type);
+if(type != 1) {
+	alert('의뢰인 회원만 개최 가능합니다.');
+	history.back();
+}
+</script>
 </head>
 <body>
 <%@include file="/WEB-INF/views/header.jsp" %>
@@ -296,50 +304,35 @@ input[type=text]:focus{
 		      <div style="height: 150px;">     
 		      <br>
 		      <br>
-		      <br>    
-		           
+		      <br>
 		      </div>
 		      <div class="row">
 		         <hr>
 				    <div class="col-md">
-				     
 				    </div>
-				     
-				    <div class="col-md">			    	
-			    	
+				    <div class="col-md">
 				    	<div style="text-align: center;" id="price">   
 		         			<table style="margin: 0 auto; font-size: 20px; font-weight: bold; padding-left: 300px;">
 				    		<tr>			
 				    			<td>총상금</td>
 				    			<td><input type="text" id="totalPrice" name="totalPrice" style="text-align: right; width: 100px; border:none; font-weight: bold; color: #525BA2;"/>원</td>
-				    			
 				    		</tr>
-				    		
 				    		<tr>
 				    			<td>수수료(10%)</td>
 				    			<td><input type="text" id="comm" name="comm" style="text-align: right; width: 100px; border:none;"/>원</td>		   
 				    		</tr>
-				    		
 				    		<tr>
 				    			<td>부가세</td>
 				    			<td><input type="text" id="vat" name="vat" style="text-align: right; width: 100px; border:none;"/>원</td>		   
 				    		</tr>
-				    		
 				    		<tr>
 				    			<td>합계</td>
 				    			<td><input type="text" id="t_pay" name="t_pay" style="text-align: right; width: 100px; border:none; font-weight: bold; color: #F2CD3F;"/>원</td>		   
 				    		</tr>
-				    		
 				    	</table>
-		         		
 		         		</div>
-		               
-  
 				    </div>
-				    
-				   
 				    <div class="col-md">
-				      
 				    </div>				    
 			  </div>
 		         <div>
@@ -361,6 +354,8 @@ input[type=text]:focus{
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="js/httpRequest.js"></script>
 <script>
+
+
 var IMP = window.IMP; // 생략 가능
 IMP.init("imp03237553"); // 예: imp00000000
 
