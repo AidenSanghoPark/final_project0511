@@ -428,7 +428,7 @@ a{
 		<input type="hidden" name="u_idx" value="${mdto.u_idx }">
 		<fieldset style="border: solid 1px #a4a4a4; width:60%; height: 100%; padding: 10px;line-height: 30px;">
 			<div>
-				<b>작품 제목</b>&nbsp;&nbsp;&nbsp;<input type="text" name="d_name">
+				<b>작품 제목</b>&nbsp;&nbsp;&nbsp;<input type="text" name="d_name" required>
 			</div>
 		</fieldset>
 		<br>
@@ -437,13 +437,13 @@ a{
 		</div>
 		<fieldset style="border: solid 1px #a4a4a4; width:60%; height: 100%; padding: 10px; line-height: 30px; float: left; padding-left: 10px;">	
 			<div style="margin: 0px auto;">
-				<input type="file" name="uploadfile1" id="uploadfile1" >
+				<input type="file" name="uploadfile1" id="uploadfile1" accept="image/gif, image/jpeg, image/jpg, image/png" required>
 			</div>
 			<div class="img_wrap">
 	           <img id="img1" />
 	       </div>
 			<div>
-				<input type="file" name="uploadfile2" id="uploadfile2" >
+				<input type="file" name="uploadfile2" id="uploadfile2" accept="image/gif, image/jpeg, image/jpg, image/png" required>
 			</div>
 			<div class="img_wrap">
 	           <img id="img2" />
@@ -455,7 +455,7 @@ a{
 			<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>&nbsp;&nbsp;디자인 상세설명</b></h5>
 		</div>
 		<div>
-			<textarea rows="8" cols="80" name="d_content"></textarea>
+			<textarea rows="8" cols="80" name="d_content" required></textarea>
 		</div>
 		<br>
 		<div>

@@ -40,8 +40,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
             Object destination = httpSession.getAttribute("destination");
             Object URL = httpSession.getAttribute("logUrl");
             String logUrl= (String) URL;
-            System.out.println(logUrl.contains("logout.do"));
-            System.out.println(logUrl.contains("loginPost.do"));
+//            System.out.println(logUrl.contains("logout.do"));
+//            System.out.println(logUrl.contains("loginPost.do"));
             if(logUrl.contains("logout.do")||logUrl.contains("loginPost.do")) {
             	response.sendRedirect(destination != null ? (String) destination : "index.do");
             }else {

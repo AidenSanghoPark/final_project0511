@@ -10,7 +10,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script>
 function payout(){
-	window.open('payout.do','windowPop','width=600, height=400')
+	window.open('payout.do','windowPopup','width=600, height=400')
 }
 </script>
 <style>

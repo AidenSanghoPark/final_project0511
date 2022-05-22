@@ -19,7 +19,39 @@
 <!-- jQuery Modal -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+	});
+    $("#choice").click(function(){
+            // json 형식으로 데이터 set
+            var form = $('#choiceForm')[0];
 
+			// Create an FormData object 
+			var data = new FormData(form);
+            
+            // ajax 통신
+            $.ajax({
+            	type: "POST",
+    			url: '/contestEndChoice.do',	// form을 전송할 실제 파일경로
+    			data: data,
+    			dataType: 'json',
+    			timeout: 600000,
+    			beforeSend : function() {
+    				// 전송 전 실행 코드
+    			},
+    			success: function (data) {
+    				// 전송 후 성공 시 실행 코드
+    				console.log(data);
+    			},
+    			error: function (e) {
+    				// 전송 후 에러 발생 시 실행 코드
+    				console.log("ERROR : ", e);
+    			}
+            });
+        });  
+            
+</script>
 
 <style>
 	.modal {
@@ -42,9 +74,7 @@
 		      		<br>
 		      		<p style="text-align: left; padding-left: 20px;">참여작 내용</p>
 		      		<br>
-		      		<c:if test="${cdto.u_idx == login.u_idx}">
-		      		<button class="button" style="width: 230px; height: 50px; border-radius: 3px;" id="choice">당선하기<br></button>
-		      		</c:if>
+		      		
 		      	</div>
 		      	<div style="float: left;">
 		      		<img style="width: 70%; height: 100%; float: left;" src="img/${ddto.d_img_1}">
@@ -52,44 +82,15 @@
 		      	</div>
 		      </div>
 		</div>
+		<div>
+			<c:if test="${cdto.u_idx == login.u_idx}">
+				<button class="button" style="width: 230px; height: 50px; border-radius: 3px;" id="choice">당선하기<br></button>
+				</c:if>
+		</div>
 		<div align="center">
 			<a href="#" rel="modal:close"><button class="btn btn-secondary" style="font-size:70%;">닫기</button></a>
 		</div>
       	
 </form>
-<script>
-    $("#choice").click(function(){
-    		
-            // json 형식으로 데이터 set
-            var form = $('#choiceForm')[0];
-
-			// Create an FormData object 
-			var data = new FormData(form);
-                
-            // ajax 통신
-            $.ajax({
-            	type: "POST",
-    			enctype: 'multipart/form-data',
-    			url: 'contestEndChoice.do',	// form을 전송할 실제 파일경로
-    			data: data,
-    			processData: false,
-    			contentType: false,
-    			cache: false,
-    			timeout: 600000,
-    			beforeSend : function() {
-    				// 전송 전 실행 코드
-    			},
-    			success: function (data) {
-    				// 전송 후 성공 시 실행 코드
-    				console.log(data);
-    			},
-    			error: function (e) {
-    				// 전송 후 에러 발생 시 실행 코드
-    				console.log("ERROR : ", e);
-    			}
-            });
-        });  
-            
-</script>
 </body>
 </html>
