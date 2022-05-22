@@ -46,7 +46,7 @@ public class DesignerController {
 		mav.addObject("udto", udto);
 		mav.addObject("u_idx", u_idx);
 		
-		mav.setViewName("designer/portfolio2");
+		mav.setViewName("designer/portfolio");
 		return mav;
 	}
 	
@@ -145,7 +145,7 @@ public class DesignerController {
 	public ModelAndView designer(@RequestParam(value = "cp", defaultValue = "1") int cp) {
 		
 		int totalCnt=designerService.designerListTotalCnt();
-		int listSize=10;
+		int listSize=5;
 		int pageSize=5;
 		String pageStr=dsn.page.PageModule.pageMake("designer.do", totalCnt, listSize, pageSize, cp);
 		
@@ -156,7 +156,7 @@ public class DesignerController {
 		mav.addObject("lists", lists);
 		mav.addObject("pageStr", pageStr); 
 		
-		mav.setViewName("designer/designer2");
+		mav.setViewName("designer/designer");
 		return mav;
 	}
 
@@ -178,14 +178,14 @@ public class DesignerController {
 //		int pageSize=5;
 //		String pageStr=dsn.page.PageModule.pageMake("designer.do", totalCnt, listSize, pageSize, cp);
 //		
-////		List userlist=designerSevice.designerAllList();
-////		for(int i=0;i<userlist.size();i++) {
-////			
-////			List photos=designerSevice.designPhotos((int) userlist.get(i));
-////			mav.addObject("photos", photos);
-////		}
+//		List userlist=designerSevice.designerAllList();
+//		for(int i=0;i<userlist.size();i++) {
+//			
+//			List photos=designerSevice.designPhotos((int) userlist.get(i));
+//			mav.addObject("photos", photos);
+//		}
 //		List lists=designerSevice.designerList(cp, listSize);
-////		ProfileDTO pdto=designerSevice.profileInfo(1);
+//		ProfileDTO pdto=designerSevice.profileInfo(1);
 //		
 //		System.out.println("lists="+lists);
 //
@@ -193,10 +193,11 @@ public class DesignerController {
 //		
 //		mav.addObject("lists", lists);
 //		mav.addObject("pageStr", pageStr);
-////		mav.addObject("pdto", pdto);
+//		mav.addObject("pdto", pdto);
 //		
 //
 //		mav.setViewName("designer/designer");
 //		return mav;
 //	}
+//}
 }

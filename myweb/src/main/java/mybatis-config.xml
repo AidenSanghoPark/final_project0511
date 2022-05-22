@@ -21,5 +21,6 @@
 	  <mapper resource="sqlMap/DesignerSQL.xml"/>
 	  <mapper resource="sqlMap/WithdrawSQL.xml"/>
 	  <mapper resource="sqlMap/ProfileSQL.xml"/>
+	  <mapper resource="sqlMap/indexSQL.xml"/>
    </mappers>
 </configuration>

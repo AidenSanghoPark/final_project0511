@@ -43,7 +43,9 @@ public class ContestController {
 	
 	//콘테스트 초이스
 	@RequestMapping("/categoryChoice.do")
-	public ModelAndView contestHold() {
+	public ModelAndView contestHold(HttpServletRequest request) {
+//		String url=request.getHeader("REFERER");
+//    	request.getSession().setAttribute("logUrl", url);
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("contest/categoryChoice");
 		return mav;
@@ -60,6 +62,7 @@ public class ContestController {
 	//로고 form
 	@RequestMapping(value = "/logoHold_add.do", method = RequestMethod.POST)
 	public ModelAndView logoHoldForm(MultipartHttpServletRequest request, ConDTO dto, HttpSession session) {	
+		
 		
 		MemberDTO mdto = (MemberDTO) session.getAttribute("login");
 		
@@ -208,6 +211,7 @@ public class ContestController {
 		
 		Object obj=session.getAttribute("login");
 		MemberDTO mdto = (MemberDTO) obj;
+		
 //		String url=request.getHeader("REFERER");
 //    	request.getSession().setAttribute("conUrl", url);
 		ModelAndView mav=new ModelAndView();
@@ -358,7 +362,7 @@ public class ContestController {
 		ModelAndView mav=new ModelAndView();
 		conService.contestEnd(c_idx);
 		conService.designerWin(d_idx);
-		conService.payUpdate(getuser, conpay,getuser,conpay);
+		conService.payUpdate(getuser,conpay,getuser,conpay);
 		mav.addObject("gopage", "conList.do");
 		mav.addObject("msg", "당선작 선정 완료");
 		mav.setViewName("index");
@@ -378,7 +382,6 @@ public class ContestController {
 	@RequestMapping("conPart.do")
 	public ModelAndView conPart(@RequestParam(value = "cp", defaultValue = "1") int cp,
 			@RequestParam(value="c_idx", defaultValue="0") int c_idx) {
-		
 		ConDTO dto=conService.conContent(c_idx);
 		int totalCnt=conService.ContestCnt();
 		int listSize=5;
@@ -397,11 +400,17 @@ public class ContestController {
 	}
 	
 	@RequestMapping("conPartContent.do")
-	public ModelAndView conPartContent(@RequestParam(value="d_idx", defaultValue="0") int d_idx) {
-		
-		DesignerDTO dto=conService.conPartContent(d_idx);
+	public ModelAndView conPartContent(
+			@RequestParam(value="d_idx", defaultValue="0") int d_idx,
+			@RequestParam(value="c_idx", defaultValue="0") int c_idx) {
+		System.out.println(c_idx);
+		ConDTO cdto=conService.conContent2(c_idx);
+		System.out.println(cdto.getU_idx());
+		System.out.println(cdto.getC_datediff());
+		DesignerDTO ddto=conService.conPartContent(d_idx);
 		ModelAndView mav=new ModelAndView();
-		mav.addObject("dto",dto);
+		mav.addObject("ddto",ddto);
+		mav.addObject("cdto", cdto);
 		
 		mav.setViewName("contest/conPartContent");
 		return mav;
