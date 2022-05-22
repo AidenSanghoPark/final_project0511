@@ -351,6 +351,21 @@ a{
   cursor: pointer;
 }
 
+.nbutton {
+  background-color: #000000;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .button:hover {opacity: 1}
 </style>
 
@@ -371,8 +386,8 @@ a{
 <hr>
 <body style="background-color: #eeeeee;">	
 			<div class="member-entry" style="width:900px; padding-left: 20px; margin: 0 auto;"> 
-			    <a href="#" class="member-img"> 
-			        <img src="https://ifh.cc/g/vAq0AJ.png" class="circle-img" style="padding-top: 10px;"> 
+			    <a class="member-img"> 
+			        <img src="menuimg/${dto.c_cate }.png" class="circle-img" style="padding-top: 10px;"> 
 			    </a> 
 			    <div class="member-details" style="width:750px;"> 
 			        <div class="col-sm-4" style="float:left;"> 
@@ -394,44 +409,58 @@ a{
 
 			</div>
 			<br>
-		<div style="width: 40%; margin: 0 auto; padding-left: 10px; justify-content: center;">
-			<a href="conPart.do?c_idx=${condto.c_idx }"><button class="button">브리핑 보기</button></a>
-			<a href="conContent.do?c_idx=${condto.c_idx }"><button class="button">브리핑 보기</button></a>
-			<button class="button">콘테스트 참여</button>
+		<div style="margin: 0 auto; padding-left: 315px; float: left;">
+			<a href="conPart.do?c_idx=${dto.c_idx }"><button class="button">참여작 보기</button></a>
+			<button class="nbutton">브리핑 보기</button>
+			<a href="contestJoin.do?c_idx=${dto.c_idx }"><button class="button">콘테스트 참여</button></a>
+			<input type="hidden" value="${dto.c_idx }" name="c_idx">
 		</div>
+		<br><br><br>
 		
 <div style="padding-left: 30px; padding-top: 10px; background-color: #ffffff; width: 60%; margin: 0 auto;">
-	<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>콘테스트 참가 작성</b></h5>
+	<div style="text-align: left;">
+		<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>&nbsp;&nbsp;콘테스트 참가 작성</b></h5>
+	</div>	
 	<form name="contestJoin" action="contestJoinSubmit.do" method="post" enctype ="multipart/form-data">
 	<div>
 		<input type="hidden" name="c_idx" value="${condto.c_idx }">
 		<input type="hidden" name="c_cate" value="${condto.c_cate }">
 		<input type="hidden" name="u_idx" value="${mdto.u_idx }">
-		<div>
-			작품 제목 <input type="text" name="d_name" required>
+		<fieldset style="border: solid 1px #a4a4a4; width:60%; height: 100%; padding: 10px;line-height: 30px;">
+			<div>
+				<b>작품 제목</b>&nbsp;&nbsp;&nbsp;<input type="text" name="d_name" required>
+			</div>
+		</fieldset>
+		<br>
+		<div style="text-align: left;">
+			<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>&nbsp;&nbsp;디자인 파일 추가</b></h5>
+		</div>
+		<fieldset style="border: solid 1px #a4a4a4; width:60%; height: 100%; padding: 10px; line-height: 30px; float: left; padding-left: 10px;">	
+			<div style="margin: 0px auto;">
+				<input type="file" name="uploadfile1" id="uploadfile1" accept="image/gif, image/jpeg, image/jpg, image/png" required>
+			</div>
+			<div class="img_wrap">
+	           <img id="img1" />
+	       </div>
+			<div>
+				<input type="file" name="uploadfile2" id="uploadfile2" accept="image/gif, image/jpeg, image/jpg, image/png" required>
+			</div>
+			<div class="img_wrap">
+	           <img id="img2" />
+	       </div>
+	     	
+	   </fieldset>	    
+	   <br><br><br><br><br><br><br><br>
+       <div style="text-align: left;">
+			<h5 style="font-size: 20px; line-height: 40px;"><i class="fa-regular fa-file-lines"></i>&nbsp;<b>&nbsp;&nbsp;디자인 상세설명</b></h5>
 		</div>
 		<div>
+			<textarea rows="8" cols="80" name="d_content" required></textarea>
 		</div>
+		<br>
 		<div>
-			<input type="file" name="uploadfile1" id="uploadfile1" accept="image/gif, image/jpeg, image/jpg, image/png" required>
-		</div>
-		<div class="img_wrap">
-           <img id="img1" />
-       </div>
-		<div>
-			<input type="file" name="uploadfile2" id="uploadfile2" accept="image/gif, image/jpeg, image/jpg, image/png" required>
-		</div>
-		<div class="img_wrap">
-           <img id="img2" />
-       </div>
-		<div>
-			<textarea rows="50" cols="100" name="d_content" required></textarea>
-		</div>
-		<div>
-			<input type="checkbox" name="check">
-		</div>
-		<div>
-			<input type="submit" id="btn_submit" value="콘테스트 참여">
+			<input style="width: 300px;" type="submit" class="btn btn btn-dark" value="콘테스트 참여">
+			<br><br><br>
 		</div>
 	</div>
 	</form>

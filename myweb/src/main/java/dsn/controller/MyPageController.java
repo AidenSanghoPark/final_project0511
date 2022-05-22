@@ -24,6 +24,8 @@ public class MyPageController {
 	
 	@Autowired
 	private MyPageService myPageService;
+	@Autowired
+	private DesignerService designerService;
 	
 	@RequestMapping("myPage.do")
 	public ModelAndView myPage(@RequestParam(value = "cp",defaultValue = "1") int cp,HttpSession session){
@@ -40,7 +42,6 @@ public class MyPageController {
 			mav.setViewName("memberMsg");
 		}else {
 		int vo=mdto.getU_idx();
-		System.out.println(vo);
 		int totalCnt=myPageService.getTotalCnt(vo);
 		int dtotalCnt=myPageService.getDesignerCnt(vo);
 		int listSize=5;
@@ -50,12 +51,14 @@ public class MyPageController {
 		List lists=myPageService.myPageList(cp, listSize, vo);
 		List userinfo=myPageService.userInfoFind(vo);
 		List dlists=myPageService.myPageListByDesigner(cp, listSize, vo);
+		ProfileDTO pdto=designerService.profileInfo(vo);
 		
 		mav.addObject("dpageStr", dpageStr);
 		mav.addObject("dlists", dlists);
 		mav.addObject("lists", lists);
 		mav.addObject("pageStr", pageStr);
 		mav.addObject("u_idx", vo);
+		mav.addObject("pdto", pdto);
 		mav.addObject("userinfo", userinfo);
 		mav.setViewName("mypage/mypage");
 		}
@@ -173,7 +176,6 @@ public class MyPageController {
 		Object obj=session.getAttribute("login");
 		MemberDTO mdto = (MemberDTO) obj;
 		int vo=mdto.getU_idx();
-
 		mav.addObject("u_idx", vo);
 		mav.setViewName("mypage/payoutpopup");
 		return mav;
@@ -183,6 +185,7 @@ public class MyPageController {
 		ModelAndView mav=new ModelAndView();
 		Object obj=session.getAttribute("login");
 		MemberDTO mdto = (MemberDTO) obj;
+		
 		try {
 		String msg="";
 		int price=Integer.parseInt(dto.getW_balance());
@@ -198,6 +201,7 @@ public class MyPageController {
 			mav.setViewName("mypage/popupclose");
 		}else {
 		int result=myPageService.payout(dto);
+		
 		msg=result>0?"출금신청 완료":"출금신청 실패";
 		
 		mav.addObject("msg", msg);
