@@ -12,36 +12,36 @@
 .profile{
  text-align:center;
  float:left;
- padding-left:100px;
- padding-top:60px;
+ padding-left:180px;
+ padding-top:100px;
 }
 .profile h3{
 	text-decoration: none;
 	color:gray;
 }
 .coninfo{
-   float:left;
-   padding-left:120px;
-    padding-top:90px;
+	float:left;
+	padding-left:200px;
+ 	padding-top:120px;
 }
 .coninfo fieldset{
-   border:1px groove;
-   width:900px;
-   height:100px;
-   padding-left:8px;
+	border:1px groove;
+	width:900px;
+	height:100px;
+	padding-left:8px;
 }
 .coninfo fieldset label{
-   padding-top:35px;
+	padding-top:35px;
 }
 #page{
-   text-align:center;
+	text-align:center;
 }
 a {
 	text-decoration: none;
 	color:gray;
 }
 ul{
-   list-style:none;
+	list-style:none;
 }
 .photo{
    width: 150px;
@@ -56,8 +56,8 @@ ul{
 	<c:choose>
 		<c:when test="${userinfo.u_type!='1' }">
 			<section class="profile">
-		      	<img class="photo" src="profileimg/${pdto.p_img}">
-		        <h5><a href="profile.do">${userinfo.u_name } 님</a></h5>
+		      	<img class="photo" src="profileimg/${pdto.p_img}"><br><br>
+		        <h5><a href="profile.do" style="font-weight: bold;">${userinfo.u_name } 님</a></h5>
 		        		<fieldset style="border-radius:3px;  background-color:skyblue; width:50px;height:13px; margin: auto">
 		        		<h6 style="color:#ffffff;align:center;font-size: 11px;">디자이너</h6>
 		        		</fieldset>
@@ -65,8 +65,8 @@ ul{
 		        <c:url var="contentUrl" value="portfolio2.do">
 					<c:param name="u_idx">${userinfo.u_idx}</c:param>
 				</c:url>
-		        <p><a class="btn btn-secondary" href="${contentUrl}">포트폴리오</a></p><br>
-		        <h3>1:1 의뢰 관리</h3><br>		
+		        <p><a class="btn btn-secondary" href="${contentUrl}">포트폴리오 관리</a></p><br>
+		        <h3><a href="profile.do">프로필 관리</a></h3><br>		
    			 	<h3><a href="wallet.do">가상계좌</a></h3><br>
 		        <h3><a href="accountConfig.do">계정설정</a></h3><br>
 		    </section>
@@ -96,8 +96,7 @@ ul{
 		       		<fieldset style="border-radius:3px;  background-color:skyblue; width:50px;height:13px; margin: auto">
 		        	<h6 style="color:#ffffff;align:center;font-size: 11px;">의뢰자</h6>
 		        	</fieldset>
-		        <p>${userinfo.u_email }</p>
-		        <h3>1:1 의뢰 관리</h3><br>		
+		        <p>${userinfo.u_email }</p>		
 		   			 	<h3><a href="showPayInfo.do">거래내역</a></h3><br>
 		        <h3><a href="accountConfig.do">계정설정</a></h3><br>
 		    </section>

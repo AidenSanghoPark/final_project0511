@@ -11,7 +11,9 @@
          #{u_idx},
          #{p_img},
          #{p_info},
-         #{u_wallet}
+         #{u_wallet},
+         #{u_bank}
+         
       )
    </insert>
    <update id="profileUpdate" parameterType="dsn.profile.model.ProfileDTO">
@@ -20,7 +22,8 @@
       set
          p_img=#{p_img},
          p_info=#{p_info},
-         u_wallet=#{u_wallet}
+         u_wallet=#{u_wallet},
+         u_bank=#{u_bank}
       where
          u_idx=#{u_idx}
    </update>
