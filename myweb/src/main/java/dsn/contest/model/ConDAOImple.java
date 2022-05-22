@@ -59,6 +59,12 @@ public class ConDAOImple implements ConDAO{
 			int cnt=sqlMap.selectOne("ContestCnt");
 			return cnt;
 		}
+		
+		@Override
+		public int ContestCntEnd() {
+			int cnt=sqlMap.selectOne("ContestCntEnd");
+			return cnt;
+		}
 
 
 		@Override

@@ -441,17 +441,15 @@ function nextNaming(){
     // section1을 trigger로 click해줘서 제이쿼리 click이 돌게함.
 }
 
-function pay(){
-//     var totalPrice = $("#totalPrice").val();
-    // IMP.request_pay(param, callback) 결제창 호출
-    IMP.request_pay({ // param
-        pg: "kakaopay",
-        pay_method: "kakaopay",
-        merchant_uid: randomNum(),
-        name: $("#selectType").val(), 
+function payCard(){
+	IMP.request_pay({
+	    pg : 'html5_inicis',
+	    pay_method : 'card',
+	    merchant_uid: randomNum(), // 상점에서 관리하는 주문 번호를 전달
+	    name: $("#selectType").val(), 
         amount: $("#t_pay").val()
-    }, function (rsp) { // callback
-        if (rsp.success) {
+	}, function(rsp) { // callback 로직
+		if (rsp.success) {
             // ajax 거래내역 insert 추가 필요
             
             var dataForm = {
@@ -462,7 +460,7 @@ function pay(){
             };
             
             $.ajax({
-               url: 'namingHoldTrade_add.do', 
+               url: 'logoHoldTrade_add.do', 
                type: 'post',               
                dataType: 'json',
                data: dataForm,
@@ -480,7 +478,7 @@ function pay(){
             alert("결제취소");
             // 결제 실패 시 로직,
         }
-    });
+	});
 }
 
    $(document).ready(function(){
