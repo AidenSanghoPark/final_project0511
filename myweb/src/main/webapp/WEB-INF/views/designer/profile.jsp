@@ -13,7 +13,7 @@
 <style>
 .picture{
 	float:left;
-	padding-top:150px;
+	padding-top:100px;
 	padding-left:80px;
 }
 .infoConfig{
@@ -31,10 +31,6 @@ textarea{
 	text-align: center
 }
 h5{
-	text-align: center;
-}
-.sujung{
-	float: center;
 	text-align: center;
 }
 .photo{
@@ -99,7 +95,8 @@ h5{
 <c:if test="${pdto != null}">
 	<form name="profileUpdate" action="profileUpdate.do" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="u_idx" value="${u_idx}"><br><br><br><br>
-	<h2 style="font-weight: bold;"><br>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-regular fa-circle-user fa-lg"></i>&nbsp;&nbsp;프로필 수정하기</h2>
+	<h2 style="font-weight: bold; background-color: #dcdcdc; border-radius:10px; padding-top: 10px; padding-bottom: 20px;">
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-regular fa-circle-user fa-lg"></i>&nbsp;&nbsp;프로필 수정하기</h2>
 		<section class="picture">
 			<h5 style="font-weight: bold;">프로필 사진</h5><hr>
 			<img class="photo" src="/myweb/profileimg/${pdto.p_img}" style="margin-left: 70px;"><br><br>
@@ -136,12 +133,12 @@ h5{
 		</table>
 		<br><br><br>
 		<div style="padding-right: 100px;">
-				<input type="submit" value="수정하기" class="btn btn-secondary" style="float: right; font-size: 20px; text-align: right;">
+				<input type="submit" value="수정하기" class="btn btn-secondary" style="float: right; font-size: 20px;">
 		</div>
 		</section>
 	</form>
 </c:if>
-<div style="padding-top:600px;">
+<div style="padding-top:1200px;">
 <%@include file="/WEB-INF/views/footer.jsp" %>
 </div>
 </body>

@@ -51,7 +51,6 @@ public class MyPageController {
 		String pageStr=dsn.page.PageModule.pageMake("myPage.do", totalCnt, listSize, pageSize, cp);
 		List lists=myPageService.myPageList(cp, listSize, vo);
 		List userinfo=myPageService.userInfoFind(vo);
-		System.out.println(userinfo);
 		List dlists=myPageService.myPageListByDesigner(cp, listSize, pageSize);
 		ProfileDTO pdto=designerService.profileInfo(vo);
 		
