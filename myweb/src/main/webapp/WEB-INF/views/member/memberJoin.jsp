@@ -190,7 +190,7 @@ function nickCheck() {
 	
 	if(!nickNameCheck.test($('#userNick').val())){
 			
-	   $('#re_nick').html('<label style="color:#f82a2aa3;font-size:12px;">영어 대.소문자 숫자만 사용가능합니다(2-10자)</label>');
+	   $('#re_nick').html('<label style="color:#f82a2aa3;font-size:12px;">한글 영어 대.소문자 숫자만 사용가능합니다(2-10자)</label>');
 	   $("#userNick").focus(); 
 	   return true;
 	}else{
@@ -207,7 +207,6 @@ $('#userNick').keyup(function () {
 	
 	//ajax
 	if ($('#userNick').val() != '') {
-
     	$.ajax({
 					
         	type: 'GET',
@@ -313,7 +312,7 @@ function pwdCheck() {
 	
 	if(!passCheck.test($('#userPw').val())){
 		
-	  	$('#re_pw').html('<label style="color:#f82a2aa3;font-size:12px;">영어 대.소문자 숫자 특수문자 1개이상 입력 해주셔야합니다(8-15자)</label>');
+	  	$('#re_pw').html('<label style="color:#f82a2aa3;font-size:12px;">영어,숫자 특수문자 1개이상 입력 해주셔야합니다(8-15자)</label>');
 	  	$("#userPw").focus(); 
 		return true;
 	  	

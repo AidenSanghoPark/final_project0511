@@ -19,14 +19,6 @@ section{
 	text-align: center;
 }
 </style>
-<script>
-var type = ${login.u_type};
-console.log(type);
-if(type != 1) {
-	alert('의뢰인 회원만 개최 가능합니다.');
-	history.back();
-}
-</script>
 </head>
 <body>
 <%@include file="/WEB-INF/views/header.jsp" %>
