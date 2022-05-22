@@ -359,14 +359,15 @@ public class ContestController {
 		int getuser=conService.designerUser(d_idx);
 		System.out.println("desgineruser="+getuser);
 		int conpay=conService.contestPay(c_idx);
+		ConDTO cdto=conService.conContent2(c_idx);
 		System.out.println(conpay);
 		ModelAndView mav=new ModelAndView();
 		conService.contestEnd(c_idx);
 		conService.designerWin(d_idx);
-		conService.payUpdate(getuser,conpay,getuser,conpay);
+		conService.payUpdate(getuser,conpay,cdto.getC_subject(),getuser,conpay);
 		mav.addObject("gopage", "conList.do");
 		mav.addObject("msg", "당선작 선정 완료");
-		mav.setViewName("index");
+		mav.setViewName("/contest/conMsg");
 		return mav;
 	}
 	@RequestMapping("/contestContent.do")
@@ -409,7 +410,8 @@ public class ContestController {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("ddto",ddto);
 		mav.addObject("cdto", cdto);
-		
+		System.out.println("conpart ddto="+ddto.getD_idx());
+		System.out.println("conpart cdto="+cdto.getC_idx());
 		mav.setViewName("contest/conPartContent");
 		return mav;
 		

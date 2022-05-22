@@ -166,10 +166,11 @@ public class ConServiceImple implements ConService{
 		return dto;
 	}
 	@Override
-	public void payUpdate(int u_idx,int a_amount,int uidx,int amount) {
+	public void payUpdate(int u_idx,int a_amount,String c_subject,int uidx,int amount) {
 		Map map=new HashedMap();
 		map.put("u_idx", u_idx);
 		map.put("a_amount", a_amount);
+		map.put("c_subject", c_subject);
 		map.put("uidx", uidx);
 		map.put("amount", amount);
 		conDao.payUpdate(map);

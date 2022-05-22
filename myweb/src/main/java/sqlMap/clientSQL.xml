@@ -146,7 +146,6 @@
 			  , C_NAME
 			  , C_DETAILS
 			  , C_IDEA
-			  , C_READNUM
 			  , C_PAY
 			  , C_OPENDATE
 			  , C_ENDDATE
@@ -164,7 +163,6 @@
 			#{c_file},
 			#{c_name},
 			#{c_details},
-			0,
 			'idea',
 			#{c_pay},
 			sysdate,
@@ -400,7 +398,7 @@
 			, #{u_idx}
 			, '입금'
 			, sysdate 
-			, '1232'
+			, #{c_subject}
 			, '상금적립'
 			, #{a_amount}
 			, NVL((SELECT 
