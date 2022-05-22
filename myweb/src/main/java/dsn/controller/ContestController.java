@@ -207,15 +207,18 @@ public class ContestController {
 	}
 	
 	@RequestMapping(value = "contestJoin.do", method = RequestMethod.GET)
-	public ModelAndView contestJoin(ConDTO dto, HttpServletRequest request, HttpSession session) {
+	public ModelAndView contestJoin(ConDTO dto,int c_idx, HttpServletRequest request, HttpSession session) {
 		
 		Object obj=session.getAttribute("login");
 		MemberDTO mdto = (MemberDTO) obj;
-		
+		ConDTO cdto=conService.conContent2(c_idx);
+		int jsum=conService.joinSum(c_idx);
 //		String url=request.getHeader("REFERER");
 //    	request.getSession().setAttribute("conUrl", url);
 		ModelAndView mav=new ModelAndView();
 		ConDTO con=conService.conInfo(dto.getC_idx());
+		mav.addObject("cdto", cdto);
+		mav.addObject("jsum", jsum);
 		mav.addObject("mdto",mdto);
 		mav.addObject("condto", con);
 		mav.setViewName("contest/contestJoin");
@@ -330,12 +333,14 @@ public class ContestController {
 	public ModelAndView conContent(
 			@RequestParam(value="c_idx", defaultValue = "0") int c_idx){
 		ConDTO dto=conService.conContent(c_idx);
+		int jsum=conService.joinSum(c_idx);
 		ModelAndView mav=new ModelAndView();
 		if(dto==null) {
 			mav.addObject("msg", "잘못된 접근 또는 삭제된 콘테스트입니다.");
 			mav.addObject("gopage","conList.do");
 			mav.setViewName("contest/conMsg");
 		}else {
+			mav.addObject("jsum", jsum);
 			mav.addObject("dto",dto);
 			mav.setViewName("contest/conContent");
 		}
@@ -359,14 +364,15 @@ public class ContestController {
 		int getuser=conService.designerUser(d_idx);
 		System.out.println("desgineruser="+getuser);
 		int conpay=conService.contestPay(c_idx);
+		ConDTO cdto=conService.conContent2(c_idx);
 		System.out.println(conpay);
 		ModelAndView mav=new ModelAndView();
 		conService.contestEnd(c_idx);
 		conService.designerWin(d_idx);
-		conService.payUpdate(getuser,conpay,getuser,conpay);
+		conService.payUpdate(getuser,conpay,cdto.getC_subject(),getuser,conpay);
 		mav.addObject("gopage", "conList.do");
 		mav.addObject("msg", "당선작 선정 완료");
-		mav.setViewName("index");
+		mav.setViewName("/contest/conMsg");
 		return mav;
 	}
 	@RequestMapping("/contestContent.do")
@@ -387,9 +393,11 @@ public class ContestController {
 		int totalCnt=conService.ContestCnt();
 		int listSize=5;
 		int pageSize=5;
+		int jsum=conService.joinSum(c_idx);
 		String pageStr=dsn.page.PageModule.pageMake("conPart.do", totalCnt, listSize, pageSize, cp);
 		List dlists=conService.conPart(cp, listSize, c_idx);
 		ModelAndView mav=new ModelAndView();
+		mav.addObject("jsum", jsum);
 		mav.addObject("dlists", dlists);
 		mav.addObject("pageStr", pageStr);
 		mav.addObject("dto",dto);
@@ -409,7 +417,8 @@ public class ContestController {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("ddto",ddto);
 		mav.addObject("cdto", cdto);
-		
+		System.out.println("conpart ddto="+ddto.getD_idx());
+		System.out.println("conpart cdto="+cdto.getC_idx());
 		mav.setViewName("contest/conPartContent");
 		return mav;
 		
