@@ -7,10 +7,10 @@
      	select nvl(count(u_type),0) from f_user where u_type = 2
      </select>
      <select id="indexContestIng" resultType="Integer">		
-		select nvl(count(c_datediff),0) from f_client where c_datediff <![CDATA[>=]]> 0
+		select nvl(count(c_datediff),0) from f_client where c_datediff <![CDATA[<=]]> 0
      </select>
      <select id="indexContestEnd" resultType="Integer">
-     	select nvl(count(c_datediff),0) from f_client where c_datediff <![CDATA[<=]]> 0
+     	select nvl(count(c_datediff),0) from f_client where c_datediff <![CDATA[>=]]> 0
      </select>
      <select id="indexContestSum" resultType="Integer">
 		select nvl(sum(a_amount),0) from f_account
