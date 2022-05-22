@@ -37,7 +37,7 @@ public class MyPageController {
 			msg="로그인 후 이용해주세요";
 			mav.addObject("msg", msg);
 			mav.addObject("gopage","index.do");
-			mav.setViewName("mypage/mypagemsg");
+			mav.setViewName("memberMsg");
 		}else {
 		int vo=mdto.getU_idx();
 		System.out.println(vo);
@@ -49,9 +49,7 @@ public class MyPageController {
 		String pageStr=dsn.page.PageModule.pageMake("myPage.do", totalCnt, listSize, pageSize, cp);
 		List lists=myPageService.myPageList(cp, listSize, vo);
 		List userinfo=myPageService.userInfoFind(vo);
-		System.out.println(userinfo);
-		List dlists=myPageService.myPageListByDesigner(cp, listSize, pageSize);
-		ProfileDTO pdto=designerService.profileInfo(vo);
+		List dlists=myPageService.myPageListByDesigner(cp, listSize, vo);
 		
 		mav.addObject("dpageStr", dpageStr);
 		mav.addObject("dlists", dlists);
