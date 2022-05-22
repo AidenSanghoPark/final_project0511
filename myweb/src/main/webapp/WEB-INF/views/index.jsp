@@ -141,108 +141,124 @@
 <br>
 <!-- 후기 샘플 -->
 
- <div class="album py-5"  style="background-color: white; margin: 0 auto;">'
- <b style="padding-left: 540px; color: gray; font-size: 20px; font-family: Georgia;"><i class="fa-solid fa-file-pen"></i>&nbsp;콘테스트 이용 후기</b>
+ <div class="album py-5"  style="background-color: white; margin: 0 auto;">
+ <div style="padding-left: 150px;">
+ 	<b style="margin: 0 auto; width: 60%;  color: gray; font-size: 20px; font-family: Georgia;">
+ 	<i class="fa-solid fa-file-pen"></i>&nbsp;콘테스트 이용 후기</b>
+ </div>
+ 	<br>
+ 	<br>
     <div class="container">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-       <br>
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-            <div class="card-body">
-              <p class="card-text">후기 샘플</p>
-              <div class="d-flex justify-content-between align-items-center">
-              
-                <small class="text-muted">sysdate</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-            <div class="card-body">
-              <p class="card-text">후기 샘플</p>
-              <div class="d-flex justify-content-between align-items-center">
-
-                <small class="text-muted">sysdate</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-            <div class="card-body">
-              <p class="card-text">후기 샘플</p>
-              <div class="d-flex justify-content-between align-items-center">
-
-                <small class="text-muted">sysdate</small>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    	<table>
+    		<tr>
+    			<td>
+          			&nbsp;
+          		</td>
+    			<td>
+          			<img src="img/main_re1.jpg" style="width: 300px; height: 300px;">
+          			<br><br>
+          			<b>로고 디자인</b>
+          			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          			<small style="color: #2155CD;">★★★★★5점</small>
+          			<small style="color: gray;">너무 친절하고 디자인 너무 맘에 들어요~~ 강추 합니다!!</small>
+          		</td>          		
+          		<td>
+          			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          		</td>
+          		<td>
+          			<img src="img/main_re2.jpg" style="width: 300px; height: 300px;">
+          			<br><br>
+          			<b>로고 디자인</b>
+          			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          			<small style="color: #2155CD;">★★★★★5점</small>
+          			<small style="color: gray;">결과물 완전 만족하구요. 친절하시고 피드백도 빠르십니다. 감사합니다!</small>
+          		</td>
+          		<td>
+          			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          		</td>
+          		<td>
+          			<img src="img/main_re3.jpg" style="width: 300px; height: 300px;">
+          			<br><br>
+          			<b>캐릭터 디자인</b>
+          			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          			&nbsp;&nbsp;&nbsp;&nbsp;
+          			<small style="color: #2155CD;">★★★★★5점</small>
+          			<small style="color: gray;">너무 친절하고 디자인 너무 맘에 들어요~~ 강추 합니다!!</small>
+          		</td>
+          		<td>
+          			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          		</td>
+          		<td>
+          			<img src="img/main_re4.jpg" style="width: 300px; height: 300px;">
+          			<br><br>
+          			<b>캐릭터 디자인</b>
+          			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          			&nbsp;&nbsp;&nbsp;&nbsp;
+          			<small style="color: #2155CD;">★★★★★5점</small>
+          			<small style="color: gray;">요청 사항이 많았는데 친절하게 수정해주셔서 너무 감사했습니다...</small>
+          		</td>
+          	</tr>
+    	</table>
     </div>
-  </div>
+  </div>  
   <br>
 <!-- 배너 -->  
-  <section class="banner">
-	  <div style="align:center;">
-	    <p class="lead"><img src="img/banner.png" style="align:center;"></p>
-	  </div>
-	</section>
-	<br>
-	<br>
+<section class="banner">
+	<div style="align:center;">
+		<p class="lead"><img src="img/banner.png" style="align:center; width: 85%;"></p>
+	</div>
+</section>
+<br>
+<br>
 <!-- 베스트작품 -->
-  
-	   <br>
-	   <br>
-	   <section style="width: 55%; margin: 0 auto;">
-	   	<div>
-	    <b style="color: gray; font-size: 20px; font-family: Georgia;"><i class="fa-solid fa-crown"></i>&nbsp;베스트 작품</b>
-		</div> 
-		<br>
-			    <div class="p-5 mb-4 bg-light rounded-3">
-			      <div class="container-fluid py-5">
-			        <h1 class="display-5 fw-bold">Custom jumbotron</h1>
-			        <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
-			        <button class="btn btn-primary btn-lg" type="button">Example button</button>
-			      </div>
-			    </div>
-			    <div class="row align-items-md-stretch" >
-			      <div class="col-md-6">
-			        <div class="h-100 p-5 text-white bg-dark rounded-3">
-			          <h2>Change the background</h2>
-			          <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
-			          <button class="btn btn-outline-light" type="button">Example button</button>
-			      </div>
-			      </div>
-			      <div class="col-md-6">
-			        <div class="h-100 p-5 bg-light border rounded-3">
-			          <h2>Add borders</h2>
-			          <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
-			          <button class="btn btn-outline-secondary" type="button">Example button</button>
-			     </div>
-			   	</div>
-			</div>
-	   	</section>	
-	   	<br>
-	   	<br>
-	   	<hr>	
+<b style="color: gray; font-size: 20px; font-family: Georgia; padding-left: 140px;">
+<i class="fa-solid fa-crown"></i>&nbsp;주간 베스트 작품</b>&nbsp;&nbsp;<small style="color: #035397;">NEW</small>  
+<br><br>  
+<table style="margin: 0 auto;">
+	 <tr>
+	   	<td>
+	   		<img src="img/main_best1.jfif" style="width: 440px; height: 300px;">
+	   	</td>
+	   		<td>
+	   		<img src="img/main_best2.jpg" style="width: 440px; height: 300px;">
+	   	</td>
+	   		<td>
+	   		<img src="img/main_best3.png" style="width: 440px; height: 300px;">
+	   	</td>
+	 </tr>
+</table>
+<br><br><br><br>
+<b style="color: gray; font-size: 20px; font-family: Georgia; padding-left: 140px;">
+<i class="fa-solid fa-crown"></i>&nbsp;월간 베스트 작품</b>&nbsp;&nbsp;<small style="color: #035397;">NEW</small>  
+<br><br>  
+<table style="margin: 0 auto;">
+	 <tr>
+	   	<td>
+	   		<img src="img/main_best4.jpg" style="width: 440px; height: 300px;">
+	   	</td>
+	   		<td>
+	   		<img src="img/main_best5.jpg" style="width: 440px; height: 300px;">
+	   	</td>
+	   		<td>
+	   		<img src="img/main_best6.jpg" style="width: 440px; height: 300px;">
+	   	</td>
+	 </tr>
+</table>		    
+<br>
+<br>
+<hr>	
 <!-- gif 이미지 -->	
 	<br>    
-	<section style="height: 500px; width: 70%; margin: 0 auto;">
-		 <div style="width: 50%; float: left; padding-left: 230px; padding-top: 150px;">	
+	<section style="height: 500px; width: 100%; margin: 0 auto; font-family: bold;">
+		 <div style="width: 50%; float: left; padding-left: 200px; padding-top: 150px;">	
 		 	<h3 style="color: gray;"><b>No.1 크리에이티브 플랫폼</b></h3><br>
 		 	<h1><b>디자인부터 네이밍, 아이디어까지</b></h1><br>
 			<h1><b>10만 명의 전문가에게 의뢰하세요.</b></h1>	
 		</div>
-		<div style="padding-right: 200px;">	    
-		    <img src="img/maingif.gif" style="width: 40%; height: 90%; float: right; padding-top: 10px;">	    
+		<div style="padding-right: 150px; padding-top: 70px;">	    
+		    <img src="img/maingif.gif" style="width: 40%; height: 90%; float: right;">	    
 		 </div>
 	</section>
 	 <br>
@@ -250,9 +266,9 @@
 	 <br>
 <!-- 배너 -->	 
 	 <section class="banner">
-	  <div style="align:center;">
-	    <p class="lead"><img src="img/banner.png" style="align:center;"></p>
-	  </div>
+		<div style="align:center;">
+			<p class="lead"><img src="img/banner2.png" style="align:center; width: 85%;"></p>
+		</div>
 	</section>
 	<br>
 	<br>
