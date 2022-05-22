@@ -24,7 +24,7 @@
       <div class="collapse navbar-collapse" id="navbarsExample02">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">콘테스트</a>
+            <a class="nav-link active" aria-current="page" href="conList.do">콘테스트</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="contestChoice.do">콘테스트 개최</a>
@@ -35,6 +35,7 @@
           <li class="nav-item">
             <a class="nav-link" href="contestJoin.do">콘테스트 참여</a>
           </li>
+          
           <li>
        	 	<a href="myPage.do"><label>임시 마이페이지</label></a>
           </li>  

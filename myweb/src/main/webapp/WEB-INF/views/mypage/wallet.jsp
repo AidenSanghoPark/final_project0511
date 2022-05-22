@@ -10,7 +10,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <script>
 function payout(){
-	window.open('payout.do?u_idx=${u_idx}','windowPop','width=600, height=400')
+	window.open('payout.do','windowPop','width=600, height=400')
 }
 </script>
 <style>
@@ -50,31 +50,18 @@ a {
 </style>
 </head>
 <body>
+<c:if test="${blc==0}">aa</c:if>
 <%@ include file="/WEB-INF/views/header.jsp" %>
-
-<c:choose>
-	<c:when test="${!empty blc }">
 <div style="padding-left: 80px;padding-top: 100px;">
 <h3>가상계좌</h3><br>
-<c:choose>
-	<c:when test="${empty lists }">
-	<fieldset>
-		<table>
-			<tr>
-				<th>계좌 등록</th>
-			</tr>
-		</table>
-		</fieldset>
-	</c:when>
-</c:choose>
 <table class="request" style="border-top-left-radius: 15px;">
 	<tr>
 		<c:choose>
 			<c:when test="${empty blc}">
-		<th>잔액이 없습니다.</th>
+				<th>잔액이 없습니다.</th>
 			</c:when>
 			<c:otherwise>
-			<th>${blc }&nbsp;원</th>
+				<th>${blc }&nbsp;원</th>
 			</c:otherwise>
 		</c:choose>
 		<td><a onclick="payout()">출금신청</a></td>
@@ -93,9 +80,11 @@ a {
 			<th>거래 후 잔액</th>
 		</tr>
 	</thead>
-	<c:if test="${empty lists }">
+	<c:choose>
+	<c:when test="${empty lists }">
     	<h3 style="color:grey;padding-left:300px;padding-top:200px;">계좌 내역이 없습니다.</h3>
-    </c:if>
+    </c:when>
+    <c:otherwise>
     <c:forEach var="dto" items="${lists }">
     <tr style="border:1px solid;">
 		<td>${dto.a_type }</td>
@@ -106,13 +95,15 @@ a {
 		<td>${dto.a_balance }</td>
 	</tr>
 	</c:forEach>
+	</c:otherwise>
+	</c:choose>
 </table><br>
+<c:if test="${!empty lists }">
 <div style="text-align:center">
  ${pageStr }
 </div>
+</c:if>
 </div>
-	</c:when>
-</c:choose>
 <div style="padding-top:200px;">
 <%@include file="/WEB-INF/views/footer.jsp" %>
 </div>
