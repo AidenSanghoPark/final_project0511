@@ -188,7 +188,36 @@
   }
 }
 .container{
-	width: 1000px;
+	width: 1200px;
+}
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.pagination a:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 </style>
 </head>
@@ -198,32 +227,33 @@
 <div class="container"><br><br><br>
 <div class="row bootstrap snippets bootdeys"> <br><br><br><br>
     <div class="col-md-9 col-sm-7"> <br><br><br><br>
-        <h2 style="color: gray; font-size: 25px; font-family: Georgia;"><i class="fa-solid fa-crown"></i>&nbsp;이달의 TOP 디자이너가 궁금하신가요?</h2> 
+        <h2 style="color: dark gray; font-size: 25px; font-family: Georgia; font-weight: bold;"><i class="fa-solid fa-crown"></i>&nbsp;이달의 TOP 디자이너가 궁금하신가요?</h2> 
     </div><br>
 </div><br>
 <c:forEach var="dto" items="${lists}"> 
-<div class="member-entry"> 
+<div class="member-entry">
     <a class="member-img"> 
-        <img src="profileimg/${dto.p_img}" class="img-rounded"> 
+        <img src="profileimg/${dto.p_img}" class="img-rounded" style="margin: 10px;"> 
     </a> 
-    <div class="member-details"> 
-        <h4 style="font-size: 20px; font-family: Georgia;">${dto.u_nick}</h4> 
+    <div class="member-details" style="padding-left: 20px;"> 
+        <h4 style="font-size: 20px; font-family: Georgia; font-weight: bold;">${dto.u_nick}</h4> 
         <div class="row info-list"> 
-            <div class="col-sm-4">
+            <div class="col-sm-4" style="font-weight: bold; font-size: 15px; color: gray;">
+            	<i class="fa-solid fa-crown"></i>
             		우승 ${dto.total_win}회
             </div> 
-            <div class="col-sm-4">
+            <div class="col-sm-4" style="padding-right: 100px; font-weight: bold; font-size: 14px; color: gray;">
                 <i class="fa fa-envelope"></i>
                 ${dto.u_email}
             </div> 
-            <div class="col-sm-4"> 
+            <div class="col-sm-4" style="padding-left: 45px;"> 
             <c:url var="contentUrl" value="portfolio2.do">
 					<c:param name="u_idx">${dto.u_idx}</c:param>
 			</c:url>
-            <a href="${contentUrl}"><input type="button" value="포트폴리오" class="btn btn-secondary"></a>
+            <a href="${contentUrl}"><input type="button" value="포트폴리오" class="btn btn-secondary" style="padding-left: 30px; padding-right: 30px;"></a>
             </div> 
             <div class="clear"></div> 
-            <div class="col-sm-4">
+            <div class="col-sm-4" style="padding-left: 30px;">
             	${dto.p_info}
             </div> 
             <div class="col-sm-4">
@@ -234,8 +264,8 @@
     </div> 
 </div>
 </c:forEach>
+<div class="pagination" style="float: center; padding-bottom: 50px;">${pageStr } </div>
 </div>
-<div id="page">${pageStr}</div>
 <%@include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>
