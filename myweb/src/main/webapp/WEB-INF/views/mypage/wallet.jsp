@@ -50,7 +50,6 @@ a {
 </style>
 </head>
 <body>
-<c:if test="${blc==0}">aa</c:if>
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <div style="padding-left: 80px;padding-top: 100px;">
 <h3>가상계좌</h3><br>
@@ -82,7 +81,7 @@ a {
 	</thead>
 	<c:choose>
 	<c:when test="${empty lists }">
-    	<h3 style="color:grey;padding-left:300px;padding-top:200px;">계좌 내역이 없습니다.</h3>
+  
     </c:when>
     <c:otherwise>
     <c:forEach var="dto" items="${lists }">
