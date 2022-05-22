@@ -7,6 +7,7 @@ public class ListDTO {
 	private String u_nick;
 	private String u_email;
 	private int u_idx;
+	private int total_win;
 	
 	
 	public ListDTO() {
@@ -14,7 +15,10 @@ public class ListDTO {
 	}
 
 
-	public ListDTO(int rnum, String p_img, String p_info, String u_nick, String u_email, int u_idx) {
+	
+
+
+	public ListDTO(int rnum, String p_img, String p_info, String u_nick, String u_email, int u_idx, int total_win) {
 		super();
 		this.rnum = rnum;
 		this.p_img = p_img;
@@ -22,7 +26,28 @@ public class ListDTO {
 		this.u_nick = u_nick;
 		this.u_email = u_email;
 		this.u_idx = u_idx;
+		this.total_win = total_win;
 	}
+
+
+
+
+
+
+	public int getTotal_win() {
+		return total_win;
+	}
+
+
+
+
+
+	public void setTotal_win(int total_win) {
+		this.total_win = total_win;
+	}
+
+
+
 
 
 	public int getRnum() {

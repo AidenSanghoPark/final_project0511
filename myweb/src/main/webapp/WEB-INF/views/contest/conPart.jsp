@@ -455,20 +455,20 @@ a{
 			<c:if test="${empty dlists}">
 				<tfoot>
 					<tr>
-						<td colspan="3">참여자가 없습니다 ㄱ-</td>
+						<td colspan="3">참여자가 없습니다 </td>
 					</tr>
 				</tfoot>
 			</c:if>
 			<tbody>
 				<tr>
-					<c:forEach var="dto" items="${dlists}">
+					<c:forEach var="dtos" items="${dlists}">
 					
-					<c:url var="contentUrl" value="conPartContent.do">
-						<c:param name="d_idx">${dto.d_idx}</c:param>
+					<c:url var="contentUrl" value="conPartContent.do?c_idx=${c_idx}">
+						<c:param name="d_idx">${dtos.d_idx}</c:param>
 					</c:url>
 					<td>
 						<p>
-							<a href="${contentUrl}" rel="modal:open">${dto.d_name}</a><img style="width: 300px;" src="img/${dto.d_img_1}" />
+							<a href="${contentUrl}" rel="modal:open">${dtos.d_name}</a><img style="width: 300px;" src="img/${dtos.d_img_1}" />
 						</p>
 					</td>
 					</c:forEach>

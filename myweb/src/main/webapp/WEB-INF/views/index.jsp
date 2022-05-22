@@ -104,7 +104,7 @@
            <div class="col">
            <div class="counter" style="background-color: white;">
       <i class="fa fa-address-card fa-2x" style="color: #205375;"></i>
-      <h2 class="timer count-title count-number" style="font-weight: bold;" data-to="5293" data-speed="1500"></h2><br>
+      <h2 class="timer count-title count-number" style="font-weight: bold;" data-to="${des}" data-speed="1500"></h2><br>
       <p style="text-align: center; color: #808080; font-size: 20px; font-weight: bold;">등록된 디자이너</p>
      <!--   <p class="count-text ">등록된 디자이너</p> -->
     </div>
@@ -112,7 +112,7 @@
               <div class="col">
                <div class="counter" style="background-color: white;">
       <i class="fa fa-user-circle-o fa-2x" style="color: #205375;"></i>
-      <h2 class="timer count-title count-number" style="font-weight: bold;" data-to="521" data-speed="1500"></h2><br>
+      <h2 class="timer count-title count-number" style="font-weight: bold;" data-to="${coning}" data-speed="1500"></h2><br>
      <p style="text-align: center; color: #808080; font-size: 20px; font-weight: bold;">진행중인 콘테스트</p>
       <!-- <p class="count-text ">진행중인 콘테스트</p> -->
     </div>
@@ -121,14 +121,14 @@
               <div class="col">
               <div class="counter" style="background-color: white;">
       <i class="fa fa-handshake-o fa-2x" style="color: #205375;"></i>
-      <h2 class="timer count-title count-number" style="font-weight: bold;" data-to="10254" data-speed="1500"></h2><br>
+      <h2 class="timer count-title count-number" style="font-weight: bold;" data-to="${conend}" data-speed="1500"></h2><br>
       <p style="text-align: center; color: #808080; font-size: 20px; font-weight: bold;">완료된 콘테스트</p>
       <!-- <p class="count-text ">완료된 콘테스트</p> -->
     </div></div>
               <div class="col">
               <div class="counter" style="background-color: white;">
       <i class="fa fa-krw fa-2x" style="color: #205375;"></i>
-      <h2 class="timer count-title count-number" style="font-weight: bold;" data-to="852181500" data-speed="1500"></h2><br>
+      <h2 class="timer count-title count-number" style="font-weight: bold;" data-to="${consum}" data-speed="1500"></h2><br>
       <p style="text-align: center; color: #808080; font-size: 20px; font-weight: bold;">누적 상금액</p>
       <!-- <p class="count-text ">누적 상금액</p> -->
     </div>
