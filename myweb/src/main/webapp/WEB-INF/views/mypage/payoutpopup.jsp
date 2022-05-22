@@ -26,7 +26,7 @@
 	<table class="payout">
 		<tr>
 			<th>출금신청금액</th>
-			<td><input type="text" name="w_price"></td>
+			<td><input type="text" name="w_balance"></td>
 		</tr>
 		<tr>
 			<th>은행&nbsp;</th>

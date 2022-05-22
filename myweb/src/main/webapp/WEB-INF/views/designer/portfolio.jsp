@@ -95,7 +95,6 @@
 	        <div class="heading"><br>
 	        <img src="profileimg/${pdto.p_img}" class="img-rounded"><br><br>
 	          <h2>${udto.u_nick}님의 포트폴리오</h2>
-	          <h6 style="color: gray; font-size: 12px;">우승 ${win}회</h6>
     
 	        </div>
 	        <div class="row">

@@ -13,7 +13,7 @@
   	SELECT COUNT(*) FROM F_ACCOUNT WHERE U_IDX=#{u_idx}
   	</select>
   	<select id="getLastBalance" parameterType="Integer" resultType="Integer">
-  		SELECT A_BALANCE FROM
+  		SELECT NVL(MAX(A_BALANCE), 0) FROM
 		(SELECT A_IDX,U_IDX,A_BALANCE FROM F_ACCOUNT WHERE U_IDX=#{u_idx}
 		ORDER BY A_IDX DESC)WHERE ROWNUM=1
   	</select>

@@ -111,12 +111,4 @@ public class DesignerDAOImple implements DesignerDAO {
 		int count=sqlMap.selectOne("getDesignerCnt", u_idx);
 		return count;
 	}
-	
-	@Override
-	public int desigerTotalWin(int u_idx) {
-		int count=sqlMap.selectOne("dsndesginerwinTotal", u_idx);
-		return count;
-	}
-	
-
 }
