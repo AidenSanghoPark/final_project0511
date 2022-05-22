@@ -24,6 +24,8 @@ public class MyPageController {
 	
 	@Autowired
 	private MyPageService myPageService;
+	@Autowired
+	private DesignerService designerService;
 	
 	@RequestMapping("myPage.do")
 	public ModelAndView myPage(@RequestParam(value = "cp",defaultValue = "1") int cp,HttpSession session){
@@ -50,12 +52,14 @@ public class MyPageController {
 		List lists=myPageService.myPageList(cp, listSize, vo);
 		List userinfo=myPageService.userInfoFind(vo);
 		List dlists=myPageService.myPageListByDesigner(cp, listSize, vo);
+		ProfileDTO pdto=designerService.profileInfo(vo);
 		
 		mav.addObject("dpageStr", dpageStr);
 		mav.addObject("dlists", dlists);
 		mav.addObject("lists", lists);
 		mav.addObject("pageStr", pageStr);
 		mav.addObject("u_idx", vo);
+		mav.addObject("pdto", pdto);
 		mav.addObject("userinfo", userinfo);
 		mav.setViewName("mypage/mypage");
 		}

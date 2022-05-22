@@ -188,7 +188,7 @@
   }
 }
 .container{
-	width: 1000px;
+	width: 1200px;
 }
 .pagination {
   display: inline-block;
@@ -238,11 +238,11 @@
     <div class="member-details" style="padding-left: 20px;"> 
         <h4 style="font-size: 20px; font-family: Georgia; font-weight: bold;">${dto.u_nick}</h4> 
         <div class="row info-list"> 
-            <div class="col-sm-4" style="font-weight: bold;">
+            <div class="col-sm-4" style="font-weight: bold; font-size: 15px; color: gray;">
             	<i class="fa-solid fa-crown"></i>
             		우승 ${dto.total_win}회
             </div> 
-            <div class="col-sm-4" style="padding-right: 100px;">
+            <div class="col-sm-4" style="padding-right: 100px; font-weight: bold; font-size: 14px; color: gray;">
                 <i class="fa fa-envelope"></i>
                 ${dto.u_email}
             </div> 
@@ -264,8 +264,8 @@
     </div> 
 </div>
 </c:forEach>
-</div>
 <div class="pagination" style="float: center; padding-bottom: 50px;">${pageStr } </div>
+</div>
 <%@include file="/WEB-INF/views/footer.jsp" %>
 </body>
 </html>

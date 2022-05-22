@@ -56,8 +56,8 @@ ul{
 	<c:choose>
 		<c:when test="${userinfo.u_type!='1' }">
 			<section class="profile">
-		      	<img class="photo" src="profileimg/${pdto.p_img}">
-		        <h5><a href="profile.do">${userinfo.u_name } 님</a></h5>
+		      	<img class="photo" src="profileimg/${pdto.p_img}"><br><br>
+		        <h5><a href="profile.do" style="font-weight: bold;">${userinfo.u_name } 님</a></h5>
 		        		<fieldset style="border-radius:3px;  background-color:skyblue; width:50px;height:13px; margin: auto">
 		        		<h6 style="color:#ffffff;align:center;font-size: 11px;">디자이너</h6>
 		        		</fieldset>

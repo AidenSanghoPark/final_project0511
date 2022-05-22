@@ -24,7 +24,7 @@
 }
 textarea{
 	width:900px;
-	height:200px;
+	height:170px;
 }
 .profile{
 	float: center;
@@ -42,6 +42,10 @@ h5{
     height: 150px; 
     border-radius: 70%;
 }
+.trright{
+	float: right;
+
+}
 </style>
 </head>
 <body>
@@ -50,14 +54,14 @@ h5{
 <c:if test="${pdto == null}">
 	<form name="profileInsert" action="profileInsert.do" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="u_idx" value="${u_idx}"><br><br><br><br>
-	<h2 style="font-weight: bold;"><br>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-regular fa-circle-user"></i>&nbsp;&nbsp;프로필 입력하기</h2>
+	<h2 style="font-weight: bold;"><br>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-regular fa-circle-user fa-lg"></i>&nbsp;&nbsp;프로필 입력하기</h2>
 		<section class="picture">
-			<h5>프로필 사진</h5><hr>
-			<img class="photo" src="profileimg/profile.PNG"><br><br>
-			<input type="file" name="upload" accept="image/png, image/jpeg">
+			<h5 style="font-weight: bold;">프로필 사진</h5><hr>
+			<img class="photo" src="/myweb/profileimg/profile.PNG" style="margin-left: 70px;"><br><br>
+			<input type="file" name="upload" value="${pdto.p_img}" accept="image/png, image/jpeg" style="margin-left: 30px;">
 		</section>
 		<section class="infoConfig">
-		<h4>&nbsp;로그인 정보</h4><hr>
+		<h4 style="font-weight: bold;">&nbsp;로그인 정보</h4><hr>
 		<table>
 			<tr>
 				<th>소개글</th>
@@ -82,13 +86,13 @@ h5{
 						<option>케이</option>
 						<option>현대</option>	
 					</select>
-				<input type="text" value="${pdto.u_wallet}" name="u_wallet">
-				</td>
-			<tr style="text-align: center;">
-				<td><input type="submit" value="입력하기" id="insert"></td>
-				<td><input type="button" value="뒤로가기" onclick="location.href='myPage.do'"></td>
-			</tr>
+				<input type="text"name="u_wallet"></td>
+				</tr>
 		</table>
+		<br><br><br>
+		<div style="padding-right: 100px;">
+				<input type="submit" value="입력하기" class="btn btn-secondary" style="float: right; font-size: 20px; text-align: right;">
+		</div>
 		</section>
 	</form>
 </c:if>
@@ -97,12 +101,12 @@ h5{
 	<input type="hidden" name="u_idx" value="${u_idx}"><br><br><br><br>
 	<h2 style="font-weight: bold;"><br>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-regular fa-circle-user fa-lg"></i>&nbsp;&nbsp;프로필 수정하기</h2>
 		<section class="picture">
-			<h5>프로필 사진</h5><hr>
-			<img class="photo" src="/myweb/profileimg/${pdto.p_img}"><br><br>
-			<input type="file" name="upload" value="${pdto.p_img}" accept="image/png, image/jpeg">
+			<h5 style="font-weight: bold;">프로필 사진</h5><hr>
+			<img class="photo" src="/myweb/profileimg/${pdto.p_img}" style="margin-left: 70px;"><br><br>
+			<input type="file" name="upload" value="${pdto.p_img}" accept="image/png, image/jpeg" style="margin-left: 30px;">
 		</section>
 		<section class="infoConfig">
-		<h4>&nbsp;로그인 정보</h4><hr>
+		<h4 style="font-weight: bold;">&nbsp;로그인 정보</h4><hr>
 		<table>
 			<tr>
 				<th>소개글</th>
@@ -127,18 +131,17 @@ h5{
 						<option>케이</option>
 						<option>현대</option>	
 					</select>
-				<input type="text" value="${pdto.u_wallet}" name="u_wallet">
-				</td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="수정하기" id="sujung" a class="btn btn-secondary" ></td>
-				<td><input type="button" value="뒤로가기" onclick="location.href='myPage.do'" a class="btn btn-secondary"></td>
-			</tr>
+				<input type="text" value="${pdto.u_wallet}" name="u_wallet"></td>
+				</tr>
 		</table>
+		<br><br><br>
+		<div style="padding-right: 100px;">
+				<input type="submit" value="수정하기" class="btn btn-secondary" style="float: right; font-size: 20px; text-align: right;">
+		</div>
 		</section>
 	</form>
 </c:if>
-<div style="padding-top:1200px;">
+<div style="padding-top:600px;">
 <%@include file="/WEB-INF/views/footer.jsp" %>
 </div>
 </body>
