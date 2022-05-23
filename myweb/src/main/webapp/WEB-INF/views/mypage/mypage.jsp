@@ -81,8 +81,13 @@ ul{
 		    	<c:otherwise>
 			    	<c:forEach var="ddto" items="${dlists }">
 				    	<fieldset>
+				    	<c:forEach var="c_dto" items="${lists }">
+				    	<c:url var="contentUrl" value="conPartContent.do?c_idx=${c_dto.c_idx}">
+						<c:param name="d_idx">${dtos.d_idx}</c:param>
+						</c:url>
+						</c:forEach>
 				    		<img src="mypageimg/cateimg.jpg">
-				    		<label style="color:blue;">참여일:${ddto.d_date }&nbsp;</label>|<label>&nbsp;${ddto.d_name }</label>
+				    		<label style="color:blue;">참여일:${ddto.d_date }&nbsp;</label>|<label>&nbsp;<a href="${contentUrl }">${ddto.d_name }</a></label>
 				    	</fieldset><br>
 			    	</c:forEach>
 		    		<div id="page">${dpageStr }</div>
@@ -111,8 +116,11 @@ ul{
 	    			<c:otherwise>
 	    				<c:forEach var="dto" items="${lists }">
 					    	<fieldset>
+					    	<c:url var="contentUrl" value="conContent.do">
+							<c:param name="c_idx">${dto.c_idx }</c:param>
+							</c:url>
 					    		<img src="mypageimg/cateimg.jpg">
-					    		<label style="color:blue;">${dto.c_cate }&nbsp;</label>|<label>&nbsp;${dto.c_subject }</label>
+					    		<label style="color:blue;">${dto.c_cate }&nbsp;</label>|<label>&nbsp;<a href="${contentUrl}">${dto.c_subject }</a></label>
 					    	</fieldset><br>
 				    	</c:forEach>
 	    				<div id="page">${pageStr }</div>
