@@ -97,22 +97,22 @@
 	          <h2>${udto.u_nick}님의 포트폴리오</h2>
     
 	        </div>
-	        <div class="row">
-	        <c:forEach var="dto" items="${lists}">
+	        <div class="row" style="font-size: 20px; text-align: center; font-weight: bold; padding-left: 30px;">
+	        <c:if test="${empty lists}">
+				<div>참여한 콘테스트가 없습니다.</div>
+			</c:if>
+	        	<c:forEach var="dto" items="${lists}">
 	            <div class="col-md-6 col-lg-4">
 	                <div class="card border-0 transform-on-hover">
-	                	<a class="lightbox">
-	                		<img src="img/design8.png" alt="portfolioPhoto" class="card-img-top">
+	                	<a class="btn-open-popup">
+	                		<img src="img/${dto.d_img_1}" alt="portfolioPhoto" class="card-img-top">
 	                	</a>
 	                    <div class="card-body">
 	                        <h6>${dto.d_name}</h6>
 	                    </div>
 	                </div>
-	            </div>
-	           </c:forEach>
-	        </div>
-	        
-	        <!-- 모달 -->	
+	                
+	                <!-- 모달 -->		    
 							  <div class="modal" id="${dto.c_idx}">
 							  
 							  	<script>
@@ -130,19 +130,19 @@
 						      	  	<h6>
 						      			<c:if test="${dto.d_win == 1}">우승</c:if>
 						      		</h6>
-						      		<h2>${dto.d_name}</h2>
-						      		<label>
+						      		<h3 style="font-weight: bold;">${dto.d_name}</h3>
+						      		<label style="border-radius:3px;  background-color: #a9a9a9; width:50px; height:19px; margin: auto; color:#ffffff; font-size: 13px;">
 							      		<c:if test="${dto.c_cate == 'logo'}">로고</c:if>
 							      		<c:if test="${dto.c_cate == 'character'}">캐릭터</c:if>
 							      		<c:if test="${dto.c_cate == 'naming'}">네이밍</c:if>
 							      		<c:if test="${dto.c_cate == 'print'}">인쇄</c:if>
 						      		</label><hr>
-						      		<p style="text-align: left; padding-left: 20px;">${dto.d_content}</p>
+						      		<label style="text-align: left; padding-left: 10px; size: 10px;">${dto.d_content}</label><hr>
 						      		<br><hr>
 						      		<button class="button" style="width: 230px; height: 50px; border-radius: 3px; " >해당 콘테스트 보기<br></button>
 						      	</div>
-						      	<div style="float: left;">
-						      		<img style="width: 70%; height: 100%; float: left;" src="img/${dto.d_img_2}">
+						      	<div>
+						      		<img style="width: 70%; height: 100%; float: left; padding-right: 40px;" src="img/${dto.d_img_2}">
 						      	</div>
 						      	
 						      </div>

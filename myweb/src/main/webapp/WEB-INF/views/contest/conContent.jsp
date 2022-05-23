@@ -480,6 +480,7 @@ a{
 	line-height: 30px;">
 		${dto.c_details }
 	</fieldset>
+	<br><br>
 	</form>
 </div>
 <script>
