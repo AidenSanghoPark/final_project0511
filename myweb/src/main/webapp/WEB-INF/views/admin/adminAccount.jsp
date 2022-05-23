@@ -24,7 +24,7 @@ a:hover {
 	width: 40%;
 	text-align: center;
 	margin: 0 auto;
-	position: absolute; left: 610px;
+	position: absolute; left: 510px;
 }
 #content {
 	
