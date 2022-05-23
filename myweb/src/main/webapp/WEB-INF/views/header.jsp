@@ -29,7 +29,9 @@
 <body>
 <nav class="navbar navbar-expand navbar-dark fixed-top" aria-label="Second navbar example" style="background-color: black; height: 80px;"> 
    <div style="margin: 0 auto;">
-         <nav style="float:left;">        
+         <nav style="float:left;">
+         <div class="text-center mt-3 collapse navbar-collapse" id="navbarNavDropdown" style="width: 1600px;">
+         
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
                      <a class="nav-link" href="index.do" style="font-size: 20px; text-decoration: none;">Home</a>
@@ -51,7 +53,8 @@
                       <a href="logout.do" style="text-decoration: none;">로그아웃</a></span>
                   </li>
            		</c:if>
-             </ul>  
+             </ul>
+         </div>    
        </nav>
     </div>
  </nav>

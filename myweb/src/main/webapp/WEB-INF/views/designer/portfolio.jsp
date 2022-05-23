@@ -114,6 +114,15 @@
 	        
 	        <!-- 모달 -->	
 							  <div class="modal" id="${dto.c_idx}">
+							  
+							  	<script>
+								var block = '${dto.c_block}';
+								console.log(block);
+								if(block == 'Y') {
+									alert('블럭된 페이지입니다.');
+									location.href='portfollo.do';
+								}
+								</script>
 						      <div class="modal_body" id="${dto.c_idx}">
 						      	
 						      	<div style="width: 30%; height:100%; background-color:#EFEFF6; float: right; border-radius: 5px;

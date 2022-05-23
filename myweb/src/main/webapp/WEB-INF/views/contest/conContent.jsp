@@ -482,5 +482,13 @@ a{
 	</fieldset>
 	</form>
 </div>
+<script>
+var block = '${dto.c_block}';
+console.log(block);
+if(block == 'Y') {
+	alert('블럭된 페이지입니다.');
+	location.href='conList.do';
+}
+</script>
 </body>
 </html>
