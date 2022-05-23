@@ -21,18 +21,23 @@ function payout(){
 .request tr th{
 	background-color:#d3d3d3;
 	width:400px;
+	box-shadow:10px 10px 10px grey;
 }
 .request tr td{
 	background-color:black;
 	color:white;
 	width:100px;
+	box-shadow:10px 10px 10px grey;
 }
 .list{
-	border-collapse:collapse;
+	border-collapse:separate;
+	border:1px solid;
+	border-radius:5px;
 	margin-left: auto;
 	margin-right: auto;
 	width:1400px;
 	height:50px;
+	box-shadow:10px 10px 10px grey;
 
 }
 .list tr td, th{
@@ -53,7 +58,7 @@ a {
 <%@ include file="/WEB-INF/views/header.jsp" %>
 <div style="padding-left: 80px;padding-top: 100px;">
 <h3>가상계좌</h3><br>
-<table class="request" style="border-top-left-radius: 15px;">
+<table class="request">
 	<tr>
 		<c:choose>
 			<c:when test="${empty blc}">
