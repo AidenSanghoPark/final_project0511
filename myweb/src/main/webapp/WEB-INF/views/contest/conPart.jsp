@@ -433,7 +433,7 @@ a{
 			                </div>
 			            </div>
 			        <div class="row info-list" style="float:right; text-align: left; width:200px; font-size: 10px; padding-top: 20px;"> 
-			            <h3 style="font-size: 20px; font-weight: bold; color: #424242;">상금&nbsp;&nbsp;&nbsp;&nbsp; ${dto.c_pay } 만원</h3> 
+			            <h3 style="font-size: 20px; font-weight: bold; color: #424242;">상금&nbsp;&nbsp;&nbsp;&nbsp; ${dto.c_pay } 원</h3> 
 			            <h4 style="padding-right: 45px; text-align: right; font-size: 15px; color: gray;"><label style="font-weight: bold;">참여인원</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${jsum}명</h4> 
 			            <h4 style="padding-right: 45px; text-align: right; font-size: 15px; color: gray;"><label style="font-weight: bold;">남은기간</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D${dto.c_datediff}</h4> 
 			        </div>    
@@ -459,48 +459,35 @@ a{
 					</tr>
 				</tfoot>
 			</c:if>
-			<tbody>
-				<tr>
-					<c:forEach var="dtos" items="${dlists}">
-					
-					<c:url var="contentUrl" value="conPartContent.do?c_idx=${c_idx}">
+			<c:set var="i" value="0" />
+			<c:set var="j" value="3" />
+			<table>
+			  <c:forEach items="${dlists }" var="dtos">
+			  		<c:url var="contentUrl" value="conPartContent.do?c_idx=${c_idx}">
 						<c:param name="d_idx">${dtos.d_idx}</c:param>
 					</c:url>
-					<td>
-						<p>
-							<a href="${contentUrl}" rel="modal:open">${dtos.d_name}</a><img style="width: 300px;" src="img/${dtos.d_img_1}" />
-						</p>
-					</td>
-					</c:forEach>
-				</tr>
-			</tbody>
+			    <c:if test="${i%j == 0 }">
+			    <tr>
+			    </c:if>
+			       <td>
+			       <p style="padding: 10px;">
+					<a href="${contentUrl}" rel="modal:open">
+			       <img style="width: 200px;" src="img/${dtos.d_img_1}" />
+			       </a>	
+				   </p>
+			       </td>
+			    <c:if test="${i%j == j-1 }">
+			    </tr>
+			    </c:if>
+			    <c:set var="i" value="${i+1 }" />
+			  </c:forEach>
+			</table>
 			<div>&nbsp;</div>
 		</table>
 	</section>
 </div>
 </body>
     <script>
-//       const body = document.querySelector('body');
-//       const modal = document.querySelector('.modal');
-//       const btnOpenPopup = document.querySelector('.btn-open-popup');
-
-//       btnOpenPopup.addEventListener('click', () => {
-//         modal.classList.toggle('show');
-
-//         if (modal.classList.contains('show')) {
-//           body.style.overflow = 'hidden';
-//         }
-//       });
-
-//       modal.addEventListener('click', (event) => {
-//         if (event.target === modal) {
-//           modal.classList.toggle('show');
-
-//           if (!modal.classList.contains('show')) {
-//             body.style.overflow = 'auto';
-//           }
-//         }
-//       });
       
       $(document).ready(function () {
     	    $('head').append('<style type="text/css">.modal .modal-body {max-height: ' + ($('body').height() * .8) + 'px;overflow-y: auto;}.modal-open .modal{overflow-y: hidden !important;}</style>');

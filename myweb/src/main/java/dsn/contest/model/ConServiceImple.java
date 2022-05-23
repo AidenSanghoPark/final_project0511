@@ -278,5 +278,11 @@ public class ConServiceImple implements ConService{
 		return dto;
 	}
 
+	@Override
+	public DesignerDTO nickname(int u_idx) {
+		DesignerDTO mdto = conDao.nickname(u_idx);
+		return mdto;
+	}
+
 
 }

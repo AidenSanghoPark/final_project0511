@@ -14,9 +14,6 @@ public class FileUploadModule {
 			
 			File f=new File(path+upload.getOriginalFilename());
 			FileOutputStream fos=new FileOutputStream(f);
-			if(!Pattern.matches(upload.getOriginalFilename(), ".*jpg")) {
-				fos.close();
-			}
 			fos.write(bytes);
 			fos.close();
 		} catch (IOException e) {

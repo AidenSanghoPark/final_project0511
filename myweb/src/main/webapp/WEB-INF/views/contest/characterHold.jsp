@@ -449,8 +449,8 @@ function nextNaming(){
         merchant_uid: randomNum(),
         name: $("#selectType").val(), 
         amount: $("#t_pay").val()
-	}, function(rsp) { // callback 로직
-		if (rsp.success) {
+    }, function (rsp) { // callback
+        if (rsp.success) {
             // ajax 거래내역 insert 추가 필요
             
             var dataForm = {
@@ -461,7 +461,7 @@ function nextNaming(){
             };
             
             $.ajax({
-               url: 'logoHoldTrade_add.do', 
+               url: 'namingHoldTrade_add.do', 
                type: 'post',               
                dataType: 'json',
                data: dataForm,

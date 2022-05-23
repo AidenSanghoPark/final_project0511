@@ -333,6 +333,7 @@ public class ContestController {
 	public ModelAndView conContent(
 			@RequestParam(value="c_idx", defaultValue = "0") int c_idx){
 		ConDTO dto=conService.conContent(c_idx);
+		System.out.println(dto.getC_block());
 		int jsum=conService.joinSum(c_idx);
 		ModelAndView mav=new ModelAndView();
 		if(dto==null) {
@@ -360,12 +361,11 @@ public class ContestController {
 	 public @ResponseBody ModelAndView contestEndChoice(
 			@RequestParam int c_idx,
 			@RequestParam int d_idx) {
-		System.out.println(c_idx);
+		
 		int getuser=conService.designerUser(d_idx);
-		System.out.println("desgineruser="+getuser);
 		int conpay=conService.contestPay(c_idx);
 		ConDTO cdto=conService.conContent2(c_idx);
-		System.out.println(conpay);
+		
 		ModelAndView mav=new ModelAndView();
 		conService.contestEnd(c_idx);
 		conService.designerWin(d_idx);
@@ -388,8 +388,11 @@ public class ContestController {
 	
 	@RequestMapping("conPart.do")
 	public ModelAndView conPart(@RequestParam(value = "cp", defaultValue = "1") int cp,
-			@RequestParam(value="c_idx", defaultValue="0") int c_idx) {
+			@RequestParam(value="c_idx", defaultValue="0") int c_idx,
+			@RequestParam(value="u_idx", defaultValue="0") int u_idx)
+			{
 		ConDTO dto=conService.conContent(c_idx);
+		DesignerDTO mdto=conService.nickname(u_idx);
 		int totalCnt=conService.ContestCnt();
 		int listSize=5;
 		int pageSize=5;
@@ -401,7 +404,9 @@ public class ContestController {
 		mav.addObject("dlists", dlists);
 		mav.addObject("pageStr", pageStr);
 		mav.addObject("dto",dto);
+		mav.addObject("mdto",mdto);
 		mav.addObject("c_idx", c_idx);
+		mav.addObject("u_idx",u_idx);
 		
 		mav.setViewName("contest/conPart");
 		return mav;
@@ -417,8 +422,6 @@ public class ContestController {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("ddto",ddto);
 		mav.addObject("cdto", cdto);
-		System.out.println("conpart ddto="+ddto.getD_idx());
-		System.out.println("conpart cdto="+cdto.getC_idx());
 		mav.setViewName("contest/conPartContent");
 		return mav;
 		
