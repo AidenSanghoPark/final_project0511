@@ -120,7 +120,7 @@
 								console.log(block);
 								if(block == 'Y') {
 									alert('블럭된 페이지입니다.');
-									location.href='portfollo.do';
+									location.href='portfolio2.do';
 								}
 								</script>
 						      <div class="modal_body" id="${dto.c_idx}">

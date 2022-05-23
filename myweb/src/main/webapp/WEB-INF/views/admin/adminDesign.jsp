@@ -5,6 +5,14 @@
 <!-- Access Check -->
 <%-- <%@ include file="/WEB-INF/views/admin/adminAccessModule.jsp" %> --%>
 
+
+<!-- jQUERY INCLUDE -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,10 +76,10 @@ a:hover {
 		<c:forEach var="dto" items="${lists}">
 			<tr>
 				<td>${dto.d_idx}</td>
- 				<c:url var="contentUrl" value="designContent.do">
+ 				<c:url var="contentUrl" value="conPartContent.do">
 					<c:param name="d_idx">${dto.d_idx}</c:param>
 				</c:url>
-				<td><a href="${contentUrl}" rel="modal:open">${dto.d_name}</a></td> <!-- 이쪽을 모달로 변경해보기 -->
+				<td><a href="${contentUrl}" rel="modal:open">${dto.d_name}</a></td> 
 				<td>${dto.u_nick}</td>			
 				<td>
 					<c:url var="contentUrl" value="designBlock.do">

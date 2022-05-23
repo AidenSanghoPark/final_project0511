@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.servlet.ModelAndView;
 
 import dsn.admin.model.adminService;
@@ -511,5 +512,17 @@ public class adminController {
 		mav.setViewName("admin/adminMsg");
 
 		return mav;
+	}
+	
+	@RequestMapping("contContent.do")
+	public ModelAndView goContestContent(int c_idx) {
+		
+		ContManageDTO dto = ContManageService.contContent(c_idx);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("dto",dto);
+		mav.setViewName("contest/conContent");
+		return mav;
+		
 	}
 }

@@ -73,10 +73,10 @@ a:hover {
 		<c:forEach var="dto" items="${lists}">
 			<tr>
 				<td>${dto.c_idx}</td>
- 				<c:url var="contentUrl" value="contContent.do">
+ 				<c:url var="contentUrl" value="conContent.do">
 					<c:param name="c_idx">${dto.c_idx}</c:param>
 				</c:url>
-				<td><a href="${contentUrl}" rel="modal:open">${dto.c_subject}</a></td> <!-- 이쪽을 모달로 변경해보기 -->
+				<td><a href="${contentUrl}">${dto.c_subject}</a></td> 
 				<td>${dto.c_company}</td>		
 				<td>${dto.u_id}</td>		
 				<td>

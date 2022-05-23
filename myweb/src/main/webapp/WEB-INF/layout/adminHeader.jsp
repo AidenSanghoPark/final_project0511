@@ -126,7 +126,7 @@ body {
 		    <li><a class="dropdown-item" href="contManage.do">게시물관리</a></li>
 		    <li><a class="dropdown-item" href="designManage.do">출품작관리</a></li>
 		    <li><hr class="dropdown-divider"></li>
-		    <li><a class="dropdown-item" href="reportManage.do">신고관리</a></li>
+		<!--     <li><a class="dropdown-item" href="reportManage.do">신고관리</a></li> -->
 		    <!-- <li><a class="dropdown-item" href="#">Something else here</a></li>
 		    <li><hr class="dropdown-divider"></li>
 		    <li><a class="dropdown-item" href="#">Separated link</a></li> -->

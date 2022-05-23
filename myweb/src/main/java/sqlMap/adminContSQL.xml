@@ -44,23 +44,7 @@
 	<select id="dsn.adminCont.contContent" parameterType="Integer" resultType="dsn.contManage.model.ContManageDTO">
 		SELECT 
 				F_CLIENT.C_IDX
-				,F_CLIENT.C_SUBJECT
-				,F_CLIENT.C_DEAS
-				,F_CLIENT.C_COMPANY
-				,F_CLIENT.C_CATE
-				,F_CLIENT.C_LOGO
-				,F_CLIENT.C_COLOR
-				,F_CLIENT.C_FILE
-				,F_CLIENT.C_NAME
-				,F_CLIENT.C_DETAILS
-				,F_CLIENT.C_IDEA
-				,F_CLIENT.C_READNUM
-				,F_CLIENT.C_PAY
-				,F_CLIENT.C_OPENDATE
-				,F_CLIENT.C_ENDDATE
-				,F_CLIENT.U_IDX
-				,F_CLIENT.C_BLOCK
-				,F_USER.U_NAME
+
 		 FROM F_CLIENT, F_USER
 		WHERE F_CLIENT.C_IDX= #{c_idx}
 	</select>
