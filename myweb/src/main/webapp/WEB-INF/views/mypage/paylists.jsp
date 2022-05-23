@@ -55,7 +55,7 @@ a {
 		 <tr>
 			<th>결제일</th>
 			<th style="width:600px;">결제금액</th>
-			<th>상태</th>
+			<th>결제정보</th>
 		</tr>
 	</thead>
 </table>
@@ -71,7 +71,7 @@ a {
 		<td style="width:600px;color:blue">${lists.t_pay}&nbsp;원</td>
 		<c:choose>
 			<c:when test="${lists.t_type=='0'}">
-				<td>무통장입금</td>
+				<td>카드결제</td>
 			</c:when>
 			<c:when test="${lists.t_type=='1'}">
 				<td>카카오페이</td>
