@@ -48,7 +48,7 @@ public class MemberController {
 	public ModelAndView memberJoinSubmit(MemberDTO dto) {
 		
 		int result = memberService.memberJoin(dto);
-		String msg = result > 0? "È¸¿ø°¡ÀÔ¿Ï·á":"È¸¿ø°¡ÀÔ½ÇÆĞ";
+		String msg = result > 0? "íšŒì›ê°€ì… ì™„ë£Œ":"íšŒì›ê°€ì… ì‹¤íŒ¨";
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
 		mav.addObject("goPage", "index.do");
