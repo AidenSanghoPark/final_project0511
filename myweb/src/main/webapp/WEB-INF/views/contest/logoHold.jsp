@@ -451,11 +451,7 @@ function namingAdd() {
      
       $("#c_logo").val(cLogo);
       $("#c_pay").val($("#totalPrice").val());
-      if(confirm("콘테스트 개최에 성공하였습니다.")){
-         $("#ftest").submit();
-      }else{
-         return false;
-      }
+      $("#ftest").submit();
       
       //ajax는 data주고받기를 json타입으로한다.
       //json key:value 되어있다.
