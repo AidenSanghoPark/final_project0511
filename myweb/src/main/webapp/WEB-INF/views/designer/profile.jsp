@@ -50,7 +50,8 @@ h5{
 <c:if test="${pdto == null}">
 	<form name="profileInsert" action="profileInsert.do" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="u_idx" value="${u_idx}"><br><br><br><br>
-	<h2 style="font-weight: bold;"><br>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-regular fa-circle-user fa-lg"></i>&nbsp;&nbsp;프로필 입력하기</h2>
+	<h2 style="font-weight: bold;  background-color: #dcdcdc; border-radius:10px; padding-top: 10px; padding-bottom: 20px;">
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-regular fa-circle-user fa-lg"></i>&nbsp;&nbsp;프로필 입력하기</h2>
 		<section class="picture">
 			<h5 style="font-weight: bold;">프로필 사진</h5><hr>
 			<img class="photo" src="/myweb/profileimg/profile.PNG" style="margin-left: 70px;"><br><br>

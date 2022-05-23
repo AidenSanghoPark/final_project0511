@@ -188,7 +188,7 @@ public class ContestController {
 		mav.addObject("result", result);
 		//mav.addObject("upload", dto.getUpload());
 		if(null != dto.getUpload()){
-			String path = request.getSession().getServletContext().getRealPath("img/");
+			String path = request.getSession().getServletContext().getRealPath("/img/");
 			copyInto(dto.getUpload(), path); 
 		}
 		mav.setViewName("contest/printHold");
@@ -333,7 +333,6 @@ public class ContestController {
 	public ModelAndView conContent(
 			@RequestParam(value="c_idx", defaultValue = "0") int c_idx){
 		ConDTO dto=conService.conContent(c_idx);
-		System.out.println(dto.getC_block());
 		int jsum=conService.joinSum(c_idx);
 		ModelAndView mav=new ModelAndView();
 		if(dto==null) {
@@ -357,24 +356,7 @@ public class ContestController {
 		return mav;
 	}
 	
-	@RequestMapping(value = "contestEndChoice.do", method = RequestMethod.POST)
-	 public @ResponseBody ModelAndView contestEndChoice(
-			@RequestParam int c_idx,
-			@RequestParam int d_idx) {
-		
-		int getuser=conService.designerUser(d_idx);
-		int conpay=conService.contestPay(c_idx);
-		ConDTO cdto=conService.conContent2(c_idx);
-		
-		ModelAndView mav=new ModelAndView();
-		conService.contestEnd(c_idx);
-		conService.designerWin(d_idx);
-		conService.payUpdate(getuser,conpay,cdto.getC_subject(),getuser,conpay);
-		mav.addObject("gopage", "conList.do");
-		mav.addObject("msg", "당선작 선정 완료");
-		mav.setViewName("/contest/conMsg");
-		return mav;
-	}
+	
 	@RequestMapping("/contestContent.do")
 	public ModelAndView contestContent(
 			@RequestParam int d_idx,
@@ -425,6 +407,26 @@ public class ContestController {
 		mav.setViewName("contest/conPartContent");
 		return mav;
 		
+	}
+	
+	@RequestMapping(value = "contestEndChoice.do", method = RequestMethod.POST)
+	 public @ResponseBody ModelAndView contestEndChoice(
+			@RequestParam int c_idx,
+			@RequestParam int d_idx) {
+		System.out.println("c_idx"+c_idx);
+		System.out.println("d_idx"+d_idx);
+		int getuser=conService.designerUser(d_idx);
+		int conpay=conService.contestPay(c_idx);
+		ConDTO cdto=conService.conContent2(c_idx);
+		
+		ModelAndView mav=new ModelAndView();
+		conService.contestEnd(c_idx);
+		conService.designerWin(d_idx);
+		conService.payUpdate(getuser,conpay,cdto.getC_subject(),getuser,conpay);
+		mav.addObject("gopage", "conList.do");
+		mav.addObject("msg", "당선작 선정 완료");
+		mav.setViewName("/contest/conMsg");
+		return mav;
 	}
 	
 	//체크 박스

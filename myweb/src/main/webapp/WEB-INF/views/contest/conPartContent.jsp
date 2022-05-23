@@ -31,7 +31,6 @@
 <form id="choiceForm" enctype="multipart/form-data" method="post">
 <input type="hidden" name="d_idx" value="${ddto.d_idx}"/>
 <input type="hidden" name="c_idx" value="${cdto.c_idx}"/>
-<input type="hidden" name="c_idx" value="${cdto.u_idx}"/>
 <input type="hidden" name="mdto" value="${mdto}"/>
 <blockquote class="blockquote text-center">내용</blockquote>
 		<!-- 모달 -->		    

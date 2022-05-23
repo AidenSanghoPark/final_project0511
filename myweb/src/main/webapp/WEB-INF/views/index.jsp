@@ -51,6 +51,44 @@
 #main{
 	height: 600px;
 }
+.modal {
+      position: fixed;
+        top: 30%;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        display: none;
+
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+
+      .modal.show {
+        display: block;
+      }
+
+      .modal_body {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+      height: 100%;
+      margin: 10px;
+        width: 1000px;
+      overflow-y: auto;
+        padding: 40px;
+
+        text-align: center;
+
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
+        box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+        transform: translateX(-50%) translateY(-50%);
+      }
+      .modal-dialog{
+    overflow-y: initial !important
+   }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/180c933499.js" crossorigin="anonymous"></script>
@@ -213,13 +251,21 @@
 <br>
 <br>
 <!-- 베스트작품 -->
-<b style="color: gray; font-size: 20px; font-family: Georgia; padding-left: 140px;">
-<i class="fa-solid fa-crown"></i>&nbsp;주간 베스트 작품</b>&nbsp;&nbsp;<small style="color: #035397;">NEW</small>  
+<div style="float: left;">
+	<b style="color: gray; font-size: 20px; font-family: Georgia; padding-left: 140px;">
+	<i class="fa-solid fa-crown"></i>&nbsp;주간 베스트 작품</b>&nbsp;&nbsp;<small style="color: #035397;">NEW</small>
+</div>	  
+<div style="float: right;">
+	<b style="color: gray; font-size: 20px; font-family: Georgia; padding-left: 140px;">
+	<a href="conList.do" style="padding-right: 120px; font-size: 15px; color: gray; text-decoration-line: none;">더보기</a></b>&nbsp;&nbsp;
+</div>
 <br><br>  
 <table style="margin: 0 auto;">
 	 <tr>
 	   	<td>
-	   		<img src="img/main_best1.jfif" style="width: 440px; height: 300px;">
+		   	 <a class="btn-open-popup">
+		   		<img src="img/main_best1.jfif" style="width: 440px; height: 300px;">
+	         </a>
 	   	</td>
 	   		<td>
 	   		<img src="img/main_best2.jpg" style="width: 440px; height: 300px;">
@@ -230,8 +276,14 @@
 	 </tr>
 </table>
 <br><br><br><br>
-<b style="color: gray; font-size: 20px; font-family: Georgia; padding-left: 140px;">
-<i class="fa-solid fa-crown"></i>&nbsp;월간 베스트 작품</b>&nbsp;&nbsp;<small style="color: #035397;">NEW</small>  
+<div style="float: left;">
+	<b style="color: gray; font-size: 20px; font-family: Georgia; padding-left: 140px;">
+	<i class="fa-solid fa-crown"></i>&nbsp;월간 베스트 작품</b>&nbsp;&nbsp;<small style="color: #035397;">NEW</small>
+</div>	  
+<div style="float: right;">
+	<b style="color: gray; font-size: 20px; font-family: Georgia; padding-left: 140px;">
+	<a href="conList.do" style="padding-right: 120px; font-size: 15px; color: gray; text-decoration-line: none;">더보기</a></b>&nbsp;&nbsp;
+</div>
 <br><br>  
 <table style="margin: 0 auto;">
 	 <tr>

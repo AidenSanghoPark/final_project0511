@@ -28,7 +28,9 @@
    border:1px groove;
    width:900px;
    height:100px;
+   border-radius:5px;
    padding-left:8px;
+   box-shadow:10px 10px 10px grey;
 }
 .coninfo fieldset label{
    padding-top:35px;
@@ -80,7 +82,7 @@ ul{
 			    	<c:forEach var="ddto" items="${dlists }">
 				    	<fieldset>
 				    		<img src="mypageimg/cateimg.jpg">
-				    		<label style="color:blue;">참여일:${ddto.d_date }</label>|<label>${ddto.d_name }</label>
+				    		<label style="color:blue;">참여일:${ddto.d_date }&nbsp;</label>|<label>&nbsp;${ddto.d_name }</label>
 				    	</fieldset><br>
 			    	</c:forEach>
 		    		<div id="page">${dpageStr }</div>
@@ -110,7 +112,7 @@ ul{
 	    				<c:forEach var="dto" items="${lists }">
 					    	<fieldset>
 					    		<img src="mypageimg/cateimg.jpg">
-					    		<label style="color:blue;">${dto.c_cate }</label>|<label>${dto.c_subject }</label>
+					    		<label style="color:blue;">${dto.c_cate }&nbsp;</label>|<label>&nbsp;${dto.c_subject }</label>
 					    	</fieldset><br>
 				    	</c:forEach>
 	    				<div id="page">${pageStr }</div>
@@ -120,7 +122,7 @@ ul{
     	</c:otherwise>
    	</c:choose>
 </c:forEach>
-<div style="padding-top:1200px;">
+<div style="padding-top:900px;">
 <%@include file="/WEB-INF/views/footer.jsp" %>
 </div>
 </body>
