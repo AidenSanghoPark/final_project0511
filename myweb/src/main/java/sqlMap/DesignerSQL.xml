@@ -9,7 +9,7 @@
 		where
 			u_idx = #{u_idx}
 		order by 
-			c_idx desc
+			d_idx desc
 	</select>
 	<select id="review" parameterType="Map" resultType="dsn.review.model.ReviewDTO">
   		select * from 
