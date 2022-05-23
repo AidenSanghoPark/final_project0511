@@ -465,6 +465,14 @@ a{
 	</div>
 	</form>
 </div>
+<script>
+var type = ${login.u_type};
+console.log(type);
+if(type != 2) {
+	alert('디자이너 회원만 참여 가능합니다.');
+	location.href='conContent.do?c_idx=${cdto.c_idx}';
+}
+</script>
 <script type="text/javascript">
 	
 	

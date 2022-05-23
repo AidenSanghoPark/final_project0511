@@ -24,7 +24,7 @@ var type = ${login.u_type};
 console.log(type);
 if(type != 1) {
 	alert('의뢰인 회원만 개최 가능합니다.');
-	history.back();
+	location.href='index.do';
 }
 </script>
 </head>

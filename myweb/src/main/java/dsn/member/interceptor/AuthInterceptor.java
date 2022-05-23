@@ -16,8 +16,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 	 private void saveDestination(HttpServletRequest request) {
 	    	String uri = request.getRequestURI();
 	    	String query = request.getQueryString();
-	    	System.out.println("authuri="+uri);
-	    	System.out.println("authquery="+query);
 	    	if(query == null || query.equals("null")) {
 	    		query = "";
 	    	}else {
