@@ -286,7 +286,7 @@
 </div>	  
 <div style="float: right;">
 	<b style="color: gray; font-size: 20px; font-family: Georgia; padding-left: 140px;">
-	<a href="conList.do" style="padding-right: 120px; font-size: 15px; color: gray; text-decoration-line: none;">더보기</a></b>&nbsp;&nbsp;
+	<a href="conList.do" style="padding-right: 130px; font-size: 15px; color: gray; text-decoration-line: none;">더보기</a></b>&nbsp;&nbsp;
 </div>
  <section class="gallery-block cards-gallery">
        <div class="container">         
@@ -328,7 +328,7 @@
 </div>	  
 <div style="float: right;">
 	<b style="color: gray; font-size: 20px; font-family: Georgia; padding-left: 140px;">
-	<a href="conList.do" style="padding-right: 120px; font-size: 15px; color: gray; text-decoration-line: none;">더보기</a></b>&nbsp;&nbsp;
+	<a href="conList.do" style="padding-right: 130px; font-size: 15px; color: gray; text-decoration-line: none;">더보기</a></b>&nbsp;&nbsp;
 </div> 
 <section class="gallery-block cards-gallery">
        <div class="container">         
