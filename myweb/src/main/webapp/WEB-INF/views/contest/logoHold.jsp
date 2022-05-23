@@ -449,10 +449,8 @@ function namingAdd() {
          
       });
      
-      
       $("#c_logo").val(cLogo);
       $("#c_pay").val($("#totalPrice").val());
-      
       if(confirm("콘테스트 개최에 성공하였습니다.")){
          $("#ftest").submit();
       }else{
