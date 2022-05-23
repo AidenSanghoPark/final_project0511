@@ -89,6 +89,108 @@
       .modal-dialog{
     overflow-y: initial !important
    }
+.gallery-block{
+   padding-bottom: 60px;
+   padding-top: 60px;
+}
+
+.gallery-block .heading{
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.gallery-block .heading h2{
+    font-weight: bold;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+}
+
+.gallery-block.cards-gallery h6 {
+  font-size: 17px;
+  font-weight: bold; 
+}
+
+.gallery-block.cards-gallery .card{
+  transition: 0.4s ease; 
+}
+
+.gallery-block.cards-gallery .card img {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15); 
+}
+
+.gallery-block.cards-gallery .card-body {
+  text-align: center; 
+}
+
+.gallery-block.cards-gallery .card-body p {
+  font-size: 15px; 
+}
+
+.gallery-block.cards-gallery a {
+  color: #212529; 
+}
+
+.gallery-block.cards-gallery a:hover {
+  text-decoration: none; 
+}
+
+.gallery-block.cards-gallery .card {
+  margin-bottom: 30px; 
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+@media (min-width: 576px) {
+
+   .gallery-block .transform-on-hover:hover {
+       transform: translateY(-10px) scale(1.02);
+       box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.15) !important; 
+   }
+}
+.profile-photo-lg{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+
+.modal {
+      position: fixed;
+        top: 30%;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+
+        display: none;
+
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+
+      .modal.show {
+        display: block;
+      }
+
+      .modal_body {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+      height: 100%;
+      margin: 10px;
+        width: 1000px;
+      overflow-y: auto;
+        padding: 40px;
+
+        text-align: center;
+
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
+        box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+        transform: translateX(-50%) translateY(-50%);
+      }
+      .modal-dialog{
+    overflow-y: initial !important
+   }   
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/180c933499.js" crossorigin="anonymous"></script>
@@ -177,8 +279,99 @@
 <br>
 <hr>
 <br>
+<!-- 베스트작품 -->
+<div style="float: left;">
+	<b style="color: gray; font-size: 20px; font-family: Georgia; padding-left: 140px;">
+	<i class="fa-solid fa-crown"></i>&nbsp;주간 베스트 작품</b>&nbsp;&nbsp;<small style="color: #035397;">NEW</small>
+</div>	  
+<div style="float: right;">
+	<b style="color: gray; font-size: 20px; font-family: Georgia; padding-left: 140px;">
+	<a href="conList.do" style="padding-right: 120px; font-size: 15px; color: gray; text-decoration-line: none;">더보기</a></b>&nbsp;&nbsp;
+</div>
+ <section class="gallery-block cards-gallery">
+       <div class="container">         
+               <div class="col-md-6 col-lg-4">
+               		<div style="height: 200px;">
+	                   <div class="card border-0 transform-on-hover" style="width: 400px; height: 300px; float: left;
+	                   position: absolute; left: 140px;">
+	                      <a class="btn-open-popup">
+	                         <img src="img/main_best1.jfif"class="card-img-top" style="width: 400px; height: 250px;">
+	                      </a>             
+							<div class="card-body">
+	                       </div>                      
+	                   </div>
+	                   <div class="card border-0 transform-on-hover" style="width: 400px; height: 300px; float: right;
+	                   position: absolute; left: 590px;">
+	                      <a class="btn-open-popup">
+	                         <img src="img/main_best2.jpg"class="card-img-top" style="width: 400px; height: 250px;">
+	                      </a>             
+							<div class="card-body">
+	                       </div>                      
+	                   </div>
+	                   <div class="card border-0 transform-on-hover" style="width: 400px; height: 300px; float: right;
+	                   position: absolute; right: 140px;">
+	                      <a class="btn-open-popup">
+	                         <img src="img/main_best3.png"class="card-img-top" style="width: 400px; height: 250px;">
+	                      </a>             
+							<div class="card-body">
+	                       </div>                      
+	                   </div>    
+	                 </div>                   
+                   <!-- 모달 -->          
+           </div>
+       </div>
+    </section>
+<br><br><br><br>
+<div style="float: left;">
+	<b style="color: gray; font-size: 20px; font-family: Georgia; padding-left: 140px;">
+	<i class="fa-solid fa-crown"></i>&nbsp;월간 베스트 작품</b>&nbsp;&nbsp;<small style="color: #035397;">NEW</small>
+</div>	  
+<div style="float: right;">
+	<b style="color: gray; font-size: 20px; font-family: Georgia; padding-left: 140px;">
+	<a href="conList.do" style="padding-right: 120px; font-size: 15px; color: gray; text-decoration-line: none;">더보기</a></b>&nbsp;&nbsp;
+</div> 
+<section class="gallery-block cards-gallery">
+       <div class="container">         
+               <div class="col-md-6 col-lg-4">
+               		<div style="height: 200px;">
+	                   <div class="card border-0 transform-on-hover" style="width: 400px; height: 300px; float: left;
+	                   position: absolute; left: 140px;">
+	                      <a class="btn-open-popup">
+	                         <img src="img/main_best4.jpg"class="card-img-top" style="width: 400px; height: 250px;">
+	                      </a>             
+							<div class="card-body">
+	                       </div>                      
+	                   </div>
+	                   <div class="card border-0 transform-on-hover" style="width: 400px; height: 300px; float: right;
+	                   position: absolute; left: 590px;">
+	                      <a class="btn-open-popup">
+	                         <img src="img/main_best5.jpg"class="card-img-top" style="width: 400px; height: 250px;">
+	                      </a>             
+							<div class="card-body">
+	                       </div>                      
+	                   </div>
+	                   <div class="card border-0 transform-on-hover" style="width: 400px; height: 300px; float: right;
+	                   position: absolute; right: 140px;">
+	                      <a class="btn-open-popup">
+	                         <img src="img/main_best6.jpg"class="card-img-top" style="width: 400px; height: 250px;">
+	                      </a>             
+							<div class="card-body">
+	                       </div>                      
+	                   </div>    
+	                 </div>                   
+                   <!-- 모달 -->          
+           </div>
+       </div>
+    </section>	    
+<br><br><br><br>	
+<!-- 배너 -->  
+<section class="banner">
+	<div style="align:center;">
+		<p class="lead"><img src="img/banner.png" style="align:center; width: 85%;"></p>
+	</div>
+</section>
+<br>
 <!-- 후기 샘플 -->
-
  <div class="album py-5"  style="background-color: white; margin: 0 auto;">
  <div style="padding-left: 150px;">
  	<b style="margin: 0 auto; width: 60%;  color: gray; font-size: 20px; font-family: Georgia;">
@@ -242,65 +435,8 @@
     </div>
   </div>  
   <br>
-<!-- 배너 -->  
-<section class="banner">
-	<div style="align:center;">
-		<p class="lead"><img src="img/banner.png" style="align:center; width: 85%;"></p>
-	</div>
-</section>
-<br>
-<br>
-<!-- 베스트작품 -->
-<div style="float: left;">
-	<b style="color: gray; font-size: 20px; font-family: Georgia; padding-left: 140px;">
-	<i class="fa-solid fa-crown"></i>&nbsp;주간 베스트 작품</b>&nbsp;&nbsp;<small style="color: #035397;">NEW</small>
-</div>	  
-<div style="float: right;">
-	<b style="color: gray; font-size: 20px; font-family: Georgia; padding-left: 140px;">
-	<a href="conList.do" style="padding-right: 120px; font-size: 15px; color: gray; text-decoration-line: none;">더보기</a></b>&nbsp;&nbsp;
-</div>
-<br><br>  
-<table style="margin: 0 auto;">
-	 <tr>
-	   	<td>
-		   	 <a class="btn-open-popup">
-		   		<img src="img/main_best1.jfif" style="width: 440px; height: 300px;">
-	         </a>
-	   	</td>
-	   		<td>
-	   		<img src="img/main_best2.jpg" style="width: 440px; height: 300px;">
-	   	</td>
-	   		<td>
-	   		<img src="img/main_best3.png" style="width: 440px; height: 300px;">
-	   	</td>
-	 </tr>
-</table>
-<br><br><br><br>
-<div style="float: left;">
-	<b style="color: gray; font-size: 20px; font-family: Georgia; padding-left: 140px;">
-	<i class="fa-solid fa-crown"></i>&nbsp;월간 베스트 작품</b>&nbsp;&nbsp;<small style="color: #035397;">NEW</small>
-</div>	  
-<div style="float: right;">
-	<b style="color: gray; font-size: 20px; font-family: Georgia; padding-left: 140px;">
-	<a href="conList.do" style="padding-right: 120px; font-size: 15px; color: gray; text-decoration-line: none;">더보기</a></b>&nbsp;&nbsp;
-</div>
-<br><br>  
-<table style="margin: 0 auto;">
-	 <tr>
-	   	<td>
-	   		<img src="img/main_best4.jpg" style="width: 440px; height: 300px;">
-	   	</td>
-	   		<td>
-	   		<img src="img/main_best5.jpg" style="width: 440px; height: 300px;">
-	   	</td>
-	   		<td>
-	   		<img src="img/main_best6.jpg" style="width: 440px; height: 300px;">
-	   	</td>
-	 </tr>
-</table>		    
-<br>
-<br>
-<hr>	
+<hr>
+
 <!-- gif 이미지 -->	
 	<br>    
 	<section style="height: 500px; width: 100%; margin: 0 auto; font-family: bold;">
