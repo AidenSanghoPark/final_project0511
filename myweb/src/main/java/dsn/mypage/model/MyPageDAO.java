@@ -27,4 +27,5 @@ public interface MyPageDAO {
 	public List myPageListByDesigner(Map map);
 	public int getDesignerCnt(int u_idx);
 	public ProfileDTO getProfileWalletInfo(int u_idx);
+	
 }

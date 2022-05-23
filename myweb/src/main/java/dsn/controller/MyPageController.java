@@ -142,12 +142,6 @@ public class MyPageController {
 		mav.setViewName("mypage/mypagemsg");
 		return mav;
 	}
-	@RequestMapping("profileConfig.do")
-	public ModelAndView profileConfig() {
-		ModelAndView mav=new ModelAndView();
-		mav.setViewName("mypage/profile");
-		return mav;
-	}
 	@RequestMapping("wallet.do")
 	public ModelAndView virtualWallet(@RequestParam(value = "cp",defaultValue = "1") int cp,HttpSession session) {
 		Object obj=session.getAttribute("login");
