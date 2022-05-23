@@ -596,7 +596,6 @@ function payCard(){
         }
 	});
 }
-
    $(document).ready(function(){
       $(".tab_title li").click(function() {
           var idx = $(this).index();

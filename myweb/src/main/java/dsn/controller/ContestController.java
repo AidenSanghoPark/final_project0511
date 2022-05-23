@@ -76,7 +76,7 @@ public class ContestController {
 			String path = request.getSession().getServletContext().getRealPath("img/");
 			copyInto(dto.getUpload(), path); 
 		}
-		mav.setViewName("contest/conlist");
+		mav.setViewName("contest/conList");
 		return mav;
 	}
 	//로고 트레이드 form
@@ -114,7 +114,7 @@ public class ContestController {
 			String path = request.getSession().getServletContext().getRealPath("img/");
 			copyInto(dto.getUpload(), path); 
 		}
-		mav.setViewName("contest/conlist");
+		mav.setViewName("contest/conList");
 		return mav;
 	}
 	//네이밍 트레이드
@@ -153,7 +153,7 @@ public class ContestController {
 			String path = request.getSession().getServletContext().getRealPath("img/");
 			copyInto(dto.getUpload(), path); 
 		}
-		mav.setViewName("contest/conlist");
+		mav.setViewName("contest/conList");
 		return mav;
 	}
 	//캐릭터 트레이드
