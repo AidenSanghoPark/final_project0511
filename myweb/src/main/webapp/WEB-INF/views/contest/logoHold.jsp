@@ -603,7 +603,7 @@ function payCard(){
    });
    
    function selectPrice(selectPrice, selectTextName){
-      var selectType = selectTextName;
+       var selectType = selectTextName;
        var selectPriceNum = parseInt(selectPrice);
        var comm = selectPriceNum*0.1;
        var vat = (selectPriceNum+comm)*0.1;
